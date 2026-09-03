@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Monitoramento de Temperatura</title>
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+  </head>
+
+  <body>
+    <main class="dashboard">
+      <h1>Dashboard de Monitoramento</h1>
+
+      <section class="card">
+        <h2>Temperatura da Máquina</h2>
+
+        <p id="temperatura">-- °C</p>
+
+        <p>
+          Status:
+          <strong id="status">Aguardando leitura...</strong>
+        </p>
+
+        <p>
+          Última leitura:
+          <span id="ultimaLeitura">--</span>
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Alertas</h2>
+
+        <p id="alerta">Nenhum alerta.</p>
+      </section>
+
+      <button id="btnResfriamento">Resfriamento Emergencial</button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
