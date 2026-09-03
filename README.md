@@ -1,2 +1,2 @@
-# Desenvolvimento_Front_End
-Usado na materia de desenvolvimento Front End
+# Paradigmas_de_LP
+Usado na materia de PARADIGMAS DE LINGUAGENS DE PROGRAMAÇÃO
