@@ -190,11 +190,19 @@ async function carregarCursos() {
     }
     // Se estiver disponível
     else {
-      botaoInscricao = `
+      if (session) {
+        botaoInscricao = `
       <a href="matricula/matricula.html?id=${curso.id}" class="botao-curso">
         Inscrever-se
       </a>
     `;
+      } else {
+        botaoInscricao = `
+      <a href="login/login.html" class="botao-curso">
+        Entrar para se inscrever
+      </a>
+    `;
+      }
     }
 
     card.innerHTML = `
