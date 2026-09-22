@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | FlashClip</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <a href="../index.html" class="logo">
+            FlashClip
+        </a>
+
+        <a href="../index.html" class="voltar">
+            ← Voltar ao evento
+        </a>
+
+    </header>
+
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <div class="login-cabecalho">
+
+                <span class="categoria">
+                    FLASHCLIP
+                </span>
+
+                <h1>
+                    Bem-vindo de volta
+                </h1>
+
+                <p>
+                    Entre na sua conta para continuar.
+                </p>
+
+            </div>
+
+
+            <form id="formLogin">
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="botao-login"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+
+            <div class="cadastro">
+
+                <span>
+                    Ainda não possui uma conta?
+                </span>
+
+                <a href="../cadastro/cadastro.html">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026/2 FlashClip. Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="login.js"></script>
+
+</body>
+
+</html>

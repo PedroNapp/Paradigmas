@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Cadastro | FlashClip</title>
+
+    <link
+      rel="stylesheet"
+      href="cadastro.css"
+    />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a
+        href="../index.html"
+        class="logo"
+      >
+        FlashClip
+      </a>
+
+      <a
+        href="../index.html"
+        class="voltar"
+      >
+        ← Voltar ao evento
+      </a>
+    </header>
+
+    <main class="cadastro-container">
+      <section class="cadastro-card">
+        <div class="cadastro-cabecalho">
+          <span class="categoria"> FLASHCLIP </span>
+
+          <h1>Crie sua conta</h1>
+
+          <p>Faça seu cadastro para participar do evento.</p>
+        </div>
+
+        <form
+          id="formCadastro"
+          class="formulario"
+        >
+          <div class="campo">
+            <label for="nome"> Nome completo </label>
+
+            <input
+              type="text"
+              id="nome"
+              placeholder="Digite seu nome"
+              required
+            />
+          </div>
+
+          <div class="campos-duplos">
+            <div class="campo">
+              <label for="telefone"> Telefone </label>
+
+              <input
+                type="tel"
+                id="telefone"
+                placeholder="(63) 99999-9999"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="idade"> Idade </label>
+
+              <input
+                type="number"
+                id="idade"
+                placeholder="Sua idade"
+                min="1"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="origem"> Origem </label>
+
+            <select
+              id="origem"
+              required
+            >
+              <option
+                value=""
+                disabled
+                selected
+              >
+                Selecione sua origem
+              </option>
+
+              <option value="ulbra-ti">ULBRA - TI</option>
+
+              <option value="ulbra-outro">ULBRA - Outro curso</option>
+
+              <option value="outra-faculdade">Outra faculdade</option>
+
+              <option value="externo">Externo</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="email"> E-mail </label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="senha"> Senha </label>
+
+            <input
+              type="password"
+              id="senha"
+              placeholder="Mínimo de 6 caracteres"
+              minlength="6"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="botao-cadastro"
+          >
+            Criar conta
+          </button>
+        </form>
+
+        <div class="login">
+          <span> Já possui uma conta? </span>
+
+          <a href="../login/login.html"> Entrar </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="cadastro.js"></script>
+  </body>
+</html>

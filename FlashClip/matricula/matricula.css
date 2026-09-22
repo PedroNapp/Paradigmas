@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #101720;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.pagina-matricula {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.card-matricula {
+    width: 100%;
+    max-width: 550px;
+    background: #161d25;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 35px;
+}
+
+.card-matricula h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.info-curso {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.info-curso h2 {
+    font-size: 22px;
+}
+
+.info-curso p {
+    color: #aaa;
+    line-height: 1.5;
+}
+
+.info-item {
+    color: #ccc;
+    font-size: 14px;
+}
+
+#botaoConfirmar {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #f5bd3d;
+    color: #111;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#botaoConfirmar:hover {
+    opacity: 0.85;
+}

@@ -1,1 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
+    <title>FlashClip</title>
+
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+      <a
+        href="#"
+        class="logo"
+      >
+        FlashClip
+      </a>
+
+      <nav class="nav-links">
+        <a
+          href="#"
+          class="ativo"
+        >
+          Início
+        </a>
+
+        <a href="#evento"> Evento </a>
+
+        <a href="#sobre"> Sobre </a>
+      </nav>
+
+      <div class="nav-acoes">
+        <!-- USUÁRIO -->
+
+        <div class="usuario-container">
+          <button
+            class="usuario"
+            id="botaoUsuario"
+          >
+            U
+          </button>
+
+          <div
+            class="nome-usuario"
+            id="nomeUsuario"
+          >
+            Usuário
+          </div>
+        </div>
+
+        <!-- INSCRIÇÕES -->
+
+        <a
+          href="inscricoes/inscricoes.html"
+          class="inscricoes"
+        >
+          Inscrições
+        </a>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+
+    <main>
+      <section
+        class="hero"
+        id="evento"
+      >
+        <div class="conteudo">
+          <p class="categoria">EVENTO</p>
+
+          <h1>FlashClip</h1>
+
+          <p class="subtitulo">
+            Conectando pessoas, ideias e experiências em um único evento.
+          </p>
+
+          <!-- CONTADOR -->
+
+          <div class="contador">
+            <div class="tempo">
+              <strong id="dias"> 00 </strong>
+
+              <span> Dias </span>
+            </div>
+
+            <div class="separador">:</div>
+
+            <div class="tempo">
+              <strong id="horas"> 00 </strong>
+
+              <span> Horas </span>
+            </div>
+
+            <div class="separador">:</div>
+
+            <div class="tempo">
+              <strong id="minutos"> 00 </strong>
+
+              <span> Minutos </span>
+            </div>
+
+            <div class="separador">:</div>
+
+            <div class="tempo">
+              <strong id="segundos"> 00 </strong>
+
+              <span> Segundos </span>
+            </div>
+          </div>
+
+          <!-- BOTÕES -->
+
+          <div class="botoes">
+            <a
+              href="#inscricoes"
+              class="botao-principal"
+            >
+              Fazer inscrição
+            </a>
+
+            <a
+              href="#sobre"
+              class="botao-secundario"
+            >
+              Saiba mais
+            </a>
+          </div>
+
+          <!-- INFORMAÇÕES -->
+
+          <div class="informacoes-evento">
+            <div>
+              <span> LOCAL </span>
+
+              <strong> Ulbra Palmas, TO </strong>
+            </div>
+
+            <div>
+              <span> DATA E HORA </span>
+
+              <strong> 05/12 às 14h </strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+
+      <section
+        class="sobre"
+        id="sobre"
+      >
+        <p>FLASHCLIP</p>
+
+        <h2>Uma experiência feita para conectar pessoas.</h2>
+      </section>
+
+      <section class="cursos">
+        <div class="titulo-cursos">
+          <h2>Cursos disponíveis</h2>
+          <p>Confira os cursos disponíveis para inscrição.</p>
+        </div>
+
+        <div
+          class="lista-cursos"
+          id="listaCursos"
+        >
+          <p>Carregando cursos...</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <div class="footer-conteudo">
+        <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+
+        <div class="contatos">
+          <a
+            href="#"
+            target="_blank"
+          >
+            Instagram
+          </a>
+
+          <a
+            href="#"
+            target="_blank"
+          >
+            Facebook
+          </a>
+
+          <a href="mailto:contato@flashclip.com"> E-mail </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

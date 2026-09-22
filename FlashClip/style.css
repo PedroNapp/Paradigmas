@@ -1,0 +1,613 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111111;
+    color: #ffffff;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 80px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #292929;
+
+    background: #111111;
+}
+
+.logo {
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a,
+.usuario,
+.inscricoes {
+    color: #aaaaaa;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.nav-links a:hover,
+.nav-links .ativo,
+.usuario:hover {
+    color: #ffffff;
+}
+
+.nav-acoes {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.inscricoes {
+    color: #111111;
+
+    background: #ffffff;
+
+    padding: 11px 20px;
+
+    border-radius: 25px;
+
+    font-weight: 600;
+}
+
+.inscricoes:hover {
+    background: #dddddd;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #272727 0%,
+            #111111 55%
+        );
+}
+
+.conteudo {
+    width: 100%;
+    max-width: 1000px;
+}
+
+
+/* categoria */
+
+.categoria {
+    color: #999999;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+
+/* título */
+
+h1 {
+    font-size: clamp(70px, 12vw, 150px);
+
+    line-height: .9;
+
+    letter-spacing: -7px;
+
+    margin-bottom: 25px;
+}
+
+
+/* subtítulo */
+
+.subtitulo {
+    max-width: 550px;
+
+    margin: 0 auto;
+
+    color: #aaaaaa;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.contador {
+    margin: 65px auto 50px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.tempo {
+    min-width: 110px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.tempo strong {
+    font-size: 70px;
+
+    line-height: 1;
+
+    font-weight: 500;
+
+    letter-spacing: -4px;
+}
+
+.tempo span {
+    margin-top: 10px;
+
+    color: #777777;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+.separador {
+    color: #555555;
+
+    font-size: 50px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.botoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.botoes a {
+    text-decoration: none;
+
+    padding: 15px 27px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.botao-principal {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+.botao-principal:hover {
+    background: #dddddd;
+}
+
+.botao-secundario {
+    border: 1px solid #555555;
+
+    color: #ffffff;
+}
+
+.botao-secundario:hover {
+    border-color: #ffffff;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoes-evento {
+    margin-top: 70px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 80px;
+}
+
+.informacoes-evento div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.informacoes-evento span {
+    color: #666666;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.informacoes-evento strong {
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+.sobre {
+    min-height: 400px;
+
+    padding: 100px 7%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-top: 1px solid #292929;
+}
+
+.sobre p {
+    color: #666666;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+}
+
+.sobre h2 {
+    max-width: 800px;
+
+    font-size: 55px;
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid #292929;
+
+    padding: 30px 7%;
+
+    background: #0b0b0b;
+}
+
+.footer-conteudo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+footer p {
+    color: #666666;
+
+    font-size: 12px;
+}
+
+.contatos {
+    display: flex;
+
+    gap: 25px;
+}
+
+.contatos a {
+    color: #777777;
+
+    text-decoration: none;
+
+    font-size: 12px;
+}
+
+.contatos a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-acoes {
+        gap: 10px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    h1 {
+        font-size: 70px;
+
+        letter-spacing: -4px;
+    }
+
+    .contador {
+        gap: 8px;
+    }
+
+    .tempo {
+        min-width: 65px;
+    }
+
+    .tempo strong {
+        font-size: 40px;
+
+        letter-spacing: -2px;
+    }
+
+    .separador {
+        font-size: 30px;
+
+        margin-bottom: 15px;
+    }
+
+    .informacoes-evento {
+        flex-direction: column;
+
+        gap: 25px;
+
+        margin-top: 50px;
+    }
+
+    .footer-conteudo {
+        flex-direction: column;
+
+        gap: 20px;
+
+        align-items: flex-start;
+    }
+
+    .sobre h2 {
+        font-size: 40px;
+    }
+}
+
+/* =========================
+   USUÁRIO
+========================= */
+
+.usuario-container {
+    position: relative;
+}
+
+.usuario {
+    min-width: 42px;
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #ffffff;
+    color: #111111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.nome-usuario {
+    position: absolute;
+
+    top: 52px;
+    right: 0;
+
+    background: #ffffff;
+    color: #111111;
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition: 0.2s;
+}
+
+.usuario-container:hover .nome-usuario {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.cursos {
+    width: 90%;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.titulo-cursos {
+    margin-bottom: 25px;
+}
+
+.titulo-cursos h2 {
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.titulo-cursos p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.lista-cursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card-curso {
+    background: #161d25;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 22px;
+    transition: 0.2s;
+}
+
+.card-curso:hover {
+    transform: translateY(-4px);
+    border-color: #f5bd3d;
+}
+
+.card-curso h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.card-curso p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.info-curso {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.status-curso {
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: rgba(245, 189, 61, 0.12);
+    color: #f5bd3d;
+    font-size: 12px;
+}
+
+.botao-curso {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 11px;
+    border-radius: 8px;
+    background: #f5bd3d;
+    color: #111;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+
+.botao-curso:hover {
+    opacity: 0.85;
+}
+
+.imagem-curso {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Dashboard Administrativo</title>
+
+    <link
+      rel="stylesheet"
+      href="admin.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+
+  <body>
+    <header class="cabecalho">
+      <div>
+        <h1>Dashboard Administrativo</h1>
+        <p>Visão geral das inscrições do FlashClip</p>
+      </div>
+
+      <button id="botaoVoltar">Voltar ao início</button>
+    </header>
+
+    <main class="container">
+      <div
+        id="mensagemAcesso"
+        class="mensagem"
+      >
+        Verificando permissões...
+      </div>
+
+      <section
+        id="conteudoDashboard"
+        class="oculto"
+      >
+        <div class="cabecalho-secao">
+          <h2>Resumo geral</h2>
+          <button id="botaoAtualizar">Atualizar dados</button>
+        </div>
+
+        <section class="cards">
+          <article class="card">
+            <span class="icone">👥</span>
+            <p>Total de pessoas inscritas</p>
+            <h3 id="totalPessoas">0</h3>
+          </article>
+
+          <article class="card">
+            <span class="icone">📚</span>
+            <p>Curso mais popular</p>
+            <h3 id="cursoPopular">Nenhum</h3>
+          </article>
+
+          <article class="card">
+            <span class="icone">🎂</span>
+            <p>Média de idade</p>
+            <h3 id="mediaIdade">0 anos</h3>
+          </article>
+
+          <article class="card">
+            <span class="icone">⏳</span>
+            <p>Matrículas pendentes</p>
+            <h3 id="matriculasPendentes">0</h3>
+          </article>
+        </section>
+
+        <section class="painel">
+          <h2>Informações do sistema</h2>
+
+          <div class="informacoes">
+            <p>
+              <strong>Última atualização:</strong>
+              <span id="ultimaAtualizacao">--</span>
+            </p>
+
+            <p>
+              <strong>Status:</strong>
+              <span class="status-online">Sistema conectado</span>
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section class="secao-matriculas">
+        <div class="titulo-secao">
+          <div>
+            <span class="subtitulo">GERENCIAMENTO</span>
+            <h2>Matrículas</h2>
+          </div>
+        </div>
+
+        <div class="seletor-curso">
+          <label for="selectCurso">Selecione o curso:</label>
+
+          <select id="selectCurso">
+            <option value="">Selecione um curso</option>
+          </select>
+        </div>
+
+        <div
+          id="listaParticipantes"
+          class="lista-participantes"
+        >
+          <p class="sem-matriculas">
+            Selecione um curso para visualizar as matrículas.
+          </p>
+        </div>
+      </section>
+
+      <!-- MODAL -->
+
+      <div
+        id="modalStatus"
+        class="modal"
+      >
+        <div class="modal-conteudo">
+          <h3>Alterar status</h3>
+
+          <p>Deseja marcar esta matrícula como atendida?</p>
+
+          <div class="modal-botoes">
+            <button
+              id="botaoCancelarModal"
+              type="button"
+            >
+              Cancelar
+            </button>
+
+            <button
+              id="botaoConfirmarStatus"
+              type="button"
+            >
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
