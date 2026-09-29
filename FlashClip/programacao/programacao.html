@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Programação | FlashClip</title>
+
+    <link
+      rel="stylesheet"
+      href="programacao.css"
+    />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+      <a
+        href="../index.html"
+        class="logo"
+      >
+        FlashClip
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html"> Home </a>
+
+        <a href="#evento"> Cursos </a>
+
+        <a href="" class="ativo"> Programação </a>
+
+        <a href="#cursos"> Instrutores </a>
+
+        <a href="../patrocinadores/patrocinadores.html"> Patrocinadores </a>
+
+        <a href="../contato/contato.html"> Contato </a>
+
+        <a href="../sobre/sobre.html">Sobre</a>
+
+        <a href="">FAQ</a>
+      </nav>
+
+      <div class="nav-acoes">
+        <div class="usuario-container">
+          <button
+            class="usuario"
+            id="botaoUsuario"
+            type="button"
+          >
+            U
+          </button>
+
+          <div class="nome-usuario">Usuário</div>
+        </div>
+
+        <a
+          href="../inscricoes/inscricoes.html"
+          class="inscricoes"
+        >
+          Inscrições
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================
+             INTRO
+        ========================== -->
+
+      <section class="programacao-intro">
+        <span> AGENDA DO EVENTO </span>
+
+        <h1>Programação do Evento</h1>
+
+        <p>Confira a agenda completa do FlashClip</p>
+      </section>
+
+      <!-- =========================
+             PROGRAMAÇÃO
+        ========================== -->
+
+      <section class="agenda">
+        <div class="linha-agenda"></div>
+
+        <!-- CURSO -->
+
+        <article class="evento">
+          <div class="marcador">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect
+                x="3"
+                y="4"
+                width="18"
+                height="16"
+                rx="2"
+              />
+
+              <path d="m8 10 2.5 2L8 14" />
+
+              <path d="M13 14h3" />
+            </svg>
+          </div>
+
+          <div class="evento-conteudo">
+            <div class="evento-topo">
+              <span class="tipo"> CURSO </span>
+
+              <strong> 14:00 </strong>
+            </div>
+
+            <h2>Início dos Cursos</h2>
+
+            <p>
+              Início dos cursos com apresentação dos patrocinadores e a
+              programação geral.
+            </p>
+
+            <div class="detalhes">
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                  />
+
+                  <path d="M12 7v5l3 2" />
+                </svg>
+
+                80 min
+              </span>
+
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path d="M4 19V9l8-5 8 5v10" />
+
+                  <path d="M8 19v-6h8v6" />
+                </svg>
+
+                Labins
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- INTERVALO -->
+
+        <article class="evento">
+          <div class="marcador">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              />
+
+              <path d="M9 9v6" />
+              <path d="M15 9v6" />
+            </svg>
+          </div>
+
+          <div class="evento-conteudo">
+            <div class="evento-topo">
+              <span class="tipo"> INTERVALO </span>
+
+              <strong> 15:20 </strong>
+            </div>
+
+            <h2>Intervalo</h2>
+
+            <p>Pausa de 10 minutos para recarregar as energias.</p>
+
+            <div class="detalhes">
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                  />
+
+                  <path d="M12 7v5l3 2" />
+                </svg>
+
+                10 min
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- RETORNO -->
+
+        <article class="evento">
+          <div class="marcador">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+            >
+              <path d="M4 12h16" />
+
+              <path d="m13 5 7 7-7 7" />
+            </svg>
+          </div>
+
+          <div class="evento-conteudo">
+            <div class="evento-topo">
+              <span class="tipo"> CURSO </span>
+
+              <strong> 15:30 </strong>
+            </div>
+
+            <h2>Retorno às Salas</h2>
+
+            <p>Retorno ao Labins para a conclusão dos cursos.</p>
+
+            <div class="detalhes">
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                  />
+
+                  <path d="M12 7v5l3 2" />
+                </svg>
+
+                55 min
+              </span>
+
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path d="M4 19V9l8-5 8 5v10" />
+
+                  <path d="M8 19v-6h8v6" />
+                </svg>
+
+                Labins
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- COFFEE BREAK -->
+
+        <article class="evento">
+          <div class="marcador">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+            >
+              <path d="M4 10h13v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-5Z" />
+
+              <path d="M17 12h1a3 3 0 0 1 0 6h-2" />
+
+              <path d="M7 5v2" />
+              <path d="M11 4v3" />
+              <path d="M15 5v2" />
+            </svg>
+          </div>
+
+          <div class="evento-conteudo">
+            <div class="evento-topo">
+              <span class="tipo"> COFFEE-BREAK </span>
+
+              <strong> 16:25 </strong>
+            </div>
+
+            <h2>Coffee-break</h2>
+
+            <p>
+              Finalização com coffee-break para networking entre participantes e
+              instrutores.
+            </p>
+
+            <div class="detalhes">
+              <span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                  />
+
+                  <path d="M12 7v5l3 2" />
+                </svg>
+
+                35 min
+              </span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- =========================
+             INFORMAÇÕES
+        ========================== -->
+
+      <section class="informacoes">
+        <div class="informacoes-titulo">
+          <span> INFORMAÇÕES IMPORTANTES </span>
+
+          <h2>Antes de participar</h2>
+        </div>
+
+        <div class="lista-informacoes">
+          <div>
+            <span>›</span>
+
+            <p>Chegue com pelo menos 15 minutos de antecedência.</p>
+          </div>
+
+          <div>
+            <span>›</span>
+
+            <p>Coffee-break e materiais inclusos na inscrição.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+      <div class="footer-conteudo">
+        <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+
+        <div class="contatos">
+          <a href="#"> Instagram </a>
+
+          <a href="#"> Facebook </a>
+
+          <a href="mailto:contato.flashclip@gmail.com"> E-mail </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -299,13 +299,142 @@ h1 {
 
 
 /* =========================
-   SOBRE
+   SOBRE O FLASHCLIP
 ========================= */
 
 .sobre {
-    min-height: 400px;
+    padding: 110px 7% 100px;
 
-    padding: 100px 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border-top: 1px solid #292929;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #1b1b1b 0%,
+            #111111 70%
+        );
+}
+
+.sobre-conteudo {
+    width: 100%;
+    max-width: 1100px;
+}
+
+
+/* =========================
+   CATEGORIA
+========================= */
+
+.sobre-categoria {
+    display: inline-block;
+
+    color: #f5bd3d;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.sobre h2 {
+    max-width: 900px;
+
+    margin: 0 auto 15px;
+
+    color: #ffffff;
+
+    font-size: clamp(40px, 6vw, 65px);
+
+    line-height: 1.1;
+
+    letter-spacing: -3px;
+
+    text-align: center;
+}
+
+.sobre h3 {
+    margin-bottom: 25px;
+
+    color: #f5bd3d;
+
+    font-size: clamp(18px, 3vw, 25px);
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.sobre-descricao {
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    color: #aaaaaa;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    text-align: center;
+}
+
+
+/* =========================
+   COFFEE BREAK
+========================= */
+
+.sobre-descricao strong {
+    color: #f5bd3d;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   DESTAQUES
+========================= */
+
+.sobre-destaques {
+    max-width: 1000px;
+
+    margin: 60px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.destaque {
+    min-height: 250px;
+
+    padding: 35px 25px;
 
     display: flex;
 
@@ -313,29 +442,139 @@ h1 {
 
     justify-content: center;
 
-    border-top: 1px solid #292929;
+    align-items: center;
+
+    text-align: center;
+
+    background: #161d25;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
-.sobre p {
-    color: #666666;
+.destaque:hover {
+    transform: translateY(-5px);
 
-    font-size: 11px;
+    border-color: #f5bd3d;
 
-    letter-spacing: 3px;
-
-    margin-bottom: 25px;
+    background: #19212a;
 }
 
-.sobre h2 {
-    max-width: 800px;
 
-    font-size: 55px;
+/* =========================
+   ÍCONE
+========================= */
 
-    line-height: 1;
+.destaque-icone {
+    width: 65px;
+    height: 65px;
 
-    letter-spacing: -3px;
+    margin-bottom: 20px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #f5bd3d;
+
+    background: rgba(245, 189, 61, 0.10);
+
+    border-radius: 50%;
 }
 
+
+/* =========================
+   TÍTULO DO CARD
+========================= */
+
+.destaque h4 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================
+   TEXTO DO CARD
+========================= */
+
+.destaque p {
+    max-width: 270px;
+
+    margin: 0 auto;
+
+    color: #aaaaaa;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .sobre-destaques {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .sobre {
+        padding: 80px 5%;
+    }
+
+    .sobre h2 {
+        letter-spacing: -2px;
+    }
+
+    .sobre h3 {
+        font-size: 19px;
+    }
+
+    .sobre-descricao {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .sobre-destaques {
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+    }
+
+    .destaque {
+        min-height: 220px;
+
+        padding: 30px 20px;
+    }
+
+}
 
 /* =========================
    FOOTER
@@ -610,4 +849,364 @@ footer p {
   object-fit: contain;
   border-radius: 10px;
   display: block;
+}
+
+
+/* =========================
+   POR QUE PARTICIPAR
+========================= */
+
+.motivos {
+    padding: 100px 7%;
+    border-top: 1px solid #292929;
+    background: #111111;
+}
+
+.titulo-motivos {
+    max-width: 700px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.titulo-motivos span {
+    display: block;
+    color: #f5bd3d;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.titulo-motivos h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+}
+
+.titulo-motivos p {
+    color: #aaaaaa;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* GRID DOS CARDS */
+
+.lista-motivos {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+
+.card-motivo {
+    position: relative;
+    min-height: 290px;
+    padding: 35px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    background: #161d25;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+
+    transition: transform 0.25s, border-color 0.25s;
+}
+
+.card-motivo:hover {
+    transform: translateY(-5px);
+    border-color: #f5bd3d;
+}
+
+/* NUMERAÇÃO */
+
+.numero-motivo {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+
+    color: #777777;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ÍCONES SVG */
+
+.icone-motivo {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f5bd3d;
+    background: rgba(245, 189, 61, 0.09);
+    border-radius: 50%;
+}
+
+/* TÍTULOS CENTRALIZADOS */
+
+.card-motivo h3 {
+    width: 100%;
+    margin-bottom: 12px;
+
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* DESCRIÇÕES */
+
+.card-motivo p {
+    max-width: 260px;
+
+    color: #aaaaaa;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1000px) {
+    .lista-motivos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .motivos {
+        padding: 75px 5%;
+    }
+
+    .titulo-motivos {
+        margin-bottom: 35px;
+    }
+
+    .lista-motivos {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card-motivo {
+        min-height: 260px;
+        padding: 40px 25px;
+    }
+
+    .card-motivo h3 {
+        font-size: 19px;
+    }
+}
+
+
+/* =========================
+   CENTRALIZAÇÃO DAS SEÇÕES
+========================= */
+
+/* SOBRE */
+.sobre {
+    align-items: center;
+    text-align: center;
+}
+
+.sobre p {
+    text-align: center;
+}
+
+.sobre h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CURSOS */
+.titulo-cursos {
+    text-align: center;
+}
+
+.titulo-cursos h2,
+.titulo-cursos p {
+    text-align: center;
+}
+
+/* CARDS DOS CURSOS */
+.card-curso {
+    text-align: center;
+}
+
+.card-curso h3,
+.card-curso p {
+    text-align: center;
+}
+
+/* INFORMAÇÕES DOS CURSOS */
+.info-curso {
+    align-items: center;
+    text-align: center;
+}
+
+/* BOTÃO DOS CURSOS */
+.botao-curso {
+    text-align: center;
+}
+
+/* RODAPÉ */
+.footer-conteudo {
+    text-align: center;
+}
+
+.contatos {
+    justify-content: center;
+}
+
+/* INFORMAÇÕES DO EVENTO */
+.informacoes-evento {
+    justify-content: center;
+    text-align: center;
+}
+
+.informacoes-evento div {
+    align-items: center;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 700px) {
+    .sobre {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-conteudo {
+        align-items: center;
+    }
+
+    .contatos {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* PARCEIROS */
+
+.parceiros {
+    padding: 100px 7%;
+    border-top: 1px solid #292929;
+    text-align: center;
+    background: #111111;
+}
+
+.parceiros-titulo {
+    max-width: 700px;
+    margin: 0 auto 55px;
+}
+
+.parceiros-titulo span {
+    display: block;
+    margin-bottom: 18px;
+
+    color: #f5bd3d;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.parceiros-titulo h2 {
+    margin-bottom: 16px;
+
+    color: #ffffff;
+    font-size: clamp(38px, 5vw, 55px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.parceiros-titulo p {
+    color: #999999;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* LISTA */
+
+.lista-parceiros {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+/* PARCEIRO */
+
+.parceiro {
+    width: 300px;
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    background: #161d25;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s,
+        border-color 0.25s,
+        background 0.25s;
+}
+
+.parceiro:hover {
+    transform: translateY(-6px);
+
+    border-color: #f5bd3d;
+
+    background: #1a222c;
+}
+
+.parceiro img {
+    max-width: 100%;
+    max-height: 100px;
+
+    object-fit: contain;
+
+    transition: transform 0.25s;
+}
+
+.parceiro:hover img {
+    transform: scale(1.05);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .parceiros {
+        padding: 75px 5%;
+    }
+
+    .lista-parceiros {
+        width: 100%;
+    }
+
+    .parceiro {
+        width: 100%;
+        max-width: 300px;
+        height: 160px;
+    }
 }
