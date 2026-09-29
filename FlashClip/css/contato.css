@@ -1,0 +1,301 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #111111;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.contato-intro {
+    padding: 100px 20px 70px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #272727 0%,
+            #111111 55%
+        );
+}
+
+.contato-intro span {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: #f5bd3d;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.contato-intro h1 {
+    margin-bottom: 18px;
+
+    font-size: clamp(45px, 7vw, 75px);
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+}
+
+.contato-intro p {
+    color: #999999;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contato {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 30px 30px 100px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoes {
+    padding: 35px;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 14px;
+}
+
+.titulo-contato {
+    margin-bottom: 35px;
+}
+
+.titulo-contato span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #f5bd3d;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.titulo-contato h2 {
+    font-size: 28px;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================
+   ITEM DE CONTATO
+========================= */
+
+.item-contato {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #2c333c;
+}
+
+.item-contato:last-child {
+    border-bottom: none;
+}
+
+.item-contato .icone {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #f5bd3d;
+
+    background: rgba(245, 189, 61, 0.08);
+
+    border: 1px solid rgba(245, 189, 61, 0.2);
+
+    border-radius: 10px;
+}
+
+.item-contato .icone svg {
+    width: 23px;
+    height: 23px;
+}
+
+.item-contato div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.item-contato span {
+    color: #777777;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.item-contato a,
+.item-contato strong {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    line-height: 1.5;
+}
+
+.item-contato a:hover {
+    color: #f5bd3d;
+}
+
+
+/* =========================
+   MAPA
+========================= */
+
+.mapa {
+    min-height: 500px;
+
+    overflow: hidden;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 14px;
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 100%;
+
+    min-height: 500px;
+
+    display: block;
+
+    border: none;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+
+    .contato-intro {
+        padding: 80px 5% 55px;
+    }
+
+    .contato {
+        grid-template-columns: 1fr;
+
+        padding: 20px 5% 75px;
+    }
+
+    .mapa,
+    .mapa iframe {
+        min-height: 400px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .contato-intro {
+        padding-top: 65px;
+    }
+
+    .contato-intro h1 {
+        font-size: 42px;
+
+        letter-spacing: -2px;
+    }
+
+    .contato-intro p {
+        font-size: 15px;
+    }
+
+    .informacoes {
+        padding: 25px 20px;
+    }
+
+    .titulo-contato h2 {
+        font-size: 24px;
+    }
+
+    .item-contato {
+        gap: 12px;
+    }
+
+    .item-contato a,
+    .item-contato strong {
+        font-size: 13px;
+    }
+
+    .mapa,
+    .mapa iframe {
+        min-height: 350px;
+    }
+}

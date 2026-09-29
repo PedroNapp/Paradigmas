@@ -1,0 +1,370 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #111111;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.programacao-intro {
+    padding: 100px 20px 70px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #272727 0%,
+            #111111 55%
+        );
+}
+
+.programacao-intro span {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: #f5bd3d;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.programacao-intro h1 {
+    margin-bottom: 18px;
+
+    font-size: clamp(45px, 7vw, 75px);
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+}
+
+.programacao-intro p {
+    color: #999999;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   AGENDA
+========================= */
+
+.agenda {
+    position: relative;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 30px 20px 100px;
+}
+
+.linha-agenda {
+    position: absolute;
+
+    top: 50px;
+    bottom: 100px;
+
+    left: 52px;
+
+    width: 1px;
+
+    background: #353d47;
+}
+
+
+/* =========================
+   EVENTO
+========================= */
+
+.evento {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 65px 1fr;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+.marcador {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f5bd3d;
+
+    background: #171d24;
+
+    border: 1px solid #f5bd3d;
+
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+.marcador svg {
+    width: 21px;
+    height: 21px;
+}
+
+.evento-conteudo {
+    padding: 25px 30px;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+.evento-conteudo:hover {
+    border-color: #f5bd3d;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   TOPO EVENTO
+========================= */
+
+.evento-topo {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.tipo {
+    color: #f5bd3d;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.evento-topo strong {
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.evento h2 {
+    margin-bottom: 8px;
+
+    font-size: 22px;
+
+    letter-spacing: -0.5px;
+}
+
+.evento p {
+    max-width: 650px;
+
+    color: #999999;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   DETALHES
+========================= */
+
+.detalhes {
+    display: flex;
+
+    gap: 18px;
+
+    margin-top: 18px;
+}
+
+.detalhes span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #777777;
+
+    font-size: 12px;
+}
+
+.detalhes svg {
+    width: 16px;
+    height: 16px;
+
+    color: #f5bd3d;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoes {
+    max-width: 900px;
+
+    margin: 0 auto 100px;
+
+    padding: 30px;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 12px;
+}
+
+.informacoes-titulo {
+    margin-bottom: 25px;
+}
+
+.informacoes-titulo span {
+    color: #f5bd3d;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.informacoes-titulo h2 {
+    margin-top: 10px;
+
+    font-size: 24px;
+}
+
+.lista-informacoes {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.lista-informacoes div {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+.lista-informacoes span {
+    color: #f5bd3d;
+
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+.lista-informacoes p {
+    color: #999999;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+    .programacao-intro {
+        padding: 80px 5% 55px;
+    }
+
+    .programacao-intro h1 {
+        letter-spacing: -2px;
+    }
+
+    .agenda {
+        padding: 20px 5% 75px;
+    }
+
+    .linha-agenda {
+        left: 34px;
+    }
+
+    .evento {
+        grid-template-columns: 45px 1fr;
+
+        gap: 15px;
+    }
+
+    .marcador {
+        width: 38px;
+        height: 38px;
+    }
+
+    .marcador svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .evento-conteudo {
+        padding: 20px;
+    }
+
+    .evento h2 {
+        font-size: 19px;
+    }
+
+    .informacoes {
+        margin: 0 5% 75px;
+
+        padding: 25px 20px;
+    }
+}

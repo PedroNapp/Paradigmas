@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Patrocinadores | FlashClip</title>
+
+    <link rel="stylesheet" href="../css/cabecalho.css" />
+
+    <link rel="stylesheet" href="../css/patrocinadores.css" />
+
+    <link rel="stylesheet" href="../css/rodape.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+      <a href="../index.html" class="logo"> FlashClip </a>
+
+      <nav class="nav-links">
+        <a href="../index.html"> Home </a>
+
+        <a href="../html/cursos.html"> Cursos </a>
+
+        <a href="../html/programacao.html"> Programação </a>
+
+        <a href="../html/instrutores.html"> Instrutores </a>
+
+        <a href="" class="ativo"> Patrocinadores </a>
+
+        <a href="../html/contato.html"> Contato </a>
+
+        <a href="../html/sobre.html">Sobre</a>
+
+        <a href="../html/faq.html">FAQ</a>
+      </nav>
+
+      <div class="nav-acoes">
+        <div class="usuario-container">
+          <button class="usuario" id="botaoUsuario" type="button">U</button>
+
+          <div class="nome-usuario" id="nomeUsuario">Usuário</div>
+        </div>
+
+        <a href="../inscricoes/inscricoes.html" class="inscricoes">
+          Inscrições
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================
+             INTRO
+        ========================== -->
+
+      <section class="patrocinadores-intro">
+        <span> APOIO AO EVENTO </span>
+
+        <h1>Nossos Patrocinadores</h1>
+
+        <p>Conheça as empresas que tornam o FlashClip possível</p>
+      </section>
+
+      <!-- =========================
+             PATROCINADORES
+        ========================== -->
+
+      <section class="patrocinadores">
+        <!-- FILTROS -->
+
+        <div class="filtros">
+          <button class="filtro ativo" data-filtro="todos">Todos</button>
+
+          <button class="filtro" data-filtro="diamante">Diamante</button>
+
+          <button class="filtro" data-filtro="prata">Prata</button>
+
+          <button class="filtro" data-filtro="bronze">Bronze</button>
+        </div>
+
+        <!-- CARDS -->
+
+        <div class="lista-patrocinadores">
+          <!-- =========================
+                     SUA INTERNET
+                ========================== -->
+
+          <article class="card-patrocinador" data-categoria="diamante">
+            <div class="nivel diamante">
+              <span class="simbolo">◆</span>
+              Diamante
+            </div>
+
+            <div class="logo-patrocinador">
+              <img
+                src="https://i.ibb.co/nqCT8t9f/Logo.png"
+                alt="SUA Internet"
+              />
+            </div>
+
+            <div class="info-patrocinador">
+              <h2>SUA Internet</h2>
+
+              <p>
+                Sua Internet é uma empresa de internet que oferece serviços de
+                internet para residências e empresas.
+              </p>
+            </div>
+
+            <div class="links-patrocinador">
+              <a
+                href="https://suainternet.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Site da SUA Internet"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18" />
+                  <path d="M12 3c3 3 3 15 0 18" />
+                  <path d="M12 3c-3 3-3 15 0 18" />
+                </svg>
+
+                Site
+              </a>
+
+              <a
+                href="https://instagram.com/suainternet"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram da SUA Internet"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+
+                  <circle cx="12" cy="12" r="4" />
+
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+
+                Instagram
+              </a>
+            </div>
+          </article>
+
+          <!-- =========================
+                     POSTO IPANEMA
+                ========================== -->
+
+          <article class="card-patrocinador" data-categoria="prata">
+            <div class="nivel prata">
+              <span class="simbolo">◆</span>
+              Prata
+            </div>
+
+            <div class="logo-patrocinador">
+              <img
+                src="https://i.ibb.co/RGxhcB04/posto-ipanema.png"
+                alt="Posto Ipanema"
+              />
+            </div>
+
+            <div class="info-patrocinador">
+              <h2>Posto Ipanema</h2>
+
+              <p>
+                Posto de combustível e serviços: troca de óleo, loja de
+                conveniência e calibragem de pneus.
+              </p>
+            </div>
+
+            <div class="links-patrocinador">
+              <a
+                href="https://instagram.com/postoipanemapmw"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram do Posto Ipanema"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+
+                  <circle cx="12" cy="12" r="4" />
+
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+
+                Instagram
+              </a>
+            </div>
+          </article>
+
+          <!-- =========================
+                     CRP TECNOLOGIA
+                ========================== -->
+
+          <article class="card-patrocinador" data-categoria="bronze">
+            <div class="nivel bronze">
+              <span class="simbolo">◆</span>
+              Bronze
+            </div>
+
+            <div class="logo-patrocinador">
+              <img
+                src="https://i.ibb.co/XZxvTy5y/CRP-TECNOLOGIA.png"
+                alt="CRP Tecnologia"
+              />
+            </div>
+
+            <div class="info-patrocinador">
+              <h2>CRP Tecnologia</h2>
+
+              <p>
+                CRP Tecnologia, uma empresa de desenvolvimento de software com
+                mais de 18 anos de experiência no mercado nacional e
+                internacional.
+              </p>
+            </div>
+
+            <div class="links-patrocinador">
+              <a
+                href="https://crptecnologia.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Site da CRP Tecnologia"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18" />
+                  <path d="M12 3c3 3 3 15 0 18" />
+                  <path d="M12 3c-3 3-3 15 0 18" />
+                </svg>
+
+                Site
+              </a>
+
+              <a
+                href="https://instagram.com/crptecnologia"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram da CRP Tecnologia"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+
+                  <circle cx="12" cy="12" r="4" />
+
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+
+                Instagram
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================
+             SEJA UM APOIADOR
+        ========================== -->
+
+      <section class="cta">
+        <span> SEJA UM APOIADOR </span>
+
+        <h2>Quer ser um patrocinador?</h2>
+
+        <p>
+          Entre em contato e descubra como sua empresa pode apoiar o FlashClip.
+        </p>
+
+        <a href="../contato/contato.html" class="botao-contato">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 11.5a8.4 8.4 0 0 1-9
+                        8.5 8.7 8.7 0 0 1-4-.9L3 21l1.9-4.5
+                        A8.3 8.3 0 0 1 3 12
+                        a8.5 8.5 0 0 1 9-8.5
+                        8.5 8.5 0 0 1 9 8.5Z"
+            />
+          </svg>
+
+          Fale Conosco
+        </a>
+      </section>
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+      <div class="footer-conteudo">
+        <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+
+        <div class="contatos">
+          <a href="#"> Instagram </a>
+
+          <a href="#"> Facebook </a>
+
+          <a href="mailto:contato.flashclip@gmail.com"> E-mail </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/patrocinadores.js"></script>
+  </body>
+</html>

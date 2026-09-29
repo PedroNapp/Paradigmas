@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #26364d 0%,
+            #111820 45%,
+            #0b1016 100%
+        );
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 80px;
+
+    padding: 0 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.voltar {
+    color: #b7c0cc;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.voltar:hover {
+    color: #ffffff;
+}
+
+
+/* ÁREA DO CADASTRO */
+
+.cadastro-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+
+/* CARD */
+
+.cadastro-card {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 42px;
+
+    background: rgba(20, 28, 38, 0.92);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* CABEÇALHO */
+
+.cadastro-cabecalho {
+    margin-bottom: 30px;
+}
+
+.categoria {
+    color: #f5bd3d;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.cadastro-cabecalho h1 {
+    margin-top: 10px;
+
+    font-size: 32px;
+
+    line-height: 1.1;
+}
+
+.cadastro-cabecalho p {
+    margin-top: 10px;
+
+    color: #9da8b5;
+
+    font-size: 14px;
+}
+
+
+/* FORMULÁRIO */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* CAMPOS */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.campo label {
+    color: #dce2e8;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 9px;
+
+    background: #101720;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.campo input::placeholder {
+    color: #687482;
+}
+
+.campo input:focus {
+    border-color: #f5bd3d;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 189, 61, 0.1);
+} 
+
+.campo select {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 9px;
+
+    background: #101720;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.campo select:focus {
+    border-color: #f5bd3d;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 189, 61, 0.1);
+}
+
+.campo select option {
+    background: #101720;
+    color: #ffffff;
+}
+
+
+/* CAMPOS LADO A LADO */
+
+.campos-duplos {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* BOTÃO */
+
+.botao-cadastro {
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #f5bd3d;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.botao-cadastro:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+}
+
+
+/* LOGIN */
+
+.login {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #8995a3;
+}
+
+.login a {
+    margin-left: 5px;
+
+    color: #f5bd3d;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 20px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    color: #687482;
+
+    font-size: 12px;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .cadastro-card {
+        padding: 30px 25px;
+    }
+
+    .cadastro-cabecalho h1 {
+        font-size: 27px;
+    }
+
+    .campos-duplos {
+        grid-template-columns: 1fr;
+    }
+}

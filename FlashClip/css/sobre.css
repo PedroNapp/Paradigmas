@@ -1,0 +1,473 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111111;
+    color: #ffffff;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.sobre {
+    width: 100%;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.sobre-intro {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 105px 7% 65px;
+
+    text-align: center;
+}
+
+.sobre-intro h1 {
+    margin-bottom: 16px;
+
+    color: #ffffff;
+
+    font-size: clamp(42px, 6vw, 68px);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+.sobre-intro p {
+    color: #999999;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.bloco-sobre {
+    max-width: 750px;
+
+    margin: 0 auto 16px;
+
+    padding: 30px 35px;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.bloco-sobre:hover {
+    background: #1a222b;
+
+    border-color: #f5bd3d;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   ÍCONE + TÍTULO
+========================= */
+
+.cabecalho-bloco {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+.cabecalho-bloco h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================
+   ÍCONE
+========================= */
+
+.icone {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #f5bd3d;
+
+    background: rgba(245, 189, 61, 0.08);
+
+    border: 1px solid rgba(245, 189, 61, 0.25);
+
+    border-radius: 10px;
+}
+
+.icone svg {
+    width: 25px;
+    height: 25px;
+}
+
+
+/* =========================
+   CONTEÚDO DOS CARDS
+========================= */
+
+.conteudo-bloco {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.conteudo-bloco > p {
+    margin-bottom: 14px;
+
+    color: #a7adb4;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   LISTAS
+========================= */
+
+.conteudo-bloco ul {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    list-style: none;
+}
+
+.conteudo-bloco li {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    color: #a7adb4;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.conteudo-bloco li span {
+    flex-shrink: 0;
+
+    color: #f5bd3d;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   VALORES
+========================= */
+
+.valores {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.valores div {
+    padding: 14px;
+
+    background: #1b222a;
+
+    border: 1px solid #343d47;
+
+    border-radius: 8px;
+}
+
+.valores h3 {
+    margin-bottom: 5px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+.valores p {
+    color: #888f97;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    padding: 100px 7%;
+
+    margin-top: 35px;
+
+    text-align: center;
+
+    border-top: 1px solid #292929;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(245, 189, 61, 0.08),
+            transparent 45%
+        );
+}
+
+.cta > span {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: #f5bd3d;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.cta h2 {
+    max-width: 700px;
+
+    margin: 0 auto 18px;
+
+    font-size: clamp(36px, 5vw, 55px);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+.cta p {
+    max-width: 520px;
+
+    margin: 0 auto 30px;
+
+    color: #999999;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+.cta-botoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.botao-principal,
+.botao-secundario {
+    padding: 13px 23px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s;
+}
+
+.botao-principal {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+.botao-principal:hover {
+    background: #dddddd;
+}
+
+.botao-secundario {
+    color: #ffffff;
+
+    border: 1px solid #555555;
+}
+
+.botao-secundario:hover {
+    border-color: #ffffff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+
+    .sobre-intro {
+        padding: 80px 5% 55px;
+    }
+
+    .sobre-intro h1 {
+        letter-spacing: -2px;
+    }
+
+
+    /* CARDS */
+
+    .bloco-sobre {
+        margin: 0 5% 14px;
+
+        padding: 25px 20px;
+    }
+
+    .icone {
+        width: 48px;
+        height: 48px;
+    }
+
+    .icone svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .conteudo-bloco {
+        max-width: none;
+    }
+
+
+    /* VALORES */
+
+    .valores {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CTA */
+
+    .cta {
+        padding: 80px 5%;
+    }
+
+    .cta-botoes {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .botao-principal,
+    .botao-secundario {
+        width: 100%;
+
+        max-width: 280px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================
+   TELAS PEQUENAS
+========================= */
+
+@media (max-width: 480px) {
+
+    .sobre-intro {
+        padding-top: 65px;
+    }
+
+    .sobre-intro h1 {
+        font-size: 42px;
+    }
+
+    .sobre-intro p {
+        font-size: 15px;
+    }
+
+    .bloco-sobre {
+        padding: 22px 18px;
+    }
+
+    .icone {
+        width: 46px;
+        height: 46px;
+    }
+
+    .icone svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .conteudo-bloco > p {
+        font-size: 13px;
+    }
+
+    .valores {
+        gap: 10px;
+    }
+}

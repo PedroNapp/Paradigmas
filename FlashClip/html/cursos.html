@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cursos | FlashClip</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../css/cabecalho.css" />
+
+    <link rel="stylesheet" href="../css/cursos.css" />
+
+    <link rel="stylesheet" href="../css/rodape.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+      <a href="../index.html" class="logo"> FlashClip </a>
+
+      <nav class="nav-links">
+        <a href="../index.html"> Home </a>
+
+        <a href="" class="ativo"> Cursos </a>
+
+        <a href="../html/programacao.html"> Programação </a>
+
+        <a href="../html/instrutores.html"> Instrutores </a>
+
+        <a href="../html/patrocinadores.html"> Patrocinadores </a>
+
+        <a href="../html/contato.html"> Contato </a>
+
+        <a href="../html/sobre.html">Sobre</a>
+
+        <a href="../html/faq.html">FAQ</a>
+      </nav>
+
+      <div class="nav-acoes">
+        <!-- USUÁRIO -->
+
+        <div class="usuario-container">
+          <button class="usuario" id="botaoUsuario">U</button>
+
+          <div class="nome-usuario" id="nomeUsuario">Usuário</div>
+        </div>
+
+        <!-- INSCRIÇÕES -->
+
+        <a href="./inscricoes.html" class="inscricoes"> Inscrições </a>
+      </div>
+    </header>
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main>
+      <!-- =========================
+             INTRO
+        ========================== -->
+
+      <section class="cursos-intro">
+        <span> APRENDA NA PRÁTICA </span>
+
+        <h1>Cursos</h1>
+
+        <p>Escolha um curso, aprenda algo novo e participe do FlashClip.</p>
+      </section>
+
+      <!-- =========================
+             CURSOS
+        ========================== -->
+
+      <section class="cursos">
+        <div class="titulo-cursos">
+          <div>
+            <span> PROGRAMAÇÃO </span>
+
+            <h2>Cursos disponíveis</h2>
+          </div>
+
+          <p>Confira os cursos disponíveis para inscrição no evento.</p>
+        </div>
+
+        <!-- LISTA -->
+
+        <div class="lista-cursos" id="listaCursos">
+          <div class="estado-cursos">
+            <span class="carregando"></span>
+
+            <p>Carregando cursos...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+             INFORMAÇÕES
+        ========================== -->
+
+      <section class="informacoes-cursos">
+        <div class="informacoes-titulo">
+          <span> ANTES DE SE INSCREVER </span>
+
+          <h2>Como funcionam os cursos?</h2>
+
+          <p>
+            O FlashClip foi pensado para oferecer uma experiência rápida,
+            prática e acessível para estudantes.
+          </p>
+        </div>
+
+        <div class="lista-informacoes">
+          <!-- ITEM -->
+
+          <article class="info-card">
+            <div class="info-numero">01</div>
+
+            <div>
+              <h3>Escolha seu curso</h3>
+
+              <p>
+                Confira a descrição, o período e as vagas disponíveis antes de
+                realizar sua inscrição.
+              </p>
+            </div>
+          </article>
+
+          <!-- ITEM -->
+
+          <article class="info-card">
+            <div class="info-numero">02</div>
+
+            <div>
+              <h3>Faça sua inscrição</h3>
+
+              <p>
+                Escolha o curso desejado e confirme sua inscrição através da
+                plataforma.
+              </p>
+            </div>
+          </article>
+
+          <!-- ITEM -->
+
+          <article class="info-card">
+            <div class="info-numero">03</div>
+
+            <div>
+              <h3>Participe do evento</h3>
+
+              <p>
+                Compareça ao evento no horário indicado e aproveite a
+                experiência de aprendizado.
+              </p>
+            </div>
+          </article>
+
+          <!-- ITEM -->
+
+          <article class="info-card">
+            <div class="info-numero">04</div>
+
+            <div>
+              <h3>Receba seu certificado</h3>
+
+              <p>Após a participação, você receberá seu certificado digital.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================
+             CTA
+        ========================== -->
+
+      <section class="cta">
+        <span> FLASHCLIP </span>
+
+        <h2>Ainda está em dúvida?</h2>
+
+        <p>
+          Confira as perguntas frequentes ou entre em contato com nossa equipe.
+        </p>
+
+        <div class="cta-botoes">
+          <a href="./faq.html" class="botao-secundario">
+            Ver perguntas frequentes
+          </a>
+
+          <a href="./contato.html" class="botao-principal">
+            Entre em contato
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+      <div class="footer-conteudo">
+        <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+
+        <div class="contatos">
+          <a href="#"> Instagram </a>
+
+          <a href="#"> Facebook </a>
+
+          <a href="mailto:contato@flashclip.com"> E-mail </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="../js/auth.js"></script>
+
+    <script type="module" src="../js/cursos.js"></script>
+  </body>
+</html>

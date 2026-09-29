@@ -1,0 +1,82 @@
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    padding: 30px 7%;
+
+    border-top: 1px solid #292929;
+
+    background: #0b0b0b;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.footer-conteudo {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+footer p {
+    color: #666666;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   CONTATOS
+========================= */
+
+.contatos {
+    display: flex;
+
+    gap: 25px;
+}
+
+.contatos a {
+    color: #777777;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    transition: color 0.2s;
+}
+
+.contatos a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+
+    .footer-conteudo {
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+    .contatos {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+}
