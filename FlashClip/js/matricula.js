@@ -35,7 +35,7 @@ async function carregarCurso() {
     const { data: curso, error } = await clienteSupabase
       .from("cursos")
       .select("*")
-      .eq("id", cursoId)
+      .eq("idCurso", cursoId)
       .single();
 
     if (error) {
@@ -45,30 +45,30 @@ async function carregarCurso() {
     cursoAtual = curso;
 
     cursoContainer.innerHTML = `
-            <div class="info-curso">
+      <div class="info-curso">
 
-                <h2>${curso.nome}</h2>
+        <h2>${curso.nome}</h2>
 
-                <p>${curso.descricao}</p>
+        <p>${curso.descricao}</p>
 
-                <span class="info-item">
-                    📅 Data: ${curso.data}
-                </span>
+        <span class="info-item">
+          🕐 Período: ${curso.periodo}
+        </span>
 
-                <span class="info-item">
-                    🕐 Período: ${curso.periodo}
-                </span>
+        <span class="info-item">
+          👥 Vagas disponíveis: ${curso.vagas}
+        </span>
 
-                <span class="info-item">
-                    👥 Vagas disponíveis: ${curso.vagas}
-                </span>
+        <span class="info-item">
+          Status: ${curso.status}
+        </span>
 
-                <span class="info-item">
-                    Status: ${curso.status}
-                </span>
+        <span class="info-item">
+          📍 Sala: ${curso.sala}
+        </span>
 
-            </div>
-        `;
+      </div>
+    `;
   } catch (erro) {
     console.error("Erro ao buscar curso:", erro);
 
@@ -85,6 +85,7 @@ async function carregarCurso() {
 async function confirmarMatricula() {
   if (!cursoAtual) {
     alert("Curso não carregado.");
+
     return;
   }
 
@@ -104,7 +105,27 @@ async function confirmarMatricula() {
     return;
   }
 
-  const usuarioId = session.user.id;
+  // =========================
+  // BUSCAR USUÁRIO
+  // =========================
+
+  const emailUsuario = session.user.email;
+
+  const { data: usuario, error: erroUsuario } = await clienteSupabase
+    .from("usuarios")
+    .select("idUsuario")
+    .eq("email", emailUsuario)
+    .single();
+
+  if (erroUsuario) {
+    console.error("Erro ao buscar usuário:", erroUsuario);
+
+    alert("Não foi possível identificar seu usuário.");
+
+    return;
+  }
+
+  const usuarioId = usuario.idUsuario;
 
   // =========================
   // VERIFICAR VAGAS
@@ -125,13 +146,13 @@ async function confirmarMatricula() {
       .from("matriculas")
       .select(
         `
-                id,
-                idUsuario,
-                idCurso,
-                cursos (
-                    periodo
-                )
-            `,
+        idMatricula,
+        idUsuario,
+        idCurso,
+        cursos (
+          periodo
+        )
+      `,
       )
       .eq("idUsuario", usuarioId);
 
@@ -165,9 +186,10 @@ async function confirmarMatricula() {
       .from("matriculas")
       .insert({
         idUsuario: usuarioId,
-        idCurso: cursoId,
-        dataIncricao: new Date().toISOString(),
-        status: "Pendente",
+
+        idCurso: Number(cursoId),
+
+        dataInscricao: new Date().toISOString(),
       });
 
     if (erroInsercao) {
@@ -185,7 +207,7 @@ async function confirmarMatricula() {
       .update({
         vagas: novasVagas,
       })
-      .eq("id", cursoId);
+      .eq("idCurso", cursoId);
 
     if (erroVaga) {
       console.error("Erro ao atualizar vagas:", erroVaga);

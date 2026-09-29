@@ -66,8 +66,6 @@ if (formulario) {
         return;
       }
 
-      const usuarioId = data.user.id;
-
       // =========================
       // SALVAR USUÁRIO
       // =========================
@@ -75,13 +73,15 @@ if (formulario) {
       const { error: erroUsuario } = await clienteSupabase
         .from("usuarios")
         .insert({
-          id: usuarioId,
           nome,
+
           telefone,
+
           email,
+
           origem,
-          idade,
-          permissao: false,
+
+          idade: Number(idade),
         });
 
       if (erroUsuario) {

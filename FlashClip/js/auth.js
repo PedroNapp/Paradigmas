@@ -40,6 +40,10 @@ export async function carregarUsuario() {
     return;
   }
 
+  // =========================
+  // VERIFICAR SESSÃO
+  // =========================
+
   const {
     data: { session },
     error,
@@ -47,31 +51,51 @@ export async function carregarUsuario() {
 
   if (error) {
     console.error("Erro ao verificar sessão:", error);
+
     return;
   }
+
+  // =========================
+  // NÃO ESTÁ LOGADO
+  // =========================
 
   if (!session) {
     botaoUsuario.textContent = "Entrar";
     nomeUsuario.textContent = "Entrar";
+
     botaoUsuario.onclick = irParaLogin;
+
     return;
   }
 
-  const usuarioId = session.user.id;
+  // =========================
+  // BUSCAR USUÁRIO
+  // =========================
+
+  const emailUsuario = session.user.email;
 
   const { data, error: erroUsuario } = await clienteSupabase
     .from("usuarios")
     .select("nome")
-    .eq("id", usuarioId)
+    .eq("email", emailUsuario)
     .single();
+
+  // =========================
+  // ERRO
+  // =========================
 
   if (erroUsuario) {
     console.error("Erro ao buscar usuário:", erroUsuario);
 
     botaoUsuario.textContent = "Usuário";
     nomeUsuario.textContent = "Usuário";
+
     return;
   }
+
+  // =========================
+  // NOME
+  // =========================
 
   const nomeCompleto = data.nome;
 
@@ -79,6 +103,7 @@ export async function carregarUsuario() {
     nomeCompleto.length > 8 ? nomeCompleto.substring(0, 8) : nomeCompleto;
 
   botaoUsuario.textContent = nomeExibido;
+
   nomeUsuario.textContent = nomeCompleto;
 }
 
@@ -86,9 +111,7 @@ export async function carregarUsuario() {
 // ALTERAÇÃO DE SESSÃO
 // =========================
 
-clienteSupabase.auth.onAuthStateChange(function (evento) {
-  console.log("Estado da autenticação:", evento);
-
+clienteSupabase.auth.onAuthStateChange(function () {
   carregarUsuario();
 });
 

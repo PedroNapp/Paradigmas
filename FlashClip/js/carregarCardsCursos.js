@@ -35,26 +35,38 @@ export async function carregarCursos(
     // =========================
 
     if (session) {
-      const usuarioId = session.user.id;
+      const emailUsuario = session.user.email;
 
-      const { data: matriculas, error: erroMatriculas } = await clienteSupabase
-        .from("matriculas")
-        .select(
-          `
-                    idCurso,
-                    cursos (
-                        periodo
-                    )
-                `,
-        )
-        .eq("idUsuario", usuarioId);
+      // Buscar o ID do usuário no banco
+      const { data: usuario, error: erroUsuario } = await clienteSupabase
+        .from("usuarios")
+        .select("idUsuario")
+        .eq("email", emailUsuario)
+        .single();
 
-      if (erroMatriculas) {
-        console.error("Erro ao buscar matrículas:", erroMatriculas);
+      if (erroUsuario) {
+        console.error("Erro ao buscar usuário:", erroUsuario);
       } else {
-        periodosMatriculados = matriculas
-          .filter((matricula) => matricula.cursos)
-          .map((matricula) => matricula.cursos.periodo);
+        const { data: matriculas, error: erroMatriculas } =
+          await clienteSupabase
+            .from("matriculas")
+            .select(
+              `
+            idCurso,
+            cursos (
+              periodo
+            )
+          `,
+            )
+            .eq("idUsuario", usuario.idUsuario);
+
+        if (erroMatriculas) {
+          console.error("Erro ao buscar matrículas:", erroMatriculas);
+        } else {
+          periodosMatriculados = matriculas
+            .filter((matricula) => matricula.cursos)
+            .map((matricula) => matricula.cursos.periodo);
+        }
       }
     }
 
@@ -65,7 +77,7 @@ export async function carregarCursos(
     const { data: cursos, error } = await clienteSupabase
       .from("cursos")
       .select("*")
-      .order("data", {
+      .order("idCurso", {
         ascending: true,
       });
 
@@ -79,6 +91,7 @@ export async function carregarCursos(
 
     if (!cursos || cursos.length === 0) {
       listaCursos.innerHTML = "<p>Nenhum curso disponível.</p>";
+
       return;
     }
 
@@ -96,6 +109,7 @@ export async function carregarCursos(
 
     cursosExibidos.forEach(function (curso) {
       const card = document.createElement("article");
+
       card.classList.add("card-curso");
 
       // =========================
@@ -112,10 +126,10 @@ export async function carregarCursos(
 
       if (curso.vagas <= 0) {
         botaoInscricao = `
-                    <span class="vagas-esgotadas">
-                        Vagas esgotadas
-                    </span>
-                `;
+          <span class="vagas-esgotadas">
+            Vagas esgotadas
+          </span>
+        `;
       }
 
       // =========================
@@ -123,36 +137,38 @@ export async function carregarCursos(
       // =========================
       else if (jaMatriculado) {
         botaoInscricao = `
-                    <span class="curso-matriculado">
-                        Você já está inscrito
-                    </span>
-                `;
+          <span class="curso-matriculado">
+            Você já está inscrito
+          </span>
+        `;
       }
 
       // =========================
       // DISPONÍVEL
       // =========================
       else {
-        const linkMatricula = `${caminhoMatricula}?id=${encodeURIComponent(curso.id)}`;
+        const linkMatricula = `${caminhoMatricula}?id=${encodeURIComponent(
+          curso.idCurso,
+        )}`;
 
         if (session) {
           botaoInscricao = `
-                        <a
-                            href="${linkMatricula}"
-                            class="botao-curso"
-                        >
-                            Inscrever-se
-                        </a>
-                    `;
+            <a
+              href="${linkMatricula}"
+              class="botao-curso"
+            >
+              Inscrever-se
+            </a>
+          `;
         } else {
           botaoInscricao = `
-                        <a
-                            href="${caminhoLogin}"
-                            class="botao-curso"
-                        >
-                            Entrar para se inscrever
-                        </a>
-                    `;
+            <a
+              href="${caminhoLogin}"
+              class="botao-curso"
+            >
+              Entrar para se inscrever
+            </a>
+          `;
         }
       }
 
@@ -162,39 +178,42 @@ export async function carregarCursos(
 
       const imagemCurso = curso.imagem?.startsWith("http")
         ? curso.imagem
-        : `${caminhoImagens}${(curso.imagem || "").replace(/^\.\/imagens\//, "")}`;
+        : `${caminhoImagens}${(curso.imagem || "").replace(
+            /^\.\/imagens\//,
+            "",
+          )}`;
 
       // =========================
       // CARD
       // =========================
 
       card.innerHTML = `
-                <img
-                    src="${imagemCurso}"
-                    alt="${curso.nome}"
-                    class="imagem-curso"
-                >
+        <img
+          src="${imagemCurso}"
+          alt="${curso.nome}"
+          class="imagem-curso"
+        >
 
-                <h3>${curso.nome}</h3>
+        <h3>${curso.nome}</h3>
 
-                <p>${curso.descricao}</p>
+        <p>${curso.descricao}</p>
 
-                <div class="info-curso">
+        <div class="info-curso">
 
-                    <span>📅 ${curso.data}</span>
+          <span>🕐 ${curso.periodo}</span>
 
-                    <span>🕐 ${curso.periodo}</span>
+          <span>👥 ${curso.vagas} vagas</span>
 
-                    <span>👥 ${curso.vagas} vagas</span>
+          <span>📍 ${curso.sala}</span>
 
-                    <span class="status-curso">
-                        ${curso.status}
-                    </span>
+          <span class="status-curso">
+            ${curso.status}
+          </span>
 
-                </div>
+        </div>
 
-                ${botaoInscricao}
-            `;
+        ${botaoInscricao}
+      `;
 
       listaCursos.appendChild(card);
     });

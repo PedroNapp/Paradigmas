@@ -1,110 +1,189 @@
-const SUPABASE_URL = "https://mkylyczeakkgksrzffca.supabase.co";
-const SUPABASE_KEY = "sb_publishable_LD9drZgiFn7iQ5FK-PhHOA_Uuv7YeqP";
+const SUPABASE_URL =
+  "https://mkylyczeakkgksrzffca.supabase.co";
 
-const clienteSupabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY,
-);
+const SUPABASE_KEY =
+  "sb_publishable_LD9drZgiFn7iQ5FK-PhHOA_Uuv7YeqP";
 
-const listaInscricoes = document.getElementById("listaInscricoes");
+const clienteSupabase =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+const listaInscricoes =
+  document.getElementById("listaInscricoes");
 
 // ===============================
 // CARREGAR INSCRIÇÕES
 // ===============================
 
 async function carregarInscricoes() {
-  // Verifica se o usuário está logado
+
+  // ===============================
+  // VERIFICAR LOGIN
+  // ===============================
+
   const {
     data: { session },
   } = await clienteSupabase.auth.getSession();
 
   if (!session) {
-    window.location.href = "../html/login.html";
+
+    window.location.href =
+      "../html/login.html";
 
     return;
   }
 
-  const usuarioId = session.user.id;
+  // ===============================
+  // BUSCAR USUÁRIO
+  // ===============================
 
-  // Busca as inscrições do usuário
-  const { data: matriculas, error } = await clienteSupabase
+  const emailUsuario =
+    session.user.email;
+
+  const {
+    data: usuario,
+    error: erroUsuario
+  } = await clienteSupabase
+    .from("usuarios")
+    .select("idUsuario")
+    .eq("email", emailUsuario)
+    .single();
+
+  if (erroUsuario) {
+
+    console.error(
+      "Erro ao buscar usuário:",
+      erroUsuario
+    );
+
+    listaInscricoes.innerHTML =
+      "<p>Erro ao identificar usuário.</p>";
+
+    return;
+  }
+
+  // ===============================
+  // BUSCAR INSCRIÇÕES
+  // ===============================
+
+  const {
+    data: matriculas,
+    error
+  } = await clienteSupabase
     .from("matriculas")
-    .select(
-      `
-                id,
-                idCurso,
-                dataIncricao,
-                cursos (
-                    nome,
-                    descricao,
-                    data,
-                    periodo,
-                    status
-                )
-            `,
-    )
-    .eq("idUsuario", usuarioId);
+    .select(`
+      idMatricula,
+      dataInscricao,
+      idCurso,
+      cursos (
+        nome,
+        descricao,
+        periodo,
+        sala,
+        status
+      )
+    `)
+    .eq(
+      "idUsuario",
+      usuario.idUsuario
+    );
 
   if (error) {
-    console.error("Erro ao buscar inscrições:", error);
 
-    listaInscricoes.innerHTML = "<p>Erro ao carregar suas inscrições.</p>";
+    console.error(
+      "Erro ao buscar inscrições:",
+      error
+    );
+
+    listaInscricoes.innerHTML =
+      "<p>Erro ao carregar suas inscrições.</p>";
 
     return;
   }
 
-  // Nenhuma inscrição
-  if (matriculas.length === 0) {
+  // ===============================
+  // NENHUMA INSCRIÇÃO
+  // ===============================
+
+  if (!matriculas || matriculas.length === 0) {
+
     listaInscricoes.innerHTML = `
-            <p>Você ainda não possui nenhuma inscrição.</p>
-        `;
+      <p>
+        Você ainda não possui nenhuma inscrição.
+      </p>
+    `;
 
     return;
   }
 
-  // Limpa a mensagem de carregamento
+  // ===============================
+  // LIMPAR
+  // ===============================
+
   listaInscricoes.innerHTML = "";
 
-  // Cria os cards
+  // ===============================
+  // CRIAR CARDS
+  // ===============================
+
   matriculas.forEach(function (matricula) {
-    const curso = matricula.cursos;
 
-    const card = document.createElement("div");
+    const curso =
+      matricula.cursos;
 
-    card.classList.add("card-inscricao");
+    if (!curso) {
+      return;
+    }
+
+    const card =
+      document.createElement("div");
+
+    card.classList.add(
+      "card-inscricao"
+    );
 
     card.innerHTML = `
-            <h2>${curso.nome}</h2>
+      <h2>
+        ${curso.nome}
+      </h2>
 
-            <p>
-                ${curso.descricao}
-            </p>
+      <p>
+        ${curso.descricao}
+      </p>
 
-            <div class="info-inscricao">
+      <div class="info-inscricao">
 
-                <span>
-                    📅 Data: ${curso.data}
-                </span>
+        <span>
+          🕐 Período: ${curso.periodo}
+        </span>
 
-                <span>
-                    🕐 Período: ${curso.periodo}
-                </span>
+        <span>
+          📍 Sala: ${curso.sala}
+        </span>
 
-                <span>
-                    📝 Inscrição: ${new Date(
-                      matricula.dataIncricao,
-                    ).toLocaleDateString("pt-BR")}
-                </span>
+        <span>
+          📝 Inscrição:
+          ${new Date(
+            matricula.dataInscricao
+          ).toLocaleDateString("pt-BR")}
+        </span>
 
-            </div>
+      </div>
 
-            <span class="status-inscricao">
-                ${curso.status}
-            </span>
-        `;
+      <span class="status-inscricao">
+        ${curso.status}
+      </span>
+    `;
 
     listaInscricoes.appendChild(card);
+
   });
 }
+
+// ===============================
+// INICIAR
+// ===============================
 
 carregarInscricoes();
