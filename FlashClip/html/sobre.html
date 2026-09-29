@@ -20,7 +20,7 @@
     ========================== -->
 
     <header class="navbar">
-      <a href="../index.html" class="logo"> FlashClip </a>
+      <a href="./index.html" class="logo"> FlashClip </a>
 
       <nav class="nav-links">
         <a href="../index.html"> Home </a>
@@ -35,21 +35,53 @@
 
         <a href="../html/contato.html"> Contato </a>
 
-        <a href="" class="ativo">Sobre</a>
+        <a href="../html/sobre.html" class="ativo"> Sobre </a>
 
-        <a href="../html/faq.html">FAQ</a>
+        <a href="../html/faq.html"> FAQ </a>
       </nav>
 
       <div class="nav-acoes">
         <div class="usuario-container">
-          <button class="usuario" id="botaoUsuario" type="button">U</button>
+          <button class="usuario" id="botaoUsuario">U</button>
 
           <div class="nome-usuario" id="nomeUsuario">Usuário</div>
         </div>
 
-        <a href="../inscricoes/inscricoes.html" class="inscricoes">
-          Inscrições
-        </a>
+        <a href="./html/inscricoes.html" class="inscricoes"> Inscrições </a>
+      </div>
+
+      <button class="botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="menu-mobile" id="menuMobile">
+        <nav class="menu-links">
+          <a href="../index.html"> Home </a>
+
+          <a href="../html/cursos.html"> Cursos </a>
+
+          <a href="../html/programacao.html"> Programação </a>
+
+          <a href="../html/instrutores.html"> Instrutores </a>
+
+          <a href="../html/patrocinadores.html"> Patrocinadores </a>
+
+          <a href="../html/contato.html"> Contato </a>
+
+          <a href="../html/sobre.html" class="ativo"> Sobre </a>
+
+          <a href="../html/faq.html"> FAQ </a>
+        </nav>
+
+        <div class="menu-divisor"></div>
+
+        <div class="menu-usuario">
+          <button class="usuario" id="botaoUsuarioMobile">U</button>
+
+          <span id="nomeUsuarioMobile"> Usuário </span>
+        </div>
+
+        <a href="./html/inscricoes.html" class="inscricoes"> Inscrições </a>
       </div>
     </header>
 
@@ -316,6 +348,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script type="module" src="../js/auth.js"></script>
+    <script type = "module" src="../js/auth.js"></script>
+    <script type = "module" src="../js/cabecalho.js"></script>
   </body>
 </html>

@@ -3,8 +3,10 @@
 ========================= */
 
 .navbar {
-    height: 80px;
+    position: relative;
+    z-index: 1000;
 
+    height: 80px;
     padding: 0 7%;
 
     display: flex;
@@ -12,7 +14,6 @@
     justify-content: space-between;
 
     border-bottom: 1px solid #292929;
-
     background: #111111;
 }
 
@@ -28,19 +29,21 @@
     font-weight: 700;
 
     letter-spacing: -1px;
-
     text-decoration: none;
+
+    flex-shrink: 0;
 }
 
 
 /* =========================
-   LINKS
+   NAVEGAÇÃO DESKTOP
 ========================= */
 
 .nav-links {
     display: flex;
+    align-items: center;
 
-    gap: 35px;
+    gap: 28px;
 }
 
 .nav-links a {
@@ -49,26 +52,28 @@
     font-size: 14px;
 
     text-decoration: none;
+    white-space: nowrap;
 
     transition: color 0.2s;
 }
 
 .nav-links a:hover,
-.nav-links .ativo {
+.nav-links a.ativo {
     color: #ffffff;
 }
 
 
 /* =========================
-   AÇÕES
+   AÇÕES DESKTOP
 ========================= */
 
 .nav-acoes {
     display: flex;
-
     align-items: center;
 
     gap: 20px;
+
+    flex-shrink: 0;
 }
 
 
@@ -88,6 +93,7 @@
     font-weight: 600;
 
     text-decoration: none;
+    white-space: nowrap;
 
     transition: background 0.2s;
 }
@@ -162,7 +168,7 @@
 
     transition: 0.2s;
 
-    z-index: 10;
+    z-index: 1001;
 }
 
 .usuario-container:hover .nome-usuario {
@@ -174,45 +180,274 @@
 
 
 /* =========================
-   RESPONSIVO
+   BOTÃO DO MENU
 ========================= */
 
-@media (max-width: 800px) {
+.botao-menu {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #333333;
+    border-radius: 8px;
+
+    background: #171717;
+    color: #ffffff;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s;
+}
+
+.botao-menu:hover {
+    background: #222222;
+    border-color: #444444;
+}
+
+
+/* =========================
+   PAINEL MOBILE
+========================= */
+
+.menu-mobile {
+    display: none;
+}
+
+
+/* =========================
+   TELAS MENORES
+========================= */
+
+@media (max-width: 1100px) {
 
     .navbar {
         padding: 0 5%;
     }
 
-    .nav-links {
+
+    /* -------------------------
+       ESCONDE MENU DESKTOP
+    ------------------------- */
+
+    .nav-links,
+    .nav-acoes {
         display: none;
+    }
+
+
+    /* -------------------------
+       MOSTRA BOTÃO
+    ------------------------- */
+
+    .botao-menu {
+        display: flex;
+    }
+
+
+    /* -------------------------
+       PAINEL
+    ------------------------- */
+
+    .menu-mobile {
+        position: absolute;
+
+        top: 80px;
+        left: 5%;
+        right: 5%;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+
+        border: 1px solid #292929;
+        border-radius: 12px;
+
+        background: #111111;
+
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.45);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.2s,
+            transform 0.2s,
+            visibility 0.2s;
+    }
+
+
+    /* -------------------------
+       PAINEL ABERTO
+    ------------------------- */
+
+    .menu-mobile.aberto {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+
+    /* -------------------------
+       LINKS
+    ------------------------- */
+
+    .menu-mobile .menu-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-mobile .menu-links a {
+        padding: 13px 14px;
+
+        border-radius: 7px;
+
+        color: #aaaaaa;
+
+        font-size: 14px;
+
+        text-decoration: none;
+
+        transition:
+            background 0.2s,
+            color 0.2s;
+    }
+
+    .menu-mobile .menu-links a:hover {
+        background: #1c1c1c;
+        color: #ffffff;
+    }
+
+    .menu-mobile .menu-links a.ativo {
+        color: #f5bd3d;
+    }
+
+
+    /* -------------------------
+       DIVISOR
+    ------------------------- */
+
+    .menu-divisor {
+        height: 1px;
+
+        margin: 8px 10px;
+
+        background: #292929;
+    }
+
+
+    /* -------------------------
+       USUÁRIO
+    ------------------------- */
+
+    .menu-usuario {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 12px 14px;
+
+        color: #ffffff;
+
+        font-size: 14px;
+    }
+
+    .menu-usuario .usuario {
+        min-width: 38px;
+        height: 38px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* -------------------------
+       INSCRIÇÕES
+    ------------------------- */
+
+    .menu-mobile .inscricoes {
+        display: block;
+
+        margin: 6px 4px 4px;
+
+        padding: 12px;
+
+        border-radius: 8px;
+
+        background: #ffffff;
+        color: #111111;
+
+        text-align: center;
+
+        font-size: 14px;
+        font-weight: 600;
     }
 
 }
 
 
-@media (max-width: 480px) {
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
 
     .navbar {
         height: 70px;
+
+        padding: 0 5%;
     }
 
     .logo {
         font-size: 21px;
     }
 
-    .nav-acoes {
-        gap: 10px;
+    .botao-menu {
+        width: 40px;
+        height: 40px;
+
+        font-size: 20px;
     }
 
-    .usuario {
-        min-width: 38px;
-        height: 38px;
+    .menu-mobile {
+        top: 70px;
+
+        left: 4%;
+        right: 4%;
     }
 
-    .inscricoes {
-        padding: 9px 15px;
+}
 
-        font-size: 12px;
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 380px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .menu-mobile {
+        left: 3%;
+        right: 3%;
     }
 
 }
