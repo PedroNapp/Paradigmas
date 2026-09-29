@@ -129,7 +129,7 @@ export async function carregarCursos(listaCursos, limite = null) {
       // DISPONÍVEL
       // =========================
       else {
-        const caminhoMatricula = `./matricula.html?id=${curso.id}`;
+        const caminhoMatricula = `../matricula.html?id=${curso.id}`;
 
         if (session) {
           botaoInscricao = `
@@ -143,7 +143,7 @@ export async function carregarCursos(listaCursos, limite = null) {
         } else {
           botaoInscricao = `
                             <a
-                                href="./login.html"
+                                href="../login.html"
                                 class="botao-curso"
                             >
                                 Entrar para se inscrever
