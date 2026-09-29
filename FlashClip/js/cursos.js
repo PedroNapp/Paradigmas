@@ -4,14 +4,13 @@
 
 import { carregarCursos } from "./carregarCardsCursos.js";
 
-// =========================
-// ELEMENTOS
-// =========================
+const listaCursos =
+    document.getElementById("listaCursos");
 
-const listaCursos = document.getElementById("listaCursos");
-
-// =========================
-// INICIALIZAÇÃO
-// =========================
-
-carregarCursos(listaCursos, null, "./matricula.html");
+carregarCursos(
+    listaCursos,
+    null,
+    "./matricula.html",
+    "./login.html",
+    "../imagens/"
+);

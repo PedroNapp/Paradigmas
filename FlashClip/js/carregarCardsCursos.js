@@ -8,7 +8,13 @@ import { clienteSupabase } from "./supabase.js";
 // CARREGAR CURSOS
 // =========================
 
-export async function carregarCursos(listaCursos, limite = null) {
+export async function carregarCursos(
+  listaCursos,
+  limite = null,
+  caminhoMatricula = "./matricula.html",
+  caminhoLogin = "./login.html",
+  caminhoImagens = "./imagens/",
+) {
   if (!listaCursos) {
     return;
   }
@@ -73,7 +79,6 @@ export async function carregarCursos(listaCursos, limite = null) {
 
     if (!cursos || cursos.length === 0) {
       listaCursos.innerHTML = "<p>Nenhum curso disponível.</p>";
-
       return;
     }
 
@@ -91,11 +96,10 @@ export async function carregarCursos(listaCursos, limite = null) {
 
     cursosExibidos.forEach(function (curso) {
       const card = document.createElement("article");
-
       card.classList.add("card-curso");
 
       // =========================
-      // MATRÍCULA
+      // VERIFICAR MATRÍCULA
       // =========================
 
       const jaMatriculado = periodosMatriculados.includes(curso.periodo);
@@ -108,10 +112,10 @@ export async function carregarCursos(listaCursos, limite = null) {
 
       if (curso.vagas <= 0) {
         botaoInscricao = `
-                        <span class="vagas-esgotadas">
-                            Vagas esgotadas
-                        </span>
-                    `;
+                    <span class="vagas-esgotadas">
+                        Vagas esgotadas
+                    </span>
+                `;
       }
 
       // =========================
@@ -119,80 +123,78 @@ export async function carregarCursos(listaCursos, limite = null) {
       // =========================
       else if (jaMatriculado) {
         botaoInscricao = `
-                        <span class="curso-matriculado">
-                            Você já está inscrito
-                        </span>
-                    `;
+                    <span class="curso-matriculado">
+                        Você já está inscrito
+                    </span>
+                `;
       }
 
       // =========================
       // DISPONÍVEL
       // =========================
       else {
-        const caminhoMatricula = `../html/matricula.html?id=${curso.id}`;
+        const linkMatricula = `${caminhoMatricula}?id=${encodeURIComponent(curso.id)}`;
 
         if (session) {
           botaoInscricao = `
-                            <a
-                                href="${caminhoMatricula}"
-                                class="botao-curso"
-                            >
-                                Inscrever-se
-                            </a>
-                        `;
+                        <a
+                            href="${linkMatricula}"
+                            class="botao-curso"
+                        >
+                            Inscrever-se
+                        </a>
+                    `;
         } else {
           botaoInscricao = `
-                            <a
-                                href="../html/login.html"
-                                class="botao-curso"
-                            >
-                                Entrar para se inscrever
-                            </a>
-                        `;
+                        <a
+                            href="${caminhoLogin}"
+                            class="botao-curso"
+                        >
+                            Entrar para se inscrever
+                        </a>
+                    `;
         }
       }
+
+      // =========================
+      // CAMINHO DA IMAGEM
+      // =========================
+
+      const imagemCurso = curso.imagem?.startsWith("http")
+        ? curso.imagem
+        : `${caminhoImagens}${(curso.imagem || "").replace(/^\.\/imagens\//, "")}`;
 
       // =========================
       // CARD
       // =========================
 
       card.innerHTML = `
-                    <img
-                        src="${curso.imagem}"
-                        alt="${curso.nome}"
-                        class="imagem-curso"
-                    >
+                <img
+                    src="${imagemCurso}"
+                    alt="${curso.nome}"
+                    class="imagem-curso"
+                >
 
-                    <h3>
-                        ${curso.nome}
-                    </h3>
+                <h3>${curso.nome}</h3>
 
-                    <p>
-                        ${curso.descricao}
-                    </p>
+                <p>${curso.descricao}</p>
 
-                    <div class="info-curso">
+                <div class="info-curso">
 
-                        <span>
-                            📅 ${curso.data}
-                        </span>
+                    <span>📅 ${curso.data}</span>
 
-                        <span>
-                            🕐 ${curso.periodo}
-                        </span>
+                    <span>🕐 ${curso.periodo}</span>
 
-                        <span>
-                            👥 ${curso.vagas} vagas
-                        </span>
+                    <span>👥 ${curso.vagas} vagas</span>
 
-                        <span class="status-curso">
-                            ${curso.status}
-                        </span>
+                    <span class="status-curso">
+                        ${curso.status}
+                    </span>
 
-                    </div>
+                </div>
 
-                    ${botaoInscricao}
-                `;
+                ${botaoInscricao}
+            `;
 
       listaCursos.appendChild(card);
     });

@@ -19,7 +19,7 @@ async function carregarInscricoes() {
   } = await clienteSupabase.auth.getSession();
 
   if (!session) {
-    window.location.href = "../login/login.html";
+    window.location.href = "../html/login.html";
 
     return;
   }
