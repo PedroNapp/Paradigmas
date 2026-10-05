@@ -1,0 +1,441 @@
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d1117;
+    color: #ffffff;
+}
+
+
+/* ==================================================
+   INTRO
+================================================== */
+
+.instrutores-intro {
+    text-align: center;
+    padding: 90px 20px 70px;
+    background: #0d1117;
+}
+
+.instrutores-intro span {
+    color: #f5bd3d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.instrutores-intro h1 {
+    margin-top: 12px;
+    font-size: 42px;
+    letter-spacing: -1px;
+}
+
+.instrutores-intro p {
+    max-width: 600px;
+    margin: 15px auto 0;
+    color: #9098a3;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   SEÇÃO DOS INSTRUTORES
+================================================== */
+
+.instrutores {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 30px 100px;
+}
+
+
+/* ==================================================
+   LISTA DE CURSOS
+================================================== */
+
+.lista-instrutores {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+
+/* ==================================================
+   GRUPO DO CURSO
+================================================== */
+
+.grupo-curso {
+    width: 100%;
+}
+
+
+/* ==================================================
+   TÍTULO DO CURSO
+================================================== */
+
+.titulo-curso {
+    margin-bottom: 25px;
+}
+
+.titulo-curso span {
+    color: #f5bd3d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.titulo-curso h2 {
+    margin-top: 8px;
+    font-size: 30px;
+}
+
+
+/* ==================================================
+   LISTA DE INSTRUTORES
+================================================== */
+
+.lista-curso {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+
+/* ==================================================
+   CARD DO INSTRUTOR
+================================================== */
+
+.card-instrutor {
+    min-height: 300px;
+
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card-instrutor:hover {
+    transform: translateY(-4px);
+    border-color: #f5bd3d;
+}
+
+
+/* ==================================================
+   FOTO
+================================================== */
+
+.foto-instrutor {
+    width: 150px;
+    height: 150px;
+
+    margin-bottom: 20px;
+
+    overflow: hidden;
+
+    background: transparent;
+
+    border-radius: 50%;
+}
+
+.foto-instrutor img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: transparent;
+}
+
+/* ==================================================
+   NOME
+================================================== */
+
+.card-instrutor h3 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+/* ==================================================
+   CURSO
+================================================== */
+
+.nome-curso {
+    width: 100%;
+
+    padding: 6px 12px;
+
+    color: #f5bd3d;
+
+    background: rgba(245, 189, 61, 0.05);
+
+    border: 1px solid rgba(245, 189, 61, 0.35);
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==================================================
+   ESTADO
+================================================== */
+
+.estado-instrutores {
+    min-height: 200px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #9098a3;
+}
+
+
+/* ==================================================
+   LOADING
+================================================== */
+
+.carregando {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    margin: 0 auto 12px;
+
+    border: 3px solid #353d47;
+
+    border-top-color: #f5bd3d;
+
+    border-radius: 50%;
+
+    animation:
+        carregar 0.8s linear infinite;
+}
+
+@keyframes carregar {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* ==================================================
+   CTA
+================================================== */
+
+.cta {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 0 auto 80px;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    background: #171d24;
+
+    border: 1px solid #353d47;
+
+    border-radius: 14px;
+}
+
+.cta > span {
+    color: #f5bd3d;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.cta h2 {
+    margin-top: 10px;
+
+    font-size: 32px;
+}
+
+.cta p {
+    margin-top: 12px;
+
+    color: #9098a3;
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   BOTÕES
+================================================== */
+
+.cta-botoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.botao-principal,
+.botao-secundario {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.botao-principal {
+    background: #f5bd3d;
+    color: #111111;
+}
+
+.botao-principal:hover {
+    transform: translateY(-2px);
+}
+
+.botao-secundario {
+    color: #ffffff;
+
+    border: 1px solid #353d47;
+}
+
+.botao-secundario:hover {
+    border-color: #f5bd3d;
+    color: #f5bd3d;
+}
+
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 900px) {
+
+    .lista-curso {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .instrutores {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .instrutores-intro {
+        padding-top: 70px;
+    }
+
+    .instrutores-intro h1 {
+        font-size: 34px;
+    }
+
+    .titulo-curso h2 {
+        font-size: 26px;
+    }
+
+    .lista-curso {
+        grid-template-columns: 1fr;
+    }
+
+    .card-instrutor {
+        min-height: 280px;
+    }
+
+    .cta {
+        width: 90%;
+        padding: 55px 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .instrutores-intro h1 {
+        font-size: 30px;
+    }
+
+    .instrutores-intro p {
+        font-size: 14px;
+    }
+
+    .titulo-curso h2 {
+        font-size: 24px;
+    }
+
+    .foto-instrutor {
+        width: 130px;
+        height: 130px;
+    }
+
+    .card-instrutor {
+        padding: 22px;
+    }
+
+    .cta-botoes {
+        flex-direction: column;
+    }
+
+    .botao-principal,
+    .botao-secundario {
+        width: 100%;
+        text-align: center;
+    }
+
+}

@@ -149,6 +149,7 @@ async function confirmarMatricula() {
         idMatricula,
         idUsuario,
         idCurso,
+
         cursos (
           periodo
         )
@@ -160,15 +161,32 @@ async function confirmarMatricula() {
       throw erroMatriculas;
     }
 
+    
+    // =========================
+    // PERÍODO ATUAL
+    // =========================
+
+    const periodoAtual = String(cursoAtual.periodo).trim().toLowerCase();
+    
     // =========================
     // VERIFICAR CONFLITO
     // =========================
 
     const jaMatriculado = matriculas.some(function (matricula) {
-      return (
-        matricula.cursos && matricula.cursos.periodo === cursoAtual.periodo
-      );
+      if (!matricula.cursos) {
+        return false;
+      }
+
+      const periodoMatricula = String(matricula.cursos.periodo)
+        .trim()
+        .toLowerCase();
+
+      return periodoMatricula === periodoAtual;
     });
+
+    // =========================
+    // JÁ POSSUI MATRÍCULA
+    // =========================
 
     if (jaMatriculado) {
       alert(
@@ -192,31 +210,44 @@ async function confirmarMatricula() {
         dataInscricao: new Date().toISOString(),
       });
 
+    // =========================
+    // VERIFICAR ERRO
+    // =========================
+
     if (erroInsercao) {
+      console.error("Erro retornado pelo Supabase:", erroInsercao);
+
+      // =========================
+      // PERÍODO JÁ POSSUI MATRÍCULA
+      // =========================
+
+      if (
+        erroInsercao.message &&
+        erroInsercao.message.includes(
+          "Você já possui uma matrícula neste período",
+        )
+      ) {
+        alert("Você já possui uma matrícula neste período.");
+
+        return;
+      }
+
+      // =========================
+      // VAGAS ESGOTADAS
+      // =========================
+
+      if (
+        erroInsercao.message &&
+        erroInsercao.message.includes(
+          "Não há vagas disponíveis para este curso",
+        )
+      ) {
+        alert("Este curso não possui mais vagas.");
+
+        return;
+      }
+
       throw erroInsercao;
-    }
-
-    // =========================
-    // DIMINUIR VAGA
-    // =========================
-
-    const novasVagas = cursoAtual.vagas - 1;
-
-    const { error: erroVaga } = await clienteSupabase
-      .from("cursos")
-      .update({
-        vagas: novasVagas,
-      })
-      .eq("idCurso", cursoId);
-
-    if (erroVaga) {
-      console.error("Erro ao atualizar vagas:", erroVaga);
-
-      alert(
-        "A matrícula foi realizada, mas não foi possível atualizar as vagas.",
-      );
-
-      return;
     }
 
     // =========================

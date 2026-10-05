@@ -332,3 +332,26 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   CAMPO COM ERRO
+========================= */
+
+.campo-invalido {
+  border-color: #ef4444 !important;
+  outline: none;
+}
+
+
+/* =========================
+   MENSAGEM DE ERRO
+========================= */
+
+.mensagem-erro {
+  display: block;
+  margin-top: 5px;
+
+  color: #ef4444;
+
+  font-size: 13px;
+}

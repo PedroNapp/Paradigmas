@@ -30,6 +30,8 @@ export async function carregarCursos(
 
     let periodosMatriculados = [];
 
+    let erroAoVerificarMatriculas = false;
+
     // =========================
     // MATRÍCULAS DO USUÁRIO
     // =========================
@@ -37,7 +39,10 @@ export async function carregarCursos(
     if (session) {
       const emailUsuario = session.user.email;
 
-      // Buscar o ID do usuário no banco
+      // =========================
+      // BUSCAR USUÁRIO
+      // =========================
+
       const { data: usuario, error: erroUsuario } = await clienteSupabase
         .from("usuarios")
         .select("idUsuario")
@@ -46,13 +51,20 @@ export async function carregarCursos(
 
       if (erroUsuario) {
         console.error("Erro ao buscar usuário:", erroUsuario);
+
+        erroAoVerificarMatriculas = true;
       } else {
+        // =========================
+        // BUSCAR MATRÍCULAS
+        // =========================
+
         const { data: matriculas, error: erroMatriculas } =
           await clienteSupabase
             .from("matriculas")
             .select(
               `
             idCurso,
+
             cursos (
               periodo
             )
@@ -62,10 +74,20 @@ export async function carregarCursos(
 
         if (erroMatriculas) {
           console.error("Erro ao buscar matrículas:", erroMatriculas);
+
+          erroAoVerificarMatriculas = true;
         } else {
+          // =========================
+          // PEGAR PERÍODOS
+          // =========================
+
           periodosMatriculados = matriculas
-            .filter((matricula) => matricula.cursos)
-            .map((matricula) => matricula.cursos.periodo);
+            .filter(function (matricula) {
+              return matricula.cursos;
+            })
+            .map(function (matricula) {
+              return String(matricula.cursos.periodo).trim().toLowerCase();
+            });
         }
       }
     }
@@ -113,52 +135,88 @@ export async function carregarCursos(
       card.classList.add("card-curso");
 
       // =========================
-      // VERIFICAR MATRÍCULA
+      // BOTÃO
       // =========================
-
-      const jaMatriculado = periodosMatriculados.includes(curso.periodo);
 
       let botaoInscricao = "";
 
       // =========================
-      // VAGAS ESGOTADAS
+      // USUÁRIO LOGADO
       // =========================
 
-      if (curso.vagas <= 0) {
-        botaoInscricao = `
-          <span class="vagas-esgotadas">
-            Vagas esgotadas
-          </span>
-        `;
+      if (session) {
+        // =========================
+        // NÃO FOI POSSÍVEL VERIFICAR
+        // =========================
+
+        if (erroAoVerificarMatriculas) {
+          botaoInscricao = `
+            <span class="curso-matriculado">
+              Não foi possível verificar sua inscrição
+            </span>
+          `;
+        }
+
+        // =========================
+        // VAGAS ESGOTADAS
+        // =========================
+        else if (curso.vagas <= 0) {
+          botaoInscricao = `
+            <span class="vagas-esgotadas">
+              Vagas esgotadas
+            </span>
+          `;
+        }
+
+        // =========================
+        // VERIFICAR PERÍODO
+        // =========================
+        else {
+          const periodoCurso = String(curso.periodo).trim().toLowerCase();
+
+          const jaMatriculado = periodosMatriculados.includes(periodoCurso);
+
+          // =========================
+          // JÁ MATRICULADO
+          // =========================
+
+          if (jaMatriculado) {
+            botaoInscricao = `
+              <span class="curso-matriculado">
+                Você já está inscrito
+              </span>
+            `;
+          }
+
+          // =========================
+          // DISPONÍVEL
+          // =========================
+          else {
+            const linkMatricula = `${caminhoMatricula}?id=${encodeURIComponent(
+              curso.idCurso,
+            )}`;
+
+            botaoInscricao = `
+              <a
+                href="${linkMatricula}"
+                class="botao-curso"
+              >
+                Inscrever-se
+              </a>
+            `;
+          }
+        }
       }
 
       // =========================
-      // JÁ MATRICULADO
-      // =========================
-      else if (jaMatriculado) {
-        botaoInscricao = `
-          <span class="curso-matriculado">
-            Você já está inscrito
-          </span>
-        `;
-      }
-
-      // =========================
-      // DISPONÍVEL
+      // USUÁRIO NÃO LOGADO
       // =========================
       else {
-        const linkMatricula = `${caminhoMatricula}?id=${encodeURIComponent(
-          curso.idCurso,
-        )}`;
-
-        if (session) {
+        if (curso.vagas <= 0) {
           botaoInscricao = `
-            <a
-              href="${linkMatricula}"
-              class="botao-curso"
-            >
-              Inscrever-se
-            </a>
+            <span class="vagas-esgotadas">
+              Vagas esgotadas
+            </span>
           `;
         } else {
           botaoInscricao = `
@@ -194,17 +252,27 @@ export async function carregarCursos(
           class="imagem-curso"
         >
 
-        <h3>${curso.nome}</h3>
+        <h3>
+          ${curso.nome}
+        </h3>
 
-        <p>${curso.descricao}</p>
+        <p>
+          ${curso.descricao}
+        </p>
 
         <div class="info-curso">
 
-          <span>🕐 ${curso.periodo}</span>
+          <span>
+            🕐 ${curso.periodo}
+          </span>
 
-          <span>👥 ${curso.vagas} vagas</span>
+          <span>
+            👥 ${curso.vagas} vagas
+          </span>
 
-          <span>📍 ${curso.sala}</span>
+          <span>
+            📍 ${curso.sala}
+          </span>
 
           <span class="status-curso">
             ${curso.status}

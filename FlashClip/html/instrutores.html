@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Instrutores | FlashClip</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../css/cabecalho.css" />
+
+    <link rel="stylesheet" href="../css/instrutores.css" />
+
+    <link rel="stylesheet" href="../css/rodape.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+       NAVBAR
+  ========================== -->
+
+    <header class="navbar">
+      <a href="../index.html" class="logo"> FlashClip </a>
+
+      <nav class="nav-links">
+        <a href="../index.html"> Home </a>
+
+        <a href="../html/cursos.html"> Cursos </a>
+
+        <a href="../html/programacao.html"> Programação </a>
+
+        <a href="../html/instrutores.html" class="ativo"> Instrutores </a>
+
+        <a href="../html/patrocinadores.html"> Patrocinadores </a>
+
+        <a href="../html/contato.html"> Contato </a>
+
+        <a href="../html/sobre.html"> Sobre </a>
+
+        <a href="../html/faq.html"> FAQ </a>
+      </nav>
+
+      <div class="nav-acoes">
+        <div class="usuario-container">
+          <button class="usuario" id="botaoUsuario">U</button>
+
+          <div class="nome-usuario" id="nomeUsuario">Usuário</div>
+        </div>
+
+        <a href="../html/inscricoes.html" class="inscricoes"> Inscrições </a>
+      </div>
+
+      <!-- MENU MOBILE -->
+
+      <button
+        class="botao-menu"
+        id="botaoMenu"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <div class="menu-mobile" id="menuMobile">
+        <nav class="menu-links">
+          <a href="../index.html"> Home </a>
+
+          <a href="../html/cursos.html"> Cursos </a>
+
+          <a href="../html/programacao.html"> Programação </a>
+
+          <a href="../html/instrutores.html" class="ativo"> Instrutores </a>
+
+          <a href="../html/patrocinadores.html"> Patrocinadores </a>
+
+          <a href="../html/contato.html"> Contato </a>
+
+          <a href="../html/sobre.html"> Sobre </a>
+
+          <a href="../html/faq.html"> FAQ </a>
+        </nav>
+
+        <div class="menu-divisor"></div>
+
+        <div class="menu-usuario">
+          <button class="usuario" id="botaoUsuarioMobile">U</button>
+
+          <span id="nomeUsuarioMobile"> Usuário </span>
+        </div>
+
+        <a href="../html/inscricoes.html" class="inscricoes"> Inscrições </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================
+         INTRO
+    ========================== -->
+
+      <section class="instrutores-intro">
+        <span> FLASHCLIP </span>
+
+        <h1>Nossos Instrutores</h1>
+
+        <p>
+          Conheça os especialistas que irão compartilhar seus conhecimentos
+          durante o evento.
+        </p>
+      </section>
+
+      <!-- =========================
+         INSTRUTORES
+    ========================== -->
+
+      <section class="instrutores">
+        <!-- LISTA -->
+
+        <div class="lista-instrutores" id="listaInstrutores">
+          <div class="estado-instrutores">
+            <span class="carregando"></span>
+
+            <p>Carregando instrutores...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         CTA
+    ========================== -->
+
+      <section class="cta">
+        <span> FLASHCLIP </span>
+
+        <h2>Quer participar?</h2>
+
+        <p>Confira os cursos disponíveis e faça sua inscrição.</p>
+
+        <div class="cta-botoes">
+          <a href="./cursos.html" class="botao-secundario"> Ver cursos </a>
+
+          <a href="./inscricoes.html" class="botao-principal">
+            Minhas inscrições
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+       FOOTER
+  ========================== -->
+
+    <footer>
+      <div class="footer-conteudo">
+        <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
+
+        <div class="contatos">
+          <a href="#"> Instagram </a>
+
+          <a href="#"> Facebook </a>
+
+          <a href="mailto:contato@flashclip.com"> E-mail </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================
+       SCRIPTS
+  ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="../js/auth.js"></script>
+
+    <script type="module" src="../js/cabecalho.js"></script>
+
+    <script type="module" src="../js/instrutores.js"></script>
+  </body>
+</html>
