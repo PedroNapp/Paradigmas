@@ -7,7 +7,7 @@
     z-index: 1000;
 
     height: 80px;
-    padding: 0 7%;
+    padding: 0 2%;
 
     display: flex;
     align-items: center;
@@ -42,8 +42,8 @@
 .nav-links {
     display: flex;
     align-items: center;
-
-    gap: 28px;
+    margin-left: 120px;
+    gap: 25px;
 }
 
 .nav-links a {
