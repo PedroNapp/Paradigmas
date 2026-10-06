@@ -3,451 +3,677 @@
 ========================= */
 
 .navbar {
-    position: relative;
-    z-index: 1000;
+  position: relative;
+  z-index: 1000;
 
-    height: 80px;
-    padding: 0 2%;
+  height: 80px;
+  padding: 0 2%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    border-bottom: 1px solid #292929;
-    background: #111111;
+  background: rgba(10, 10, 13, 0.92);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
 
+/* =========================
+   LINHA TEMÁTICA
+========================= */
+
+.navbar::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #008f5a 0%,
+    #008f5a 38%,
+    #d6a84f 50%,
+    #d6a84f 52%,
+    #d7192f 64%,
+    #d7192f 100%
+  );
+
+  background-size: 200% 100%;
+
+  animation: linhaNatal 7s ease-in-out infinite;
+
+  opacity: 0.75;
+}
+
+/* pequeno brilho percorrendo a linha */
+
+.navbar::before {
+  content: "";
+
+  position: absolute;
+
+  bottom: -2px;
+  left: 50%;
+
+  width: 90px;
+  height: 4px;
+
+  transform: translateX(-50%);
+
+  background: #e8c66a;
+
+  border-radius: 50%;
+
+  filter: blur(7px);
+
+  opacity: 0.35;
+
+  animation: brilhoLinha 4s ease-in-out infinite;
+}
+
+/* =========================
+   ANIMAÇÃO DA LINHA
+========================= */
+
+@keyframes linhaNatal {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes brilhoLinha {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translateX(-50%) scaleX(0.7);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: translateX(-50%) scaleX(1.2);
+  }
+}
 
 /* =========================
    LOGO
 ========================= */
 
 .logo {
-    color: #ffffff;
+  display: flex;
+  align-items: center;
 
-    font-size: 24px;
-    font-weight: 700;
+  flex-shrink: 0;
 
-    letter-spacing: -1px;
-    text-decoration: none;
+  text-decoration: none;
 
-    flex-shrink: 0;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
 }
 
+/* IMAGEM DA LOGO */
+
+.logo img {
+  width: 155px;
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* animação ao passar o mouse */
+
+.logo:hover img {
+  transform: translateY(-1px);
+
+  filter: drop-shadow(0 0 5px rgba(214, 168, 79, 0.18));
+}
 
 /* =========================
    NAVEGAÇÃO DESKTOP
 ========================= */
 
 .nav-links {
-    display: flex;
-    align-items: center;
-    margin-left: 120px;
-    gap: 25px;
+  display: flex;
+  align-items: center;
+
+  margin-left: 70px;
+
+  gap: 25px;
 }
+
+/* LINKS */
 
 .nav-links a {
-    color: #aaaaaa;
+  position: relative;
 
-    font-size: 14px;
+  color: #a6a6aa;
 
-    text-decoration: none;
-    white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
 
-    transition: color 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+
+  padding: 8px 0;
+
+  transition: color 0.25s ease;
 }
 
-.nav-links a:hover,
+/* linha do link */
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: #d6a84f;
+
+  transform: translateX(-50%);
+
+  transition: width 0.25s ease;
+}
+
+/* hover */
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-links a:hover::after {
+  width: 70%;
+}
+
+/* página atual */
+
 .nav-links a.ativo {
-    color: #ffffff;
+  color: #ffffff;
 }
 
+.nav-links a.ativo::after {
+  width: 70%;
+}
 
 /* =========================
    AÇÕES DESKTOP
 ========================= */
 
 .nav-acoes {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 20px;
+  gap: 18px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
-
 
 /* =========================
    BOTÃO INSCRIÇÕES
 ========================= */
 
 .inscricoes {
-    padding: 11px 20px;
+  position: relative;
 
-    border-radius: 25px;
+  padding: 11px 20px;
 
-    background: #ffffff;
-    color: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
 
-    font-size: 14px;
-    font-weight: 600;
+  background: #f2f2f2;
+  color: #111111;
 
-    text-decoration: none;
-    white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
 
-    transition: background 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* brilho passando pelo botão */
+
+.inscricoes::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.5s ease;
 }
 
 .inscricoes:hover {
-    background: #dddddd;
+  background: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 0 18px rgba(214, 168, 79, 0.14);
 }
 
+.inscricoes:hover::before {
+  left: 140%;
+}
 
 /* =========================
    USUÁRIO
 ========================= */
 
 .usuario-container {
-    position: relative;
+  position: relative;
+}
+
+/* botão */
+
+/* =========================
+   USUÁRIO
+========================= */
+
+.usuario-container {
+  position: relative;
 }
 
 .usuario {
-    min-width: 42px;
-    height: 42px;
+  min-width: 42px;
+  height: 42px;
 
-    padding: 0 12px;
+  padding: 0 14px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: none;
-    border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
 
-    background: #ffffff;
-    color: #111111;
+  background: #f2f2f2;
+  color: #111111;
 
-    font-size: 13px;
-    font-weight: 600;
+  font-size: 13px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: background 0.2s;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .usuario:hover {
-    background: #dddddd;
-}
+  background: #ffffff;
 
+  transform: translateY(-1px);
+
+  box-shadow: 0 0 18px rgba(214, 168, 79, 0.14);
+}
 
 /* =========================
    NOME DO USUÁRIO
 ========================= */
 
 .nome-usuario {
-    position: absolute;
+  position: absolute;
 
-    top: 52px;
-    right: 0;
+  top: 52px;
+  right: 0;
 
-    padding: 9px 14px;
+  padding: 9px 14px;
 
-    border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
 
-    background: #ffffff;
-    color: #111111;
+  background: #151519;
+  color: #eeeeee;
 
-    font-size: 12px;
+  font-size: 12px;
 
-    white-space: nowrap;
+  white-space: nowrap;
 
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 
-    transition: 0.2s;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
 
-    z-index: 1001;
+  z-index: 1001;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .usuario-container:hover .nome-usuario {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 
-    transform: translateY(0);
+  transform: translateY(0);
 }
-
 
 /* =========================
    BOTÃO DO MENU
 ========================= */
 
 .botao-menu {
-    display: none;
+  display: none;
 
-    width: 44px;
-    height: 44px;
+  width: 44px;
+  height: 44px;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-    border: 1px solid #333333;
-    border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 
-    background: #171717;
-    color: #ffffff;
+  background: #151519;
+  color: #ffffff;
 
-    font-size: 22px;
+  font-size: 22px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background 0.2s,
-        border-color 0.2s;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .botao-menu:hover {
-    background: #222222;
-    border-color: #444444;
-}
+  background: #1e1e23;
 
+  border-color: rgba(214, 168, 79, 0.35);
+
+  transform: translateY(-1px);
+}
 
 /* =========================
    PAINEL MOBILE
 ========================= */
 
 .menu-mobile {
-    display: none;
+  display: none;
 }
-
 
 /* =========================
    TELAS MENORES
 ========================= */
 
 @media (max-width: 1100px) {
+  .navbar {
+    padding: 0 5%;
+  }
 
-    .navbar {
-        padding: 0 5%;
-    }
-
-
-    /* -------------------------
+  /* -------------------------
        ESCONDE MENU DESKTOP
     ------------------------- */
 
-    .nav-links,
-    .nav-acoes {
-        display: none;
-    }
+  .nav-links,
+  .nav-acoes {
+    display: none;
+  }
 
-
-    /* -------------------------
+  /* -------------------------
        MOSTRA BOTÃO
     ------------------------- */
 
-    .botao-menu {
-        display: flex;
-    }
+  .botao-menu {
+    display: flex;
+  }
 
-
-    /* -------------------------
+  /* -------------------------
        PAINEL
     ------------------------- */
 
-    .menu-mobile {
-        position: absolute;
+  .menu-mobile {
+    position: absolute;
 
-        top: 80px;
-        left: 5%;
-        right: 5%;
+    top: 80px;
+    left: 5%;
+    right: 5%;
 
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-        padding: 10px;
+    padding: 10px;
 
-        border: 1px solid #292929;
-        border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
 
-        background: #111111;
+    background: rgba(17, 17, 20, 0.96);
 
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
-        opacity: 0;
-        visibility: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 
-        transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
 
-        transition:
-            opacity 0.2s,
-            transform 0.2s,
-            visibility 0.2s;
-    }
+    transform: translateY(-10px);
 
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
 
-    /* -------------------------
+  /* -------------------------
        PAINEL ABERTO
     ------------------------- */
 
-    .menu-mobile.aberto {
-        opacity: 1;
-        visibility: visible;
+  .menu-mobile.aberto {
+    opacity: 1;
+    visibility: visible;
 
-        transform: translateY(0);
-    }
+    transform: translateY(0);
+  }
 
-
-    /* -------------------------
+  /* -------------------------
        LINKS
     ------------------------- */
 
-    .menu-mobile .menu-links {
-        display: flex;
-        flex-direction: column;
-    }
+  .menu-mobile .menu-links {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .menu-mobile .menu-links a {
-        padding: 13px 14px;
+  .menu-mobile .menu-links a {
+    position: relative;
 
-        border-radius: 7px;
+    padding: 13px 14px;
 
-        color: #aaaaaa;
+    border-radius: 7px;
 
-        font-size: 14px;
+    color: #aaaaaa;
 
-        text-decoration: none;
+    font-size: 14px;
 
-        transition:
-            background 0.2s,
-            color 0.2s;
-    }
+    text-decoration: none;
 
-    .menu-mobile .menu-links a:hover {
-        background: #1c1c1c;
-        color: #ffffff;
-    }
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      padding-left 0.2s ease;
+  }
 
-    .menu-mobile .menu-links a.ativo {
-        color: #f5bd3d;
-    }
+  .menu-mobile .menu-links a:hover {
+    background: #1b1b20;
 
+    color: #ffffff;
 
-    /* -------------------------
+    padding-left: 18px;
+  }
+
+  .menu-mobile .menu-links a.ativo {
+    color: #d6a84f;
+  }
+
+  /* -------------------------
        DIVISOR
     ------------------------- */
 
-    .menu-divisor {
-        height: 1px;
+  .menu-divisor {
+    height: 1px;
 
-        margin: 8px 10px;
+    margin: 8px 10px;
 
-        background: #292929;
-    }
+    background: rgba(255, 255, 255, 0.07);
+  }
 
-
-    /* -------------------------
+  /* -------------------------
        USUÁRIO
     ------------------------- */
 
-    .menu-usuario {
-        display: flex;
-        align-items: center;
+  .menu-usuario {
+    display: flex;
+    align-items: center;
 
-        gap: 12px;
+    gap: 12px;
 
-        padding: 12px 14px;
+    padding: 12px 14px;
 
-        color: #ffffff;
+    color: #ffffff;
 
-        font-size: 14px;
-    }
+    font-size: 14px;
+  }
 
-    .menu-usuario .usuario {
-        min-width: 38px;
-        height: 38px;
+  .menu-usuario .usuario {
+    min-width: 38px;
+    height: 38px;
 
-        flex-shrink: 0;
-    }
+    flex-shrink: 0;
+  }
 
-
-    /* -------------------------
+  /* -------------------------
        INSCRIÇÕES
     ------------------------- */
 
-    .menu-mobile .inscricoes {
-        display: block;
+  .menu-mobile .inscricoes {
+    display: block;
 
-        margin: 6px 4px 4px;
+    margin: 6px 4px 4px;
 
-        padding: 12px;
+    padding: 12px;
 
-        border-radius: 8px;
+    border-radius: 8px;
 
-        background: #ffffff;
-        color: #111111;
+    background: #f2f2f2;
+    color: #111111;
 
-        text-align: center;
+    text-align: center;
 
-        font-size: 14px;
-        font-weight: 600;
-    }
+    font-size: 14px;
+    font-weight: 600;
 
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .menu-mobile .inscricoes:hover {
+    background: #ffffff;
+
+    transform: translateY(-1px);
+  }
 }
-
 
 /* =========================
    CELULAR
 ========================= */
 
 @media (max-width: 600px) {
+  .navbar {
+    height: 70px;
 
-    .navbar {
-        height: 70px;
+    padding: 0 5%;
+  }
 
-        padding: 0 5%;
-    }
+  .logo img {
+    width: 130px;
+  }
 
-    .logo {
-        font-size: 21px;
-    }
+  .botao-menu {
+    width: 40px;
+    height: 40px;
 
-    .botao-menu {
-        width: 40px;
-        height: 40px;
+    font-size: 20px;
+  }
 
-        font-size: 20px;
-    }
+  .menu-mobile {
+    top: 70px;
 
-    .menu-mobile {
-        top: 70px;
-
-        left: 4%;
-        right: 4%;
-    }
-
+    left: 4%;
+    right: 4%;
+  }
 }
-
 
 /* =========================
    CELULAR PEQUENO
 ========================= */
 
 @media (max-width: 380px) {
+  .navbar {
+    padding: 0 4%;
+  }
 
-    .navbar {
-        padding: 0 4%;
-    }
+  .logo img {
+    width: 120px;
+  }
 
-    .logo {
-        font-size: 20px;
-    }
-
-    .menu-mobile {
-        left: 3%;
-        right: 3%;
-    }
-
+  .menu-mobile {
+    left: 3%;
+    right: 3%;
+  }
 }

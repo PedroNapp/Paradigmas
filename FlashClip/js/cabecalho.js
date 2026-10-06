@@ -160,3 +160,4 @@ if (botaoMenu && menuMobile) {
     botaoMenu.setAttribute("aria-label", "Abrir menu");
   }
 }
+
