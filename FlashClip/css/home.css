@@ -656,8 +656,6 @@ h1 {
     box-shadow 0.25s ease;
 }
 
-
-
 .destaque:hover {
   transform: translateY(-7px);
 
@@ -1098,7 +1096,6 @@ h1 {
   pointer-events: none;
 }
 
-
 /* =========================
    TÍTULO
 ========================= */
@@ -1119,8 +1116,7 @@ h1 {
 
   letter-spacing: -1px;
 
-  text-shadow:
-    0 0 25px rgba(255, 255, 255, 0.04);
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.04);
 }
 
 .titulo-cursos p {
@@ -1130,7 +1126,6 @@ h1 {
 
   line-height: 1.6;
 }
-
 
 /* =========================
    LISTA DE CURSOS
@@ -1150,7 +1145,6 @@ h1 {
   gap: 22px;
 }
 
-
 /* =========================
    CARD
 ========================= */
@@ -1158,9 +1152,7 @@ h1 {
 .card-curso {
   position: relative;
 
-  width: calc(
-    (100% - 44px) / 3
-  );
+  width: calc((100% - 44px) / 3);
 
   max-width: 370px;
 
@@ -1172,21 +1164,17 @@ h1 {
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(22, 29, 37, 0.97),
-      rgba(9, 14, 19, 0.97)
-    );
+  background: linear-gradient(
+    145deg,
+    rgba(22, 29, 37, 0.97),
+    rgba(9, 14, 19, 0.97)
+  );
 
-  border: 1px solid
-    rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.09);
 
   border-radius: 16px;
 
-  box-shadow:
-    0 15px 40px
-    rgba(0, 0, 0, 0.28);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.28);
 
   transition:
     transform 0.25s ease,
@@ -1194,25 +1182,19 @@ h1 {
     box-shadow 0.25s ease;
 }
 
-
 /* =========================
    LINHA DECORATIVA
 ========================= */
 
-
 .card-curso:hover {
   transform: translateY(-6px);
 
-  border-color:
-    rgba(245, 189, 61, 0.42);
+  border-color: rgba(245, 189, 61, 0.42);
 
   box-shadow:
-    0 22px 48px
-    rgba(0, 0, 0, 0.36),
-    0 0 30px
-    rgba(245, 189, 61, 0.04);
+    0 22px 48px rgba(0, 0, 0, 0.36),
+    0 0 30px rgba(245, 189, 61, 0.04);
 }
-
 
 /* =========================
    CABEÇALHO
@@ -1233,14 +1215,8 @@ h1 {
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      145deg,
-      #10161b,
-      #080d11
-    );
+  background: linear-gradient(145deg, #10161b, #080d11);
 }
-
 
 /* =========================
    IMAGEM DO CURSO
@@ -1258,12 +1234,7 @@ h1 {
 
   padding: 12px 25px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #10161b,
-      #080d11
-    );
+  background: linear-gradient(145deg, #10161b, #080d11);
 
   opacity: 0.96;
 
@@ -1272,13 +1243,11 @@ h1 {
     opacity 0.35s ease;
 }
 
-
 .card-curso:hover .imagem-curso {
   transform: scale(1.04);
 
   opacity: 1;
 }
-
 
 /* =========================
    STATUS
@@ -1296,12 +1265,9 @@ h1 {
 
   color: #ffffff;
 
-  background:
-    rgba(5, 9, 12, 0.86);
+  background: rgba(5, 9, 12, 0.86);
 
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.13);
 
   border-radius: 20px;
 
@@ -1318,7 +1284,6 @@ h1 {
   -webkit-backdrop-filter: blur(8px);
 }
 
-
 /* =========================
    CONTEÚDO
 ========================= */
@@ -1332,7 +1297,6 @@ h1 {
 
   padding: 22px;
 }
-
 
 .conteudo-curso h3 {
   margin-bottom: 10px;
@@ -1348,13 +1312,12 @@ h1 {
   letter-spacing: -0.5px;
 }
 
-
 .descricao-curso {
   display: -webkit-box;
 
   margin: 0;
 
-  color: #a3a8ad;
+  color: #a2a8ae;
 
   font-size: 14px;
 
@@ -1362,11 +1325,11 @@ h1 {
 
   overflow: hidden;
 
+  line-clamp: 2;
   -webkit-line-clamp: 2;
 
   -webkit-box-orient: vertical;
 }
-
 
 /* =========================
    INFORMAÇÕES
@@ -1375,17 +1338,12 @@ h1 {
 .informacoes-curso {
   display: grid;
 
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 9px;
 
   margin-top: 20px;
 }
-
 
 .info-item {
   min-width: 0;
@@ -1398,16 +1356,12 @@ h1 {
 
   gap: 8px;
 
-  background:
-    rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.035);
 
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 10px;
 }
-
 
 .icone-info {
   flex-shrink: 0;
@@ -1418,7 +1372,6 @@ h1 {
 
   line-height: 1.2;
 }
-
 
 .info-item small {
   display: block;
@@ -1433,7 +1386,6 @@ h1 {
 
   letter-spacing: 0.8px;
 }
-
 
 .info-item strong {
   display: block;
@@ -1453,7 +1405,6 @@ h1 {
   white-space: nowrap;
 }
 
-
 /* =========================
    INSTRUTORES
 ========================= */
@@ -1463,16 +1414,12 @@ h1 {
 
   padding-top: 15px;
 
-  border-top:
-    1px solid
-    rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
-
 
 .titulo-instrutores {
   margin-bottom: 9px;
 }
-
 
 .titulo-instrutores span {
   color: #737b83;
@@ -1484,7 +1431,6 @@ h1 {
   letter-spacing: 1px;
 }
 
-
 .lista-instrutores {
   display: flex;
 
@@ -1495,13 +1441,11 @@ h1 {
   gap: 10px;
 }
 
-
 .avatares-instrutores {
   display: flex;
 
   align-items: center;
 }
-
 
 .instrutor-avatar {
   width: 32px;
@@ -1519,8 +1463,7 @@ h1 {
 
   background: #171d24;
 
-  border:
-    2px solid #11161b;
+  border: 2px solid #11161b;
 
   border-radius: 50%;
 
@@ -1531,11 +1474,9 @@ h1 {
   font-weight: 700;
 }
 
-
 .instrutor-avatar:first-child {
   margin-left: 0;
 }
-
 
 .imagem-instrutor {
   width: 100%;
@@ -1546,13 +1487,11 @@ h1 {
   object-fit: cover;
 }
 
-
 .instrutores-restantes {
   color: #f5bd3d;
 
   background: #20272e;
 }
-
 
 .quantidade-instrutores {
   flex: 1;
@@ -1570,18 +1509,13 @@ h1 {
   white-space: nowrap;
 }
 
-
 /* =========================
    RODAPÉ
 ========================= */
 
 .rodape-curso {
-  padding:
-    0
-    22px
-    22px;
+  padding: 0 22px 22px;
 }
-
 
 /* =========================
    BOTÃO
@@ -1620,17 +1554,13 @@ h1 {
     box-shadow 0.2s ease;
 }
 
-
 .botao-curso:hover {
   transform: translateY(-2px);
 
   background: #ffd45e;
 
-  box-shadow:
-    0 8px 22px
-    rgba(245, 189, 61, 0.14);
+  box-shadow: 0 8px 22px rgba(245, 189, 61, 0.14);
 }
-
 
 /* =========================
    ESTADOS
@@ -1659,23 +1589,19 @@ h1 {
   text-align: center;
 }
 
-
 .vagas-esgotadas {
   color: #999999;
 
   background: #222830;
 
-  border:
-    1px solid #353d47;
+  border: 1px solid #353d47;
 }
-
 
 .curso-matriculado {
   color: #111111;
 
   background: #f5bd3d;
 }
-
 
 /* =========================
    CARREGANDO
@@ -1698,46 +1624,35 @@ h1 {
 
   color: #777777;
 
-  border:
-    1px solid #292f36;
+  border: 1px solid #292f36;
 
   border-radius: 12px;
 }
-
 
 /* =========================
    RESPONSIVO
 ========================= */
 
 @media (max-width: 950px) {
-
   .card-curso {
-    width: calc(
-      (100% - 22px) / 2
-    );
+    width: calc((100% - 22px) / 2);
   }
-
 }
 
-
 @media (max-width: 700px) {
-
   .cursos {
     width: 90%;
 
     padding: 75px 0;
   }
 
-
   .titulo-cursos h2 {
     font-size: 29px;
   }
 
-
   .lista-cursos {
     gap: 18px;
   }
-
 
   .card-curso {
     width: 100%;
@@ -1745,38 +1660,27 @@ h1 {
     max-width: 380px;
   }
 
-
   .cabecalho-curso {
     height: 175px;
   }
-
 
   .conteudo-curso {
     padding: 20px;
   }
 
-
   .rodape-curso {
-    padding:
-      0
-      20px
-      20px;
+    padding: 0 20px 20px;
   }
-
 }
 
-
 @media (max-width: 480px) {
-
   .cursos {
     width: 90%;
   }
 
-
   .informacoes-curso {
     gap: 6px;
   }
-
 
   .info-item {
     padding: 9px 7px;
@@ -1784,66 +1688,49 @@ h1 {
     gap: 6px;
   }
 
-
   .icone-info {
     font-size: 14px;
   }
-
 
   .info-item small {
     font-size: 7.5px;
   }
 
-
   .info-item strong {
     font-size: 10.5px;
   }
 
-
   .quantidade-instrutores {
     font-size: 10px;
   }
-
 }
-
 
 /* =========================
    RESPONSIVO DOS CURSOS
 ========================= */
 
 @media (max-width: 900px) {
-
   .lista-cursos {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 
   .card-curso,
   .card-curso:nth-last-child(2),
   .card-curso:last-child {
     grid-column: auto;
   }
-
 }
 
-
 @media (max-width: 700px) {
-
   .cursos {
     width: 90%;
 
     padding: 75px 0;
   }
 
-
   .titulo-cursos h2 {
     font-size: 29px;
   }
-
 
   .lista-cursos {
     grid-template-columns: 1fr;
@@ -1851,42 +1738,33 @@ h1 {
     gap: 18px;
   }
 
-
   .card-curso,
   .card-curso:nth-last-child(2),
   .card-curso:last-child {
     grid-column: auto;
   }
 
-
   .cabecalho-curso {
     height: 175px;
   }
-
 
   .conteudo-curso {
     padding: 20px;
   }
 
-
   .rodape-curso {
     padding: 0 20px 20px;
   }
-
 }
 
-
 @media (max-width: 480px) {
-
   .cursos {
     width: 90%;
   }
 
-
   .informacoes-curso {
     gap: 6px;
   }
-
 
   .info-item {
     padding: 9px 7px;
@@ -1894,26 +1772,21 @@ h1 {
     gap: 6px;
   }
 
-
   .icone-info {
     font-size: 14px;
   }
-
 
   .info-item small {
     font-size: 7.5px;
   }
 
-
   .info-item strong {
     font-size: 10.5px;
   }
 
-
   .quantidade-instrutores {
     font-size: 10px;
   }
-
 }
 
 /* =========================
