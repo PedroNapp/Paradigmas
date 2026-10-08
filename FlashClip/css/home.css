@@ -656,26 +656,7 @@ h1 {
     box-shadow 0.25s ease;
 }
 
-.destaque::before {
-  content: "";
 
-  position: absolute;
-
-  top: 0;
-  left: 15%;
-
-  width: 70%;
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(245, 189, 61, 0.7),
-    transparent
-  );
-
-  opacity: 0.7;
-}
 
 .destaque:hover {
   transform: translateY(-7px);
@@ -1027,25 +1008,6 @@ h1 {
   box-shadow: 0 20px 45px rgba(245, 189, 61, 0.07);
 }
 
-.card-motivo::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 10%;
-
-  width: 80%;
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 0, 40, 0.7),
-    transparent
-  );
-}
-
 .numero-motivo {
   position: absolute;
 
@@ -1136,155 +1098,519 @@ h1 {
   pointer-events: none;
 }
 
+
+/* =========================
+   TÍTULO
+========================= */
+
 .titulo-cursos {
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 
   text-align: center;
 }
 
 .titulo-cursos h2 {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 
   color: #ffffff;
 
-  font-size: 32px;
+  font-size: 34px;
+  font-weight: 700;
+
   letter-spacing: -1px;
 
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.04);
+  text-shadow:
+    0 0 25px rgba(255, 255, 255, 0.04);
 }
 
 .titulo-cursos p {
   color: #92969a;
 
-  font-size: 14px;
+  font-size: 15px;
+
+  line-height: 1.6;
 }
+
+
+/* =========================
+   LISTA DE CURSOS
+========================= */
 
 .lista-cursos {
-  display: grid;
+  width: 100%;
 
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
 
-  gap: 20px;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  align-items: stretch;
+
+  gap: 22px;
 }
+
+
+/* =========================
+   CARD
+========================= */
 
 .card-curso {
-  padding: 22px;
+  position: relative;
 
-  background: linear-gradient(
-    145deg,
-    rgba(22, 29, 37, 0.95),
-    rgba(10, 15, 20, 0.95)
+  width: calc(
+    (100% - 44px) / 3
   );
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 14px;
+  max-width: 370px;
 
-  text-align: center;
+  min-width: 0;
 
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 29, 37, 0.97),
+      rgba(9, 14, 19, 0.97)
+    );
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.09);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.28);
 
   transition:
-    transform 0.2s,
-    border-color 0.2s,
-    box-shadow 0.2s;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+
+/* =========================
+   LINHA DECORATIVA
+========================= */
+
 
 .card-curso:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 
-  border-color: #f5be3d2c;
+  border-color:
+    rgba(245, 189, 61, 0.42);
 
-  box-shadow: 0 18px 45px rgba(245, 189, 61, 0.08);
+  box-shadow:
+    0 22px 48px
+    rgba(0, 0, 0, 0.36),
+    0 0 30px
+    rgba(245, 189, 61, 0.04);
 }
 
-.card-curso::before {
-  content: "";
 
-  position: absolute;
+/* =========================
+   CABEÇALHO
+========================= */
 
-  top: 0;
-  left: 10%;
+.cabecalho-curso {
+  position: relative;
 
-  width: 80%;
-  height: 1px;
+  width: 100%;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 255, 140, 0.7),
-    transparent
-  );
+  height: 180px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #10161b,
+      #080d11
+    );
 }
+
+
+/* =========================
+   IMAGEM DO CURSO
+========================= */
 
 .imagem-curso {
   width: 100%;
-  height: 200px;
+  height: 100%;
 
   display: block;
 
   object-fit: contain;
 
-  border-radius: 10px;
+  object-position: center;
+
+  padding: 12px 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #10161b,
+      #080d11
+    );
+
+  opacity: 0.96;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
 }
 
-.card-curso h3 {
+
+.card-curso:hover .imagem-curso {
+  transform: scale(1.04);
+
+  opacity: 1;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-curso {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  width: fit-content;
+
+  padding: 7px 11px;
+
+  color: #ffffff;
+
+  background:
+    rgba(5, 9, 12, 0.86);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.13);
+
+  border-radius: 20px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.9px;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo-curso {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 22px;
+}
+
+
+.conteudo-curso h3 {
   margin-bottom: 10px;
 
   color: #ffffff;
 
-  font-size: 20px;
+  font-size: 21px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.5px;
 }
 
-.card-curso p {
-  margin-bottom: 18px;
 
-  color: #9da1a5;
+.descricao-curso {
+  display: -webkit-box;
+
+  margin: 0;
+
+  color: #a3a8ad;
 
   font-size: 14px;
-  line-height: 1.5;
+
+  line-height: 1.6;
+
+  overflow: hidden;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
 }
 
-.info-curso {
-  margin-bottom: 18px;
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoes-curso {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 9px;
+
+  margin-top: 20px;
+}
+
+
+.info-item {
+  min-width: 0;
+
+  padding: 11px 10px;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  gap: 7px;
+  align-items: flex-start;
 
-  color: #c4c7ca;
+  gap: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+}
+
+
+.icone-info {
+  flex-shrink: 0;
+
+  color: #f5bd3d;
+
+  font-size: 17px;
+
+  line-height: 1.2;
+}
+
+
+.info-item small {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #7c848c;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+}
+
+
+.info-item strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: #ffffff;
 
   font-size: 13px;
+
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
 }
 
-.status-curso {
-  width: fit-content;
 
-  padding: 5px 10px;
+/* =========================
+   INSTRUTORES
+========================= */
 
-  border-radius: 20px;
+.instrutores-curso {
+  margin-top: 18px;
 
-  background: rgba(0, 255, 140, 0.07);
+  padding-top: 15px;
 
-  color: #5dffb0;
-
-  font-size: 12px;
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
 }
+
+
+.titulo-instrutores {
+  margin-bottom: 9px;
+}
+
+
+.titulo-instrutores span {
+  color: #737b83;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+
+.lista-instrutores {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.avatares-instrutores {
+  display: flex;
+
+  align-items: center;
+}
+
+
+.instrutor-avatar {
+  width: 32px;
+  height: 32px;
+
+  margin-left: -7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #171d24;
+
+  border:
+    2px solid #11161b;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+
+.instrutor-avatar:first-child {
+  margin-left: 0;
+}
+
+
+.imagem-instrutor {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.instrutores-restantes {
+  color: #f5bd3d;
+
+  background: #20272e;
+}
+
+
+.quantidade-instrutores {
+  flex: 1;
+
+  overflow: hidden;
+
+  color: #858d95;
+
+  font-size: 11px;
+
+  text-align: right;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.rodape-curso {
+  padding:
+    0
+    22px
+    22px;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
 
 .botao-curso {
   width: 100%;
 
-  display: block;
+  min-height: 42px;
 
-  padding: 11px;
+  padding: 11px 15px;
 
-  border-radius: 8px;
+  display: flex;
 
-  background: #f5bd3d;
+  align-items: center;
+
+  justify-content: center;
+
   color: #111111;
 
-  font-weight: 600;
+  background: #f5bd3d;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
 
   text-decoration: none;
 
@@ -1294,12 +1620,300 @@ h1 {
     box-shadow 0.2s ease;
 }
 
+
 .botao-curso:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 
   background: #ffd45e;
 
-  box-shadow: 0 8px 20px rgba(245, 189, 61, 0.12);
+  box-shadow:
+    0 8px 22px
+    rgba(245, 189, 61, 0.14);
+}
+
+
+/* =========================
+   ESTADOS
+========================= */
+
+.vagas-esgotadas,
+.curso-matriculado {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 9px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+.vagas-esgotadas {
+  color: #999999;
+
+  background: #222830;
+
+  border:
+    1px solid #353d47;
+}
+
+
+.curso-matriculado {
+  color: #111111;
+
+  background: #f5bd3d;
+}
+
+
+/* =========================
+   CARREGANDO
+========================= */
+
+.estado-cursos {
+  width: 100%;
+
+  min-height: 220px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  color: #777777;
+
+  border:
+    1px solid #292f36;
+
+  border-radius: 12px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 950px) {
+
+  .card-curso {
+    width: calc(
+      (100% - 22px) / 2
+    );
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .cursos {
+    width: 90%;
+
+    padding: 75px 0;
+  }
+
+
+  .titulo-cursos h2 {
+    font-size: 29px;
+  }
+
+
+  .lista-cursos {
+    gap: 18px;
+  }
+
+
+  .card-curso {
+    width: 100%;
+
+    max-width: 380px;
+  }
+
+
+  .cabecalho-curso {
+    height: 175px;
+  }
+
+
+  .conteudo-curso {
+    padding: 20px;
+  }
+
+
+  .rodape-curso {
+    padding:
+      0
+      20px
+      20px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .cursos {
+    width: 90%;
+  }
+
+
+  .informacoes-curso {
+    gap: 6px;
+  }
+
+
+  .info-item {
+    padding: 9px 7px;
+
+    gap: 6px;
+  }
+
+
+  .icone-info {
+    font-size: 14px;
+  }
+
+
+  .info-item small {
+    font-size: 7.5px;
+  }
+
+
+  .info-item strong {
+    font-size: 10.5px;
+  }
+
+
+  .quantidade-instrutores {
+    font-size: 10px;
+  }
+
+}
+
+
+/* =========================
+   RESPONSIVO DOS CURSOS
+========================= */
+
+@media (max-width: 900px) {
+
+  .lista-cursos {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+
+  .card-curso,
+  .card-curso:nth-last-child(2),
+  .card-curso:last-child {
+    grid-column: auto;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .cursos {
+    width: 90%;
+
+    padding: 75px 0;
+  }
+
+
+  .titulo-cursos h2 {
+    font-size: 29px;
+  }
+
+
+  .lista-cursos {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+
+  .card-curso,
+  .card-curso:nth-last-child(2),
+  .card-curso:last-child {
+    grid-column: auto;
+  }
+
+
+  .cabecalho-curso {
+    height: 175px;
+  }
+
+
+  .conteudo-curso {
+    padding: 20px;
+  }
+
+
+  .rodape-curso {
+    padding: 0 20px 20px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .cursos {
+    width: 90%;
+  }
+
+
+  .informacoes-curso {
+    gap: 6px;
+  }
+
+
+  .info-item {
+    padding: 9px 7px;
+
+    gap: 6px;
+  }
+
+
+  .icone-info {
+    font-size: 14px;
+  }
+
+
+  .info-item small {
+    font-size: 7.5px;
+  }
+
+
+  .info-item strong {
+    font-size: 10.5px;
+  }
+
+
+  .quantidade-instrutores {
+    font-size: 10px;
+  }
+
 }
 
 /* =========================

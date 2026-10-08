@@ -15,21 +15,321 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
 
-  background: #111111;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(245, 189, 61, 0.035),
+      transparent 35%
+    ),
+    #030508;
 
   color: #ffffff;
 }
+
+
+/* =========================
+   FUNDO GERAL DO MAIN
+========================= */
+
+main {
+  position: relative;
+
+  isolation: isolate;
+
+  overflow: hidden;
+
+  background: #030508;
+}
+
+
+/* =========================
+   LUZES DO FUNDO
+========================= */
+
+main::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    /* verde - topo esquerdo */
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(0, 217, 130, 0.055),
+      transparent 18%
+    ),
+
+    /* dourado - topo */
+    radial-gradient(
+      circle at 52% 5%,
+      rgba(245, 189, 61, 0.035),
+      transparent 20%
+    ),
+
+    /* vermelho - topo direito */
+    radial-gradient(
+      circle at 92% 18%,
+      rgba(255, 30, 55, 0.045),
+      transparent 19%
+    ),
+
+    /* verde - região central */
+    radial-gradient(
+      circle at 10% 48%,
+      rgba(0, 217, 130, 0.04),
+      transparent 20%
+    ),
+
+    /* dourado - centro */
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(245, 189, 61, 0.028),
+      transparent 24%
+    ),
+
+    /* vermelho - direita */
+    radial-gradient(
+      circle at 92% 62%,
+      rgba(255, 30, 55, 0.04),
+      transparent 21%
+    ),
+
+    /* verde - inferior */
+    radial-gradient(
+      circle at 8% 88%,
+      rgba(0, 217, 130, 0.035),
+      transparent 20%
+    ),
+
+    /* dourado - inferior */
+    radial-gradient(
+      circle at 80% 92%,
+      rgba(245, 189, 61, 0.025),
+      transparent 22%
+    );
+
+  z-index: -2;
+}
+
+
+/* =========================
+   LINHAS TECNOLÓGICAS
+========================= */
+
+main::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    /* linha verde superior esquerda */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 8%,
+      rgba(0, 255, 140, 0.025) 8.08%,
+      rgba(0, 255, 140, 0.085) 8.16%,
+      rgba(0, 255, 140, 0.025) 8.24%,
+      transparent 8.32%
+    ),
+
+    /* linha vermelha superior direita */
+    linear-gradient(
+      315deg,
+      transparent 0%,
+      transparent 15%,
+      rgba(255, 0, 45, 0.025) 15.08%,
+      rgba(255, 0, 45, 0.075) 15.16%,
+      rgba(255, 0, 45, 0.025) 15.24%,
+      transparent 15.32%
+    ),
+
+    /* linha verde central */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(0, 255, 140, 0.02) 35.08%,
+      rgba(0, 255, 140, 0.065) 35.16%,
+      rgba(0, 255, 140, 0.02) 35.24%,
+      transparent 35.32%
+    ),
+
+    /* linha dourada central */
+    linear-gradient(
+      315deg,
+      transparent 0%,
+      transparent 46%,
+      rgba(245, 189, 61, 0.018) 46.08%,
+      rgba(245, 189, 61, 0.055) 46.16%,
+      rgba(245, 189, 61, 0.018) 46.24%,
+      transparent 46.32%
+    ),
+
+    /* linha vermelha central */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(255, 0, 45, 0.02) 58.08%,
+      rgba(255, 0, 45, 0.065) 58.16%,
+      rgba(255, 0, 45, 0.02) 58.24%,
+      transparent 58.32%
+    ),
+
+    /* linha verde inferior */
+    linear-gradient(
+      315deg,
+      transparent 0%,
+      transparent 72%,
+      rgba(0, 255, 140, 0.02) 72.08%,
+      rgba(0, 255, 140, 0.07) 72.16%,
+      rgba(0, 255, 140, 0.02) 72.24%,
+      transparent 72.32%
+    ),
+
+    /* linha vermelha inferior */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 82%,
+      rgba(255, 0, 45, 0.02) 82.08%,
+      rgba(255, 0, 45, 0.06) 82.16%,
+      rgba(255, 0, 45, 0.02) 82.24%,
+      transparent 82.32%
+    ),
+
+    /* pontos luminosos */
+    radial-gradient(
+      circle at 7% 22%,
+      #00d982 0 2px,
+      transparent 3px
+    ),
+
+    radial-gradient(
+      circle at 93% 29%,
+      #ff2038 0 2px,
+      transparent 3px
+    ),
+
+    radial-gradient(
+      circle at 11% 56%,
+      #f5bd3d 0 2px,
+      transparent 3px
+    ),
+
+    radial-gradient(
+      circle at 89% 67%,
+      #00d982 0 2px,
+      transparent 3px
+    ),
+
+    radial-gradient(
+      circle at 6% 84%,
+      #ff2038 0 2px,
+      transparent 3px
+    ),
+
+    radial-gradient(
+      circle at 94% 91%,
+      #f5bd3d 0 2px,
+      transparent 3px
+    );
+
+  background-size:
+    900px 900px,
+    1050px 1050px,
+    1100px 1100px,
+    1200px 1200px,
+    1000px 1000px,
+    950px 950px,
+    1100px 1100px,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+  background-position:
+    -100px -50px,
+    500px 0,
+    100px 350px,
+    500px 250px,
+    -150px 500px,
+    450px 650px,
+    -100px 850px,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+
+  background-repeat:
+    repeat,
+    repeat,
+    repeat,
+    repeat,
+    repeat,
+    repeat,
+    repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat;
+
+  opacity: 0.8;
+
+  z-index: -1;
+}
+
 
 /* =========================
    INTRO
 ========================= */
 
 .programacao-intro {
+  position: relative;
+
   padding: 100px 20px 70px;
 
   text-align: center;
 
-  background: radial-gradient(circle at center, #272727 0%, #111111 55%);
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.035),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 10% 80%,
+      rgba(0, 217, 130, 0.025),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 90% 65%,
+      rgba(255, 30, 55, 0.025),
+      transparent 25%
+    );
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.05);
 }
 
 .programacao-intro span {
@@ -49,11 +349,29 @@ body {
 .programacao-intro h1 {
   margin-bottom: 18px;
 
-  font-size: clamp(45px, 7vw, 75px);
+  font-size: clamp(
+    45px,
+    7vw,
+    75px
+  );
 
   line-height: 1;
 
   letter-spacing: -4px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #ffffff 0%,
+      #ffffff 42%,
+      #f5bd3d 58%,
+      #ffffff 75%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
 }
 
 .programacao-intro p {
@@ -61,6 +379,7 @@ body {
 
   font-size: 17px;
 }
+
 
 /* =========================
    AGENDA
@@ -73,7 +392,9 @@ body {
 
   margin: 0 auto;
 
-  padding: 30px 20px 100px;
+  padding: 45px 20px 100px;
+
+  background: transparent;
 }
 
 .linha-agenda {
@@ -86,8 +407,22 @@ body {
 
   width: 1px;
 
-  background: #353d47;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(245, 189, 61, 0.45),
+      #353d47 18%,
+      #353d47 82%,
+      rgba(0, 217, 130, 0.35)
+    );
+
+  box-shadow:
+    0 0 8px
+    rgba(0, 217, 130, 0.08);
+
+  z-index: 1;
 }
+
 
 /* =========================
    EVENTO
@@ -98,11 +433,14 @@ body {
 
   display: grid;
 
-  grid-template-columns: 65px 1fr;
+  grid-template-columns:
+    65px 1fr;
 
   gap: 25px;
 
   margin-bottom: 25px;
+
+  z-index: 2;
 }
 
 .marcador {
@@ -110,6 +448,7 @@ body {
   height: 46px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -119,13 +458,20 @@ body {
 
   color: #f5bd3d;
 
-  background: #171d24;
+  background:
+    #171d24;
 
-  border: 1px solid #f5bd3d;
+  border:
+    1px solid
+    #f5bd3d;
 
   border-radius: 50%;
 
   z-index: 2;
+
+  box-shadow:
+    0 0 12px
+    rgba(245, 189, 61, 0.08);
 }
 
 .marcador svg {
@@ -133,23 +479,61 @@ body {
   height: 21px;
 }
 
+
+/* =========================
+   CARD
+========================= */
+
 .evento-conteudo {
+  position: relative;
+
+  overflow: hidden;
+
   padding: 25px 30px;
 
-  background: #171d24;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 29, 37, 0.94),
+      rgba(10, 15, 20, 0.94)
+    );
 
-  border: 1px solid #353d47;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.09);
 
   border-radius: 12px;
 
-  transition: 0.2s;
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.25);
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+  transition:
+    0.2s;
 }
+
+
 
 .evento-conteudo:hover {
-  border-color: #f5bd3d;
+  border-color:
+    rgba(245, 189, 61, 0.45);
 
-  transform: translateX(3px);
+  transform:
+    translateX(3px);
+
+  box-shadow:
+    0 18px 42px
+    rgba(0, 0, 0, 0.32),
+    0 0 25px
+    rgba(245, 189, 61, 0.04);
 }
+
 
 /* =========================
    TOPO EVENTO
@@ -175,7 +559,18 @@ body {
 }
 
 .evento-topo strong {
+  padding: 4px 8px;
+
   color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 6px;
 
   font-size: 20px;
 
@@ -183,6 +578,7 @@ body {
 
   letter-spacing: -1px;
 }
+
 
 /* =========================
    TEXTO
@@ -205,6 +601,7 @@ body {
 
   line-height: 1.6;
 }
+
 
 /* =========================
    DETALHES
@@ -237,22 +634,84 @@ body {
   color: #f5bd3d;
 }
 
+
 /* =========================
    INFORMAÇÕES
 ========================= */
 
 .informacoes {
+  position: relative;
+
+  overflow: hidden;
+
   max-width: 900px;
 
   margin: 0 auto 100px;
 
   padding: 30px;
 
-  background: #171d24;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 29, 37, 0.94),
+      rgba(10, 15, 20, 0.94)
+    );
 
-  border: 1px solid #353d47;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
 
   border-radius: 12px;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.25);
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+}
+
+.informacoes::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 217, 130, 0.5),
+      rgba(245, 189, 61, 0.7),
+      rgba(255, 32, 56, 0.4),
+      transparent
+    );
+
+  opacity: 0.7;
+}
+
+.informacoes::after {
+  content: "✦";
+
+  position: absolute;
+
+  right: 25px;
+  bottom: 15px;
+
+  color:
+    rgba(245, 189, 61, 0.1);
+
+  font-size: 40px;
+
+  pointer-events: none;
 }
 
 .informacoes-titulo {
@@ -289,6 +748,17 @@ body {
   align-items: flex-start;
 
   gap: 10px;
+
+  padding: 10px 12px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  border-radius: 8px;
 }
 
 .lista-informacoes span {
@@ -307,11 +777,13 @@ body {
   line-height: 1.5;
 }
 
+
 /* =========================
    RESPONSIVO
 ========================= */
 
 @media (max-width: 700px) {
+
   .programacao-intro {
     padding: 80px 5% 55px;
   }
@@ -321,11 +793,20 @@ body {
   }
 
   .agenda {
-    padding: 20px 5% 75px;
+    padding: 25px 5% 75px;
+  }
+
+  .linha-agenda {
+    left: 43px;
+
+    top: 50px;
+    bottom: 75px;
   }
 
   .evento {
-    grid-template-columns: 45px 1fr;
+    grid-template-columns:
+      45px 1fr;
+
     gap: 15px;
   }
 
@@ -359,11 +840,13 @@ body {
   }
 }
 
+
 /* =========================
    MOBILE PEQUENO
 ========================= */
 
 @media (max-width: 500px) {
+
   .programacao-intro {
     padding: 70px 20px 50px;
   }
@@ -378,13 +861,15 @@ body {
     font-size: 15px;
   }
 
-  /* =========================
+
+  /* =====================
      AGENDA
-  ========================= */
+  ===================== */
 
   .agenda {
     padding: 20px 15px 65px;
   }
+
 
   .linha-agenda {
     left: 33px;
@@ -393,17 +878,20 @@ body {
     bottom: 65px;
   }
 
+
   .evento {
-    grid-template-columns: 38px 1fr;
+    grid-template-columns:
+      38px 1fr;
 
     gap: 12px;
 
     margin-bottom: 18px;
   }
 
-  /* =========================
+
+  /* =====================
      MARCADOR
-  ========================= */
+  ===================== */
 
   .marcador {
     width: 34px;
@@ -419,17 +907,19 @@ body {
     height: 16px;
   }
 
-  /* =========================
+
+  /* =====================
      CARD
-  ========================= */
+  ===================== */
 
   .evento-conteudo {
     padding: 18px;
   }
 
-  /* =========================
+
+  /* =====================
      TOPO
-  ========================= */
+  ===================== */
 
   .evento-topo {
     align-items: flex-start;
@@ -449,9 +939,10 @@ body {
     white-space: nowrap;
   }
 
-  /* =========================
+
+  /* =====================
      TEXTO
-  ========================= */
+  ===================== */
 
   .evento h2 {
     font-size: 18px;
@@ -465,9 +956,10 @@ body {
     line-height: 1.5;
   }
 
-  /* =========================
+
+  /* =====================
      DETALHES
-  ========================= */
+  ===================== */
 
   .detalhes {
     flex-direction: column;
@@ -481,9 +973,10 @@ body {
     font-size: 11px;
   }
 
-  /* =========================
+
+  /* =====================
      INFORMAÇÕES
-  ========================= */
+  ===================== */
 
   .informacoes {
     margin: 0 15px 65px;

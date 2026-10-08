@@ -1,27 +1,10 @@
-import { clienteSupabase } from "./supabase.js";
+import { carregarDadosInstrutores } from "./dados.js";
 
 const listaInstrutores = document.getElementById("listaInstrutores");
 
 async function carregarInstrutores() {
   try {
-    const { data: ministrantes, error } = await clienteSupabase.from(
-      "ministrantes",
-    ).select(`
-                idMinistrante,
-                referenciaFoto,
-
-                usuarios (
-                    nome
-                ),
-
-                cursos (
-                    nome
-                )
-            `);
-
-    if (error) {
-      throw error;
-    }
+    const ministrantes = await carregarDadosInstrutores();
 
     if (!ministrantes || ministrantes.length === 0) {
       listaInstrutores.innerHTML = `
