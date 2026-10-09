@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1000" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#03070d"/>
+      <stop offset="0.5" stop-color="#06141d"/>
+      <stop offset="1" stop-color="#02060b"/>
+    </linearGradient>
+    <radialGradient id="aurora" cx="51%" cy="39%" r="58%">
+      <stop offset="0" stop-color="#0b503f" stop-opacity=".22"/>
+      <stop offset=".55" stop-color="#0b342f" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#061018" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#17232d"/>
+      <stop offset=".32" stop-color="#08121b"/>
+      <stop offset="1" stop-color="#02060a"/>
+    </linearGradient>
+    <linearGradient id="pine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b3028"/>
+      <stop offset=".55" stop-color="#061a18"/>
+      <stop offset="1" stop-color="#020b0d"/>
+    </linearGradient>
+    <linearGradient id="goldline" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0a0"/>
+      <stop offset=".45" stop-color="#f5bd3d"/>
+      <stop offset="1" stop-color="#a96620"/>
+    </linearGradient>
+    <radialGradient id="lamp">
+      <stop offset="0" stop-color="#fff9cb"/>
+      <stop offset=".3" stop-color="#ffd978"/>
+      <stop offset="1" stop-color="#ffb52e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <g id="star">
+      <path d="M0 -24 L4 -4 L24 0 L4 4 L0 24 L-4 4 L-24 0 L-4 -4 Z" fill="none" stroke="url(#goldline)" stroke-width="2.2"/>
+      <circle r="3" fill="#fff2bd" filter="url(#glow)"/>
+    </g>
+    <g id="tree">
+      <path d="M176 52 C158 102 145 133 112 166 C126 169 139 162 150 154 C124 197 95 226 57 257 C78 260 95 251 111 241 C82 287 50 318 15 346 C43 352 68 340 91 326 C61 374 30 405 0 438 C36 445 67 433 96 414 C68 462 37 493 13 523 C49 533 80 518 109 500 C85 548 57 580 34 606 C68 616 99 599 124 581 C106 625 83 655 69 678 C101 684 129 667 150 650 L159 772 L195 772 L202 650 C224 670 250 683 283 675 C262 647 239 621 224 580 C251 598 279 613 313 602 C289 574 264 544 242 499 C271 519 301 532 337 522 C312 492 281 461 253 413 C282 431 311 442 347 435 C314 402 282 372 256 324 C280 339 305 350 333 344 C300 316 269 285 243 239 C259 250 278 258 298 254 C259 224 231 195 207 153 C221 163 234 168 246 164 C213 132 195 101 176 52 Z" fill="url(#pine)" stroke="#102d25" stroke-width="2"/>
+      <path d="M176 53 C165 104 149 139 112 166 C132 164 145 157 154 149 C128 194 93 228 57 257 C82 255 98 245 111 236 C83 283 46 321 15 346 C47 347 72 333 91 321 C62 370 27 408 0 438 C40 439 72 425 96 409 C68 458 36 495 13 523 C52 527 82 511 109 494 C83 544 56 581 34 606 C72 610 100 591 124 575 C110 618 88 653 69 678" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity=".86"/>
+      <path d="M176 53 C190 107 209 138 246 164 C225 165 212 157 203 149 C228 194 263 226 298 254 C276 256 260 246 243 237 C271 283 303 318 333 344 C305 348 281 337 256 324 C282 370 315 404 347 435 C311 440 282 428 253 413 C281 459 312 493 337 522 C302 529 271 515 242 499 C264 544 289 576 313 602 C279 610 251 594 224 580 C239 622 261 650 283 675 C250 681 224 667 202 650" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity=".75"/>
+      <path d="M176 54 L178 771" fill="none" stroke="#765020" stroke-width="2" opacity=".55"/>
+      <g fill="url(#lamp)" opacity=".9">
+        <circle cx="145" cy="180" r="15"/><circle cx="111" cy="267" r="16"/><circle cx="242" cy="285" r="15"/><circle cx="72" cy="366" r="17"/><circle cx="282" cy="387" r="16"/><circle cx="102" cy="454" r="19"/><circle cx="256" cy="478" r="16"/><circle cx="64" cy="548" r="16"/><circle cx="278" cy="566" r="18"/><circle cx="125" cy="625" r="17"/><circle cx="220" cy="645" r="15"/>
+      </g>
+      <g fill="#ffd66b" stroke="#fff1b1" stroke-width=".7" filter="url(#glow)">
+        <circle cx="145" cy="180" r="4.5"/><circle cx="111" cy="267" r="4"/><circle cx="242" cy="285" r="4.5"/><circle cx="72" cy="366" r="4"/><circle cx="282" cy="387" r="4.5"/><circle cx="102" cy="454" r="4.5"/><circle cx="256" cy="478" r="4"/><circle cx="64" cy="548" r="4"/><circle cx="278" cy="566" r="4.5"/><circle cx="125" cy="625" r="4"/><circle cx="220" cy="645" r="3.8"/>
+      </g>
+      <path d="M176 51 L165 84 L176 79 L187 84 Z" fill="#f5bd3d" opacity=".85"/>
+    </g>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <rect width="1600" height="1000" fill="url(#aurora)"/>
+  <ellipse cx="805" cy="430" rx="490" ry="360" fill="#0c251e" opacity=".14" filter="url(#softglow)"/>
+
+  <!-- Estrelas discretas no céu -->
+  <g fill="#ffe8ac">
+    <circle cx="72" cy="93" r="1.7"/><circle cx="282" cy="180" r="1.3"/><circle cx="408" cy="70" r="1.5"/><circle cx="492" cy="235" r="1.2"/>
+    <circle cx="624" cy="104" r="1.7"/><circle cx="760" cy="56" r="1.1"/><circle cx="937" cy="155" r="1.4"/><circle cx="1068" cy="78" r="1.6"/>
+    <circle cx="1194" cy="220" r="1.2"/><circle cx="1344" cy="92" r="1.5"/><circle cx="1510" cy="183" r="1.6"/><circle cx="1464" cy="64" r="1.1"/>
+    <circle cx="344" cy="319" r="1.5"/><circle cx="1285" cy="318" r="1.4"/><circle cx="1123" cy="285" r="1.1"/><circle cx="543" cy="342" r="1.1"/>
+  </g>
+  <use xlink:href="#star" x="1260" y="153" transform="translate(1260 153) scale(.72) translate(-1260 -153)" opacity=".9"/>
+  <use xlink:href="#star" x="340" y="255" transform="translate(340 255) scale(.28) translate(-340 -255)" opacity=".62"/>
+  <use xlink:href="#star" x="1482" y="365" transform="translate(1482 365) scale(.45) translate(-1482 -365)" opacity=".8"/>
+
+  <!-- Montanhas e floresta distante -->
+  <path d="M0 640 L70 590 L122 615 L205 535 L270 591 L354 547 L433 610 L520 560 L610 620 L699 576 L777 614 L860 559 L940 603 L1034 534 L1120 589 L1214 552 L1290 602 L1370 537 L1446 589 L1517 550 L1600 605 L1600 1000 L0 1000 Z" fill="#08131b" opacity=".88"/>
+  <path d="M0 705 L45 654 L93 680 L139 633 L188 681 L244 645 L293 694 L343 654 L401 704 L468 659 L530 704 L604 672 L668 721 L738 666 L805 710 L872 659 L942 705 L1001 672 L1070 712 L1142 663 L1203 711 L1265 676 L1336 718 L1407 664 L1473 710 L1535 672 L1600 714 L1600 1000 L0 1000 Z" fill="#050d14"/>
+
+  <!-- Brilho distante entre as árvores -->
+  <ellipse cx="1120" cy="724" rx="250" ry="42" fill="#b56a22" opacity=".12" filter="url(#softglow)"/>
+  <path d="M975 742 C1080 716 1176 717 1280 744" fill="none" stroke="#c1843f" stroke-width="2" opacity=".27"/>
+  <g fill="#f6be58" opacity=".8">
+    <circle cx="1046" cy="729" r="2"/><circle cx="1072" cy="721" r="1.5"/><circle cx="1104" cy="734" r="2.2"/><circle cx="1142" cy="724" r="1.5"/><circle cx="1189" cy="738" r="1.9"/><circle cx="1220" cy="728" r="1.2"/><circle cx="1250" cy="740" r="1.5"/>
+  </g>
+
+  <!-- Árvores de primeiro plano -->
+  <use xlink:href="#tree" transform="translate(-93 55) scale(1.04)"/>
+  <use xlink:href="#tree" transform="translate(1315 295) scale(.47)" opacity=".95"/>
+  <use xlink:href="#tree" transform="translate(1195 485) scale(.28)" opacity=".52"/>
+  <use xlink:href="#tree" transform="translate(1510 490) scale(.30)" opacity=".50"/>
+
+  <!-- Colinas nevadas em camadas -->
+  <path d="M0 822 C122 784 185 836 301 822 C430 805 488 854 610 841 C758 826 825 864 939 835 C1072 801 1154 837 1270 821 C1398 803 1507 821 1600 790 L1600 1000 L0 1000 Z" fill="url(#hill)"/>
+  <path d="M0 822 C122 784 185 836 301 822 C430 805 488 854 610 841 C758 826 825 864 939 835 C1072 801 1154 837 1270 821 C1398 803 1507 821 1600 790" fill="none" stroke="#c68a45" stroke-width="2" opacity=".55"/>
+  <path d="M0 895 C130 855 252 906 377 887 C490 870 565 929 697 909 C825 891 912 932 1030 903 C1171 868 1287 918 1395 894 C1486 874 1542 884 1600 874 L1600 1000 L0 1000 Z" fill="#03080d"/>
+  <path d="M0 895 C130 855 252 906 377 887 C490 870 565 929 697 909 C825 891 912 932 1030 903 C1171 868 1287 918 1395 894 C1486 874 1542 884 1600 874" fill="none" stroke="#5d513d" stroke-width="1.6" opacity=".6"/>
+  <path d="M0 961 C160 929 262 973 428 954 C560 938 684 981 829 961 C975 943 1097 984 1226 963 C1370 941 1492 966 1600 945 L1600 1000 L0 1000 Z" fill="#020509"/>
+
+  <!-- Ramos discretos no rodapé -->
+  <g fill="none" stroke="#234137" stroke-width="2" stroke-linecap="round" opacity=".75">
+    <path d="M0 956 C28 931 48 911 77 894 M20 943 L15 916 M36 927 L56 927 M52 911 L48 890 M61 904 L79 908"/>
+    <path d="M1600 963 C1571 939 1551 913 1521 898 M1580 946 L1586 921 M1566 929 L1545 929 M1540 913 L1547 892 M1530 906 L1514 910"/>
+  </g>
+  <g fill="#a92b2b" stroke="#df6b47" stroke-width=".5" opacity=".9">
+    <circle cx="24" cy="928" r="4"/><circle cx="47" cy="913" r="3.4"/><circle cx="65" cy="901" r="4"/>
+    <circle cx="1574" cy="934" r="4"/><circle cx="1550" cy="915" r="3.5"/><circle cx="1535" cy="903" r="4"/>
+  </g>
+</svg>
