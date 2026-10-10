@@ -4,28 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Minhas inscrições - FlashClip</title>
+    <meta name="theme-color" content="#07111d" />
+
+    <title>Minhas inscrições | FlashClip</title>
 
     <link rel="stylesheet" href="../css/inscricoes.css" />
   </head>
 
   <body>
+    <!-- HEADER -->
+    <header class="navbar-inscricoes">
+      <div class="navbar-conteudo">
+        <a href="../index.html" class="logo-inscricoes">
+          <img src="../imagens/logoFlash.png" alt="FlashClip" />
+        </a>
+
+        <nav class="navegacao-inscricoes" aria-label="Navegação principal">
+          <a href="../index.html" class="link-navegacao"> Início </a>
+
+          <span class="link-navegacao ativo" aria-current="page">
+            Minhas inscrições
+          </span>
+        </nav>
+
+        <a
+          href="../index.html"
+          class="botao-voltar"
+          aria-label="Voltar ao evento"
+        >
+          <span aria-hidden="true">←</span>
+          <span>Voltar</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO -->
     <main class="pagina-inscricoes">
-      <div class="cabecalho-inscricoes">
-        <div>
-          <h1>Minhas inscrições</h1>
+      <section class="cabecalho-inscricoes">
+        <div class="titulo-inscricoes">
+          <span class="categoria-inscricoes"> ÁREA DO PARTICIPANTE </span>
+
+          <h1>
+            <span class="icone-titulo" aria-hidden="true">✦</span>
+            Minhas inscrições
+          </h1>
+
           <p>Confira os cursos em que você está matriculado.</p>
         </div>
-
-        <a href="../index.html" class="botao-voltar"> Voltar </a>
-      </div>
-
-      <section id="listaInscricoes" class="lista-inscricoes">
-        <p>Carregando inscrições...</p>
       </section>
+
+      <!-- OS CARDS SÃO INSERIDOS PELO JAVASCRIPT -->
+      <section
+        id="listaInscricoes"
+        class="lista-inscricoes"
+        aria-label="Cursos em que você está matriculado"
+        aria-live="polite"
+      >
+        <div class="estado-inscricoes">
+          <span class="carregando-inscricoes" aria-hidden="true"></span>
+          <p>Carregando suas inscrições...</p>
+        </div>
+      </section>
+
+      <footer class="footer-inscricoes">
+        <span class="linha-decorativa" aria-hidden="true"></span>
+
+        <p>
+          <span aria-hidden="true">✦</span>
+          Seu futuro começa com um clique.
+          <span aria-hidden="true">✦</span>
+        </p>
+
+        <span class="linha-decorativa" aria-hidden="true"></span>
+      </footer>
     </main>
 
+    <div class="creditos-inscricoes">
+      <span>© 2026/2 FlashClip. Todos os direitos reservados.</span>
+      <span class="edicao-natal">
+        <span aria-hidden="true">✧</span>
+        Edição especial de Natal
+      </span>
+    </div>
+
+    <!-- Biblioteca do Supabase: precisa carregar primeiro -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Código da página de inscrições -->
     <script type="module" src="../js/inscricoes.js"></script>
   </body>
 </html>

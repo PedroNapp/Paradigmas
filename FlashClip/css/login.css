@@ -1,123 +1,122 @@
+/* =====================================
+   CONFIGURAÇÃO GERAL
+===================================== */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
+  position: relative;
+  isolation: isolate;
 
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(0, 217, 130, 0.07),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(245, 189, 61, 0.06),
-            transparent 30%
-        ),
-        #030508;
+  min-height: 100vh;
 
-    color: #ffffff;
-    font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-    flex-direction: column;
+  background-color: #030508;
+  background-image: url("../imagens/cenario-natal-flashclip.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: #ffffff;
+  font-family: Arial, sans-serif;
 }
-
 
 /* =====================================
    HEADER ESPECIAL DE NATAL
 ===================================== */
 
 .navbar.navbar-login {
-    position: relative;
-    z-index: 5;
+  position: relative;
+  z-index: 5;
 
-    width: 100%;
-    min-height: 82px;
-    height: auto;
+  width: 100%;
+  min-height: 82px;
+  height: auto;
 
-    padding: 14px clamp(20px, 5vw, 72px);
+  padding: 14px clamp(20px, 5vw, 72px);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 
-    background: linear-gradient(
-        180deg,
-        rgba(3, 8, 14, 0.88),
-        rgba(3, 8, 14, 0.35)
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(3, 8, 14, 0.88),
+    rgba(3, 8, 14, 0.35)
+  );
 
-    border-bottom: 1px solid rgba(245, 189, 61, 0.18);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(245, 189, 61, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .navbar-login .logo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .navbar-login .logo img {
-    display: block;
+  display: block;
 
-    width: auto;
-    height: 44px;
-    max-width: 190px;
+  width: auto;
+  height: 44px;
+  max-width: 190px;
 
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .navbar-login .voltar-evento {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-    padding: 10px 15px;
+  padding: 10px 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 999px;
 
-    background: rgba(8, 15, 22, 0.7);
-    color: #c5ced9;
+  background: rgba(8, 15, 22, 0.7);
+  color: #c5ced9;
 
-    font-size: 13px;
-    text-decoration: none;
+  font-size: 13px;
+  text-decoration: none;
 
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .navbar-login .voltar-seta {
-    color: #f5bd3d;
-    font-size: 20px;
-    margin-top: -3px;
-    line-height: 1;
-    transition: transform 0.2s ease;
+  color: #f5bd3d;
+  font-size: 20px;
+  margin-top: -3px;
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
 
 .navbar-login .voltar-evento:hover {
-    color: #ffffff;
-    background: rgba(245, 189, 61, 0.07);
-    border-color: rgba(245, 189, 61, 0.4);
-    transform: translateY(-1px);
+  color: #ffffff;
+  background: rgba(245, 189, 61, 0.07);
+  border-color: rgba(245, 189, 61, 0.4);
+  transform: translateY(-1px);
 }
 
 .navbar-login .voltar-evento:hover .voltar-seta {
-    transform: translateX(-3px);
+  transform: translateX(-3px);
 }
 
 /* =====================================
@@ -125,71 +124,502 @@ body {
 ===================================== */
 
 footer.footer-login {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 
-    width: 100%;
-    margin-top: auto;
-    padding: 22px clamp(20px, 5vw, 72px) 18px;
+  width: 100%;
+  margin-top: auto;
+  padding: 22px clamp(20px, 5vw, 72px) 18px;
 
-    background: linear-gradient(
-        0deg,
-        rgba(3, 8, 14, 0.96),
-        rgba(3, 8, 14, 0.58)
-    );
+  display: block;
 
-    border-top: 1px solid rgba(245, 189, 61, 0.16);
-    color: #8493a4;
+  background: linear-gradient(0deg, rgba(3, 8, 14, 0.96), rgba(3, 8, 14, 0.58));
+
+  border-top: 1px solid rgba(245, 189, 61, 0.16);
+  color: #8493a4;
+  font-size: 12px;
+  text-align: center;
 }
 
 .footer-login .footer-frase {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
 
-    margin-bottom: 17px;
+  margin-bottom: 17px;
 }
 
 .footer-login .footer-frase p {
-    color: #c7d0dc;
-    font-size: 13px;
-    letter-spacing: 0.25px;
-    text-align: center;
+  color: #c7d0dc;
+  font-size: 13px;
+  letter-spacing: 0.25px;
+  text-align: center;
 }
 
 .footer-login .footer-ornamento {
-    color: #f5bd3d;
-    font-size: 12px;
-    opacity: 0.85;
+  color: #f5bd3d;
+  font-size: 12px;
+  opacity: 0.85;
 }
 
 .footer-login .footer-base {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
 
-    padding-top: 14px;
+  padding-top: 14px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 
-    font-size: 11px;
-    line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .footer-login .footer-natal {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
 
-    color: #d8b765;
+  color: #d8b765;
 }
 
 .footer-login .footer-natal span {
-    color: #f5bd3d;
-    font-size: 15px;
+  color: #f5bd3d;
+  font-size: 15px;
+}
+
+/* =====================================
+   ÁREA DE LOGIN
+===================================== */
+
+.login-container {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+
+  padding: 42px;
+
+  background: rgba(15, 20, 27, 0.94);
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 217, 130, 0.025);
+
+  animation: entrada-login 0.6s ease both;
+}
+
+/* Cabeçalho do formulário */
+
+.login-cabecalho {
+  margin-bottom: 30px;
+}
+
+.categoria {
+  display: inline-block;
+
+  color: #f5bd3d;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.login-cabecalho h1 {
+  margin-top: 10px;
+
+  color: #ffffff;
+
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+}
+
+.login-cabecalho p {
+  margin-top: 10px;
+
+  color: #9da8b5;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Campos */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  color: #dce2e8;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.campo input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9px;
+
+  background: #0c1118;
+  color: #ffffff;
+
+  outline: none;
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.campo input::placeholder {
+  color: #687482;
+}
+
+.campo input:hover {
+  border-color: rgba(245, 189, 61, 0.35);
+}
+
+.campo input:focus {
+  border-color: #f5bd3d;
+  background: #101720;
+
+  box-shadow: 0 0 0 3px rgba(245, 189, 61, 0.09);
+}
+
+/* Botão */
+
+.botao-login {
+  width: 100%;
+  min-height: 50px;
+
+  margin-top: 5px;
+  padding: 12px 16px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f5bd3d;
+  color: #111111;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.botao-login:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+
+  box-shadow: 0 6px 20px rgba(245, 189, 61, 0.12);
+}
+
+.botao-login:active {
+  transform: translateY(0);
+}
+
+.botao-login:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Link para cadastro */
+
+.cadastro {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-size: 13px;
+  color: #8995a3;
+}
+
+.cadastro a {
+  margin-left: 5px;
+
+  color: #f5bd3d;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.cadastro a:hover {
+  color: #ffda75;
+  text-decoration: underline;
+}
+
+/* =====================================
+   ENTRADA DO CARTÃO
+===================================== */
+
+@keyframes entrada-login {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   TRANSIÇÃO DE SUCESSO
+   Reutiliza o visual da tela de cadastro.
+===================================== */
+
+.transicao-cadastro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(0, 217, 130, 0.09),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(255, 32, 56, 0.07),
+      transparent 30%
+    ),
+    #030508;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+
+  pointer-events: none;
+}
+
+.transicao-cadastro.ativa {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transicao-cadastro::before {
+  content: "";
+
+  position: absolute;
+  inset: -50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 43%,
+      rgba(0, 217, 130, 0.03) 43.1%,
+      rgba(0, 217, 130, 0.6) 43.2%,
+      transparent 43.35%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 54%,
+      rgba(245, 189, 61, 0.03) 54.1%,
+      rgba(245, 189, 61, 0.5) 54.2%,
+      transparent 54.35%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 65%,
+      rgba(255, 32, 56, 0.03) 65.1%,
+      rgba(255, 32, 56, 0.45) 65.2%,
+      transparent 65.35%
+    );
+
+  transform: translateX(-12%);
+
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.transicao-cadastro.ativa::before {
+  transform: translateX(12%);
+}
+
+.transicao-cadastro-conteudo {
+  position: relative;
+  z-index: 1;
+
+  padding: 30px;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(15px) scale(0.97);
+
+  transition:
+    opacity 0.4s ease 0.15s,
+    transform 0.4s ease 0.15s;
+}
+
+.transicao-cadastro.ativa .transicao-cadastro-conteudo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.transicao-cadastro-icone {
+  display: block;
+  margin-bottom: 18px;
+
+  color: #f5bd3d;
+  font-size: 48px;
+
+  text-shadow:
+    0 0 12px rgba(245, 189, 61, 0.45),
+    0 0 30px rgba(245, 189, 61, 0.2);
+
+  animation: brilho-transicao 1.2s ease-in-out infinite alternate;
+}
+
+.transicao-cadastro-conteudo h2 {
+  margin-bottom: 12px;
+
+  color: #ffffff;
+  font-size: clamp(26px, 5vw, 36px);
+  letter-spacing: -1px;
+}
+
+.transicao-cadastro-conteudo p {
+  color: #a6a6aa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.transicao-cadastro-carregamento {
+  width: 120px;
+  height: 3px;
+
+  margin: 25px auto 0;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.transicao-cadastro-carregamento::after {
+  content: "";
+
+  display: block;
+  width: 45%;
+  height: 100%;
+
+  background: linear-gradient(90deg, #008f5a, #f5bd3d, #d7192f);
+
+  animation: carregar-transicao 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes brilho-transicao {
+  from {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes carregar-transicao {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(125%);
+  }
+}
+
+/* =====================================
+   MENSAGENS DO LOGIN
+===================================== */
+
+.mensagem-login {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  animation: entrada-mensagem-login 0.25s ease both;
+}
+
+.mensagem-login[hidden] {
+  display: none;
+}
+
+.mensagem-login[data-tipo="erro"] {
+  color: #ffb4b4;
+  background: rgba(239, 68, 68, 0.09);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.mensagem-login[data-tipo="aviso"] {
+  color: #f5d98a;
+  background: rgba(245, 189, 61, 0.08);
+  border-color: rgba(245, 189, 61, 0.25);
+}
+
+.mensagem-login[data-tipo="sucesso"] {
+  color: #a7f3d0;
+  background: rgba(0, 217, 130, 0.08);
+  border-color: rgba(0, 217, 130, 0.25);
+}
+
+@keyframes entrada-mensagem-login {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =====================================
@@ -197,558 +627,79 @@ footer.footer-login {
 ===================================== */
 
 @media (max-width: 600px) {
-    .navbar.navbar-login {
-        min-height: 70px;
-        padding: 12px 18px;
-        gap: 12px;
-    }
+  body {
+    background-attachment: scroll;
+    background-position: 15% center;
+  }
 
-    .navbar-login .logo img {
-        max-width: 145px;
-        height: 36px;
-    }
+  .navbar.navbar-login {
+    min-height: 70px;
+    padding: 12px 18px;
+    gap: 12px;
+  }
 
-    .navbar-login .voltar-evento {
-        gap: 6px;
-        padding: 9px 10px;
-        font-size: 12px;
-    }
+  .navbar-login .logo img {
+    max-width: 145px;
+    height: 36px;
+  }
 
-    footer.footer-login {
-        padding: 20px 18px 15px;
-    }
-
-    .footer-login .footer-frase {
-        gap: 8px;
-        margin-bottom: 14px;
-    }
-
-    .footer-login .footer-frase p {
-        font-size: 12px;
-    }
-
-    .footer-login .footer-base {
-        justify-content: center;
-        text-align: center;
-        gap: 8px;
-    }
-}
-
-/* LOGIN */
-
-.login-container {
-    flex: 1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 50px 20px;
-}
-
-.login-card {
-    width: 100%;
-    max-width: 430px;
-
-    padding: 42px;
-
-    background: rgba(15, 20, 27, 0.94);
-
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 18px;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(0, 217, 130, 0.025);
-
-    animation: entrada-login 0.6s ease both;
-}
-
-/* CABEÇALHO */
-
-.login-cabecalho {
-    margin-bottom: 30px;
-}
-
-.categoria {
-    display: inline-block;
-
-    color: #f5bd3d;
-
+  .navbar-login .voltar-evento {
+    gap: 6px;
+    padding: 9px 10px;
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
+  }
 
-.login-cabecalho h1 {
-    margin-top: 10px;
+  footer.footer-login {
+    padding: 20px 18px 15px;
+  }
 
-    color: #ffffff;
-
-    font-size: 32px;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-}
-
-.login-cabecalho p {
-    margin-top: 10px;
-
-    color: #9da8b5;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* CAMPOS */
-
-.campo {
-    display: flex;
-    flex-direction: column;
-
+  .footer-login .footer-frase {
     gap: 8px;
-    margin-bottom: 20px;
-}
+    margin-bottom: 14px;
+  }
 
-.campo label {
-    color: #dce2e8;
-
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.campo input {
-    width: 100%;
-    height: 48px;
-
-    padding: 0 15px;
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 9px;
-
-    background: #0c1118;
-    color: #ffffff;
-
-    outline: none;
-    font-size: 14px;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-.campo input::placeholder {
-    color: #687482;
-}
-
-.campo input:hover {
-    border-color: rgba(245, 189, 61, 0.35);
-}
-
-.campo input:focus {
-    border-color: #f5bd3d;
-
-    background: #101720;
-
-    box-shadow:
-        0 0 0 3px rgba(245, 189, 61, 0.09);
-}
-
-/* BOTÃO */
-
-.botao-login {
-    width: 100%;
-    min-height: 50px;
-
-    margin-top: 5px;
-    padding: 12px 16px;
-
-    border: none;
-    border-radius: 9px;
-
-    background: #f5bd3d;
-    color: #111111;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.botao-login:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.05);
-
-    box-shadow:
-        0 6px 20px rgba(245, 189, 61, 0.12);
-}
-
-.botao-login:active {
-    transform: translateY(0);
-}
-
-.botao-login:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-/* CADASTRO */
-
-.cadastro {
-    margin-top: 25px;
-
-    text-align: center;
-
-    font-size: 13px;
-    color: #8995a3;
-}
-
-.cadastro a {
-    margin-left: 5px;
-
-    color: #f5bd3d;
-    text-decoration: none;
-    font-weight: 600;
-
-    transition: color 0.2s ease;
-}
-
-.cadastro a:hover {
-    color: #ffda75;
-    text-decoration: underline;
-}
-
-/* FOOTER */
-
-footer {
-    padding: 20px;
-
-    text-align: center;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-
-    color: #687482;
+  .footer-login .footer-frase p {
     font-size: 12px;
-}
+  }
 
-/* ENTRADA DO CARTÃO */
-
-@keyframes entrada-login {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* TRANSIÇÃO DE SUCESSO
-   Reutiliza o visual da tela de cadastro. */
-
-.transicao-cadastro {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
+  .footer-login .footer-base {
     justify-content: center;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(0, 217, 130, 0.09),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(255, 32, 56, 0.07),
-            transparent 30%
-        ),
-        #030508;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity 0.45s ease,
-        visibility 0.45s ease;
-
-    pointer-events: none;
-}
-
-.transicao-cadastro.ativa {
-    opacity: 1;
-    visibility: visible;
-}
-
-.transicao-cadastro::before {
-    content: "";
-
-    position: absolute;
-    inset: -50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 43%,
-            rgba(0, 217, 130, 0.03) 43.1%,
-            rgba(0, 217, 130, 0.6) 43.2%,
-            transparent 43.35%
-        ),
-        linear-gradient(
-            135deg,
-            transparent 54%,
-            rgba(245, 189, 61, 0.03) 54.1%,
-            rgba(245, 189, 61, 0.5) 54.2%,
-            transparent 54.35%
-        ),
-        linear-gradient(
-            135deg,
-            transparent 65%,
-            rgba(255, 32, 56, 0.03) 65.1%,
-            rgba(255, 32, 56, 0.45) 65.2%,
-            transparent 65.35%
-        );
-
-    transform: translateX(-12%);
-
-    transition:
-        transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.transicao-cadastro.ativa::before {
-    transform: translateX(12%);
-}
-
-.transicao-cadastro-conteudo {
-    position: relative;
-    z-index: 1;
-
-    padding: 30px;
     text-align: center;
+    gap: 8px;
+  }
 
-    opacity: 0;
-    transform: translateY(15px) scale(0.97);
+  .login-container {
+    padding: 35px 20px;
+  }
 
-    transition:
-        opacity 0.4s ease 0.15s,
-        transform 0.4s ease 0.15s;
+  .login-card {
+    padding: 30px 25px;
+    border-radius: 15px;
+  }
+
+  .login-cabecalho h1 {
+    font-size: 27px;
+  }
 }
-
-.transicao-cadastro.ativa .transicao-cadastro-conteudo {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.transicao-cadastro-icone {
-    display: block;
-    margin-bottom: 18px;
-
-    color: #f5bd3d;
-    font-size: 48px;
-
-    text-shadow:
-        0 0 12px rgba(245, 189, 61, 0.45),
-        0 0 30px rgba(245, 189, 61, 0.2);
-
-    animation: brilho-transicao 1.2s ease-in-out infinite alternate;
-}
-
-.transicao-cadastro-conteudo h2 {
-    margin-bottom: 12px;
-
-    color: #ffffff;
-    font-size: clamp(26px, 5vw, 36px);
-    letter-spacing: -1px;
-}
-
-.transicao-cadastro-conteudo p {
-    color: #a6a6aa;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.transicao-cadastro-carregamento {
-    width: 120px;
-    height: 3px;
-
-    margin: 25px auto 0;
-    overflow: hidden;
-
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-}
-
-.transicao-cadastro-carregamento::after {
-    content: "";
-
-    display: block;
-    width: 45%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        #008f5a,
-        #f5bd3d,
-        #d7192f
-    );
-
-    animation: carregar-transicao 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes brilho-transicao {
-    from {
-        opacity: 0.7;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-}
-
-@keyframes carregar-transicao {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(125%);
-    }
-}
-
-/* RESPONSIVO */
-
-@media (max-width: 600px) {
-    .login-container {
-        padding: 35px 20px;
-    }
-
-    .login-card {
-        padding: 30px 25px;
-        border-radius: 15px;
-    }
-
-    .login-cabecalho h1 {
-        font-size: 27px;
-    }
-}
-
-/* ACESSIBILIDADE */
-
-@media (prefers-reduced-motion: reduce) {
-    .login-card {
-        animation: none;
-    }
-
-    .transicao-cadastro,
-    .transicao-cadastro::before,
-    .transicao-cadastro-conteudo {
-        transition: none;
-    }
-
-    .transicao-cadastro-icone,
-    .transicao-cadastro-carregamento::after {
-        animation: none;
-    }
-}
-
-
-
-body {
-    min-height: 100vh;
-    position: relative;
-    isolation: isolate;
-
-    background-color: #030508;
-    background-image: url("../imagens/cenario-natal-flashclip.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-
-    display: flex;
-    flex-direction: column;
-}
-
-/* Em telas pequenas, prioriza a árvore lateral */
-@media (max-width: 600px) {
-    body {
-        background-attachment: scroll;
-        background-position: 15% center;
-    }
-}
-
 
 /* =====================================
-   MENSAGENS DO LOGIN
+   ACESSIBILIDADE
 ===================================== */
 
-.mensagem-login {
-    margin-bottom: 18px;
-    padding: 12px 14px;
-
-    border: 1px solid transparent;
-    border-radius: 9px;
-
-    font-size: 13px;
-    line-height: 1.5;
-
-    animation: entrada-mensagem-login 0.25s ease both;
-}
-
-.mensagem-login[hidden] {
-    display: none;
-}
-
-.mensagem-login[data-tipo="erro"] {
-    color: #ffb4b4;
-    background: rgba(239, 68, 68, 0.09);
-    border-color: rgba(239, 68, 68, 0.25);
-}
-
-.mensagem-login[data-tipo="aviso"] {
-    color: #f5d98a;
-    background: rgba(245, 189, 61, 0.08);
-    border-color: rgba(245, 189, 61, 0.25);
-}
-
-.mensagem-login[data-tipo="sucesso"] {
-    color: #a7f3d0;
-    background: rgba(0, 217, 130, 0.08);
-    border-color: rgba(0, 217, 130, 0.25);
-}
-
-@keyframes entrada-mensagem-login {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .mensagem-login {
-        animation: none;
-    }
+  .login-card {
+    animation: none;
+  }
+
+  .transicao-cadastro,
+  .transicao-cadastro::before,
+  .transicao-cadastro-conteudo {
+    transition: none;
+  }
+
+  .transicao-cadastro-icone,
+  .transicao-cadastro-carregamento::after,
+  .mensagem-login {
+    animation: none;
+  }
 }
