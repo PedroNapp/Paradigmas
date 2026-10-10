@@ -1,107 +1,145 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1000" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#03070d"/>
-      <stop offset="0.5" stop-color="#06141d"/>
-      <stop offset="1" stop-color="#02060b"/>
-    </linearGradient>
-    <radialGradient id="aurora" cx="51%" cy="39%" r="58%">
-      <stop offset="0" stop-color="#0b503f" stop-opacity=".22"/>
-      <stop offset=".55" stop-color="#0b342f" stop-opacity=".08"/>
-      <stop offset="1" stop-color="#061018" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="hill" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#17232d"/>
-      <stop offset=".32" stop-color="#08121b"/>
-      <stop offset="1" stop-color="#02060a"/>
-    </linearGradient>
-    <linearGradient id="pine" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b3028"/>
-      <stop offset=".55" stop-color="#061a18"/>
-      <stop offset="1" stop-color="#020b0d"/>
-    </linearGradient>
-    <linearGradient id="goldline" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fff0a0"/>
-      <stop offset=".45" stop-color="#f5bd3d"/>
-      <stop offset="1" stop-color="#a96620"/>
-    </linearGradient>
-    <radialGradient id="lamp">
-      <stop offset="0" stop-color="#fff9cb"/>
-      <stop offset=".3" stop-color="#ffd978"/>
-      <stop offset="1" stop-color="#ffb52e" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="3.2" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softglow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="18"/>
-    </filter>
-    <g id="star">
-      <path d="M0 -24 L4 -4 L24 0 L4 4 L0 24 L-4 4 L-24 0 L-4 -4 Z" fill="none" stroke="url(#goldline)" stroke-width="2.2"/>
-      <circle r="3" fill="#fff2bd" filter="url(#glow)"/>
-    </g>
-    <g id="tree">
-      <path d="M176 52 C158 102 145 133 112 166 C126 169 139 162 150 154 C124 197 95 226 57 257 C78 260 95 251 111 241 C82 287 50 318 15 346 C43 352 68 340 91 326 C61 374 30 405 0 438 C36 445 67 433 96 414 C68 462 37 493 13 523 C49 533 80 518 109 500 C85 548 57 580 34 606 C68 616 99 599 124 581 C106 625 83 655 69 678 C101 684 129 667 150 650 L159 772 L195 772 L202 650 C224 670 250 683 283 675 C262 647 239 621 224 580 C251 598 279 613 313 602 C289 574 264 544 242 499 C271 519 301 532 337 522 C312 492 281 461 253 413 C282 431 311 442 347 435 C314 402 282 372 256 324 C280 339 305 350 333 344 C300 316 269 285 243 239 C259 250 278 258 298 254 C259 224 231 195 207 153 C221 163 234 168 246 164 C213 132 195 101 176 52 Z" fill="url(#pine)" stroke="#102d25" stroke-width="2"/>
-      <path d="M176 53 C165 104 149 139 112 166 C132 164 145 157 154 149 C128 194 93 228 57 257 C82 255 98 245 111 236 C83 283 46 321 15 346 C47 347 72 333 91 321 C62 370 27 408 0 438 C40 439 72 425 96 409 C68 458 36 495 13 523 C52 527 82 511 109 494 C83 544 56 581 34 606 C72 610 100 591 124 575 C110 618 88 653 69 678" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity=".86"/>
-      <path d="M176 53 C190 107 209 138 246 164 C225 165 212 157 203 149 C228 194 263 226 298 254 C276 256 260 246 243 237 C271 283 303 318 333 344 C305 348 281 337 256 324 C282 370 315 404 347 435 C311 440 282 428 253 413 C281 459 312 493 337 522 C302 529 271 515 242 499 C264 544 289 576 313 602 C279 610 251 594 224 580 C239 622 261 650 283 675 C250 681 224 667 202 650" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity=".75"/>
-      <path d="M176 54 L178 771" fill="none" stroke="#765020" stroke-width="2" opacity=".55"/>
-      <g fill="url(#lamp)" opacity=".9">
-        <circle cx="145" cy="180" r="15"/><circle cx="111" cy="267" r="16"/><circle cx="242" cy="285" r="15"/><circle cx="72" cy="366" r="17"/><circle cx="282" cy="387" r="16"/><circle cx="102" cy="454" r="19"/><circle cx="256" cy="478" r="16"/><circle cx="64" cy="548" r="16"/><circle cx="278" cy="566" r="18"/><circle cx="125" cy="625" r="17"/><circle cx="220" cy="645" r="15"/>
-      </g>
-      <g fill="#ffd66b" stroke="#fff1b1" stroke-width=".7" filter="url(#glow)">
-        <circle cx="145" cy="180" r="4.5"/><circle cx="111" cy="267" r="4"/><circle cx="242" cy="285" r="4.5"/><circle cx="72" cy="366" r="4"/><circle cx="282" cy="387" r="4.5"/><circle cx="102" cy="454" r="4.5"/><circle cx="256" cy="478" r="4"/><circle cx="64" cy="548" r="4"/><circle cx="278" cy="566" r="4.5"/><circle cx="125" cy="625" r="4"/><circle cx="220" cy="645" r="3.8"/>
-      </g>
-      <path d="M176 51 L165 84 L176 79 L187 84 Z" fill="#f5bd3d" opacity=".85"/>
-    </g>
-  </defs>
-
-  <rect width="1600" height="1000" fill="url(#sky)"/>
-  <rect width="1600" height="1000" fill="url(#aurora)"/>
-  <ellipse cx="805" cy="430" rx="490" ry="360" fill="#0c251e" opacity=".14" filter="url(#softglow)"/>
-
-  <!-- Estrelas discretas no céu -->
-  <g fill="#ffe8ac">
-    <circle cx="72" cy="93" r="1.7"/><circle cx="282" cy="180" r="1.3"/><circle cx="408" cy="70" r="1.5"/><circle cx="492" cy="235" r="1.2"/>
-    <circle cx="624" cy="104" r="1.7"/><circle cx="760" cy="56" r="1.1"/><circle cx="937" cy="155" r="1.4"/><circle cx="1068" cy="78" r="1.6"/>
-    <circle cx="1194" cy="220" r="1.2"/><circle cx="1344" cy="92" r="1.5"/><circle cx="1510" cy="183" r="1.6"/><circle cx="1464" cy="64" r="1.1"/>
-    <circle cx="344" cy="319" r="1.5"/><circle cx="1285" cy="318" r="1.4"/><circle cx="1123" cy="285" r="1.1"/><circle cx="543" cy="342" r="1.1"/>
+<svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+ <defs>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+   <feGaussianBlur stdDeviation="3.2" result="blur"/>
+  </filter>
+  <filter id="softglow" x="-100%" y="-100%" width="300%" height="300%">
+   <feGaussianBlur stdDeviation="18"/>
+  </filter>
+  <g id="star">
+   <path d="m0,-24l4,20l20,4l-20,4l-4,20l-4,-20l-20,-4l20,-4l4,-20z" fill="none" stroke="url(#goldline)" stroke-width="2.2" id="svg_1"/>
+   <circle r="3" fill="#fff2bd" filter="url(#glow)" id="svg_2"/>
   </g>
-  <use xlink:href="#star" x="1260" y="153" transform="translate(1260 153) scale(.72) translate(-1260 -153)" opacity=".9"/>
-  <use xlink:href="#star" x="340" y="255" transform="translate(340 255) scale(.28) translate(-340 -255)" opacity=".62"/>
-  <use xlink:href="#star" x="1482" y="365" transform="translate(1482 365) scale(.45) translate(-1482 -365)" opacity=".8"/>
-
-  <!-- Montanhas e floresta distante -->
-  <path d="M0 640 L70 590 L122 615 L205 535 L270 591 L354 547 L433 610 L520 560 L610 620 L699 576 L777 614 L860 559 L940 603 L1034 534 L1120 589 L1214 552 L1290 602 L1370 537 L1446 589 L1517 550 L1600 605 L1600 1000 L0 1000 Z" fill="#08131b" opacity=".88"/>
-  <path d="M0 705 L45 654 L93 680 L139 633 L188 681 L244 645 L293 694 L343 654 L401 704 L468 659 L530 704 L604 672 L668 721 L738 666 L805 710 L872 659 L942 705 L1001 672 L1070 712 L1142 663 L1203 711 L1265 676 L1336 718 L1407 664 L1473 710 L1535 672 L1600 714 L1600 1000 L0 1000 Z" fill="#050d14"/>
-
-  <!-- Brilho distante entre as árvores -->
-  <ellipse cx="1120" cy="724" rx="250" ry="42" fill="#b56a22" opacity=".12" filter="url(#softglow)"/>
-  <path d="M975 742 C1080 716 1176 717 1280 744" fill="none" stroke="#c1843f" stroke-width="2" opacity=".27"/>
-  <g fill="#f6be58" opacity=".8">
-    <circle cx="1046" cy="729" r="2"/><circle cx="1072" cy="721" r="1.5"/><circle cx="1104" cy="734" r="2.2"/><circle cx="1142" cy="724" r="1.5"/><circle cx="1189" cy="738" r="1.9"/><circle cx="1220" cy="728" r="1.2"/><circle cx="1250" cy="740" r="1.5"/>
+  <g id="tree">
+   <path d="m176,52c-18,50 -31,81 -64,114c14,3 27,-4 38,-12c-26,43 -55,72 -93,103c21,3 38,-6 54,-16c-29,46 -61,77 -96,105c28,6 53,-6 76,-20c-30,48 -61,79 -91,112c36,7 67,-5 96,-24c-28,48 -59,79 -83,109c36,10 67,-5 96,-23c-24,48 -52,80 -75,106c34,10 65,-7 90,-25c-18,44 -41,74 -55,97c32,6 60,-11 81,-28l9,122l36,0l7,-122c22,20 48,33 81,25c-21,-28 -44,-54 -59,-95c27,18 55,33 89,22c-24,-28 -49,-58 -71,-103c29,20 59,33 95,23c-25,-30 -56,-61 -84,-109c29,18 58,29 94,22c-33,-33 -65,-63 -91,-111c24,15 49,26 77,20c-33,-28 -64,-59 -90,-105c16,11 35,19 55,15c-39,-30 -67,-59 -91,-101c14,10 27,15 39,11c-33,-32 -51,-63 -70,-112z" fill="url(#pine)" stroke="#102d25" stroke-width="2" id="svg_3"/>
+   <path d="m176,53c-11,51 -27,86 -64,113c20,-2 33,-9 42,-17c-26,45 -61,79 -97,108c25,-2 41,-12 54,-21c-28,47 -65,85 -96,110c32,1 57,-13 76,-25c-29,49 -64,87 -91,117c40,1 72,-13 96,-29c-28,49 -60,86 -83,114c39,4 69,-12 96,-29c-26,50 -53,87 -75,112c38,4 66,-15 90,-31c-14,43 -36,78 -55,103" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity="0.86" id="svg_4"/>
+   <path d="m176,53c14,54 33,85 70,111c-21,1 -34,-7 -43,-15c25,45 60,77 95,105c-22,2 -38,-8 -55,-17c28,46 60,81 90,107c-28,4 -52,-7 -77,-20c26,46 59,80 91,111c-36,5 -65,-7 -94,-22c28,46 59,80 84,109c-35,7 -66,-7 -95,-23c22,45 47,77 71,103c-34,8 -62,-8 -89,-22c15,42 37,70 59,95c-33,6 -59,-8 -81,-25" fill="none" stroke="url(#goldline)" stroke-width="2.1" stroke-linecap="round" opacity="0.75" id="svg_5"/>
+   <path d="m176,54l2,717" fill="none" stroke="#765020" stroke-width="2" opacity="0.55" id="svg_6"/>
+   <g fill="url(#lamp)" opacity="0.9" id="svg_7">
+    <circle cx="145" cy="180" r="15" id="svg_8"/>
+    <circle cx="111" cy="267" r="16" id="svg_9"/>
+    <circle cx="242" cy="285" r="15" id="svg_10"/>
+    <circle cx="72" cy="366" r="17" id="svg_11"/>
+    <circle cx="282" cy="387" r="16" id="svg_12"/>
+    <circle cx="102" cy="454" r="19" id="svg_13"/>
+    <circle cx="256" cy="478" r="16" id="svg_14"/>
+    <circle cx="64" cy="548" r="16" id="svg_15"/>
+    <circle cx="278" cy="566" r="18" id="svg_16"/>
+    <circle cx="125" cy="625" r="17" id="svg_17"/>
+    <circle cx="220" cy="645" r="15" id="svg_18"/>
+   </g>
+   <g fill="#ffd66b" stroke="#fff1b1" stroke-width="0.7" filter="url(#glow)" id="svg_19">
+    <circle cx="145" cy="180" r="4.5" id="svg_20"/>
+    <circle cx="111" cy="267" r="4" id="svg_21"/>
+    <circle cx="242" cy="285" r="4.5" id="svg_22"/>
+    <circle cx="72" cy="366" r="4" id="svg_23"/>
+    <circle cx="282" cy="387" r="4.5" id="svg_24"/>
+    <circle cx="102" cy="454" r="4.5" id="svg_25"/>
+    <circle cx="256" cy="478" r="4" id="svg_26"/>
+    <circle cx="64" cy="548" r="4" id="svg_27"/>
+    <circle cx="278" cy="566" r="4.5" id="svg_28"/>
+    <circle cx="125" cy="625" r="4" id="svg_29"/>
+    <circle cx="220" cy="645" r="3.8" id="svg_30"/>
+   </g>
+   <path d="m176,51l-11,33l11,-5l11,5l-11,-33z" fill="#f5bd3d" opacity="0.85" id="svg_31"/>
   </g>
-
-  <!-- Árvores de primeiro plano -->
-  <use xlink:href="#tree" transform="translate(-93 55) scale(1.04)"/>
-  <use xlink:href="#tree" transform="translate(1315 295) scale(.47)" opacity=".95"/>
-  <use xlink:href="#tree" transform="translate(1195 485) scale(.28)" opacity=".52"/>
-  <use xlink:href="#tree" transform="translate(1510 490) scale(.30)" opacity=".50"/>
-
-  <!-- Colinas nevadas em camadas -->
-  <path d="M0 822 C122 784 185 836 301 822 C430 805 488 854 610 841 C758 826 825 864 939 835 C1072 801 1154 837 1270 821 C1398 803 1507 821 1600 790 L1600 1000 L0 1000 Z" fill="url(#hill)"/>
-  <path d="M0 822 C122 784 185 836 301 822 C430 805 488 854 610 841 C758 826 825 864 939 835 C1072 801 1154 837 1270 821 C1398 803 1507 821 1600 790" fill="none" stroke="#c68a45" stroke-width="2" opacity=".55"/>
-  <path d="M0 895 C130 855 252 906 377 887 C490 870 565 929 697 909 C825 891 912 932 1030 903 C1171 868 1287 918 1395 894 C1486 874 1542 884 1600 874 L1600 1000 L0 1000 Z" fill="#03080d"/>
-  <path d="M0 895 C130 855 252 906 377 887 C490 870 565 929 697 909 C825 891 912 932 1030 903 C1171 868 1287 918 1395 894 C1486 874 1542 884 1600 874" fill="none" stroke="#5d513d" stroke-width="1.6" opacity=".6"/>
-  <path d="M0 961 C160 929 262 973 428 954 C560 938 684 981 829 961 C975 943 1097 984 1226 963 C1370 941 1492 966 1600 945 L1600 1000 L0 1000 Z" fill="#020509"/>
-
-  <!-- Ramos discretos no rodapé -->
-  <g fill="none" stroke="#234137" stroke-width="2" stroke-linecap="round" opacity=".75">
-    <path d="M0 956 C28 931 48 911 77 894 M20 943 L15 916 M36 927 L56 927 M52 911 L48 890 M61 904 L79 908"/>
-    <path d="M1600 963 C1571 939 1551 913 1521 898 M1580 946 L1586 921 M1566 929 L1545 929 M1540 913 L1547 892 M1530 906 L1514 910"/>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1">
+   <stop offset="0" stop-color="#03070d"/>
+   <stop offset="0.5" stop-color="#06141d"/>
+   <stop offset="1" stop-color="#02060b"/>
+  </linearGradient>
+  <radialGradient id="aurora" cx="51%" cy="39%" r="58%">
+   <stop offset="0" stop-color="#0b503f" stop-opacity="0.22"/>
+   <stop offset="0.55" stop-color="#0b342f" stop-opacity="0.08"/>
+   <stop offset="1" stop-color="#061018" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="hill" x1="0" y1="0" x2="0.4" y2="1">
+   <stop offset="0" stop-color="#17232d"/>
+   <stop offset="0.32" stop-color="#08121b"/>
+   <stop offset="1" stop-color="#02060a"/>
+  </linearGradient>
+  <linearGradient id="pine" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0" stop-color="#0b3028"/>
+   <stop offset="0.55" stop-color="#061a18"/>
+   <stop offset="1" stop-color="#020b0d"/>
+  </linearGradient>
+  <linearGradient id="goldline" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0" stop-color="#fff0a0"/>
+   <stop offset="0.45" stop-color="#f5bd3d"/>
+   <stop offset="1" stop-color="#a96620"/>
+  </linearGradient>
+  <radialGradient id="lamp">
+   <stop offset="0" stop-color="#fff9cb"/>
+   <stop offset="0.3" stop-color="#ffd978"/>
+   <stop offset="1" stop-color="#ffb52e" stop-opacity="0"/>
+  </radialGradient>
+ </defs>
+ <!-- Estrelas discretas no céu -->
+ <!-- Montanhas e floresta distante -->
+ <!-- Brilho distante entre as árvores -->
+ <!-- Árvores de primeiro plano -->
+ <!-- Colinas nevadas em camadas -->
+ <!-- Ramos discretos no rodapé -->
+ <g>
+  <title>Layer 1</title>
+  <rect width="1600" height="1000" fill="url(#sky)" id="svg_32"/>
+  <rect width="1600" height="1000" fill="url(#aurora)" id="svg_33"/>
+  <ellipse cx="805" cy="430" rx="490" ry="360" fill="#0c251e" opacity="0.14" filter="url(#softglow)" id="svg_34"/>
+  <g fill="#ffe8ac" id="svg_35">
+   <circle cx="72" cy="93" r="1.7" id="svg_36"/>
+   <circle cx="282" cy="180" r="1.3" id="svg_37"/>
+   <circle cx="408" cy="70" r="1.5" id="svg_38"/>
+   <circle cx="492" cy="235" r="1.2" id="svg_39"/>
+   <circle cx="624" cy="104" r="1.7" id="svg_40"/>
+   <circle cx="760" cy="56" r="1.1" id="svg_41"/>
+   <circle cx="937" cy="155" r="1.4" id="svg_42"/>
+   <circle cx="1068" cy="78" r="1.6" id="svg_43"/>
+   <circle cx="1194" cy="220" r="1.2" id="svg_44"/>
+   <circle cx="1344" cy="92" r="1.5" id="svg_45"/>
+   <circle cx="1510" cy="183" r="1.6" id="svg_46"/>
+   <circle cx="1464" cy="64" r="1.1" id="svg_47"/>
+   <circle cx="344" cy="319" r="1.5" id="svg_48"/>
+   <circle cx="1285" cy="318" r="1.4" id="svg_49"/>
+   <circle cx="1123" cy="285" r="1.1" id="svg_50"/>
+   <circle cx="543" cy="342" r="1.1" id="svg_51"/>
   </g>
-  <g fill="#a92b2b" stroke="#df6b47" stroke-width=".5" opacity=".9">
-    <circle cx="24" cy="928" r="4"/><circle cx="47" cy="913" r="3.4"/><circle cx="65" cy="901" r="4"/>
-    <circle cx="1574" cy="934" r="4"/><circle cx="1550" cy="915" r="3.5"/><circle cx="1535" cy="903" r="4"/>
+  <use xlink:href="#star" x="1260" y="153" opacity="0.9" transform="matrix(0.72 0 0 0.72 352.8 42.84)" id="svg_52"/>
+  <use xlink:href="#star" x="340" y="255" opacity="0.62" transform="matrix(0.28 0 0 0.28 244.8 183.6)" id="svg_53"/>
+  <use xlink:href="#star" x="1482" y="365" opacity="0.8" transform="matrix(0.45 0 0 0.45 815.1 200.75)" id="svg_54"/>
+  <path d="m0,634l70,-50l52,25l83,-80l65,56l84,-44l79,63l87,-50l90,60l89,-44l78,38l83,-55l80,44l94,-69l86,55l94,-37l76,50l80,-65l76,52l71,-39l83,55l0,395l-1600,0l0,-360z" fill="#08131b" opacity="0.73" id="svg_55"/>
+  <path d="m3,705l45,-51l48,26l46,-47l49,48l56,-36l49,49l50,-40l58,50l67,-45l62,45l74,-32l64,49l70,-55l67,44l67,-51l70,46l59,-33l69,40l27,13l110,-32l63,-7l67,-1l71,-8l66,3l83,6l47,2l-4,312l-1600,0l0,-295z" fill="#050d14" id="svg_56"/>
+  <ellipse cx="1346" cy="674" rx="250" ry="42" fill="#b56a22" opacity="0.12" filter="url(#softglow)" id="svg_57" transform="rotate(-3.79146 1346 674)"/>
+  <path d="m1206.89711,689.04463c142.7796,-17.22862 261.42092,-18.37243 402.17006,0.92137" fill="none" stroke-width="2" opacity="0.27" id="svg_58" stroke="#c1843f" transform="rotate(-1 1407.98 682.888)"/>
+  <g fill="#f6be58" opacity="0.8" id="svg_59">
+   <circle cx="1283" cy="664" r="2" id="svg_60"/>
+   <circle cx="1308" cy="656" r="1.5" id="svg_61" stroke="null"/>
+   <circle cx="1340" cy="669" r="2.2" id="svg_62"/>
+   <circle cx="1378" cy="659" r="1.5" id="svg_63"/>
+   <circle cx="1425" cy="673" r="1.9" id="svg_64"/>
+   <circle cx="1456" cy="663" r="1.2" id="svg_65"/>
+   <circle cx="1486" cy="675" r="1.5" id="svg_66"/>
   </g>
+  <use xlink:href="#tree" transform="translate(-93 55) scale(1.04)" id="svg_67"/>
+  <use xlink:href="#tree" transform="translate(1315 295) scale(0.47 0.47)" opacity="0.95" id="svg_68" y="36.17021" x="21.27659"/>
+  <use xlink:href="#tree" transform="rotate(-4.76352 1224.29 593.934) translate(1195 485) scale(0.28 0.28)" opacity="0.52" id="svg_69" y="-50" x="32.14285"/>
+  <use xlink:href="#tree" transform="rotate(3.46151 1568.69 572.448) translate(1510 490) scale(0.3 0.3)" opacity="0.5" id="svg_70" y="-136.66666" x="-39.99999"/>
+  <path d="m0,822c122,-38 185,14 301,0c129,-17 187,32 309,19c148,-15 215,23 329,-6c133,-34 215,2 331,-14c128,-18 237,0 330,-31l0,210l-1600,0l0,-178z" fill="url(#hill)" id="svg_71"/>
+  <path d="m0,822c122,-38 185,14 301,0c129,-17 187,32 309,19c148,-15 215,23 329,-6c133,-34 215,2 331,-14c128,-18 237,0 330,-31" fill="none" stroke="#c68a45" stroke-width="2" opacity="0.55" id="svg_72"/>
+  <path d="m37,894c130,-40 252,11 377,-8c113,-17 188,42 320,22c128,-18 215,23 333,-6c141,-35 257,15 365,-9c91,-20 147,-10 205,-20l0,126l-1600,0l0,-105z" fill="#03080d" id="svg_73"/>
+  <path d="m0,895c130,-40 252,11 377,-8c113,-17 188,42 320,22c128,-18 215,23 333,-6c141,-35 257,15 365,-9c91,-20 147,-10 205,-20" fill="none" stroke="#5d513d" stroke-width="1.6" opacity="0.6" id="svg_74"/>
+  <path d="m0,961c160,-32 262,12 428,-7c132,-16 256,27 401,7c146,-18 268,23 397,2c144,-22 266,3 374,-18l0,55l-1600,0l0,-39z" fill="#020509" id="svg_75"/>
+  <g fill="none" stroke="#234137" stroke-width="2" stroke-linecap="round" opacity="0.75" id="svg_76">
+   <path d="m0,956c28,-25 48,-45 77,-62m-57,49l-5,-27m21,11l20,0m-4,-16l-4,-21m13,14l18,4" id="svg_77"/>
+   <path d="m1600,963c-29,-24 -49,-50 -79,-65m59,48l6,-25m-20,8l-21,0m-5,-16l7,-21m-17,14l-16,4" id="svg_78"/>
+  </g>
+  <g fill="#a92b2b" stroke="#df6b47" stroke-width="0.5" opacity="0.9" id="svg_79">
+   <circle cx="24" cy="928" r="4" id="svg_80"/>
+   <circle cx="47" cy="913" r="3.4" id="svg_81"/>
+   <circle cx="65" cy="901" r="4" id="svg_82"/>
+   <circle cx="1574" cy="934" r="4" id="svg_83"/>
+   <circle cx="1550" cy="915" r="3.5" id="svg_84"/>
+   <circle cx="1535" cy="903" r="4" id="svg_85"/>
+  </g>
+  <path d="m928.84969,758.59996c102.512,-26.47025 192.92829,-23.79578 293.98248,5.84743" fill="none" stroke-width="2" opacity="0.27" id="svg_86" stroke="#c1843f" transform="rotate(-28.7348 1075.84 752.404)"/>
+ </g>
 </svg>

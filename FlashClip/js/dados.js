@@ -178,54 +178,111 @@ export async function carregarDadosInstrutores(forcarAtualizacao = false) {
 // CARREGAR VAGAS
 // =====================================================
 
+
 export async function carregarDadosVagas(forcarAtualizacao = false) {
-  // ---------------------------------------------------
-  // TENTA USAR O CACHE
-  // ---------------------------------------------------
+  // =========================
+  // TENTAR USAR O CACHE
+  // =========================
+
+  let vagasSalvas = null;
 
   if (!forcarAtualizacao) {
-    const vagasSalvas = localStorage.getItem(CHAVE_VAGAS);
+    const cache = localStorage.getItem(CHAVE_VAGAS);
+    const ultimaAtualizacao = localStorage.getItem(
+      CHAVE_VAGAS_ATUALIZADO
+    );
 
-    const ultimaAtualizacao = localStorage.getItem(CHAVE_VAGAS_ATUALIZADO);
+    if (cache && ultimaAtualizacao) {
+      try {
+        vagasSalvas = JSON.parse(cache);
 
-    if (vagasSalvas && ultimaAtualizacao) {
-      const tempoPassado = Date.now() - Number(ultimaAtualizacao);
+        const tempoPassado =
+          Date.now() - Number(ultimaAtualizacao);
 
-      if (tempoPassado < TEMPO_CACHE_VAGAS) {
-        try {
-          return JSON.parse(vagasSalvas);
-        } catch (erro) {
-          console.warn("Cache de vagas inválido. Buscando novamente.");
-
-          localStorage.removeItem(CHAVE_VAGAS);
-          localStorage.removeItem(CHAVE_VAGAS_ATUALIZADO);
+        if (
+          Number.isFinite(tempoPassado) &&
+          tempoPassado >= 0 &&
+          tempoPassado < TEMPO_CACHE_VAGAS
+        ) {
+          return vagasSalvas;
         }
+      } catch (erro) {
+        console.warn(
+          "Cache de vagas inválido. Buscando novamente."
+        );
+
+        localStorage.removeItem(CHAVE_VAGAS);
+        localStorage.removeItem(CHAVE_VAGAS_ATUALIZADO);
+
+        vagasSalvas = null;
       }
     }
   }
 
-  // ---------------------------------------------------
-  // USA OS DADOS CENTRAIS
-  // ---------------------------------------------------
+  // =========================
+  // BUSCAR VAGAS ATUALIZADAS
+  // DIRETAMENTE NO SUPABASE
+  // =========================
 
-  const dados = await carregarDados();
+  const { data: cursos, error } = await clienteSupabase
+    .from("cursos")
+    .select("idCurso, vagas")
+    .order("idCurso", {
+      ascending: true
+    });
+
+  // =========================
+  // TRATAR ERRO
+  // =========================
+
+  if (error) {
+    console.error("Erro ao carregar vagas:", error);
+
+    // Permite usar o cache antigo se o Supabase falhar.
+    if (vagasSalvas) {
+      return vagasSalvas;
+    }
+
+    const cacheAntigo = localStorage.getItem(CHAVE_VAGAS);
+
+    if (cacheAntigo) {
+      try {
+        return JSON.parse(cacheAntigo);
+      } catch (erroCache) {
+        console.warn("Não foi possível recuperar o cache antigo.");
+      }
+    }
+
+    throw error;
+  }
+
+  // =========================
+  // ORGANIZAR AS VAGAS
+  // =========================
 
   const vagas = {};
 
-  (dados.cursos || []).forEach(function (curso) {
+  (cursos || []).forEach(function (curso) {
     vagas[curso.idCurso] = curso.vagas;
   });
 
-  // ---------------------------------------------------
-  // SALVA O CACHE DE VAGAS
-  // ---------------------------------------------------
+  // =========================
+  // SALVAR CACHE
+  // =========================
 
-  localStorage.setItem(CHAVE_VAGAS, JSON.stringify(vagas));
+  localStorage.setItem(
+    CHAVE_VAGAS,
+    JSON.stringify(vagas)
+  );
 
-  localStorage.setItem(CHAVE_VAGAS_ATUALIZADO, Date.now().toString());
+  localStorage.setItem(
+    CHAVE_VAGAS_ATUALIZADO,
+    Date.now().toString()
+  );
 
   return vagas;
 }
+
 
 // =====================================================
 // LIMPAR CACHE

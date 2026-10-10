@@ -104,6 +104,7 @@ body {
 .navbar-login .voltar-seta {
     color: #f5bd3d;
     font-size: 20px;
+    margin-top: -3px;
     line-height: 1;
     transition: transform 0.2s ease;
 }

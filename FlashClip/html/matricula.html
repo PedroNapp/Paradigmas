@@ -9,17 +9,61 @@
   </head>
 
   <body>
-    <main class="pagina-matricula">
-      <div class="card-matricula">
-        <h1>Confirmar matrícula</h1>
+    
+    
+    <header class="navbar navbar-matricula">
+      <a href="../index.html" class="logo">
+        <img src="../imagens/logoFlash.png" alt="FlashClip" />
+      </a>
 
-        <div id="curso">
-          <p>Carregando curso...</p>
+      <a href="../index.html" class="voltar voltar-evento">
+        <span class="voltar-seta" aria-hidden="true">←</span>
+        <span>Voltar ao evento</span>
+      </a>
+    </header>
+    
+    <main class="pagina-matricula">
+      <section class="card-matricula">
+
+        <div class="cabecalho-matricula">
+          <span class="categoria-matricula">
+            CONFIRMAR MATRÍCULA
+          </span>
+
+          <h1>Curso selecionado</h1>
+
+          <p>
+            Confira as informações do curso antes de confirmar sua matrícula.
+          </p>
         </div>
 
-        <button id="botaoConfirmar">Confirmar matrícula</button>
-      </div>
+        
+        <div
+          id="mensagemMatricula"
+          class="mensagem-matricula"
+          role="alert"
+          aria-live="polite"
+          hidden
+        ></div>
+
+
+        <div id="curso" aria-live="polite">
+          <p class="estado-carregamento">Carregando curso...</p>
+        </div>
+
+        <button
+          type="button"
+          id="botaoConfirmar"
+          class="botao-confirmar"
+          disabled
+        >
+          <span>Confirmar matrícula</span>
+          <span class="seta-confirmar" aria-hidden="true">→</span>
+        </button>
+
+      </section>
     </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="../js/matricula.js"></script>

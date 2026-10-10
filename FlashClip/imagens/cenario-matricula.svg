@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1600" height="900" viewBox="0 0 1600 900">
+<desc>Created with SVGMaker Editor 3.5.0</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 800 450)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100046" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="0.85" y2="1">
+<stop offset="0%" style="stop-color:rgba(7,16,27,1);"/>
+<stop offset="55.00000000000001%" style="stop-color:rgba(6,17,29,1);"/>
+<stop offset="100%" style="stop-color:rgba(2,6,11,1);"/>
+</linearGradient><rect style="fill: url(#SVGID_100046)" x="-800" y="-450" width="1600" height="900" xmlns="http://www.w3.org/2000/svg"/></g>
+<g transform="matrix(1 0 0 1 800 400)"><radialGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100047" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+<stop offset="0%" style="stop-color:rgba(16,36,57,0.46);"/>
+<stop offset="100%" style="stop-color:rgba(7,16,27,0);"/>
+</radialGradient><rect style="fill: url(#SVGID_100047)" x="-800" y="-400" width="1600" height="800" xmlns="http://www.w3.org/2000/svg"/></g>
+<g transform="matrix(1 0 0 1 800 450)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100048" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" style="stop-color:rgba(0,4,10,0.4);"/>
+<stop offset="30%" style="stop-color:rgba(0,4,10,0);"/>
+<stop offset="70%" style="stop-color:rgba(0,4,10,0);"/>
+<stop offset="100%" style="stop-color:rgba(0,4,10,0.35);"/>
+</linearGradient><rect style="fill: url(#SVGID_100048)" x="-800" y="-450" width="1600" height="900" xmlns="http://www.w3.org/2000/svg"/></g>
+<g transform="matrix(1 0 0 1 800 795.69006)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100049" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" style="stop-color:rgba(48,34,27,1);"/>
+<stop offset="35%" style="stop-color:rgba(36,25,21,1);"/>
+<stop offset="100%" style="stop-color:rgba(15,17,24,1);"/>
+</linearGradient><path transform=" translate(-800, -795.69005)" style="fill: url(#SVGID_100049)" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 0 710 Q 360 688 800 697.14286 Q 1258.57143 705.71428 1600 706 L 1600 900 L 0 900 Z"/></g>
+<path style="stroke: rgb(139,90,50); stroke-width: 2.5; fill: none; opacity: 0.6" stroke-linecap="round" d="M 0 710 Q 360 688 800 697.14286 Q 1600 706 1600 706"/>
+<g transform="matrix(1 0 0 1 800 739.81089)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100050" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" style="stop-color:rgba(228,155,67,0.55);"/>
+<stop offset="32%" style="stop-color:rgba(158,94,42,0.07);"/>
+<stop offset="68%" style="stop-color:rgba(182,111,50,0.18);"/>
+<stop offset="100%" style="stop-color:rgba(232,166,83,0.02);"/>
+</linearGradient><path transform=" translate(-800, -739.81089)" style="stroke: url(#SVGID_100050); stroke-width: 12; fill: none; opacity: 0.6" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 0 738 C 350 725 470 754 800 743 C 1130 732 1320 728 1600 746"/></g>
+<g data-editor-group="true" transform="matrix(1 0 0 1 800 824.96537)">
+<g style="">
+<path style="stroke: rgb(140,84,43); stroke-width: 2; fill: none; opacity: 0.12" stroke-linecap="round" d="M-800-42.9654C-560-54.9654-420-27.9654-180-42.9654 60-57.9654 290-49.9654 800-35.9654"/>
+<path style="stroke: rgb(140,84,43); stroke-width: 2; fill: none; opacity: 0.12" stroke-linecap="round" d="M-800 9.0346C-460-4.9654-350 22.0346 25 6.0346 400-9.9654 480 8.0346 800 16.0346"/>
+<path style="stroke: rgb(140,84,43); stroke-width: 2; fill: none; opacity: 0.12" stroke-linecap="round" d="M-800 46.0346C-500 36.0346-260 54.0346 0 44.0346 260 34.0346 510 37.0346 800 51.0346"/>
+</g>
+</g>
+<g transform="matrix(1 0 0 1 800 887.68503)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100051" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" style="stop-color:rgba(20,21,27,1);"/>
+<stop offset="100%" style="stop-color:rgba(7,10,15,1);"/>
+</linearGradient><path transform=" translate(-800, -887.68503)" style="stroke: rgb(255,255,255); stroke-opacity: 0; fill: url(#SVGID_100051)" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 0 882 Q 480 873 810 883 Q 1140 893 1600 879 L 1600 900 L 0 900 Z"/></g>
+<g data-editor-group="true" transform="matrix(1 0 0 1 338.17518 633.82274)">
+<g style="">
+<g transform="matrix(1 0 0 1 -47.24191 -53.00967)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100052" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" style="stop-color:rgba(23,32,42,1);"/>
+<stop offset="65%" style="stop-color:rgba(9,15,23,1);"/>
+<stop offset="100%" style="stop-color:rgba(36,42,51,1);"/>
+</linearGradient><path transform=" translate(-244.01529, -529.50923)" style="stroke: rgb(70,83,97); stroke-width: 3; stroke-linejoin: round; fill: url(#SVGID_100052)" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 45 428 Q 42 414 57 412 L 386 375 Q 402 373 405 389 L 443 630 Q 446 643 432 646 L 82 684 Q 67 686 64 671 Z"/></g>
+<path style="stroke: rgb(89,102,117); stroke-width: 1.5; stroke-linejoin: round; fill: rgb(5,11,19)" stroke-linecap="round" d="M-229.2572-152.5189L90.7428-188.5189 135.7428 43.4811-210.2572 80.4811Z"/>
+<g transform="matrix(1 0 0 1 -37.05719 -57.0189)" clip-path="url(#CLIPPATH_107196)">
+<linearGradient id="SVGID_100053" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" style="stop-color:rgba(8,19,31,1);"/>
+<stop offset="100%" style="stop-color:rgba(7,16,26,1);"/>
+</linearGradient>
+<clipPath id="CLIPPATH_107196">
+<path transform="matrix(1 0 0 1 0 0) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-244, -527.5)" style="fill: url(#SVGID_100053)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</g>
+<g transform="matrix(1 0 0 1 -66.25719 -151.0189)" clip-path="url(#CLIPPATH_107197)">
+<clipPath id="CLIPPATH_107197">
+<path transform="matrix(1 0 0 1 19 96) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-225, -431.5)" style="fill: rgb(16,30,44); opacity: 0.92" stroke-linecap="round" d="M 73 439 L 373 405 L 377 423 L 76 458 Z"/>
+</g>
+<g transform="matrix(1 0 0 1 -205.25719 -138.5189)" clip-path="url(#CLIPPATH_107198)">
+<clipPath id="CLIPPATH_107198">
+<path transform="matrix(1 0 0 1 158 83.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<circle style="fill: rgb(231,122,95)" cx="0" cy="0" r="2.8"/>
+</g>
+<g transform="matrix(1 0 0 1 -195.25719 -139.5189)" clip-path="url(#CLIPPATH_107199)">
+<clipPath id="CLIPPATH_107199">
+<path transform="matrix(1 0 0 1 148 84.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<circle style="fill: rgb(233,182,92)" cx="0" cy="0" r="2.8"/>
+</g>
+<g transform="matrix(1 0 0 1 -185.25719 -140.5189)" clip-path="url(#CLIPPATH_107200)">
+<clipPath id="CLIPPATH_107200">
+<path transform="matrix(1 0 0 1 138 85.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<circle style="fill: rgb(92,189,137)" cx="0" cy="0" r="2.8"/>
+</g>
+<g transform="matrix(1 0 0 1 -140.25719 -145.5189)" clip-path="url(#CLIPPATH_107201)">
+<clipPath id="CLIPPATH_107201">
+<path transform="matrix(1 0 0 1 93 90.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-151, -437)" style="stroke: rgb(67,83,104); stroke-width: 3.5; stroke-linecap: round; fill: rgb(0,0,0)" stroke-linecap="round" d="M 124 440 L 178 434"/>
+</g>
+<g transform="matrix(1 0 0 1 -180.75719 -30.5189)" clip-path="url(#CLIPPATH_107202)">
+<clipPath id="CLIPPATH_107202">
+<path transform="matrix(1 0 0 1 133.5 -24.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-110.5, -552)" style="fill: rgb(9,18,29); opacity: 0.85" stroke-linecap="round" d="M 73 458 L 111 454 L 148 644 L 91 650 Z"/>
+</g>
+<g transform="matrix(1 0 0 1 -125.75719 -113.0189)" clip-path="url(#CLIPPATH_107203)">
+<clipPath id="CLIPPATH_107203">
+<path transform="matrix(1 0 0 1 78.5 58) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-165.5, -469.5)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 126 474 L 205 465"/>
+</g>
+<g transform="matrix(1 0 0 1 -138.25719 -94.0189)" clip-path="url(#CLIPPATH_107204)">
+<clipPath id="CLIPPATH_107204">
+<path transform="matrix(1 0 0 1 91 39) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-153, -488.5)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 129 491 L 177 486"/>
+</g>
+<g transform="matrix(1 0 0 1 -106.25719 -80.5189)" clip-path="url(#CLIPPATH_107205)">
+<clipPath id="CLIPPATH_107205">
+<path transform="matrix(1 0 0 1 59 25.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-185, -502)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 132 508 L 238 496"/>
+</g>
+<g transform="matrix(1 0 0 1 -122.25719 -61.5189)" clip-path="url(#CLIPPATH_107206)">
+<clipPath id="CLIPPATH_107206">
+<path transform="matrix(1 0 0 1 75 6.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-169, -521)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 135 525 L 203 517"/>
+</g>
+<g transform="matrix(1 0 0 1 -93.25719 -47.5189)" clip-path="url(#CLIPPATH_107207)">
+<clipPath id="CLIPPATH_107207">
+<path transform="matrix(1 0 0 1 46 -7.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-198, -535)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 138 542 L 258 528"/>
+</g>
+<g transform="matrix(1 0 0 1 -124.25719 -26.5189)" clip-path="url(#CLIPPATH_107208)">
+<clipPath id="CLIPPATH_107208">
+<path transform="matrix(1 0 0 1 77 -28.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-167, -556)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 141 559 L 193 553"/>
+</g>
+<g transform="matrix(1 0 0 1 -97.25719 -12.5189)" clip-path="url(#CLIPPATH_107209)">
+<clipPath id="CLIPPATH_107209">
+<path transform="matrix(1 0 0 1 50 -42.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-194, -570)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 144 576 L 244 564"/>
+</g>
+<g transform="matrix(1 0 0 1 -111.75719 6.4811)" clip-path="url(#CLIPPATH_107210)">
+<clipPath id="CLIPPATH_107210">
+<path transform="matrix(1 0 0 1 64.5 -61.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-179.5, -589)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 147 593 L 212 585"/>
+</g>
+<g transform="matrix(1 0 0 1 -79.75719 20.4811)" clip-path="url(#CLIPPATH_107211)">
+<clipPath id="CLIPPATH_107211">
+<path transform="matrix(1 0 0 1 32.5 -75.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-211.5, -603)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 150 610 L 273 596"/>
+</g>
+<g transform="matrix(1 0 0 1 -104.75719 40.4811)" clip-path="url(#CLIPPATH_107212)">
+<clipPath id="CLIPPATH_107212">
+<path transform="matrix(1 0 0 1 57.5 -95.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-186.5, -623)" style="stroke: rgb(54,124,121); stroke-width: 4; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 153 627 L 220 619"/>
+</g>
+<g transform="matrix(1 0 0 1 -137.25719 -93.5189)" clip-path="url(#CLIPPATH_107213)">
+<clipPath id="CLIPPATH_107213">
+<path transform="matrix(1 0 0 1 90 38.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-154, -489)" style="stroke: rgb(199,154,82); stroke-width: 3; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 144 490 L 164 488"/>
+</g>
+<g transform="matrix(1 0 0 1 -120.25719 -60.0189)" clip-path="url(#CLIPPATH_107214)">
+<clipPath id="CLIPPATH_107214">
+<path transform="matrix(1 0 0 1 73 5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-171, -522.5)" style="stroke: rgb(199,154,82); stroke-width: 3; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 159 524 L 183 521"/>
+</g>
+<g transform="matrix(1 0 0 1 -131.25719 -26.0189)" clip-path="url(#CLIPPATH_107215)">
+<clipPath id="CLIPPATH_107215">
+<path transform="matrix(1 0 0 1 84 -29) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-160, -556.5)" style="stroke: rgb(199,154,82); stroke-width: 3; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 146 558 L 174 555"/>
+</g>
+<g transform="matrix(1 0 0 1 -92.75719 8.4811)" clip-path="url(#CLIPPATH_107216)">
+<clipPath id="CLIPPATH_107216">
+<path transform="matrix(1 0 0 1 45.5 -63.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-198.5, -591)" style="stroke: rgb(199,154,82); stroke-width: 3; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 189 592 L 208 590"/>
+</g>
+<g transform="matrix(1 0 0 1 -114.75719 41.9811)" clip-path="url(#CLIPPATH_107217)">
+<clipPath id="CLIPPATH_107217">
+<path transform="matrix(1 0 0 1 67.5 -97) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-176.5, -624.5)" style="stroke: rgb(199,154,82); stroke-width: 3; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 164 626 L 189 623"/>
+</g>
+<g transform="matrix(1 0 0 1 21.24281 -136.0189)" clip-path="url(#CLIPPATH_107218)">
+<clipPath id="CLIPPATH_107218">
+<path transform="matrix(1 0 0 1 -68.5 81) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-312.5, -446.5)" style="stroke: rgb(83,107,139); stroke-width: 2.6; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 292 449 L 333 444"/>
+</g>
+<g transform="matrix(1 0 0 1 26.74281 -117.0189)" clip-path="url(#CLIPPATH_107219)">
+<clipPath id="CLIPPATH_107219">
+<path transform="matrix(1 0 0 1 -74 62) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-318, -465.5)" style="stroke: rgb(83,107,139); stroke-width: 2.6; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 296 468 L 340 463"/>
+</g>
+<g transform="matrix(1 0 0 1 32.24281 -98.5189)" clip-path="url(#CLIPPATH_107220)">
+<clipPath id="CLIPPATH_107220">
+<path transform="matrix(1 0 0 1 -79.5 43.5) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-323.5, -484)" style="stroke: rgb(83,107,139); stroke-width: 2.6; stroke-linecap: round; fill: none" stroke-linecap="round" d="M 300 487 L 347 481"/>
+</g>
+<g transform="matrix(1 0 0 1 73.24281 -69.0189)" clip-path="url(#CLIPPATH_107221)">
+<clipPath id="CLIPPATH_107221">
+<path transform="matrix(1 0 0 1 -120.5 14) translate(-244, -527.5)" stroke-linecap="round" d="M 73 439 L 373 405 L 415 616 L 91 650 Z"/>
+</clipPath>
+<path transform=" translate(-364.5, -513.5)" style="fill: rgb(217,232,242); opacity: 0.025" stroke-linecap="round" d="M 314 411 L 373 405 L 415 616 L 357 622 Z"/>
+</g>
+<circle style="stroke: rgb(255,255,255); stroke-opacity: 0; fill: rgb(137,151,165)" cx="-61.2572" cy="-189.5189" r="2.5"/>
+<path style="stroke: rgb(17,25,35); stroke-width: 7; stroke-linecap: round; fill: rgb(0,0,0)" stroke-linecap="round" d="M-213.2572 96.4811L143.7428 58.4811"/>
+<g transform="matrix(1 0 0 1 10.40746 132.62369)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100054" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" style="stop-color:rgba(38,45,53,1);"/>
+<stop offset="55.00000000000001%" style="stop-color:rgba(11,17,25,1);"/>
+<stop offset="100%" style="stop-color:rgba(32,38,48,1);"/>
+</linearGradient><path transform=" translate(-303.51106, -715.14258)" style="stroke: rgb(74,86,100); stroke-width: 2.5; stroke-linejoin: round; fill: url(#SVGID_100054)" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 65.84369 685.69616 L 79.1159 684.07365 L 106.03116 680.78331 L 447.09369 639.08901 L 531.39914 704.94615 C 551.19251 716.28388 538.63611 718.84921 514.28958 723.61937 C 423.36491 741.43402 168 790 168 790 Q 155 792 141 786 L 97.09369 729.44616 Z"/></g>
+<circle style="stroke: rgb(255,255,255); stroke-opacity: 0; fill: rgb(111,141,149); opacity: 0.8" cx="-203.9635" cy="108.9811" r="2.2"/>
+<g data-editor-group="true" transform="matrix(1 0 0 1 57.98938 157.78052)">
+<g style="">
+<path style="stroke: rgb(74,88,102); stroke-width: 1.4; stroke-linejoin: round; fill: rgb(17,26,36)" stroke-linecap="round" d="M-39.5395-6.4338L22.8469-17.1034 39.5885 4.8891-25.5177 16.5871Z"/>
+<path style="stroke: rgb(101,113,126); stroke-width: 0.9; fill: rgb(0,0,0); opacity: 0.65" stroke-linecap="round" d="M-29.0909 11.9356L35.2937 0.3798"/>
+</g>
+</g>
+<g data-editor-group="true" transform="matrix(1 0 0 1 1.64578 121.60594)">
+<g style="">
+<path style="stroke: rgb(61,75,89); stroke-width: 1.4; stroke-linejoin: round; fill: rgb(10,17,26)" stroke-linecap="round" d="M-192.7535-10.6936L142.779-55.4287 192.779-17.9288 180.2791-5.4288-97.2275 46.8369-142.7332 55.4287-159.6814 51.7983Z"/>
+<g data-editor-group="true" transform="matrix(1 0 0 1 0.06383 -1.13956)">
+<g style="">
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -169.14456 -0.17562)" clip-path="url(#CLIPPATH_107222)">
+<clipPath id="CLIPPATH_107222">
+<path transform="matrix(1 0 0 1 141.75 5.9) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.15,-1.8 5.15,-3.2 7.15,-2.8 9.45,0.6 8.45,1.8 -4.95,3.2 -7.25,2.4 -9.45,-1.1"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -144.80527 -4.98828)" clip-path="url(#CLIPPATH_107223)">
+<clipPath id="CLIPPATH_107223">
+<path transform="matrix(1 0 0 1 121.8 7.95) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.2,-1.75 5.1,-3.15 7.1,-2.85 9.5,0.55 8.5,1.65 -4.9,3.15 -7.2,2.35 -9.5,-1.15"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -120.4676 -9.86984)" clip-path="url(#CLIPPATH_107224)">
+<clipPath id="CLIPPATH_107224">
+<path transform="matrix(1 0 0 1 101.85 10.05) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.35,-1.65 4.95,-3.05 6.95,-2.75 9.55,0.45 8.65,1.65 -4.75,3.05 -7.15,2.25 -9.55,-1.05"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -96.0979 -13.37348)" clip-path="url(#CLIPPATH_107225)">
+<clipPath id="CLIPPATH_107225">
+<path transform="matrix(1 0 0 1 81.9 12.15) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.4,-1.55 4.9,-2.95 6.9,-2.65 9.7,0.45 8.8,1.55 -4.6,2.95 -7,2.25 -9.7,-0.95"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -71.72659 -16.80822)" clip-path="url(#CLIPPATH_107226)">
+<clipPath id="CLIPPATH_107226">
+<path transform="matrix(1 0 0 1 61.95 14.2) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.45,-1.6 4.75,-2.9 6.85,-2.6 9.75,0.4 8.95,1.4 -4.55,2.9 -6.95,2.1 -9.75,-0.9"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -47.35689 -20.31185)" clip-path="url(#CLIPPATH_107227)">
+<clipPath id="CLIPPATH_107227">
+<path transform="matrix(1 0 0 1 42 16.3) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.6,-1.5 4.7,-2.8 6.8,-2.6 9.8,0.3 9,1.3 -4.4,2.8 -6.9,2.1 -9.8,-0.9"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -22.98718 -23.81549)" clip-path="url(#CLIPPATH_107228)">
+<clipPath id="CLIPPATH_107228">
+<path transform="matrix(1 0 0 1 22.05 18.4) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.65,-1.4 4.55,-2.7 6.65,-2.5 9.85,0.3 9.15,1.3 -4.25,2.7 -6.85,2.1 -9.85,-0.8"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 1.38253 -27.31911)" clip-path="url(#CLIPPATH_107229)">
+<clipPath id="CLIPPATH_107229">
+<path transform="matrix(1 0 0 1 2.1 20.5) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.8,-1.3 4.5,-2.7 6.6,-2.4 10,0.2 9.3,1.2 -4.1,2.7 -6.7,2 -10,-0.7"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 25.75223 -30.82275)" clip-path="url(#CLIPPATH_107230)">
+<clipPath id="CLIPPATH_107230">
+<path transform="matrix(1 0 0 1 -17.85 22.6) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.85,-1.2 4.45,-2.6 6.55,-2.4 10.05,0.2 9.45,1.1 -4.05,2.6 -6.65,2 -10.05,-0.7"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 50.12193 -34.32638)" clip-path="url(#CLIPPATH_107231)">
+<clipPath id="CLIPPATH_107231">
+<path transform="matrix(1 0 0 1 -37.8 24.7) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9,-1.1 4.3,-2.5 6.5,-2.3 10.1,0.2 9.5,1.1 -3.9,2.5 -6.6,2 -10.1,-0.6"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 74.55289 -37.83156)" clip-path="url(#CLIPPATH_107232)">
+<clipPath id="CLIPPATH_107232">
+<path transform="matrix(1 0 0 1 -57.8 26.8) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.1,-1.1 4.2,-2.4 6.4,-2.2 10.2,0.1 9.6,1 -3.8,2.4 -6.5,1.9 -10.2,-0.5"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 98.92419 -41.26628)" clip-path="url(#CLIPPATH_107233)">
+<clipPath id="CLIPPATH_107233">
+<path transform="matrix(1 0 0 1 -77.75 28.85) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.15,-1.05 4.05,-2.35 6.25,-2.25 10.25,0.05 9.75,0.85 -3.65,2.35 -6.45,1.85 -10.25,-0.55"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 123.23265 -44.76839)" clip-path="url(#CLIPPATH_107234)">
+<clipPath id="CLIPPATH_107234">
+<path transform="matrix(1 0 0 1 -97.65 30.95) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.25,-0.95 4.05,-2.25 6.25,-2.15 10.35,0.05 9.85,0.85 -3.55,2.25 -6.35,1.75 -10.35,-0.45"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -163.64201 9.82061)" clip-path="url(#CLIPPATH_107235)">
+<clipPath id="CLIPPATH_107235">
+<path transform="matrix(1 0 0 1 136.45 -2.45) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.25,-1.75 5.25,-3.25 7.25,-2.95 9.55,0.45 8.55,1.65 -5.05,3.25 -7.45,2.45 -9.55,-1.05"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -137.62667 5.93121)" clip-path="url(#CLIPPATH_107236)">
+<clipPath id="CLIPPATH_107236">
+<path transform="matrix(1 0 0 1 116.15 -0.1) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.35,-1.7 5.25,-3.2 7.25,-2.9 9.65,0.4 8.65,1.6 -4.95,3.2 -7.35,2.4 -9.65,-1"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -112.8683 0.69448)" clip-path="url(#CLIPPATH_107237)">
+<clipPath id="CLIPPATH_107237">
+<path transform="matrix(1 0 0 1 95.85 2.25) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.35,-1.65 5.15,-3.15 7.15,-2.85 9.75,0.35 8.85,1.55 -4.85,3.15 -7.25,2.35 -9.75,-0.95"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -88.01503 -3.09697)" clip-path="url(#CLIPPATH_107238)">
+<clipPath id="CLIPPATH_107238">
+<path transform="matrix(1 0 0 1 75.5 4.55) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.5,-1.55 5,-3.05 7.1,-2.85 9.8,0.25 8.9,1.35 -4.7,3.05 -7.2,2.25 -9.8,-0.95"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -63.22622 -7.02469)" clip-path="url(#CLIPPATH_107239)">
+<clipPath id="CLIPPATH_107239">
+<path transform="matrix(1 0 0 1 55.2 6.95) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.6,-1.45 4.9,-2.95 7,-2.75 9.9,0.25 9,1.35 -4.6,2.95 -7.1,2.25 -9.9,-0.85"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -38.37456 -10.88503)" clip-path="url(#CLIPPATH_107240)">
+<clipPath id="CLIPPATH_107240">
+<path transform="matrix(1 0 0 1 34.85 9.3) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.75,-1.4 4.75,-2.9 6.85,-2.7 9.95,0.2 9.15,1.3 -4.55,2.9 -7.05,2.2 -9.95,-0.8"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -13.58413 -14.74386)" clip-path="url(#CLIPPATH_107241)">
+<clipPath id="CLIPPATH_107241">
+<path transform="matrix(1 0 0 1 14.55 11.65) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.85,-1.25 4.65,-2.85 6.85,-2.55 10.05,0.15 9.25,1.25 -4.35,2.85 -6.95,2.15 -10.05,-0.65"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 11.20628 -18.60265)" clip-path="url(#CLIPPATH_107242)">
+<clipPath id="CLIPPATH_107242">
+<path transform="matrix(1 0 0 1 -5.75 14) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.95,-1.2 4.65,-2.7 6.75,-2.5 10.15,0.1 9.35,1.1 -4.25,2.7 -6.85,2.1 -10.15,-0.6"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 36.05794 -22.46302)" clip-path="url(#CLIPPATH_107243)">
+<clipPath id="CLIPPATH_107243">
+<path transform="matrix(1 0 0 1 -26.1 16.35) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9,-1.15 4.5,-2.65 6.7,-2.45 10.2,0.15 9.5,1.05 -4.2,2.65 -6.9,2.15 -10.2,-0.55"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 60.78712 -26.3203)" clip-path="url(#CLIPPATH_107244)">
+<clipPath id="CLIPPATH_107244">
+<path transform="matrix(1 0 0 1 -46.35 18.7) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.05,-1.1 4.45,-2.6 6.65,-2.4 10.25,0.1 9.65,1 -4.05,2.6 -6.75,2.1 -10.25,-0.5"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 85.57913 -30.11023)" clip-path="url(#CLIPPATH_107245)">
+<clipPath id="CLIPPATH_107245">
+<path transform="matrix(1 0 0 1 -66.65 21) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.15,-1 4.35,-2.5 6.55,-2.4 10.35,0 9.75,0.8 -3.85,2.5 -6.65,2 -10.35,-0.5"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 110.42919 -34.03947)" clip-path="url(#CLIPPATH_107246)">
+<clipPath id="CLIPPATH_107246">
+<path transform="matrix(1 0 0 1 -87 23.4) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.3,-0.9 4.2,-2.4 6.5,-2.3 10.4,0 9.9,0.8 -3.8,2.4 -6.6,2 -10.4,-0.4"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 135.21961 -37.89828)" clip-path="url(#CLIPPATH_107247)">
+<clipPath id="CLIPPATH_107247">
+<path transform="matrix(1 0 0 1 -107.3 25.75) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.4,-0.85 4.1,-2.35 6.4,-2.25 10.5,-0.05 10,0.75 -3.7,2.35 -6.5,1.95 -10.5,-0.35"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -156.88412 21.09529)" clip-path="url(#CLIPPATH_107248)">
+<clipPath id="CLIPPATH_107248">
+<path transform="matrix(1 0 0 1 131.15 -10.75) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.35,-1.65 5.45,-3.35 7.45,-3.05 9.75,0.35 8.65,1.55 -5.25,3.35 -7.55,2.55 -9.75,-0.95"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -130.44808 16.85072)" clip-path="url(#CLIPPATH_107249)">
+<clipPath id="CLIPPATH_107249">
+<path transform="matrix(1 0 0 1 110.5 -8.15) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.4,-1.55 5.3,-3.25 7.4,-3.05 9.8,0.35 8.8,1.55 -5.1,3.25 -7.5,2.55 -9.8,-0.85"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -105.20773 11.25728)" clip-path="url(#CLIPPATH_107250)">
+<clipPath id="CLIPPATH_107250">
+<path transform="matrix(1 0 0 1 89.8 -5.55) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.5,-1.55 5.2,-3.25 7.3,-2.95 9.9,0.25 8.9,1.45 -5,3.25 -7.4,2.45 -9.9,-0.85"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -79.99661 7.04326)" clip-path="url(#CLIPPATH_107251)">
+<clipPath id="CLIPPATH_107251">
+<path transform="matrix(1 0 0 1 69.15 -2.95) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.55,-1.45 5.15,-3.15 7.25,-2.95 9.95,0.25 9.05,1.35 -4.85,3.15 -7.35,2.45 -9.95,-0.75"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -54.72424 2.82774)" clip-path="url(#CLIPPATH_107252)">
+<clipPath id="CLIPPATH_107252">
+<path transform="matrix(1 0 0 1 48.45 -0.35) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.75,-1.35 5.05,-3.05 7.15,-2.85 10.05,0.15 9.15,1.25 -4.75,3.05 -7.25,2.35 -10.05,-0.75"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -29.51471 -1.45516)" clip-path="url(#CLIPPATH_107253)">
+<clipPath id="CLIPPATH_107253">
+<path transform="matrix(1 0 0 1 27.8 2.3) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.8,-1.3 5,-3 7.1,-2.7 10.1,0.2 9.3,1.2 -4.6,3 -7.2,2.4 -10.1,-0.6"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -4.24233 -5.67069)" clip-path="url(#CLIPPATH_107254)">
+<clipPath id="CLIPPATH_107254">
+<path transform="matrix(1 0 0 1 7.1 4.9) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-8.9,-1.2 4.8,-2.9 7,-2.7 10.2,0.1 9.4,1.1 -4.5,2.9 -7.1,2.3 -10.2,-0.6"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 20.96879 -9.88468)" clip-path="url(#CLIPPATH_107255)">
+<clipPath id="CLIPPATH_107255">
+<path transform="matrix(1 0 0 1 -13.55 7.5) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.95,-1.1 4.75,-2.8 6.95,-2.6 10.25,0 9.55,1 -4.35,2.8 -7.05,2.3 -10.25,-0.5"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 46.24277 -14.03132)" clip-path="url(#CLIPPATH_107256)">
+<clipPath id="CLIPPATH_107256">
+<path transform="matrix(1 0 0 1 -34.25 10.05) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.15,-1.15 4.65,-2.75 6.85,-2.65 10.35,-0.05 9.65,0.95 -4.25,2.75 -6.95,2.15 -10.35,-0.55"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 71.45229 -18.31421)" clip-path="url(#CLIPPATH_107257)">
+<clipPath id="CLIPPATH_107257">
+<path transform="matrix(1 0 0 1 -54.9 12.7) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.2,-1 4.6,-2.7 6.8,-2.5 10.4,-0.1 9.8,0.9 -4.1,2.7 -6.9,2.2 -10.4,-0.4"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 96.72467 -22.52975)" clip-path="url(#CLIPPATH_107258)">
+<clipPath id="CLIPPATH_107258">
+<path transform="matrix(1 0 0 1 -75.6 15.3) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.3,-0.9 4.4,-2.6 6.7,-2.5 10.5,-0.1 9.9,0.8 -4,2.6 -6.8,2.1 -10.5,-0.3"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 121.93579 -26.74374)" clip-path="url(#CLIPPATH_107259)">
+<clipPath id="CLIPPATH_107259">
+<path transform="matrix(1 0 0 1 -96.25 17.9) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.35,-0.8 4.35,-2.5 6.65,-2.4 10.55,-0.2 10.05,0.7 -3.85,2.5 -6.75,2 -10.55,-0.3"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 147.20658 -31.02817)" clip-path="url(#CLIPPATH_107260)">
+<clipPath id="CLIPPATH_107260">
+<path transform="matrix(1 0 0 1 -116.95 20.55) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.55,-0.75 4.25,-2.45 6.55,-2.35 10.65,-0.15 10.15,0.65 -3.75,2.45 -6.65,2.05 -10.65,-0.15"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -150.14224 31.68102)" clip-path="url(#CLIPPATH_107261)">
+<clipPath id="CLIPPATH_107261">
+<path transform="matrix(1 0 0 1 124.95 -18.95) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.35,-1.45 6.35,-3.55 8.45,-3.35 10.75,0.15 9.65,1.35 -6.25,3.55 -8.55,2.75 -10.75,-0.75"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -121.19834 27.23596)" clip-path="url(#CLIPPATH_107262)">
+<clipPath id="CLIPPATH_107262">
+<path transform="matrix(1 0 0 1 102.15 -15.85) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.45,-1.35 6.25,-3.45 8.35,-3.25 10.85,0.05 9.85,1.25 -6.05,3.45 -8.55,2.75 -10.85,-0.65"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -92.17679 20.85877)" clip-path="url(#CLIPPATH_107263)">
+<clipPath id="CLIPPATH_107263">
+<path transform="matrix(1 0 0 1 79.35 -12.75) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.55,-1.35 6.15,-3.45 8.25,-3.15 10.95,0.05 9.95,1.15 -5.95,3.45 -8.45,2.65 -10.95,-0.65"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -64.40937 15.8916)" clip-path="url(#CLIPPATH_107264)">
+<clipPath id="CLIPPATH_107264">
+<path transform="matrix(1 0 0 1 56.6 -9.65) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.6,-1.25 6.1,-3.35 8.2,-3.15 11,-0.05 10.1,1.15 -5.8,3.35 -8.3,2.65 -11,-0.55"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -36.5807 10.9229)" clip-path="url(#CLIPPATH_107265)">
+<clipPath id="CLIPPATH_107265">
+<path transform="matrix(1 0 0 1 33.8 -6.55) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.8,-1.15 6,-3.25 8.1,-3.05 11.1,-0.05 10.2,1.05 -5.7,3.25 -8.3,2.55 -11.1,-0.45"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -8.75203 5.95419)" clip-path="url(#CLIPPATH_107266)">
+<clipPath id="CLIPPATH_107266">
+<path transform="matrix(1 0 0 1 11 -3.45) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.9,-1.05 5.9,-3.15 8,-2.95 11.2,-0.15 10.3,0.95 -5.6,3.15 -8.2,2.55 -11.2,-0.45"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 19.0154 0.98702)" clip-path="url(#CLIPPATH_107267)">
+<clipPath id="CLIPPATH_107267">
+<path transform="matrix(1 0 0 1 -11.75 -0.35) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-9.95,-0.95 5.75,-3.05 8.05,-2.95 11.25,-0.15 10.45,0.85 -5.45,3.05 -8.05,2.45 -11.25,-0.35"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 46.84407 -3.98167)" clip-path="url(#CLIPPATH_107268)">
+<clipPath id="CLIPPATH_107268">
+<path transform="matrix(1 0 0 1 -34.55 2.75) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.05,-0.95 5.65,-2.95 7.95,-2.85 11.35,-0.25 10.65,0.75 -5.25,2.95 -8.05,2.45 -11.35,-0.25"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 74.67114 -9.01927)" clip-path="url(#CLIPPATH_107269)">
+<clipPath id="CLIPPATH_107269">
+<path transform="matrix(1 0 0 1 -57.35 5.9) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.15,-0.8 5.55,-2.9 7.85,-2.7 11.45,-0.2 10.75,0.7 -5.15,2.9 -7.95,2.4 -11.45,-0.2"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 102.43856 -13.98644)" clip-path="url(#CLIPPATH_107270)">
+<clipPath id="CLIPPATH_107270">
+<path transform="matrix(1 0 0 1 -80.1 9) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-10.2,-0.7 5.5,-2.8 7.8,-2.7 11.5,-0.3 10.9,0.6 -5,2.8 -7.8,2.4 -11.5,-0.1"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 130.26883 -18.88625)" clip-path="url(#CLIPPATH_107271)">
+<clipPath id="CLIPPATH_107271">
+<path transform="matrix(1 0 0 1 -102.9 12.05) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.4,-0.65 5.4,-2.75 7.7,-2.65 11.6,-0.45 11,0.45 -4.9,2.75 -7.8,2.25 -11.6,-0.05"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 158.15875 -23.85648)" clip-path="url(#CLIPPATH_107272)">
+<clipPath id="CLIPPATH_107272">
+<path transform="matrix(1 0 0 1 -125.75 15.15) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.55,-0.55 5.25,-2.65 7.55,-2.55 11.65,-0.45 11.05,0.45 -4.85,2.65 -7.75,2.25 -11.65,-0.05"/>
+</g>
+<g transform="matrix(1.16289 -0.02903 0.03203 1.37792 -143.63569 42.68622)" clip-path="url(#CLIPPATH_107273)">
+<clipPath id="CLIPPATH_107273">
+<path transform="matrix(1 0 0 1 122.35 -27.65) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-9.95,-1.35 7.15,-3.75 9.25,-3.55 11.45,-0.05 10.35,1.15 -6.85,3.75 -9.25,2.95 -11.45,-0.55"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -114.53533 37.06535)" clip-path="url(#CLIPPATH_107274)">
+<clipPath id="CLIPPATH_107274">
+<path transform="matrix(1 0 0 1 97.9 -24.1) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.9,-1.1 7.7,-3.8 9.8,-3.6 12.3,-0.2 11.2,1 -7.5,3.8 -10,3 -12.3,-0.4"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 -86.53093 31.74758)" clip-path="url(#CLIPPATH_107275)">
+<clipPath id="CLIPPATH_107275">
+<path transform="matrix(1 0 0 1 74.95 -20.75) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-8.75,-1.35 5.35,-3.35 7.55,-3.15 10.15,0.05 9.05,1.25 -5.15,3.35 -7.75,2.65 -10.15,-0.65"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 2.06439 15.19735)" clip-path="url(#CLIPPATH_107276)">
+<clipPath id="CLIPPATH_107276">
+<path transform="matrix(1 0 0 1 2.35 -10.35) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-57.85,5.65 53.55,-10.25 55.75,-10.15 59.25,-7.55 58.45,-6.55 -53.95,10.25 -56.55,9.55 -59.25,6.35"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 92.11054 -2.21632)" clip-path="url(#CLIPPATH_107277)">
+<clipPath id="CLIPPATH_107277">
+<path transform="matrix(1 0 0 1 -71.45 0.65) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-10.85,-0.55 6.25,-3.05 8.55,-2.95 12.15,-0.45 11.45,0.55 -5.85,3.05 -8.65,2.55 -12.15,0.05"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 127.08092 -8.39732)" clip-path="url(#CLIPPATH_107278)">
+<clipPath id="CLIPPATH_107278">
+<path transform="matrix(1 0 0 1 -98.1 4.5) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(27,39,52)" points="-12.5,-0.3 7.6,-3.2 9.9,-3.1 13.7,-0.8 13.1,0.2 -7.2,3.2 -10,2.7 -13.7,0.3"/>
+</g>
+<g transform="matrix(1.22491 -0.03058 0.03203 1.37792 163.81941 -14.96715)" clip-path="url(#CLIPPATH_107279)">
+<clipPath id="CLIPPATH_107279">
+<path transform="matrix(1 0 0 1 -126.2 8.6) translate(-284, -696)" stroke-linecap="round" d="M 120 685 L 392 659 L 448 687 L 148 733 Z"/>
+</clipPath>
+<polygon style="stroke: rgb(52,66,80); stroke-width: 0.8; stroke-linejoin: round; fill: rgb(23,34,46)" points="-12.6,-0.2 7.4,-3.1 9.8,-3 13.8,-0.8 13.2,0.1 -7,3.1 -9.9,2.7 -13.8,0.4"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g data-editor-group="true" transform="matrix(1 0 0 1 1420.26 470.03589)">
+<g style="">
+<path style="stroke: rgb(73,50,34); stroke-width: 1.5; fill: rgb(48,35,27)" stroke-linecap="round" d="M-16.2 186.525L16.2 186.525 16.2 236.025-16.2 236.025Z"/>
+<g transform="matrix(0.9 0 0 0.9 0 -27.675)"><linearGradient xmlns="http://www.w3.org/2000/svg" id="SVGID_100055" gradientUnits="objectBoundingBox" gradientTransform="matrix(1 0 0 1 0 0)" x1="0" y1="0" x2="0.8" y2="1">
+<stop offset="0%" style="stop-color:rgba(16,67,47,1);"/>
+<stop offset="48%" style="stop-color:rgba(9,43,32,1);"/>
+<stop offset="100%" style="stop-color:rgba(4,24,15,1);"/>
+</linearGradient><path transform=" translate(-150, -268)" style="stroke: rgb(24,61,44); stroke-width: 2.2; stroke-linejoin: round; fill: url(#SVGID_100055)" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" d="M 150 26 C 139 56 132 75 115 103 L 137 98 C 121 124 103 151 82 178 L 116 170 C 98 193 77 222 56 247 L 100 240 C 79 266 52 296 30 325 L 88 320 C 67 345 38 380 12 404 L 83 398 C 59 426 28 455 0 480 C 38 492 78 490 106 483 L 106 510 L 194 510 L 194 483 C 222 490 262 492 300 480 C 272 455 241 426 217 398 L 288 404 C 277.16531 393.99875 265.80966 382.0873 254.72906 369.78532 C 239.21955 352.56623 224.24891 334.58203 212 320 L 270 325 C 248 296 221 266 200 240 L 244 247 C 223 222 202 193 184 170 L 218 178 C 197 151 179 124 163 98 L 185 103 C 168 75 161 56 150 26 Z"/></g>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-27.5-188.875Q-0.7143-176.0179 27.9-187.515"/>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-46.25-132.625Q0-104.175 41.25-132.625"/>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-65-76.375Q0-41.175 60-76.375"/>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-90-1.375Q0 25.425 85-7.625"/>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-99.2857 67.375Q0 96.525 97.5 67.375"/>
+<path style="stroke: rgb(36,88,61); stroke-width: 3.2; stroke-linecap: round; fill: none; opacity: 0.9" stroke-linecap="round" d="M-109.965 139.6125Q0.0003 167.5125 109.9656 139.6125"/>
+<path style="stroke: rgb(193,138,66); stroke-width: 2.5; stroke-linecap: round; fill: none" stroke-linecap="round" d="M22.5-195.125C22.5-195.125-27.5-157.625-27.5-157.625-27.5-157.625 40.4844-127.9926 50.7143-126.375 40.4844-127.9926-65.0001-76.3747-65.0001-76.3747-65.0001-76.3747 71.2679-12.84 71.2679-12.84 71.2679-12.84-83.7501 48.6256-83.7501 48.6256-83.7501 48.6256 84.9998 113.9829 84.9998 113.9829 29.8694 132.0294-62.4811 146.8878-134.6631 160.8176"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-13.5" cy="-164.475" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-13.5" cy="-164.475" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="29.7" cy="-138.375" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="29.7" cy="-138.375" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="3.6" cy="-109.575" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="3.6" cy="-109.575" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-39.6" cy="-87.975" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-39.6" cy="-87.975" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-4.5" cy="-51.975" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-4.5" cy="-51.975" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="46.8" cy="-31.275" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="46.8" cy="-31.275" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="0.9" cy="6.525" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="0.9" cy="6.525" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-59.4" cy="29.025" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-59.4" cy="29.025" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-6.3" cy="61.425" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-6.3" cy="61.425" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="54.9" cy="83.925" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="54.9" cy="83.925" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="13.5" cy="119.925" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="13.5" cy="119.925" r="2.52"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.18" cx="-72" cy="143.325" r="6.3"/>
+<circle style="stroke: rgb(245,192,108); stroke-width: 0.6; fill: rgb(255,220,145)" cx="-72" cy="143.325" r="2.52"/>
+<path style="stroke: rgb(214,166,82); stroke-width: 1.8; fill: rgb(0,0,0)" stroke-linecap="round" d="M-33.3-76.275L-33.3-69.975"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.12" cx="-33.3" cy="-59.175" r="10.8"/>
+<circle style="stroke: rgb(138,94,54); stroke-width: 1.4; fill: rgb(185,37,42)" cx="-33.3" cy="-62.775" r="7.2"/>
+<ellipse style="fill: rgb(255,242,208); opacity: 0.48" cx="-35.46" cy="-65.295" rx="1.62" ry="1.98"/>
+<path style="stroke: rgb(214,166,82); stroke-width: 1.8; fill: rgb(0,0,0)" stroke-linecap="round" d="M51.3-20.475L51.3-14.175"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.12" cx="51.3" cy="-3.375" r="10.8"/>
+<circle style="stroke: rgb(138,94,54); stroke-width: 1.4; fill: rgb(183,125,50)" cx="51.3" cy="-6.975" r="7.2"/>
+<ellipse style="fill: rgb(255,242,208); opacity: 0.48" cx="49.14" cy="-9.495" rx="1.62" ry="1.98"/>
+<path style="stroke: rgb(214,166,82); stroke-width: 1.8; fill: rgb(0,0,0)" stroke-linecap="round" d="M-64.8 42.525L-64.8 48.825"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.12" cx="-64.8" cy="59.625" r="10.8"/>
+<circle style="stroke: rgb(138,94,54); stroke-width: 1.4; fill: rgb(185,37,42)" cx="-64.8" cy="56.025" r="7.2"/>
+<ellipse style="fill: rgb(255,242,208); opacity: 0.48" cx="-66.96" cy="53.505" rx="1.62" ry="1.98"/>
+<path style="stroke: rgb(214,166,82); stroke-width: 1.8; fill: rgb(0,0,0)" stroke-linecap="round" d="M67.5 96.525L67.5 102.825"/>
+<circle style="fill: rgb(255,199,107); opacity: 0.12" cx="67.5" cy="113.625" r="10.8"/>
+<circle style="stroke: rgb(138,94,54); stroke-width: 1.4; fill: rgb(183,125,50)" cx="67.5" cy="110.025" r="7.2"/>
+<ellipse style="fill: rgb(255,242,208); opacity: 0.48" cx="65.34" cy="107.505" rx="1.62" ry="1.98"/>
+<path style="stroke: rgb(135,97,44); stroke-width: 2; fill: rgb(16,25,35)" stroke-linecap="round" d="M-33.3 231.525L33.3 231.525 23.4 262.125Q0 271.125-23.4 262.125Z"/>
+<ellipse style="stroke: rgb(135,97,44); stroke-width: 1.5; fill: rgb(23,34,45)" cx="0" cy="232.425" rx="33.3" ry="5.4"/>
+<path style="stroke: rgb(255,224,160); stroke-width: 2; fill: rgb(255,196,93)" stroke-linecap="round" d="M0-268.875L8.1-252.675 26.1-249.975 12.6-237.375 16.2-220.275 0-229.275-16.2-220.275-12.6-237.375-26.1-249.975-8.1-252.675Z"/>
+<path style="fill: rgb(255,223,145)" stroke-linecap="round" d="M0-262.575L5.4-249.075 18.9-248.175 9-239.175 11.7-226.575 0-232.875-11.7-226.575-9-239.175-18.9-248.175-5.4-249.075Z"/>
+</g>
+</g>
+</svg>
