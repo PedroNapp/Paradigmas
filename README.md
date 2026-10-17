@@ -2,7 +2,7 @@
 
 Plataforma web do evento FlashClip, voltada à divulgação da programação e dos cursos, apresentação de instrutores e parceiros, cadastro de participantes e gerenciamento de matrículas.
 
-> **Estado documentado:** 17/10/2026. Este documento foi elaborado por inspeção dos arquivos presentes no pacote do projeto. As páginas e chamadas ao Supabase foram analisadas no código, mas não foi feita uma execução de ponta a ponta com o banco de dados real; portanto, a configuração e as permissões do Supabase precisam ser confirmadas no painel do projeto.
+> **Estado documentado:** 17/10/2026. Este documento foi elaborado por inspeção dos arquivos presentes no pacote do projeto. As páginas e chamadas ao Supabase foram analisadas no código, mas não foi feita uma execução de ponta a ponta com o banco de dados real; portanto, a configuração e as permissões do Supabase precisam ser confirmadas no painel do projeto foi usado IA para fazer um resumo doque ja foi feito.
 
 ## Índice
 
@@ -319,7 +319,6 @@ Estes itens foram observados na inspeção dos arquivos e devem ser tratados com
 ## Checklist antes de colocar em produção
 
 - [ ] Corrigir os links internos quebrados e os caminhos de redirecionamento para login.
-- [ ] Confirmar o esquema real das tabelas no Supabase e padronizar os identificadores usados no painel administrativo.
 - [ ] Definir como `usuarios` será associado ao UUID de `auth.users` e garantir que o cadastro crie/recupere esse perfil de forma consistente.
 - [ ] Definir o valor padrão e os estados válidos de `matriculas.status`.
 - [ ] Revisar e testar RLS para visitante, participante e administrador.
