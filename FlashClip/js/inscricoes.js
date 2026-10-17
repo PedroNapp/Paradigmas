@@ -95,6 +95,9 @@ async function carregarInscricoes() {
     return;
   }
 
+  // Remove o carregamento estático inicial, se existir.
+  listaInscricoes.replaceChildren();
+
   try {
     // ===============================
     // VERIFICAR LOGIN
@@ -143,8 +146,7 @@ async function carregarInscricoes() {
 
     const { data: matriculas, error } = await clienteSupabase
       .from("matriculas")
-      .select(
-        `
+      .select(`
         idMatricula,
         dataInscricao,
         idCurso,
@@ -153,11 +155,9 @@ async function carregarInscricoes() {
           descricao,
           periodo,
           sala,
-          status,
           imagem
         )
-      `,
-      )
+      `)
       .eq("idUsuario", usuario.idUsuario)
       .order("dataInscricao", {
         ascending: false,
@@ -184,10 +184,9 @@ async function carregarInscricoes() {
     // MONTAR OS CARDS
     // ===============================
 
-    listaInscricoes.innerHTML = "";
+    listaInscricoes.replaceChildren();
 
     matriculas.forEach(function (matricula) {
-      // O relacionamento pode chegar como objeto ou array.
       const curso = Array.isArray(matricula.cursos)
         ? matricula.cursos[0]
         : matricula.cursos;
@@ -207,20 +206,19 @@ async function carregarInscricoes() {
       );
 
       const periodo = escaparHTML(curso.periodo || "Não informado");
-
       const sala = escaparHTML(curso.sala ?? "A definir");
-
       const status = escaparHTML(curso.status || "Não informado");
 
-      const dataInscricao = escaparHTML(formatarData(matricula.dataInscricao));
+      const dataInscricao = escaparHTML(
+        formatarData(matricula.dataInscricao),
+      );
 
       const imagem = montarImagem(curso.imagem);
 
       const card = document.createElement("article");
-
       card.className = "card-inscricao";
 
-      card.innerHTML = card.innerHTML = `
+      card.innerHTML = `
         <div class="info-curso-inscricao">
 
           <div class="curso-cabecalho-inscricao">
@@ -236,10 +234,6 @@ async function carregarInscricoes() {
               <h2>${nomeCurso}</h2>
               <p>${descricao}</p>
             </div>
-
-            <span class="status-inscricao">
-              ${status}
-            </span>
 
           </div>
 
@@ -277,8 +271,7 @@ async function carregarInscricoes() {
         </div>
       `;
 
-      // Se a imagem do curso ou a imagem padrão falhar,
-      // o cartão continua funcionando sem imagem.
+      // Imagem alternativa caso a imagem do curso falhe.
       const imagemElemento = card.querySelector("img");
 
       imagemElemento.addEventListener("error", function () {
@@ -294,7 +287,7 @@ async function carregarInscricoes() {
       listaInscricoes.appendChild(card);
     });
 
-    // Todos os registros podem existir sem um curso relacionado.
+    // Verifica se algum card foi montado.
     if (!listaInscricoes.children.length) {
       mostrarEstado(
         "Não foi possível mostrar suas inscrições",

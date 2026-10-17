@@ -1,17 +1,15 @@
+/* =====================================
+   RESET E CENÁRIO NATALINO
+===================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-/* =====================================
-   CENÁRIO NATALINO — MATRÍCULA
-===================================== */
-
 body {
     background-color: #03070c;
-
     background-image: url("../imagens/cenario-matricula.svg");
     background-size: cover;
     background-position: center;
@@ -19,26 +17,23 @@ body {
     background-attachment: fixed;
 }
 
-
-
 /* =====================================
-   HEADER ESPECIAL DE NATAL
+   CABEÇALHO / NAVEGAÇÃO
 ===================================== */
 
 .navbar.navbar-matricula {
     position: relative;
     z-index: 5;
 
-    width: 100%;
-    min-height: 82px;
-    height: auto;
-
-    padding: 14px clamp(20px, 5vw, 72px);
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+
+    width: 100%;
+    min-height: 82px;
+    height: auto;
+    padding: 14px clamp(20px, 5vw, 72px);
 
     background: linear-gradient(
         180deg,
@@ -61,11 +56,9 @@ body {
 
 .navbar-matricula .logo img {
     display: block;
-
     width: auto;
-    height: 44px;
     max-width: 190px;
-
+    height: 44px;
     object-fit: contain;
 }
 
@@ -77,11 +70,10 @@ body {
 
     padding: 10px 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    border-radius: 999px;
-
     background: rgba(8, 15, 22, 0.7);
     color: #c5ced9;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 999px;
 
     font-size: 13px;
     text-decoration: none;
@@ -94,9 +86,9 @@ body {
 }
 
 .navbar-matricula .voltar-seta {
+    margin-top: -3px;
     color: #f5bd3d;
     font-size: 20px;
-    margin-top: -3px;
     line-height: 1;
     transition: transform 0.2s ease;
 }
@@ -112,21 +104,35 @@ body {
     transform: translateX(-3px);
 }
 
+/* =====================================
+   ESTRUTURA E CARD PRINCIPAL
+===================================== */
+
 .pagina-matricula {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+
+    flex: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 45px 20px;
 }
 
 .card-matricula {
-    width: 100%;
-    max-width: 550px;
-    background: #161d25;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 35px;
+    width: min(100%, 620px);
+    padding: clamp(24px, 4vw, 34px);
+
+    background: rgba(4, 12, 20, 0.93);
+    border: 1px solid rgba(83, 110, 132, 0.48);
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.42),
+        0 0 35px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .card-matricula h1 {
@@ -134,11 +140,58 @@ body {
     font-size: 28px;
 }
 
+/* =====================================
+   CABEÇALHO DO CONTEÚDO
+===================================== */
+
+.cabecalho-matricula {
+    margin-bottom: 26px;
+}
+
+.categoria-matricula {
+    display: block;
+    margin-bottom: 12px;
+
+    color: #f5bd3d;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.cabecalho-matricula h1 {
+    margin: 0;
+    color: #f7f9fc;
+
+    font-size: clamp(30px, 4vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+}
+
+.cabecalho-matricula p {
+    margin-top: 12px;
+    color: #aebccc;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* =====================================
+   INFORMAÇÕES E IDENTIFICAÇÃO DO CURSO
+===================================== */
+
 .info-curso {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    width: 100%;
+    min-width: 0;
     margin-bottom: 25px;
+    padding: 20px;
+
+    background: rgba(2, 10, 17, 0.48);
+    border: 1px solid rgba(67, 91, 111, 0.42);
+    border-radius: 16px;
 }
 
 .info-curso h2 {
@@ -155,140 +208,23 @@ body {
     font-size: 14px;
 }
 
-#botaoConfirmar {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 8px;
-    background: #f5bd3d;
-    color: #111;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-#botaoConfirmar:hover {
-    opacity: 0.85;
-}
-
-
-/* =====================================
-   PÁGINA DE MATRÍCULA
-===================================== */
-
-.pagina-matricula {
-    flex: 1;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 45px 20px;
-}
-
-/* =====================================
-   CARD PRINCIPAL
-===================================== */
-
-.card-matricula {
-    width: min(100%, 620px);
-    padding: clamp(24px, 4vw, 34px);
-
-    background: rgba(4, 12, 20, 0.93);
-
-    border: 1px solid rgba(83, 110, 132, 0.48);
-    border-radius: 20px;
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.42),
-        0 0 35px rgba(0, 0, 0, 0.15);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-}
-
-/* =====================================
-   CABEÇALHO
-===================================== */
-
-.cabecalho-matricula {
-    margin-bottom: 26px;
-}
-
-.categoria-matricula {
-    display: block;
-
-    margin-bottom: 12px;
-
-    color: #f5bd3d;
-
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.cabecalho-matricula h1 {
-    margin: 0;
-
-    color: #f7f9fc;
-
-    font-size: clamp(26px, 4vw, 34px);
-    line-height: 1.15;
-    letter-spacing: -0.8px;
-}
-
-.cabecalho-matricula p {
-    margin-top: 12px;
-
-    color: #aebccc;
-
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* =====================================
-   CARD INTERNO DO CURSO
-===================================== */
-
-.info-curso {
-    width: 100%;
-    min-width: 0;
-
-    padding: 20px;
-
-    background: rgba(2, 10, 17, 0.48);
-
-    border: 1px solid rgba(67, 91, 111, 0.42);
-    border-radius: 16px;
-}
-
-/* =====================================
-   NOME, IMAGEM E STATUS
-===================================== */
-
 .curso-cabecalho {
     display: grid;
-
     grid-template-columns: 80px minmax(0, 1fr) auto;
-
     align-items: center;
     gap: 16px;
 
     padding-bottom: 20px;
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .imagem-curso-matricula {
     display: block;
-
     width: 80px;
     height: 80px;
 
     object-fit: cover;
-
     background: #101b2a;
-
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 12px;
 }
@@ -299,27 +235,24 @@ body {
 
 .curso-identificacao h2 {
     margin: 0;
-
     color: #f7f9fc;
 
-    font-size: 25px;
+    font-size: 29px;
     line-height: 1.2;
     overflow-wrap: anywhere;
 }
 
 .curso-identificacao p {
     margin: 7px 0 0;
-
     color: #aebccc;
 
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.55;
     overflow-wrap: anywhere;
 }
 
 .periodo-curso {
     display: inline-block;
-
     margin-top: 9px;
 
     color: #8798aa;
@@ -339,24 +272,22 @@ body {
     border-radius: 999px;
 
     color: #e1f8ed;
-
-    font-size: 12px;
+    font-size: 14px;
     white-space: nowrap;
 }
 
 .status-curso-ponto {
+    flex-shrink: 0;
     width: 9px;
     height: 9px;
-    flex-shrink: 0;
 
     background: #42d991;
     border-radius: 50%;
-
     box-shadow: 0 0 10px rgba(66, 217, 145, 0.25);
 }
 
 /* =====================================
-   INFORMAÇÕES DO CURSO
+   DETALHES DO CURSO
 ===================================== */
 
 .detalhes-curso {
@@ -364,7 +295,6 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
     padding: 18px 0;
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
@@ -391,7 +321,6 @@ body {
 
 .icone-detalhe-curso {
     flex-shrink: 0;
-
     color: #f5bd3d;
     font-size: 27px;
     line-height: 1;
@@ -401,24 +330,20 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
-
     min-width: 0;
 }
 
 .texto-detalhe-curso small {
     color: #91a2b5;
-
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
 }
 
 .texto-detalhe-curso strong {
     color: #f1f5f9;
-
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-
     overflow-wrap: anywhere;
 }
 
@@ -432,10 +357,9 @@ body {
 
 .titulo-instrutores-matricula {
     margin-bottom: 15px;
-
     color: #b7c5d5;
 
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.3px;
 }
@@ -444,7 +368,6 @@ body {
     display: flex;
     align-items: center;
     gap: 13px;
-
     min-width: 0;
 }
 
@@ -459,9 +382,7 @@ body {
     height: 48px;
 
     object-fit: cover;
-
     background: #25384b;
-
     border: 2px solid #152332;
     border-radius: 50%;
 }
@@ -474,49 +395,61 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-
     min-width: 0;
 }
 
 .dados-instrutor-matricula strong {
     color: #f0f4f8;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-
     overflow-wrap: anywhere;
 }
 
 .dados-instrutor-matricula span {
     color: #94a5b7;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* =====================================
-   BOTÃO CONFIRMAR
+   BOTÕES
 ===================================== */
 
-.botao-confirmar {
+#botaoConfirmar {
     width: 100%;
-    min-height: 56px;
+    padding: 13px;
 
+    background: #f5bd3d;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#botaoConfirmar:hover {
+    opacity: 0.85;
+}
+
+.botao-confirmar {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
 
+    width: 100%;
+    min-height: 56px;
     margin-top: 22px;
     padding: 14px 20px;
 
     color: #111820;
     background: linear-gradient(110deg, #f5bd3d, #f9c85e);
-
     border: 1px solid rgba(255, 225, 155, 0.35);
     border-radius: 11px;
 
     font-family: inherit;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
-
     cursor: pointer;
 
     transition:
@@ -528,14 +461,12 @@ body {
 .seta-confirmar {
     font-size: 23px;
     line-height: 1;
-
     transition: transform 0.2s ease;
 }
 
 .botao-confirmar:hover:not(:disabled) {
     transform: translateY(-2px);
     filter: brightness(1.05);
-
     box-shadow: 0 8px 24px rgba(245, 189, 61, 0.12);
 }
 
@@ -554,12 +485,11 @@ body {
 }
 
 /* =====================================
-   CARREGAMENTO E ERROS
+   CARREGAMENTO E MENSAGENS
 ===================================== */
 
 .estado-carregamento {
     padding: 25px 10px;
-
     color: #aebccc;
     font-size: 14px;
     text-align: center;
@@ -571,237 +501,6 @@ body {
     line-height: 1.6;
 }
 
-/* =====================================
-   RESPONSIVIDADE
-===================================== */
-
-@media (max-width: 600px) {
-    .pagina-matricula {
-        align-items: flex-start;
-        padding: 28px 14px;
-    }
-
-    .card-matricula {
-        padding: 24px 18px;
-        border-radius: 16px;
-    }
-
-    .cabecalho-matricula {
-        margin-bottom: 22px;
-    }
-
-    .info-curso {
-        padding: 16px;
-    }
-
-    .curso-cabecalho {
-        grid-template-columns: 64px minmax(0, 1fr);
-        gap: 12px;
-        padding-bottom: 17px;
-    }
-
-    .imagem-curso-matricula {
-        width: 64px;
-        height: 64px;
-    }
-
-    .curso-identificacao h2 {
-        font-size: 21px;
-    }
-
-    .status-curso-matricula {
-        grid-column: 2;
-        justify-self: start;
-
-        padding: 7px 10px;
-        margin-top: -5px;
-
-        font-size: 11px;
-    }
-
-    .detalhes-curso {
-        gap: 0;
-        padding: 15px 0;
-    }
-
-    .detalhe-curso {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 7px;
-
-        padding: 0 8px;
-    }
-
-    .icone-detalhe-curso {
-        font-size: 23px;
-    }
-
-    .texto-detalhe-curso small {
-        font-size: 9px;
-    }
-
-    .texto-detalhe-curso strong {
-        font-size: 12px;
-    }
-
-    .instrutores-matricula {
-        padding-top: 17px;
-    }
-
-    .avatar-instrutor-matricula {
-        width: 42px;
-        height: 42px;
-    }
-
-    .botao-confirmar {
-        min-height: 52px;
-        margin-top: 18px;
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 390px) {
-    .detalhes-curso {
-        grid-template-columns: 1fr;
-        gap: 13px;
-    }
-
-    .detalhe-curso {
-        flex-direction: row;
-        align-items: center;
-
-        padding: 10px 0;
-    }
-
-    .detalhe-curso:first-child,
-    .detalhe-curso:last-child {
-        padding: 10px 0;
-    }
-
-    .detalhe-curso + .detalhe-curso {
-        border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .botao-confirmar,
-    .seta-confirmar {
-        transition: none;
-    }
-}
-
-
-/* =====================================
-   TIPOGRAFIA — AJUSTE FINAL
-===================================== */
-
-.cabecalho-matricula h1 {
-    font-size: clamp(30px, 4vw, 38px);
-}
-
-.cabecalho-matricula p {
-    font-size: 16px;
-}
-
-.categoria-matricula {
-    font-size: 13px;
-}
-
-.curso-identificacao h2 {
-    font-size: 29px;
-}
-
-.curso-identificacao p {
-    font-size: 16px;
-    line-height: 1.55;
-}
-
-.status-curso-matricula {
-    font-size: 14px;
-}
-
-.texto-detalhe-curso small {
-    font-size: 12px;
-}
-
-.texto-detalhe-curso strong {
-    font-size: 16px;
-}
-
-.titulo-instrutores-matricula {
-    font-size: 13px;
-}
-
-.dados-instrutor-matricula strong {
-    font-size: 16px;
-}
-
-.dados-instrutor-matricula span {
-    font-size: 15px;
-}
-
-.botao-confirmar {
-    font-size: 17px;
-}
-
-/* CELULAR */
-
-@media (max-width: 600px) {
-    .cabecalho-matricula h1 {
-        font-size: 30px;
-    }
-
-    .cabecalho-matricula p {
-        font-size: 15px;
-    }
-
-    .categoria-matricula {
-        font-size: 12px;
-    }
-
-    .curso-identificacao h2 {
-        font-size: 25px;
-    }
-
-    .curso-identificacao p {
-        font-size: 15px;
-    }
-
-    .status-curso-matricula {
-        font-size: 12px;
-    }
-
-    .texto-detalhe-curso small {
-        font-size: 11px;
-    }
-
-    .texto-detalhe-curso strong {
-        font-size: 15px;
-    }
-
-    .titulo-instrutores-matricula {
-        font-size: 12px;
-    }
-
-    .dados-instrutor-matricula strong {
-        font-size: 15px;
-    }
-
-    .dados-instrutor-matricula span {
-        font-size: 14px;
-    }
-
-    .botao-confirmar {
-        font-size: 16px;
-    }
-}
-
-
-/* =====================================
-   MENSAGENS DA MATRÍCULA
-===================================== */
-
 .mensagem-matricula {
     margin-bottom: 18px;
     padding: 13px 15px;
@@ -811,7 +510,6 @@ body {
 
     font-size: 14px;
     line-height: 1.6;
-
     animation: entrada-mensagem-matricula 0.25s ease both;
 }
 
@@ -835,18 +533,6 @@ body {
     color: #a7f3d0;
     background: rgba(0, 217, 130, 0.08);
     border-color: rgba(0, 217, 130, 0.25);
-}
-
-@keyframes entrada-mensagem-matricula {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* =====================================
@@ -897,7 +583,6 @@ body {
 
     width: 100%;
     max-width: 440px;
-
     padding: 30px;
     text-align: center;
 
@@ -914,8 +599,6 @@ body {
     transform: translateY(0) scale(1);
 }
 
-/* Ícone de confirmação */
-
 .transicao-matricula-icone {
     display: flex;
     align-items: center;
@@ -923,14 +606,12 @@ body {
 
     width: 74px;
     height: 74px;
-
     margin: 0 auto 24px;
-
-    border: 1px solid rgba(66, 217, 145, 0.45);
-    border-radius: 50%;
 
     background: rgba(0, 217, 130, 0.08);
     color: #42d991;
+    border: 1px solid rgba(66, 217, 145, 0.45);
+    border-radius: 50%;
 
     font-size: 38px;
 
@@ -943,7 +624,6 @@ body {
 
 .transicao-matricula-conteudo h2 {
     margin-bottom: 12px;
-
     color: #ffffff;
 
     font-size: clamp(27px, 5vw, 35px);
@@ -952,19 +632,14 @@ body {
 
 .transicao-matricula-conteudo p {
     color: #a6b2c1;
-
     font-size: 15px;
     line-height: 1.7;
 }
 
-/* Barra animada */
-
 .transicao-matricula-barra {
     width: 150px;
     height: 3px;
-
     margin: 28px auto 0;
-
     overflow: hidden;
 
     background: rgba(255, 255, 255, 0.09);
@@ -973,8 +648,8 @@ body {
 
 .transicao-matricula-barra::after {
     content: "";
-
     display: block;
+
     width: 40%;
     height: 100%;
 
@@ -986,6 +661,22 @@ body {
     );
 
     animation: progresso-matricula 0.9s ease-in-out infinite alternate;
+}
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes entrada-mensagem-matricula {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes confirmar-matricula {
@@ -1010,14 +701,168 @@ body {
     }
 }
 
-/* Acessibilidade */
+/* =====================================
+   MEDIA QUERIES — CELULAR E ACESSIBILIDADE
+   Mantidas todas no final do arquivo.
+===================================== */
+
+@media (max-width: 600px) {
+    .navbar.navbar-matricula {
+        min-height: 70px;
+        padding: 12px 18px;
+        gap: 12px;
+    }
+
+    .navbar-matricula .logo img {
+        max-width: 145px;
+        height: 36px;
+    }
+
+    .navbar-matricula .voltar-evento {
+        gap: 6px;
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    
+    .pagina-matricula {
+        align-items: flex-start;
+        padding: 28px 14px;
+    }
+
+    .card-matricula {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+
+    .cabecalho-matricula {
+        margin-bottom: 22px;
+    }
+
+    .cabecalho-matricula h1 {
+        font-size: 30px;
+    }
+
+    .cabecalho-matricula p {
+        font-size: 15px;
+    }
+
+    .categoria-matricula {
+        font-size: 12px;
+    }
+
+    .info-curso {
+        padding: 16px;
+    }
+
+    .curso-cabecalho {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 12px;
+        padding-bottom: 17px;
+    }
+
+    .imagem-curso-matricula {
+        width: 64px;
+        height: 64px;
+    }
+
+    .curso-identificacao h2 {
+        font-size: 25px;
+    }
+
+    .curso-identificacao p {
+        font-size: 15px;
+    }
+
+    .status-curso-matricula {
+        display: none;
+    }
+
+    .detalhes-curso {
+        gap: 0;
+        padding: 15px 0;
+    }
+
+    .detalhe-curso {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+        padding: 0 8px;
+    }
+
+    .icone-detalhe-curso {
+        font-size: 23px;
+    }
+
+    .texto-detalhe-curso small {
+        font-size: 11px;
+    }
+
+    .texto-detalhe-curso strong {
+        font-size: 15px;
+    }
+
+    .instrutores-matricula {
+        padding-top: 17px;
+    }
+
+    .titulo-instrutores-matricula {
+        font-size: 12px;
+    }
+
+    .avatar-instrutor-matricula {
+        width: 42px;
+        height: 42px;
+    }
+
+    .dados-instrutor-matricula strong {
+        font-size: 15px;
+    }
+
+    .dados-instrutor-matricula span {
+        font-size: 14px;
+    }
+
+    .botao-confirmar {
+        min-height: 52px;
+        margin-top: 18px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 390px) {
+    .detalhes-curso {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .detalhe-curso {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .detalhe-curso:first-child,
+    .detalhe-curso:last-child {
+        padding: 10px 0;
+    }
+
+    .detalhe-curso + .detalhe-curso {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+}
 
 @media (prefers-reduced-motion: reduce) {
+    .navbar-matricula .voltar-evento,
+    .navbar-matricula .voltar-seta,
+    .botao-confirmar,
+    .seta-confirmar,
     .mensagem-matricula,
     .transicao-matricula,
     .transicao-matricula-conteudo {
-        animation: none;
         transition: none;
+        animation: none;
     }
 
     .transicao-matricula-icone,
@@ -1025,4 +870,3 @@ body {
         animation: none;
     }
 }
-

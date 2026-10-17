@@ -85,13 +85,17 @@ body::before {
       rgba(255, 190, 72, 0.12),
       transparent 5px
     ),
-    radial-gradient(ellipse at 90% 0%, rgba(18, 65, 48, 0.22), transparent 62%);
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(18, 65, 48, 0.22),
+      transparent 62%
+    );
 
   pointer-events: none;
 }
 
 /* =====================================
-   HEADER
+   CABEÇALHO E NAVEGAÇÃO
 ===================================== */
 
 .navbar-inscricoes {
@@ -138,57 +142,6 @@ body::before {
 
   object-fit: contain;
 }
-
-/* Navegação */
-
-.navegacao-inscricoes {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-
-  min-width: 0;
-}
-
-.link-navegacao {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 55px;
-
-  color: var(--texto-secundario);
-  font-size: 14px;
-  text-decoration: none;
-  white-space: nowrap;
-
-  transition: color 0.2s ease;
-}
-
-.link-navegacao:hover {
-  color: #ffffff;
-}
-
-.link-navegacao.ativo {
-  color: var(--dourado);
-}
-
-.link-navegacao.ativo::after {
-  content: "";
-
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-
-  height: 2px;
-
-  background: var(--dourado);
-  box-shadow: 0 0 12px rgba(245, 189, 61, 0.18);
-}
-
-/* Botão voltar */
 
 .botao-voltar {
   display: inline-flex;
@@ -293,7 +246,7 @@ body::before {
 }
 
 /* =====================================
-   GRID DAS INSCRIÇÕES
+   LISTA E CARDS DE INSCRIÇÃO
 ===================================== */
 
 .lista-inscricoes {
@@ -302,10 +255,6 @@ body::before {
   align-items: stretch;
   gap: 20px;
 }
-
-/* =====================================
-   CARD DA INSCRIÇÃO
-===================================== */
 
 .card-inscricao {
   min-width: 0;
@@ -348,11 +297,11 @@ body::before {
   border-radius: 13px;
 }
 
-/* Cabeçalho interno: imagem, nome e status */
+/* Cabeçalho do curso: imagem, identificação e status */
 
 .curso-cabecalho-inscricao {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr) auto;
+  grid-template-columns: 80px minmax(0, 1fr);
   align-items: center;
   gap: 15px;
 
@@ -394,41 +343,6 @@ body::before {
   font-size: 14px;
   line-height: 1.5;
   overflow-wrap: anywhere;
-}
-
-/* Status da inscrição */
-
-.status-inscricao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-
-  max-width: 125px;
-  padding: 8px 11px;
-  flex-shrink: 0;
-
-  color: #73e7bc;
-  background: rgba(22, 190, 128, 0.12);
-  border: 1px solid rgba(22, 190, 128, 0.1);
-  border-radius: 999px;
-
-  font-size: 12px;
-  line-height: 1.35;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.status-inscricao::before {
-  content: "";
-
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-
-  background: var(--verde);
-  border-radius: 50%;
-  box-shadow: 0 0 9px rgba(41, 217, 154, 0.25);
 }
 
 /* Informações da matrícula */
@@ -561,7 +475,7 @@ body::before {
 }
 
 /* =====================================
-   FOOTER
+   RODAPÉ
 ===================================== */
 
 .footer-inscricoes {
@@ -652,9 +566,20 @@ body::before {
 }
 
 /* =====================================
-   TABLET
+   RESPONSIVIDADE
+   Todas as media queries ficam no final
 ===================================== */
 
+/* Telas médias: preserva os cards e evita que o status comprima o título */
+@media (max-width: 1200px) {
+  .curso-cabecalho-inscricao {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+}
+
+/* Tablet: dois cards por linha e informações internas mais compactas */
 @media (max-width: 1050px) {
   .navbar-conteudo {
     gap: 20px;
@@ -678,16 +603,33 @@ body::before {
     height: 70px;
   }
 
-  .status-inscricao {
-    grid-column: 2;
-    justify-self: start;
+  .curso-identificacao-inscricao h2 {
+    font-size: 19px;
+  }
+
+
+  .detalhe-inscricao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 0 7px;
+  }
+
+  .icone-detalhe-inscricao {
+    font-size: 21px;
+  }
+
+  .texto-detalhe-inscricao small {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .texto-detalhe-inscricao strong {
+    font-size: 12px;
   }
 }
 
-/* =====================================
-   CELULAR
-===================================== */
-
+/* Celular: um card por linha, status ao lado do nome quando houver espaço */
 @media (max-width: 650px) {
   .navbar-conteudo {
     min-height: 70px;
@@ -777,15 +719,6 @@ body::before {
     font-size: 13px;
   }
 
-  .status-inscricao {
-    padding: 7px 9px;
-    font-size: 11px;
-  }
-
-  .detalhes-inscricao {
-    gap: 0;
-    padding: 15px 0 5px;
-  }
 
   .detalhe-inscricao {
     flex-direction: column;
@@ -829,11 +762,23 @@ body::before {
   }
 }
 
-/* Celulares estreitos: informações em linhas */
-
+/* Celulares estreitos: informações em linhas para evitar aperto */
 @media (max-width: 390px) {
+  .pagina-inscricoes {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .info-curso-inscricao {
+    padding: 12px;
+  }
+
+  .curso-identificacao-inscricao h2 {
+    font-size: 18px;
+  }
+
   .detalhes-inscricao {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
 
@@ -856,10 +801,7 @@ body::before {
   }
 }
 
-/* =====================================
-   ACESSIBILIDADE
-===================================== */
-
+/* Acessibilidade: respeita a preferência por movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
