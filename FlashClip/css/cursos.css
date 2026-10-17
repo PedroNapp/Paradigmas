@@ -173,10 +173,12 @@ body {
 
     display: grid;
 
+    /* min(100%, ...) impede que a coluna fique maior
+       que o container em telas estreitas */
     grid-template-columns:
         repeat(
-            6,
-            minmax(0, 1fr)
+            auto-fit,
+            minmax(min(100%, 280px), 1fr)
         );
 
     gap: 22px;
@@ -185,23 +187,38 @@ body {
 }
 
 
-/* Cada card ocupa 2 das 6 colunas
-   = 3 cards por linha */
+/* Desktop: 6 colunas, cada card ocupa 2
+   = 3 cards por linha, com os 2 últimos centralizados.
+   Fica só aqui: fora desse intervalo o span e as
+   posições fixas criavam colunas implícitas e
+   estouravam a largura da página. */
 
-.card-curso {
-    grid-column: span 2;
-}
+@media (min-width: 1101px) {
+
+    .lista-cursos {
+
+        grid-template-columns:
+            repeat(
+                6,
+                minmax(0, 1fr)
+            );
+    }
 
 
-/* Centralizar os 2 últimos cards */
-
-.card-curso:nth-last-child(2) {
-    grid-column: 2 / span 2;
-}
+    .card-curso {
+        grid-column: span 2;
+    }
 
 
-.card-curso:last-child {
-    grid-column: 4 / span 2;
+    .card-curso:nth-last-child(2) {
+        grid-column: 2 / span 2;
+    }
+
+
+    .card-curso:last-child {
+        grid-column: 4 / span 2;
+    }
+
 }
 
 
@@ -211,6 +228,8 @@ body {
 ========================= */
 
 .card-curso {
+    position: relative;
+
     min-width: 0;
 
     display: flex;
@@ -237,8 +256,6 @@ body {
         transform 0.25s ease,
         border-color 0.25s ease,
         box-shadow 0.25s ease;
-
-    grid-column: span 2;
 }
 
 
@@ -1096,24 +1113,6 @@ body {
    RESPONSIVO
 ========================= */
 
-@media (max-width: 1100px) {
-
-    .lista-cursos {
-
-        grid-template-columns:
-            repeat(
-                auto-fit,
-                minmax(250px, 280px)
-            );
-
-        justify-content: center;
-    }
-
-}
-
-
-
-
 @media (max-width: 800px) {
 
     .cursos-intro {
@@ -1151,7 +1150,7 @@ body {
         grid-template-columns:
             repeat(
                 2,
-                minmax(240px, 1fr)
+                minmax(0, 1fr)
             );
 
         justify-content: center;
