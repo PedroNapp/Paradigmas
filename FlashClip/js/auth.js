@@ -13,18 +13,8 @@ const CHAVE_USUARIO = "flashclip_usuario";
 function irParaLogin() {
   const caminho = window.location.pathname;
 
-  const paginasInternas = [
-    "/programacao/",
-    "/sobre/",
-    "/patrocinadores/",
-    "/inscricoes/",
-    "/contato/",
-    "/matricula/",
-  ];
-
-  const estaDentroDePasta = paginasInternas.some(function (pagina) {
-    return caminho.includes(pagina);
-  });
+  // Todas as páginas internas ficam em /html/
+  const estaDentroDePasta = caminho.includes("/html/");
 
   if (estaDentroDePasta) {
     window.location.href = "../html/login.html";
