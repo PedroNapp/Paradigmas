@@ -8,6 +8,7 @@
     <title>FlashClip</title>
 <style id="fc-loading-critical">
 html.fc-loading body{overflow:hidden!important}
+html.fc-loaded-before #fc-loading{display:none!important}
 html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visibility:hidden!important}
 #fc-loading{position:fixed;inset:0;z-index:30000;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at 50% 42%,#124b3388,transparent 64%),#030508;color:#f2f2f2;text-align:center;overflow:auto;transition:opacity .4s ease;font-family:'Avenir Next','Trebuchet MS',Arial,sans-serif}
 #fc-loading[hidden]{display:none!important}
@@ -36,8 +37,11 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 <script id="fc-loading-bootstrap">
 (() => {
   const root=document.documentElement;
-  root.classList.add('fc-loading');root.dataset.loadState='loading';
-  const boot=window.FlashClipBoot={states:{},error:false,revealed:false,bypassed:false,timer:0,
+  // A tela de carregamento aparece só na primeira visita; ao voltar para a home, a página abre direto.
+  let loadedBefore=false;try{loadedBefore=sessionStorage.getItem('flashclip-carregado-v1')==='1';}catch{}
+  if(loadedBefore){root.classList.add('fc-loaded-before');root.dataset.loadState='ready';}
+  else{root.classList.add('fc-loading');root.dataset.loadState='loading';}
+  const boot=window.FlashClipBoot={states:{},error:false,revealed:loadedBefore,bypassed:false,timer:0,
     report(name,status='ready') {this.states[name]=status;window.dispatchEvent(new CustomEvent('fc:load-state'));},
     fail(reason) {
       if(this.revealed)return;
@@ -60,10 +64,10 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
   };
   document.addEventListener('click',event=>{if(event.target.closest('[data-loading-retry]'))location.reload();if(event.target.closest('[data-loading-continue]'))boot.continueLight();});
   window.addEventListener('error',event=>{const el=event.target;if(el?.tagName==='LINK'&&el.rel==='stylesheet')boot.fail('styles');if(el?.tagName==='SCRIPT'&&el.src)boot.fail('scripts');},true);
-  boot.timer=setTimeout(()=>{if(!boot.revealed)boot.fail('timeout');},45000);
+  if(!loadedBefore)boot.timer=setTimeout(()=>{if(!boot.revealed)boot.fail('timeout');},45000);
 })();
 </script>
-<script defer src="js/carregamento.js?v=loading-1"></script>
+<script defer src="js/carregamento.js?v=nav-1"></script>
 
     <link rel="stylesheet" href="./css/cabecalho.css" />
     <link rel="stylesheet" href="./css/home.css?v=pedro-1" />
@@ -73,8 +77,8 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-1">
     <link rel="stylesheet" href="css/globo.css?v=pedro-2">
     <link rel="stylesheet" href="css/entrada.css?v=pedro-3">
-    <link rel="stylesheet" href="css/experiencia.css?v=1">
-    <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+    <link rel="stylesheet" href="css/experiencia.css?v=2">
+    <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.min.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
     <script defer src="./notebooks/course-computers-loader.js?v=natal-3d-1"></script>
     <script type="module" src="js/globo.js?v=pedro-2"></script>
   </head>
@@ -82,7 +86,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
   <body class="natal-theme" data-lights="on">
     <section id="fc-loading" role="region" aria-label="Carregamento do FlashClip" aria-busy="true" data-state="loading">
       <div class="fc-loading-content">
-        <img class="fc-loading-logo" src="./imagens/logoFlash.png" width="146" height="50" alt="FlashClip">
+        <img class="fc-loading-logo" src="./imagens/logoFlash.webp" width="146" height="50" alt="FlashClip">
         <div class="fc-loading-orb" aria-hidden="true">
           <svg viewBox="0 0 70 85" fill="none"><path d="M35 15 21 38h8L17 57h36L41 38h8L35 15Z" fill="#183626" stroke="#f5bd3d" stroke-width="1.2"/><path d="M35 6v7m-3.5-3.5h7M35 58v10M17 70h36" stroke="#f5bd3d" stroke-width="1.4" stroke-linecap="round"/><circle class="fc-loading-flake" cx="13" cy="24" r="1.4" fill="#f2f2f2"/><circle class="fc-loading-flake" cx="57" cy="37" r="1.2" fill="#f2f2f2"/><circle class="fc-loading-flake" cx="21" cy="46" r="1" fill="#f2f2f2"/></svg>
         </div>
@@ -99,7 +103,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <!-- NAVBAR -->
     <header class="navbar">
       <a href="./index.html" class="logo">
-        <img src="./imagens/logoFlash.png" alt="FlashClip" />
+        <img src="./imagens/logoFlash.webp" alt="FlashClip" />
       </a>
 
       <nav class="nav-links">
@@ -217,7 +221,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
           <g clip-path="url(#fc-sphere)">
             <path d="M85 349Q268 440 458 321" stroke="#d6b974" stroke-width=".8" fill="none" opacity=".55"/>
             <path d="M111 214Q265 145 428 218" stroke="#c9d2dc" stroke-width=".5" fill="none" opacity=".2"/>
-            <image class="fc-emblem" href="./imagens/logo.png" x="172" y="164" width="196" height="239" preserveAspectRatio="xMidYMid meet"/>
+            <image class="fc-emblem" href="./imagens/logo.webp" x="172" y="164" width="196" height="239" preserveAspectRatio="xMidYMid meet"/>
             <path d="M149 204Q114 281 144 342" stroke="#f2f2f2" stroke-width="11" stroke-linecap="round" fill="none" opacity=".09"/>
             <path d="M399 336Q417 294 406 249" stroke="#f2f2f2" stroke-width="3" stroke-linecap="round" fill="none" opacity=".19"/>
             <ellipse cx="212" cy="164" rx="43" ry="15" fill="#f3e6c8" opacity=".08" transform="rotate(-31 212 164)"/>
@@ -470,7 +474,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
       <script defer src="js/natal.js"></script>
   <section class="fc-entry" id="abertura" hidden role="region" aria-label="Abertura interativa do FlashClip" data-entry-step="0">
   <div class="fc-entry-top">
-    <img src="./imagens/logoFlash.png" width="142" height="49" alt="FlashClip" />
+    <img src="./imagens/logoFlash.webp" width="142" height="49" alt="FlashClip" />
     <span>EDIÇÃO NATAL 2026</span>
   </div>
 
@@ -498,8 +502,8 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 
     <script defer src="js/entrada.js?v=loading-1"></script>
     <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
-    <script defer src="js/experiencia.js?v=1"></script>
-    <script defer src="js/audio-natal.js?v=audio-6"></script>
+    <script defer src="js/experiencia.js?v=2"></script>
+    <script defer src="js/audio-natal.js?v=audio-7"></script>
     <dialog class="fc-globe-dialog" aria-label="Explore o globo de neve" aria-modal="true"></dialog>
     </body>
 </html>

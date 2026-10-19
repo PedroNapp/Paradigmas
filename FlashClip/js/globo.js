@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { SnowPhysics } from './snow-physics.js';
 import { ShakeGesture } from './shake-gesture.js';
@@ -66,7 +67,7 @@ async function initGlobe() {
   const world = new THREE.Group(); world.position.y=-1.95;
   pivot.add(world); scene.add(pivot);
   const model = await Promise.race([
-    new GLTFLoader().loadAsync('./models/flashclip-natal.glb'),
+    new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync('./models/flashclip-natal.glb'),
     new Promise((_, reject) => setTimeout(() => reject(new Error('Tempo limite de carregamento do modelo.')), 20000))
   ]);
   if(cancelled())return;
@@ -84,7 +85,7 @@ async function initGlobe() {
   world.add(model.scene);
 
   // Logo oficial preservada como textura; a placa acompanha a base ao girar.
-  const logo = await new THREE.TextureLoader().loadAsync('./imagens/logoFlash.png');
+  const logo = await new THREE.TextureLoader().loadAsync('./imagens/logoFlash.webp');
   if(cancelled())return;
   logo.colorSpace=THREE.SRGBColorSpace;
   const plate = new THREE.Mesh(new THREE.PlaneGeometry(1.13,.39),new THREE.MeshBasicMaterial({map:logo,transparent:true,depthWrite:false}));
