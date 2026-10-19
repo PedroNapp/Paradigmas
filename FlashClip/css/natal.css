@@ -40,7 +40,6 @@ body.natal-theme {
 .fc-eyebrow { display: flex; align-items: center; gap: 12px; color: var(--fc-gold); font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
 .fc-eyebrow::before { content: ''; width: 27px; height: 1px; background: currentColor; }
 .fc-edition { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
-.fc-edition > span { font-size: 10px; letter-spacing: .14em; color: var(--fc-muted); }
 .fc-hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; min-height: 515px; gap: 0; }
 .fc-hero-copy { padding: 28px 0 40px; z-index: 2; }
 .fc-hero-copy h1 { background: none; -webkit-text-fill-color: currentColor; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(64px, 6.7vw, 105px); font-weight: 400; line-height: .98; letter-spacing: -.055em; margin: 0 0 28px; color: var(--fc-paper); }
@@ -103,9 +102,6 @@ body.natal-theme {
 .natal-theme .fc-home .parceiros-titulo span { justify-content: flex-start; font-size: 9px; letter-spacing: .18em; color: var(--fc-gold); }
 .natal-theme .fc-home .parceiros h2 { color: var(--fc-paper); font: 400 28px Georgia, serif; margin: 8px 0; }
 .natal-theme .fc-home .parceiros p { color: var(--fc-muted); font-size: 12px; max-width: 340px; }
-.natal-theme .fc-home .lista-parceiros { margin: 0; justify-content: flex-end; }
-.natal-theme .fc-home .parceiro { background: #11161b; padding: 18px 25px; border: 1px solid var(--fc-line); border-radius: 2px; box-shadow: none; min-width: 150px; }
-.natal-theme .fc-home .parceiro img { max-width: 145px; max-height: 55px; }
 .natal-theme .motivos { padding: 95px 7%; }
 .natal-theme .titulo-motivos, .natal-theme .titulo-cursos { text-align: left; max-width: none; margin: 0 0 45px; }
 .natal-theme .titulo-motivos > span, .natal-theme .titulo-cursos span { color: var(--fc-gold); font-size: 9px; letter-spacing: .18em; }
@@ -198,7 +194,6 @@ body.natal-theme {
 }
 @media (max-width: 700px) {
   .fc-hero { padding: 26px 6% 0; }
-  .fc-edition > span { font-size: 8px; }
   .fc-eyebrow { font-size: 8px; letter-spacing: .12em; gap: 8px; }
   .fc-eyebrow::before { width: 14px; }
   .fc-hero-grid { grid-template-columns: 1fr; gap: 0; }
@@ -223,7 +218,6 @@ body.natal-theme {
   .natal-theme .fc-home .sobre-categoria { margin: 0; }
   .natal-theme .fc-home .sobre h2 { max-width: 280px; }
   .natal-theme .fc-home .parceiros { grid-template-columns: 1fr; padding: 40px 7%; }
-  .natal-theme .fc-home .lista-parceiros { justify-content: flex-start; }
   .natal-theme .motivos { padding: 60px 7%; }
   .natal-theme .lista-motivos { display: grid; grid-template-columns: 1fr 1fr; }
   .natal-theme .card-motivo { padding: 25px 15px; border-bottom: 1px solid var(--fc-line); }

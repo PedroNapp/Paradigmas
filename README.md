@@ -95,6 +95,7 @@ FlashClip/
 │   └── admin.js                # Consultas e ações administrativas
 ├── css/                        # Folhas de estilo por página/componente
 │   ├── natal.css               # Tema de Natal da página inicial, na paleta escura
+│   ├── parceiros.css           # Quadro de parceiros da home (cartões presos por pins)
 │   ├── globo.css               # Globo de neve 3D da página inicial
 │   ├── entrada.css             # Abertura interativa (toques no globo, Papai Noel)
 │   ├── experiencia.css         # Botões magnéticos, transição entre telas e controles de áudio (todas as páginas)

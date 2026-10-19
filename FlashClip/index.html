@@ -66,12 +66,13 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 <script defer src="js/carregamento.js?v=loading-1"></script>
 
     <link rel="stylesheet" href="./css/cabecalho.css?v=2" />
-    <link rel="stylesheet" href="./css/home.css?v=pedro-1" />
+    <link rel="stylesheet" href="./css/home.css?v=pedro-2" />
     <link rel="stylesheet" href="./css/rodape.css" />
       <meta name="theme-color" content="#030508">
-    <link rel="stylesheet" href="css/natal.css?v=pedro-4">
+    <link rel="stylesheet" href="css/natal.css?v=pedro-6">
+    <link rel="stylesheet" href="css/parceiros.css?v=1">
     <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-1">
-    <link rel="stylesheet" href="css/globo.css?v=pedro-2">
+    <link rel="stylesheet" href="css/globo.css?v=pedro-4">
     <link rel="stylesheet" href="css/entrada.css?v=pedro-3">
     <link rel="stylesheet" href="./vendor/lenis/lenis.css" />
     <link rel="stylesheet" href="css/experiencia.css?v=3">
@@ -179,7 +180,6 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
   <div class="fc-snow" aria-hidden="true"><i style="--left:37.70%;--size:2.5px;--duration:24.8s;--delay:-5.8s"></i><i style="--left:87.17%;--size:2.1px;--duration:13.6s;--delay:-25.7s"></i><i style="--left:25.57%;--size:1.6px;--duration:18.9s;--delay:-15.9s"></i><i style="--left:12.44%;--size:2.2px;--duration:24.7s;--delay:-13.8s"></i><i style="--left:79.45%;--size:2.1px;--duration:24.5s;--delay:-4.9s"></i><i style="--left:35.87%;--size:1.9px;--duration:14.5s;--delay:-26.3s"></i><i style="--left:63.60%;--size:1.3px;--duration:21.2s;--delay:-11.2s"></i><i style="--left:18.94%;--size:1.4px;--duration:19.5s;--delay:-1.9s"></i><i style="--left:56.31%;--size:1.9px;--duration:14.8s;--delay:-23.6s"></i><i style="--left:4.05%;--size:1.4px;--duration:24.4s;--delay:-6.0s"></i><i style="--left:42.42%;--size:2.0px;--duration:19.1s;--delay:-13.3s"></i><i style="--left:50.47%;--size:1.9px;--duration:13.8s;--delay:-22.0s"></i><i style="--left:28.28%;--size:1.3px;--duration:18.7s;--delay:-22.0s"></i><i style="--left:62.88%;--size:1.8px;--duration:19.7s;--delay:-5.9s"></i><i style="--left:61.81%;--size:1.7px;--duration:13.9s;--delay:-3.5s"></i><i style="--left:9.26%;--size:2.2px;--duration:25.4s;--delay:-20.4s"></i><i style="--left:21.95%;--size:1.4px;--duration:26.3s;--delay:-10.1s"></i><i style="--left:16.72%;--size:2.0px;--duration:21.7s;--delay:-14.6s"></i><i style="--left:45.19%;--size:1.6px;--duration:19.9s;--delay:-12.4s"></i><i style="--left:68.13%;--size:1.8px;--duration:18.0s;--delay:-26.6s"></i><i style="--left:11.07%;--size:2.3px;--duration:18.8s;--delay:-21.7s"></i><i style="--left:70.82%;--size:2.0px;--duration:21.5s;--delay:-6.2s"></i><i style="--left:1.61%;--size:2.2px;--duration:16.6s;--delay:-3.0s"></i></div>
   <div class="fc-edition">
     <p class="fc-eyebrow">Tecnologia, encontros & Natal</p>
-    <span>EDIÇÃO 2026 / ULBRA PALMAS</span>
   </div>
   <div class="fc-hero-grid">
     <div class="fc-hero-copy">
@@ -192,7 +192,6 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     </div>
     <div class="fc-globe-dock">
       <div class="fc-globe-experience" id="globo-experiencia" role="region" aria-label="Globo de neve interativo">
-        <div class="fc-globe-heading"><span>FLASHCLIP · PEQUENOS UNIVERSOS</span></div>
         <div class="fc-globe-view" id="globo" tabindex="0" role="group" aria-label="Globo de neve 3D. Mova o mouse para girar; balance o cursor ou toque no globo para fazer nevar. Pelo teclado, use setas, espaço e Home." data-renderer="loading">
           <div class="fc-globe-fallback" aria-hidden="true"><svg viewBox="0 0 540 540" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -261,25 +260,43 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 <div class="fc-scroll-cue"><span>01 / Um encontro de possibilidades</span><a href="#parceiros">Explore o evento ↓</a></div>
 
       <!-- PARCEIROS -->
-      <section class="parceiros" id="parceiros">
+      <section class="parceiros partners-section" id="parceiros" aria-labelledby="parceiros-titulo">
         <div class="parceiros-titulo">
           <span>APOIO AO EVENTO</span>
-          <h2>Nossos Parceiros</h2>
-          <p>
-            Empresas que apoiam o FlashClip e acreditam no desenvolvimento da
-            tecnologia e da educação.
-          </p>
+          <h2 id="parceiros-titulo">Nossos Parceiros</h2>
         </div>
 
-        <div class="lista-parceiros">
-          <a
-            href="https://suainternet.com.br/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="parceiro"
-          >
-            <img src="https://i.ibb.co/nqCT8t9f/Logo.png" alt="Sua Internet" />
-          </a>
+        <!-- Quadro de parceiros (css/parceiros.css). Cada <li> é um cartão preso por um pin.
+             Novo parceiro: salve a logo em imagens/parceiros/ e troque um "Espaço disponível"
+             por um cartão como os de baixo. Logo branca: cartão verde; logo com fundo próprio
+             ou escura: acrescente partner-card--claro. Sem site, use <div> no lugar do <a>. -->
+        <div class="partners-board">
+          <ul class="partners-grid">
+            <li>
+              <a class="partner-card partner-card--principal" href="https://suainternet.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src="./imagens/parceiros/sua-internet.png" alt="SUA Internet" width="459" height="216" loading="lazy" />
+                <span class="partner-card__nova-aba">(abre em nova aba)</span>
+              </a>
+            </li>
+            <li>
+              <a class="partner-card" href="https://crptecnologia.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src="./imagens/parceiros/crp-tecnologia.png" alt="CRP Tecnologia" width="323" height="122" loading="lazy" />
+                <span class="partner-card__nova-aba">(abre em nova aba)</span>
+              </a>
+            </li>
+            <li>
+              <a class="partner-card partner-card--claro" href="https://instagram.com/postoipanemapmw" target="_blank" rel="noopener noreferrer">
+                <img src="./imagens/parceiros/posto-ipanema.png" alt="Posto Ipanema" width="996" height="516" loading="lazy" />
+                <span class="partner-card__nova-aba">(abre em nova aba)</span>
+              </a>
+            </li>
+            <li>
+              <div class="partner-card partner-card--vaga">
+                <span class="partner-card__mais" aria-hidden="true"></span>
+                <span class="partner-card__legenda">Espaço disponível</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 

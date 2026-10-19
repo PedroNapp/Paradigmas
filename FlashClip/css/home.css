@@ -793,75 +793,6 @@ h1 {
   line-height: 1.7;
 }
 
-.lista-parceiros {
-  max-width: 1100px;
-
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 25px;
-}
-
-.parceiro {
-  width: 300px;
-  height: 180px;
-
-  padding: 35px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: linear-gradient(
-    145deg,
-    rgba(22, 29, 37, 0.96),
-    rgba(8, 12, 16, 0.96)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 18px;
-
-  text-decoration: none;
-
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-
-  transition:
-    transform 0.25s,
-    border-color 0.25s,
-    background 0.25s,
-    box-shadow 0.25s;
-}
-
-.parceiro:hover {
-  transform: translateY(-6px);
-
-  border-color: #f5bd3d;
-
-  background: linear-gradient(
-    145deg,
-    rgba(28, 35, 43, 0.98),
-    rgba(10, 15, 20, 0.98)
-  );
-
-  box-shadow: 0 20px 50px rgba(245, 189, 61, 0.08);
-}
-
-.parceiro img {
-  max-width: 100%;
-  max-height: 100px;
-
-  object-fit: contain;
-
-  transition: transform 0.25s;
-}
-
-.parceiro:hover img {
-  transform: scale(1.05);
-}
-
 /* =========================
    POR QUE PARTICIPAR
 ========================= */
@@ -1938,16 +1869,6 @@ h1 {
     padding: 75px 5%;
   }
 
-  .lista-parceiros {
-    width: 100%;
-  }
-
-  .parceiro {
-    width: 100%;
-    max-width: 300px;
-
-    height: 160px;
-  }
 }
 
 /* =========================
@@ -2164,7 +2085,6 @@ main > section {
 .sobre-conteudo,
 .sobre-destaques,
 .parceiros-titulo,
-.lista-parceiros,
 .titulo-motivos,
 .lista-motivos,
 .titulo-cursos,
