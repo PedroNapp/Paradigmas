@@ -22,6 +22,7 @@
     message.textContent=!stages.globe?'Preparando o globo de neve…':!stages.sleigh?'Papai Noel está preparando o trenó…':!pageReady?'Preparando a imagem e os detalhes do evento…':'Ajustando as luzes para receber você…';
     if(!Object.values(stages).every(Boolean)||boot.states.scene!=='ready')return;
     boot.revealed=true;clearTimeout(boot.timer);
+    try{sessionStorage.setItem('flashclip-carregado-v1','1');}catch{}
     root.dataset.loadState='ready';overlay.setAttribute('aria-busy','false');
     root.classList.remove('fc-loading');overlay.classList.add('fc-loading-leaving');
     setTimeout(()=>{overlay.hidden=true;window.dispatchEvent(new CustomEvent('fc:preview-visible'));},reduced.matches?0:400);
