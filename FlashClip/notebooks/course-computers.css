@@ -1,0 +1,78 @@
+/* Notebooks 3D dos cards de curso, na paleta escura do FlashClip. */
+:root {
+  --fc-computer-base: #090d12;
+  --fc-computer-top: #161d25;
+  --fc-computer-glow: #2a333f75;
+  --fc-computer-accent: #f5bd3d;
+  --fc-computer-muted: #aeb4b8;
+  --fc-computer-frame: #222830;
+  --fc-computer-screen: #080d11;
+  --fc-computer-text: #f2f2f2;
+  --fc-computer-hint: #c9cdd1;
+  --fc-screen-glow: #1c2530;
+  --fc-screen-base: #05080b;
+  --fc-screen-muted: #a5abb0;
+  --fc-screen-rule: #f5bd3d35;
+  --fc-screen-text: #f2f2f2;
+}
+.cabecalho-curso:has(.fc-course-computer) {
+  height: auto;
+  min-height: 242px;
+  background: var(--fc-computer-base, #0b201a);
+  isolation: isolate;
+}
+.fc-course-computer { width: 100%; margin: 0; }
+.fc-computer-trigger {
+  position: relative;
+  display: block;
+  height: 242px;
+  min-width: 0;
+  overflow: hidden;
+  list-style: none;
+  cursor: pointer;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  background: radial-gradient(ellipse at 50% 76%, var(--fc-computer-glow, #36504775), transparent 65%), linear-gradient(155deg, var(--fc-computer-top, #1d352c), var(--fc-computer-base, #0b201a) 75%);
+}
+.fc-computer-trigger::-webkit-details-marker { display: none; }
+.fc-computer-trigger::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .23;
+  background: radial-gradient(circle at 14% 43%, var(--fc-computer-accent, #e6c88c) 0 .7px, transparent 1.5px), radial-gradient(circle at 86% 76%, var(--fc-computer-accent, #e6c88c) 0 .8px, transparent 1.5px);
+}
+.fc-computer-trigger:focus-visible { outline: 2px solid var(--fc-computer-accent, #e6c88c); outline-offset: -5px; }
+.fc-computer-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.fc-course-computer[data-renderer="webgl"] .fc-computer-canvas { opacity: 1; }
+.fc-computer-loading { position: absolute; inset: 0; display: none; place-content: center; justify-items: center; gap: 13px; color: var(--fc-computer-muted, #b5c4b6); font: 500 11px/1.5 'Avenir Next', Arial, sans-serif; pointer-events: none; }
+.fc-course-computer[data-renderer="pending"] .fc-computer-loading { display: grid; }
+.fc-computer-loading-ring { width: 27px; height: 27px; border: 1px solid color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 20%, transparent); border-top-color: var(--fc-computer-accent, #e6c88c); border-radius: 50%; animation: fc-computer-load 1.2s linear infinite; }
+.fc-course-computer[data-renderer="pending"] .fc-computer-hint { visibility: hidden; }
+.fc-computer-fallback { position: absolute; inset: 30px 16px 40px; display: none; place-items: center; pointer-events: none; }
+.fc-course-computer[data-renderer="fallback"] .fc-computer-fallback { display: grid; }
+@keyframes fc-computer-load { to { transform: rotate(360deg); } }
+.fc-computer-closed { width: min(100%, 310px); }
+.fc-computer-closed svg { display: block; width: 100%; }
+.fc-computer-fallback-open { display: none; width: 76%; height: 134px; border: 7px solid var(--fc-computer-frame, #2c3b35); border-bottom-width: 13px; border-radius: 8px; background: var(--fc-computer-screen, #091a16); color: var(--fc-computer-text, #f3eedf); box-shadow: 0 12px 25px #0004; align-items: center; justify-content: center; gap: 10px; flex-direction: column; }
+.fc-computer-fallback-open img { width: 58px; height: 58px; object-fit: contain; }
+.fc-computer-fallback-open b { font: 600 15px 'Avenir Next', Arial, sans-serif; }
+.fc-course-computer[open] .fc-computer-closed { display: none; }
+.fc-course-computer[open] .fc-computer-fallback-open { display: flex; }
+.fc-computer-hint { position: absolute; z-index: 1; left: 17px; right: 17px; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--fc-computer-hint, #d1d9c7); font: 500 10px/1.4 'Avenir Next', Arial, sans-serif; letter-spacing: .025em; pointer-events: none; }
+.fc-computer-toggle { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 25%, transparent); border-radius: 50%; color: var(--fc-computer-accent, #e6c88c); font-size: 14px; transition: transform .35s, background .35s; }
+.fc-course-computer[open] .fc-computer-toggle { transform: rotate(135deg); background: color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 5%, transparent); }
+.fc-computer-description { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cabecalho-curso:has(.fc-course-computer) .status-curso { z-index: 2; pointer-events: none; font-size: 8px; padding: 6px 9px; top: 12px; right: 12px; }
+@media (hover: hover) and (pointer: fine) {
+  .fc-computer-trigger:hover .fc-computer-toggle { background: color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 10%, transparent); }
+}
+@media (max-width: 480px) {
+  .cabecalho-curso:has(.fc-course-computer) { min-height: 230px; }
+  .fc-computer-trigger { height: 230px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-computer-toggle, .fc-computer-canvas { transition: none; }
+  .fc-computer-loading-ring { animation: none; }
+}

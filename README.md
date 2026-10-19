@@ -72,6 +72,8 @@ O painel está em `admin/admin.html` e utiliza `admin/admin.js` e `admin/admin.c
 | Supabase Database / PostgREST | Cursos, perfis, ministrantes e matrículas |
 | `localStorage` | Cache de dados de cursos/vagas e nome exibido do usuário |
 | SVG, PNG e JPG | Logos, ilustrações, imagens de cursos e avatares |
+| Three.js (local, em `vendor/three`, licença MIT) | Globo de neve, trenó e notebooks 3D dos cursos |
+| Web Audio API | Música e efeitos de Natal sintetizados no navegador, sem arquivos de áudio |
 
 Não foi encontrado no pacote um framework frontend, um gerenciador de pacotes, uma suíte de testes automatizados, um arquivo `.env`, nem scripts de migração/criação do banco.
 
@@ -81,11 +83,17 @@ Não foi encontrado no pacote um framework frontend, um gerenciador de pacotes, 
 FlashClip/
 ├── index.html                 # Página inicial
 ├── README.md                  # Esta documentação
+├── models/                   # Modelos 3D (.glb) do globo de neve e do trenó
+├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT) e scripts
+├── vendor/three/             # Three.js local (licença MIT)
 ├── admin/
 │   ├── admin.html              # Dashboard administrativo
 │   ├── admin.css               # Estilos do painel
 │   └── admin.js                # Consultas e ações administrativas
 ├── css/                        # Folhas de estilo por página/componente
+│   ├── natal.css               # Tema de Natal na paleta escura, usado em todas as páginas
+│   ├── globo.css               # Globo de neve 3D da página inicial
+│   ├── entrada.css             # Abertura interativa (toques no globo, Papai Noel)
 │   ├── cabecalho.css
 │   ├── rodape.css
 │   ├── home.css
@@ -114,6 +122,14 @@ FlashClip/
 │   └── faq.html
 ├── imagens/                    # Imagens, logos e ilustrações
 └── js/                         # Lógica do frontend
+    ├── carregamento.js         # Tela de carregamento e recuperação de falhas
+    ├── globo.js                # Globo de neve 3D (mouse, toque, teclado, chacoalhar)
+    ├── entrada.js              # Abertura com cinco toques e trenó
+    ├── abertura-3d.js          # Animação 3D do trenó na abertura
+    ├── audio-natal.js          # Música e efeitos sintetizados, liberados no toque
+    ├── natal.js                # Barra de progresso, revelações e detalhes do tema
+    ├── shake-gesture.js        # Detecta o gesto de chacoalhar
+    ├── snow-physics.js         # Física da neve dentro do globo
     ├── supabase.js             # Cliente/configuração Supabase compartilhada
     ├── auth.js                 # Sessão e nome do usuário no cabeçalho
     ├── cabecalho.js            # Menu mobile e sincronização do usuário
@@ -295,7 +311,7 @@ O projeto pode ser servido em hospedagem estática compatível com HTML/CSS/Java
 
 Antes de publicar:
 
-1. Confirme que `index.html`, `html/`, `css/`, `js/` e `imagens/` estão no diretório publicado e que a estrutura relativa foi preservada.
+1. Confirme que `index.html`, `html/`, `css/`, `js/`, `imagens/`, `models/`, `notebooks/` e `vendor/` estão no diretório publicado e que a estrutura relativa foi preservada. O 3D usa módulos JavaScript, então abra o site por um servidor (não por `file://`).
 2. Ajuste a URL do site e as URLs permitidas do Supabase Auth para o domínio publicado.
 3. Verifique os links relativos, pois alguns arquivos HTML apontam para caminhos que não existem na estrutura deste ZIP.
 4. Teste as páginas em um navegador com sessão iniciada e encerrada.
