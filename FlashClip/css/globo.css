@@ -11,7 +11,6 @@
 .fc-hero-grid { grid-template-columns: .85fr 1.4fr; min-height: 635px; margin-right: -5vw; }
 .fc-hero-copy { padding: 5px 0 32px; }
 .fc-hero-copy h1 { font-size: clamp(75px, 7.8vw, 122px); letter-spacing: -.065em; }
-.fc-hero-copy > p { max-width: 285px; font-size: 14px; }
 .fc-hero-copy .botoes { align-items: flex-start; flex-direction: column; gap: 12px; }
 .fc-globe-dock { min-width: 0; position: relative; }
 .fc-globe-experience { position: relative; width: 100%; isolation: isolate; }
@@ -68,7 +67,6 @@ body.fc-globe-open { overflow: hidden; }
   .fc-hero-copy h1 { font-size: clamp(62px, 14.5vw, 88px); margin-bottom: 20px; }
   .fc-hero-copy h1 br:nth-of-type(1) { display: none; }
   .fc-hero-copy h1 br:nth-of-type(1)::after { content: ' '; }
-  .fc-hero-copy > p { font-size: 13px; max-width: 290px; }
   .fc-hero-copy .botoes { flex-direction: row; align-items: center; gap: 17px; margin-top: 20px; flex-wrap: wrap; }
   .fc-globe-dock { width: calc(100% + 10vw); margin-top: 25px; }
   .fc-globe-view { height: 385px; }
@@ -102,7 +100,6 @@ body.fc-globe-open { overflow: hidden; }
   .fc-globe-dock { order: 1; margin-top: 8px; }
   .fc-globe-dialog .fc-globe-heading { justify-content: space-between; }
   .fc-globe-view { height: min(100vw, 430px); }
-  .fc-hero-copy > p { order: 2; text-align: center; margin: 25px 0 0; }
   .fc-hero-copy .botoes { order: 3; justify-content: center; margin-bottom: 10px; }
 }
 .fc-globe-dialog [data-replay-entry] { display: none; }

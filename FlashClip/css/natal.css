@@ -44,7 +44,6 @@ body.natal-theme {
 .fc-hero-copy { padding: 28px 0 40px; z-index: 2; }
 .fc-hero-copy h1 { background: none; -webkit-text-fill-color: currentColor; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(64px, 6.7vw, 105px); font-weight: 400; line-height: .98; letter-spacing: -.055em; margin: 0 0 28px; color: var(--fc-paper); }
 .fc-hero-copy h1 em { color: var(--fc-gold); font-weight: 400; }
-.fc-hero-copy > p { max-width: 340px; color: #c9cdd1; font-size: 14px; line-height: 1.85; }
 .fc-hero-copy .botoes { justify-content: flex-start; margin: 29px 0 0; gap: 22px; }
 .natal-theme .botao-principal, .natal-theme .botao-curso, .natal-theme .botao-contato {
   display: inline-flex; justify-content: center; align-items: center; gap: 24px;
@@ -54,6 +53,17 @@ body.natal-theme {
   box-shadow: none; transition: background .2s, translate .25s;
 }
 .natal-theme .botao-principal:hover, .natal-theme .botao-curso:hover, .natal-theme .botao-contato:hover { background: #ffd45e; color: #030508; translate: 0 -2px; }
+/* Botão do hero: pílula transparente com contorno dourado, magnética (experiencia.js); no hover o dourado entra da esquerda. */
+.natal-theme .fc-hero-copy .botao-principal {
+  border: 1px solid #f5bd3b; border-radius: 999px;
+  background: linear-gradient(#f5bd3b, #f5bd3b) left center / 0% 100% no-repeat transparent;
+  color: #f5bd3b;
+  transition: translate .45s cubic-bezier(.2, .9, .25, 1.3), background-size .35s cubic-bezier(.2, .8, .2, 1), color .25s, border-color .25s;
+}
+.natal-theme .fc-hero-copy .botao-principal.fc-atraido { transition: translate .12s linear, background-size .35s cubic-bezier(.2, .8, .2, 1), color .25s, border-color .25s; }
+.natal-theme .fc-hero-copy .botao-principal:hover { background-size: 100% 100%; color: #11130f; translate: var(--fc-mx, 0px) var(--fc-my, 0px); }
+.natal-theme .fc-hero-copy .botao-principal:focus-visible { outline: 2px solid #f5bd3b; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .natal-theme .fc-hero-copy .botao-principal { transition: none; } }
 .natal-theme .botao-secundario { background: transparent; border: 0; border-bottom: 1px solid var(--fc-line); color: var(--fc-paper); border-radius: 0; padding: 10px 0; text-decoration: none; font-size: 12px; }
 .fc-ornament-stage { position: relative; min-width: 0; width: 100%; height: 515px; display: grid; place-items: center; perspective: 900px; }
 .fc-scene { width: min(100%, 530px); aspect-ratio: 1; transform: translateY(calc(var(--fc-drift, 0) * -32px)) rotateX(var(--fc-rx, 0deg)) rotateY(var(--fc-ry, 0deg)); transition: transform .4s ease-out; will-change: transform; }
@@ -205,7 +215,6 @@ body.natal-theme {
   .fc-hero-grid { grid-template-columns: 1fr; gap: 0; }
   .fc-hero-copy { padding: 36px 0 0; }
   .fc-hero-copy h1 { font-size: clamp(56px, 13vw, 88px); max-width: 480px; margin-bottom: 22px; }
-  .fc-hero-copy > p { font-size: 13px; max-width: 320px; }
   .fc-hero-copy .botoes { gap: 24px; }
   .natal-theme .fc-hero .botao-principal { padding: 13px 18px; font-size: 12px; }
   .fc-ornament-stage { height: 360px; margin-top: 10px; }
