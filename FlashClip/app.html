@@ -34,14 +34,25 @@
         const telas = new Map();
         const ligadas = new WeakSet();
         let atual = null, pendente = null, pedido = 0;
+        // O GitHub Pages deixa o navegador guardar cada página por 10 minutos, e um F5 só renova
+        // a moldura. Cada abertura da moldura pede as telas com um ?fc= próprio: depois de um
+        // deploy, recarregar já traz as páginas novas. Dentro da mesma visita as telas ficam guardadas.
+        const VERSAO = Date.now().toString(36);
 
         // index.html e as páginas de html/ abrem na moldura; o resto (admin, outros sites) sai dela.
         function ehTela(url) {
           if (url.origin !== location.origin || !url.pathname.startsWith(raiz.pathname)) return false;
           return /^(index\.html|html\/[\w-]+\.html)?$/.test(url.pathname.slice(raiz.pathname.length));
         }
+        // A query da tela sem o ?fc= da moldura.
+        function busca(url) {
+          const parametros = new URLSearchParams(url.search);
+          parametros.delete("fc");
+          const texto = parametros.toString();
+          return texto ? `?${texto}` : "";
+        }
         function chaveDe(url) {
-          return (url.pathname.slice(raiz.pathname.length) || "index.html") + url.search;
+          return (url.pathname.slice(raiz.pathname.length) || "index.html") + busca(url);
         }
         function telaDe(janela) {
           for (const tela of telas.values()) if (tela.frame.contentWindow === janela) return tela;
@@ -59,7 +70,7 @@
         // Barra de endereço e título acompanham a tela, para voltar, recarregar ou compartilhar o link.
         function sincronizar(janela, modo = "replace") {
           const local = janela.location;
-          const endereco = `#${local.pathname.slice(raiz.pathname.length) || "index.html"}${local.search}${local.hash}`;
+          const endereco = `#${chaveDe(local)}${local.hash}`;
           if (modo === "push" && location.hash !== endereco) history.pushState(null, "", endereco);
           else history.replaceState(null, "", endereco);
           document.title = janela.document.title || "FlashClip";
@@ -118,7 +129,9 @@
             frame.addEventListener("load", () => { try { chegou(frame.contentWindow); } catch {} resolve(); });
             setTimeout(resolve, 8000);
           });
-          frame.src = url.href;
+          const endereco = new URL(url);
+          endereco.searchParams.set("fc", VERSAO);
+          frame.src = endereco.href;
           document.body.appendChild(frame);
           telas.set(chave, tela);
           return tela;
@@ -195,7 +208,7 @@
           // Links para outros sites (e para o painel admin) saem da moldura em vez de abrir dentro dela.
           if (!ehTela(url)) { link.target = "_top"; return; }
           const aqui = janela.location;
-          if (url.pathname === aqui.pathname && url.search === aqui.search && url.hash) return;
+          if (url.pathname === aqui.pathname && busca(url) === busca(aqui) && url.hash) return;
           evento.preventDefault();
           ir(url.href);
         }
