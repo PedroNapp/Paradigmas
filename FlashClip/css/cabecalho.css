@@ -24,91 +24,111 @@
 }
 
 /* =========================
-   LINHA TEMÁTICA
+   PISCA-PISCA
 ========================= */
+/*
+   O fio e as lâmpadas são desenhados
+   pelo cabecalho.js dentro deste SVG.
+*/
 
-.navbar::after {
-  content: "";
-
+.pisca-pisca {
   position: absolute;
 
   left: 0;
-  right: 0;
-  bottom: -1px;
+  top: calc(100% - 4px);
 
-  height: 2px;
+  width: 100%;
+  height: 26px;
 
-  background: linear-gradient(
-    90deg,
-    #008f5a 0%,
-    #008f5a 38%,
-    #d6a84f 50%,
-    #d6a84f 52%,
-    #d7192f 64%,
-    #d7192f 100%
-  );
+  overflow: visible;
 
-  background-size: 200% 100%;
-
-  animation: linhaNatal 7s ease-in-out infinite;
-
-  opacity: 0.75;
+  pointer-events: none;
 }
 
-/* pequeno brilho percorrendo a linha */
+/* fio */
 
-.navbar::before {
-  content: "";
+.pisca-fio {
+  fill: none;
 
-  position: absolute;
+  stroke: #2f4a3a;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
 
-  bottom: -2px;
-  left: 50%;
+/* soquete */
 
-  width: 90px;
-  height: 4px;
+.pisca-soquete {
+  fill: #1f3027;
+}
 
-  transform: translateX(-50%);
+/* lâmpada */
 
-  background: #e8c66a;
+.pisca-lampada {
+  color: #e8c66a;
+}
 
-  border-radius: 50%;
+/*
+   steps(1): a lâmpada acende e apaga de uma vez,
+   então o SVG só é redesenhado nas trocas, e não
+   a cada quadro.
+*/
 
-  filter: blur(7px);
+.pisca-lampada .pisca-vidro {
+  fill: currentColor;
 
-  opacity: 0.35;
+  filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 7px currentColor);
 
-  animation: brilhoLinha 4s ease-in-out infinite;
+  animation: piscar 1.6s steps(1, end) infinite;
+}
+
+.pisca-lampada.alterna .pisca-vidro {
+  animation-delay: -0.8s;
+}
+
+.pisca-lampada .pisca-reflexo {
+  fill: #ffffff;
+
+  opacity: 0.55;
+}
+
+/* cores */
+
+.pisca-lampada.vermelho {
+  color: #ff3048;
+}
+
+.pisca-lampada.verde {
+  color: #1fd17f;
+}
+
+.pisca-lampada.dourado {
+  color: #ffd36b;
+}
+
+.pisca-lampada.branco {
+  color: #fff3d1;
 }
 
 /* =========================
-   ANIMAÇÃO DA LINHA
+   ANIMAÇÃO DO PISCA-PISCA
 ========================= */
 
-@keyframes linhaNatal {
-  0% {
-    background-position: 0% 50%;
+@keyframes piscar {
+  0%,
+  100% {
+    opacity: 1;
   }
 
   50% {
-    background-position: 100% 50%;
-  }
+    opacity: 0.25;
 
-  100% {
-    background-position: 0% 50%;
+    filter: none;
   }
 }
 
-@keyframes brilhoLinha {
-  0%,
-  100% {
-    opacity: 0.15;
-    transform: translateX(-50%) scaleX(0.7);
-  }
-
-  50% {
-    opacity: 0.45;
-    transform: translateX(-50%) scaleX(1.2);
+@media (prefers-reduced-motion: reduce) {
+  .pisca-lampada .pisca-vidro {
+    animation: none;
   }
 }
 
