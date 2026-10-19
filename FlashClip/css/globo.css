@@ -1,7 +1,7 @@
 /* Um objeto operável. Conteúdo e controles permanecem em HTML. */
 /* Fundo da hero: verde quase preto com o brilho dourado à direita, atrás do globo. */
 .fc-hero {
-  min-height: 830px; padding-top: 28px;
+  min-height: 830px; padding-top: 28px; padding-bottom: 56px;
   background-color: #030508;
   background-image: linear-gradient(90deg, rgba(3, 5, 8, .55) 0%, rgba(3, 5, 8, .12) 46%, rgba(3, 5, 8, 0) 72%), linear-gradient(180deg, rgba(3, 5, 8, 0) 70%, rgba(3, 5, 8, .7) 100%), url("../imagens/Cenario/fundo-hero-dourado.jpg");
   background-repeat: no-repeat; background-position: center, center, center; background-size: cover, cover, cover;
@@ -59,7 +59,7 @@ body.fc-globe-open { overflow: hidden; }
 }
 @media (max-width: 700px) {
   .fc-hero {
-    padding: 22px 6% 0;
+    padding: 22px 6% 40px;
     background-image: linear-gradient(180deg, rgba(3, 5, 8, .1) 0%, rgba(3, 5, 8, .05) 48%, rgba(3, 5, 8, .75) 100%), url("../imagens/Cenario/fundo-hero-dourado.jpg");
     background-position: center, 72% 62%; background-size: cover, cover;
   }

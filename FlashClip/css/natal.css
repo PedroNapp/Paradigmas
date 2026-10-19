@@ -95,9 +95,6 @@ body.natal-theme {
   .fc-event-bar { grid-template-columns: 1fr 1fr; }
   .fc-event-bar > .fc-countdown { grid-column: 1 / -1; justify-content: center; border-left: 0; border-top: 1px solid var(--fc-line); }
 }
-.fc-scroll-cue { display: flex; align-items: center; justify-content: space-between; padding: 20px 7%; border-top: 1px solid var(--fc-line); background: #080d11; }
-.fc-scroll-cue span { color: var(--fc-muted); font-size: 9px; letter-spacing: .17em; text-transform: uppercase; }
-.fc-scroll-cue a { color: var(--fc-gold); font-size: 11px; text-decoration: none; }
 
 /* Capítulos com repouso: o gesto apresenta, a leitura fica estável. */
 /* Seções em tom escuro sobre o céu estrelado da home (atualização do Pedro). */
@@ -225,7 +222,6 @@ body.natal-theme {
   .fc-countdown-label { flex: 1 0 100%; max-width: none; margin: 0 0 4px; }
   .fc-time { flex: 1 1 0; min-width: 0; }
   .fc-time strong { font-size: 28px; }
-  .fc-scroll-cue { padding-inline: 6%; }
   .natal-theme .fc-home .sobre { padding: 60px 7%; }
   .natal-theme .fc-home .sobre-conteudo { grid-template-columns: 1fr; gap: 25px; }
   .natal-theme .fc-home .sobre-categoria { margin: 0; }
