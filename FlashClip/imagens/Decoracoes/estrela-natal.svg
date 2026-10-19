@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="260" viewBox="0 0 220 260" fill="none">
+<defs><linearGradient id="goldStar" x1="52" y1="58" x2="168" y2="190" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE7A0"/><stop offset=".48" stop-color="#D2A13D"/><stop offset="1" stop-color="#74501D"/></linearGradient><radialGradient id="starFill" cx="0" cy="0" r="1" gradientTransform="matrix(75 85 -88 78 74 76)" gradientUnits="userSpaceOnUse"><stop stop-color="#1C3727"/><stop offset="1" stop-color="#050A07"/></radialGradient></defs>
+<path d="M110 0V36" stroke="#A88031" stroke-width="1.7" stroke-linecap="round"/>
+<path d="M110 34 157 57 171 105 142 147 110 180 78 147 49 105 63 57 110 34Z" fill="url(#starFill)" stroke="url(#goldStar)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M110 54 122 91 160 91 129 114 141 151 110 128 79 151 91 114 60 91 98 91 110 54Z" fill="url(#goldStar)" fill-opacity=".28" stroke="url(#goldStar)" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="110" cy="106" r="8" fill="#F4D47B" fill-opacity=".85"/>
+<path d="M83 68 93 77M137 68 127 77M71 119 84 119M149 119 136 119" stroke="#E8C46B" stroke-opacity=".75" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M59 190C76 204 144 204 161 190" stroke="#557456" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M75 195 69 186M89 199 87 188M104 201 104 190M120 201 122 190M135 199 140 188M149 195 157 186" stroke="#456D4D" stroke-width="2.4" stroke-linecap="round"/>
+<circle cx="153" cy="213" r="3" fill="#B72E35"/><circle cx="165" cy="207" r="2.5" fill="#D94A40"/>
+</svg>

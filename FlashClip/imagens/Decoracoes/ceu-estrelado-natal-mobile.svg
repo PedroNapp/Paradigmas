@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="1000" viewBox="0 0 450 1000" fill="none">
+  <defs>
+    <radialGradient id="glowForest" cx="0" cy="0" r="1" gradientTransform="matrix(290 220 -250 390 130 335)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B4A35" stop-opacity=".35"/><stop offset="1" stop-color="#030508" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowGold" cx="0" cy="0" r="1" gradientTransform="matrix(190 155 -145 250 350 675)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B8892D" stop-opacity=".18"/><stop offset="1" stop-color="#030508" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edgeShade" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#030508" stop-opacity=".02"/><stop offset=".5" stop-color="#030508" stop-opacity="0"/><stop offset="1" stop-color="#030508" stop-opacity=".13"/>
+    </linearGradient>
+  </defs>
+  <rect width="450" height="1000" fill="url(#glowForest)"/>
+  <rect width="450" height="1000" fill="url(#glowGold)"/>
+  <!-- Field of small, varied stars: deliberately denser than the desktop version. -->
+  <g fill="#F5BD3D">
+    <circle cx="28" cy="27" r="1.45" opacity=".78"/><circle cx="91" cy="62" r=".9" opacity=".54"/><circle cx="177" cy="24" r="1.1" opacity=".66"/>
+    <circle cx="247" cy="74" r="1.3" opacity=".63"/><circle cx="334" cy="39" r=".95" opacity=".59"/><circle cx="414" cy="91" r="1.5" opacity=".73"/>
+    <circle cx="49" cy="143" r=".95" opacity=".67"/><circle cx="124" cy="179" r="1.35" opacity=".56"/><circle cx="212" cy="132" r=".9" opacity=".73"/>
+    <circle cx="291" cy="192" r="1.55" opacity=".75"/><circle cx="379" cy="158" r="1.05" opacity=".53"/><circle cx="438" cy="236" r=".85" opacity=".62"/>
+    <circle cx="21" cy="259" r="1.25" opacity=".57"/><circle cx="80" cy="298" r=".8" opacity=".62"/><circle cx="158" cy="247" r="1.55" opacity=".78"/>
+    <circle cx="238" cy="302" r="1.1" opacity=".61"/><circle cx="321" cy="266" r=".9" opacity=".72"/><circle cx="399" cy="329" r="1.35" opacity=".64"/>
+    <circle cx="39" cy="376" r="1.05" opacity=".72"/><circle cx="113" cy="416" r="1.4" opacity=".62"/><circle cx="195" cy="361" r=".85" opacity=".57"/>
+    <circle cx="272" cy="423" r="1.35" opacity=".75"/><circle cx="357" cy="390" r="1.05" opacity=".55"/><circle cx="431" cy="455" r="1.3" opacity=".7"/>
+    <circle cx="25" cy="485" r=".95" opacity=".64"/><circle cx="84" cy="525" r="1.4" opacity=".78"/><circle cx="166" cy="476" r="1.05" opacity=".58"/>
+    <circle cx="249" cy="541" r="1.1" opacity=".69"/><circle cx="318" cy="498" r=".85" opacity=".57"/><circle cx="394" cy="563" r="1.6" opacity=".76"/>
+    <circle cx="42" cy="608" r="1.35" opacity=".6"/><circle cx="119" cy="650" r=".9" opacity=".74"/><circle cx="204" cy="597" r="1.15" opacity=".6"/>
+    <circle cx="281" cy="659" r="1.45" opacity=".78"/><circle cx="355" cy="621" r=".95" opacity=".58"/><circle cx="426" cy="700" r="1.2" opacity=".68"/>
+    <circle cx="24" cy="730" r="1.2" opacity=".7"/><circle cx="87" cy="774" r=".85" opacity=".56"/><circle cx="163" cy="719" r="1.45" opacity=".74"/>
+    <circle cx="242" cy="788" r="1.05" opacity=".61"/><circle cx="320" cy="743" r="1.2" opacity=".7"/><circle cx="398" cy="813" r=".95" opacity=".61"/>
+    <circle cx="39" cy="853" r="1.25" opacity=".65"/><circle cx="111" cy="901" r="1.05" opacity=".74"/><circle cx="194" cy="842" r="1.5" opacity=".65"/>
+    <circle cx="269" cy="913" r=".9" opacity=".64"/><circle cx="348" cy="866" r="1.3" opacity=".74"/><circle cx="426" cy="947" r="1.45" opacity=".65"/>
+    <circle cx="68" cy="974" r="1.1" opacity=".7"/><circle cx="226" cy="981" r="1.25" opacity=".58"/><circle cx="365" cy="984" r=".9" opacity=".63"/>
+  </g>
+  <g fill="#D8E7D9">
+    <circle cx="61" cy="96" r=".85" opacity=".56"/><circle cx="266" cy="32" r=".75" opacity=".45"/><circle cx="356" cy="112" r=".85" opacity=".52"/>
+    <circle cx="187" cy="207" r=".75" opacity=".53"/><circle cx="342" cy="232" r=".8" opacity=".48"/><circle cx="97" cy="345" r=".75" opacity=".52"/>
+    <circle cx="228" cy="389" r=".9" opacity=".51"/><circle cx="304" cy="457" r=".75" opacity=".57"/><circle cx="142" cy="554" r=".8" opacity=".47"/>
+    <circle cx="369" cy="592" r=".85" opacity=".52"/><circle cx="59" cy="666" r=".75" opacity=".47"/><circle cx="233" cy="703" r=".85" opacity=".54"/>
+    <circle cx="292" cy="836" r=".8" opacity=".55"/><circle cx="149" cy="940" r=".8" opacity=".5"/>
+  </g>
+  <!-- Selective four-point stars, not snowflakes. -->
+  <g stroke="#F5BD3D" stroke-linecap="round">
+    <g transform="translate(355 95)" opacity=".78"><path d="M0 -8V8M-8 0H8" stroke-width="1.1"/><circle r="1.35" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(66 219) scale(.72)" opacity=".62"><path d="M0 -8V8M-8 0H8" stroke-width="1.2"/><circle r="1.2" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(337 345) scale(.85)" opacity=".74"><path d="M0 -10V10M-10 0H10" stroke-width="1.15"/><circle r="1.45" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(151 447) scale(.62)" opacity=".56"><path d="M0 -8V8M-8 0H8" stroke-width="1.1"/><circle r="1.2" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(72 580) scale(.8)" opacity=".7"><path d="M0 -9V9M-9 0H9" stroke-width="1.1"/><circle r="1.3" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(383 747) scale(.72)" opacity=".64"><path d="M0 -8V8M-8 0H8" stroke-width="1.1"/><circle r="1.2" fill="#FFE5A0" stroke="none"/></g>
+    <g transform="translate(236 880) scale(.85)" opacity=".7"><path d="M0 -9V9M-9 0H9" stroke-width="1.1"/><circle r="1.3" fill="#FFE5A0" stroke="none"/></g>
+  </g>
+  <!-- Mini-constellations kept near the margins. -->
+  <g stroke="#C79B41" stroke-width=".85" opacity=".19">
+    <path d="M16 195L44 179L70 197L99 176"/><circle cx="16" cy="195" r="1.4" fill="#F5BD3D"/><circle cx="44" cy="179" r="1.4" fill="#F5BD3D"/><circle cx="70" cy="197" r="1.4" fill="#F5BD3D"/><circle cx="99" cy="176" r="1.4" fill="#F5BD3D"/>
+    <path d="M342 618L370 600L396 617L431 590"/><circle cx="342" cy="618" r="1.4" fill="#F5BD3D"/><circle cx="370" cy="600" r="1.4" fill="#F5BD3D"/><circle cx="396" cy="617" r="1.4" fill="#F5BD3D"/><circle cx="431" cy="590" r="1.4" fill="#F5BD3D"/>
+  </g>
+  <rect width="450" height="1000" fill="url(#edgeShade)"/>
+</svg>

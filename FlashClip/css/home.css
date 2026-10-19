@@ -1989,3 +1989,586 @@ h1 {
     width: 100%;
   }
 }
+
+/* ==========================================================
+   FLASHCLIP — CENÁRIO NATALINO DA HOME
+   Regras complementares ao CSS original acima.
+
+   Objetivos:
+   - Preservar a estrutura, os cards e as interações existentes.
+   - Manter o SVG do Hero na primeira seção.
+   - Usar um céu estrelado compartilhado nas demais seções.
+   - Mostrar árvore com presentes e outras ilustrações somente
+     quando houver espaço seguro.
+   - Em telas pequenas, deixar apenas o céu estrelado, com uma
+     composição própria para celular e contraste reforçado.
+   ========================================================== */
+
+/* HERO: cenário já utilizado pelo projeto. */
+.hero {
+  background-color: #030508;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(3, 5, 8, 0.18) 0%,
+      rgba(3, 5, 8, 0.04) 48%,
+      rgba(3, 5, 8, 0) 72%
+    ),
+    url("../imagens/Cenario/flashclip-tela-principal.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: cover, cover;
+}
+
+/* Remove as antigas linhas, flocos e pontos do Hero. */
+.hero::before,
+.hero::after {
+  content: none !important;
+  display: none !important;
+  background-image: none !important;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(3, 5, 8, 0.08) 0%,
+        rgba(3, 5, 8, 0.02) 48%,
+        rgba(3, 5, 8, 0.12) 100%
+      ),
+      url("../imagens/Cenario/flashclip-tela-principal.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, right bottom;
+    background-size: cover, auto 48%;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    background-size: cover, auto 42%;
+  }
+}
+
+/* MAIN: cenário compartilhado que acompanha a rolagem. */
+main {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #030508;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  background-image: url("../imagens/Decoracoes/ceu-estrelado-natal.svg");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% 1100px;
+  opacity: 0.78;
+}
+
+/* Desliga as antigas listras diagonais do main. */
+main::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Coloca as seções sobre o cenário global. */
+main > section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Seções transparentes para deixar o céu aparecer sem mudar os cards. */
+.sobre,
+.parceiros,
+.motivos,
+.cursos {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-top-color: rgba(245, 189, 61, 0.075);
+}
+
+/* Apaga símbolos tipográficos antigos: flocos e estrelas soltas. */
+.sobre::after,
+.parceiros::after,
+.motivos::after,
+.cursos::after {
+  content: none !important;
+  display: none !important;
+  background-image: none !important;
+}
+
+/* Base comum para as ilustrações SVG laterais. */
+.sobre::before,
+.parceiros::before,
+.motivos::before,
+.cursos::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* SOBRE: árvore natalina com presentes integrados na base. */
+.sobre::before {
+  left: max(22px, calc((100% - 1500px) / 2));
+  top: 50%;
+  width: clamp(125px, 12vw, 175px);
+  height: clamp(245px, 24vw, 300px);
+  transform: translateY(-50%);
+  background-image: url("../imagens/Decoracoes/arvore-natal.svg");
+  opacity: 0.68;
+}
+
+/* PARCEIROS: presente como elemento de apoio, afastado da logo. */
+.parceiros::before {
+  left: max(22px, calc((100% - 1300px) / 2));
+  bottom: 12px;
+  width: clamp(170px, 19vw, 245px);
+  height: clamp(125px, 16vw, 190px);
+  background-image: url("../imagens/Decoracoes/presente-natal.svg");
+  opacity: 0.62;
+}
+
+/* MOTIVOS: ornamento discreto no espaço superior direito. */
+.motivos::before {
+  right: max(28px, calc((100% - 1250px) / 2));
+  top: 18px;
+  width: 70px;
+  height: 92px;
+  background-image: url("../imagens/Decoracoes/ornamento-natal.svg");
+  opacity: 0.45;
+}
+
+/* CURSOS: notebook natalino posicionado fora da área dos cards. */
+.cursos::before {
+  right: max(16px, calc((100% - 1220px) / 2));
+  top: 76px;
+  width: clamp(175px, 20vw, 245px);
+  height: 155px;
+  background-image: url("../imagens/Decoracoes/notebook-natal.svg");
+  opacity: 0.48;
+}
+
+/* Conteúdo de texto e listas permanecem acima das ilustrações. */
+.sobre-conteudo,
+.sobre-destaques,
+.parceiros-titulo,
+.lista-parceiros,
+.titulo-motivos,
+.lista-motivos,
+.titulo-cursos,
+.lista-cursos {
+  position: relative;
+  z-index: 1;
+}
+
+/* Em telas de tablet/laptop, remove ilustrações laterais para
+   que elas não fiquem atrás de títulos, parágrafos ou cards. */
+@media (max-width: 1120px) {
+  .sobre::before,
+  .parceiros::before,
+  .motivos::before,
+  .cursos::before {
+    content: none !important;
+    display: none !important;
+    background-image: none !important;
+  }
+
+  /* Mais estrelas e brilho no tablet, sem esticar o SVG desktop. */
+  main::before {
+    background-image: url("../imagens/Decoracoes/ceu-estrelado-natal-mobile.svg");
+    background-repeat: repeat-y;
+    background-position: center top;
+    background-size: 100% 950px;
+    opacity: 0.86;
+  }
+}
+
+/* Mobile: mantém somente o cenário estrelado; nenhum ornamento
+   individual entra na área dos textos ou dos cards. */
+@media (max-width: 700px) {
+  main::before {
+    background-image: url("../imagens/Decoracoes/ceu-estrelado-natal-mobile.svg");
+    background-repeat: repeat-y;
+    background-position: center top;
+    background-size: 100% 850px;
+    opacity: 0.9;
+  }
+
+  .sobre::before,
+  .sobre::after,
+  .parceiros::before,
+  .parceiros::after,
+  .motivos::before,
+  .motivos::after,
+  .cursos::before,
+  .cursos::after {
+    content: none !important;
+    display: none !important;
+    background-image: none !important;
+  }
+
+  .sobre,
+  .parceiros,
+  .motivos,
+  .cursos {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  main::before {
+    background-size: 100% 780px;
+    opacity: 0.86;
+  }
+}
+
+
+/* =====================================================================
+   FLASHCLIP — POLIMENTO VISUAL FINAL
+   Complementa o CSS existente sem redefinir estilos de cards de cursos.
+   Carregue este arquivo DEPOIS do home.css atual.
+   ===================================================================== */
+
+:root {
+  --flashclip-gold: #f5bd3d;
+  --flashclip-gold-soft: rgba(245, 189, 61, 0.16);
+  --flashclip-green: #12382b;
+  --flashclip-line: rgba(245, 189, 61, 0.13);
+  --flashclip-muted: #a5abb0;
+}
+
+/* Seleção de texto combinando com a identidade visual. */
+::selection {
+  color: #090b0c;
+  background: rgba(245, 189, 61, 0.82);
+}
+
+/* Fundo contínuo: céu estrelado + luz ambiente suave. */
+main {
+  background-color: #030508;
+  isolation: isolate;
+}
+
+main::before {
+  z-index: 0;
+  background-image:
+    url("../imagens/Decoracoes/ceu-estrelado-natal.svg"),
+    radial-gradient(ellipse at 12% 18%, rgba(18, 75, 51, 0.20), transparent 34%),
+    radial-gradient(ellipse at 87% 45%, rgba(245, 189, 61, 0.075), transparent 30%);
+  background-repeat: repeat-y, no-repeat, no-repeat;
+  background-position: center top, left top, right center;
+  background-size: 100% 1100px, 100% 100%, 100% 100%;
+  opacity: 0.86;
+}
+
+main > section {
+  position: relative;
+  z-index: 1;
+}
+
+/* O Hero permanece com a sua ilustração; só acrescentamos acabamento. */
+.hero {
+  border-bottom: 1px solid rgba(245, 189, 61, 0.12);
+  background-color: #030508;
+}
+
+.categoria {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  color: #e2d4aa;
+  text-shadow: 0 0 18px rgba(245, 189, 61, 0.12);
+}
+
+.categoria::before,
+.categoria::after {
+  content: "";
+  width: clamp(18px, 3vw, 38px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 189, 61, 0.85));
+}
+
+.categoria::after {
+  transform: rotate(180deg);
+}
+
+.botao-principal {
+  color: #15110a;
+  background: linear-gradient(135deg, #ffe09a 0%, #f5bd3d 58%, #e7a923 100%);
+  box-shadow: 0 8px 28px rgba(245, 189, 61, 0.13);
+}
+
+.botao-principal:hover {
+  background: linear-gradient(135deg, #ffe8b5 0%, #ffd45e 100%);
+  box-shadow: 0 10px 32px rgba(245, 189, 61, 0.22);
+}
+
+.botao-secundario {
+  border-color: rgba(245, 189, 61, 0.24);
+  background: rgba(8, 12, 13, 0.38);
+}
+
+/* Seções: mais profundidade, sem criar painéis pesados ou mexer nos cards. */
+.sobre,
+.parceiros,
+.motivos,
+.cursos {
+  border-top: 1px solid rgba(245, 189, 61, 0.085);
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.sobre {
+  padding-block: clamp(78px, 8vw, 112px);
+  background-image:
+    radial-gradient(ellipse at 17% 52%, rgba(13, 73, 48, 0.19), transparent 36%),
+    linear-gradient(180deg, rgba(2, 6, 7, 0.10), rgba(2, 6, 7, 0.20)) !important;
+}
+
+.parceiros {
+  padding-block: clamp(78px, 8vw, 112px);
+  background-image:
+    radial-gradient(ellipse at 80% 45%, rgba(245, 189, 61, 0.10), transparent 32%),
+    linear-gradient(180deg, rgba(2, 6, 7, 0.16), rgba(2, 6, 7, 0.06)) !important;
+}
+
+.motivos {
+  padding-block: clamp(78px, 8vw, 112px);
+  background-image:
+    radial-gradient(ellipse at 12% 55%, rgba(13, 73, 48, 0.15), transparent 30%),
+    radial-gradient(ellipse at 88% 18%, rgba(245, 189, 61, 0.06), transparent 28%) !important;
+}
+
+.cursos {
+  padding-block: clamp(72px, 7.5vw, 104px);
+  background-image:
+    radial-gradient(ellipse at 50% 5%, rgba(245, 189, 61, 0.075), transparent 40%),
+    linear-gradient(180deg, rgba(2, 6, 7, 0.08), rgba(2, 6, 7, 0.18)) !important;
+}
+
+/* Rótulos pequenos com traços dourados: unidade visual entre seções. */
+.sobre-categoria,
+.parceiros-titulo > span,
+.titulo-motivos > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--flashclip-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1.5;
+  text-shadow: 0 0 18px rgba(245, 189, 61, 0.12);
+}
+
+.sobre-categoria::before,
+.sobre-categoria::after,
+.parceiros-titulo > span::before,
+.parceiros-titulo > span::after,
+.titulo-motivos > span::before,
+.titulo-motivos > span::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 1px;
+  flex: 0 0 22px;
+  background: linear-gradient(90deg, transparent, rgba(245, 189, 61, 0.78));
+}
+
+.sobre-categoria::after,
+.parceiros-titulo > span::after,
+.titulo-motivos > span::after {
+  transform: rotate(180deg);
+}
+
+/* Os títulos ficam mais consistentes, sem selecionar h3 dos cards. */
+.sobre h2,
+.parceiros-titulo h2,
+.titulo-motivos h2,
+.titulo-cursos h2 {
+  text-wrap: balance;
+  text-shadow: 0 8px 34px rgba(0, 0, 0, 0.34);
+}
+
+.sobre h2::after,
+.parceiros-titulo h2::after,
+.titulo-motivos h2::after,
+.titulo-cursos h2::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 2px;
+  margin: 18px auto 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, rgba(245, 189, 61, 0.15), #f5bd3d, rgba(245, 189, 61, 0.15));
+  box-shadow: 0 0 18px rgba(245, 189, 61, 0.15);
+}
+
+.sobre-descricao,
+.parceiros-titulo p,
+.titulo-motivos p,
+.titulo-cursos p {
+  color: #aeb4b8;
+  text-wrap: pretty;
+}
+
+.sobre-descricao {
+  line-height: 1.9;
+}
+
+.parceiros-titulo,
+.titulo-motivos,
+.titulo-cursos {
+  position: relative;
+}
+
+.parceiros-titulo {
+  margin-bottom: clamp(34px, 4vw, 54px);
+}
+
+.titulo-motivos {
+  margin-bottom: clamp(34px, 4vw, 54px);
+}
+
+.titulo-cursos {
+  margin-bottom: clamp(32px, 4vw, 44px);
+}
+
+.titulo-cursos::before {
+  content: "APRENDA • COMPARTILHE • EVOLUA";
+  display: block;
+  margin-bottom: 13px;
+  color: var(--flashclip-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.23em;
+}
+
+/* Linhas divisórias discretas mantêm as seções conectadas. */
+.sobre + .parceiros,
+.parceiros + .motivos,
+.motivos + .cursos {
+  border-top-color: rgba(245, 189, 61, 0.12);
+}
+
+/* Abaixo de 1120px, deixa só o céu de fundo para liberar a área de leitura. */
+@media (max-width: 1120px) {
+  .sobre::before,
+  .parceiros::before,
+  .motivos::before,
+  .cursos::before {
+    content: none !important;
+    display: none !important;
+    background-image: none !important;
+  }
+
+  main::before {
+    background-image:
+      url("../imagens/Decoracoes/ceu-estrelado-natal.svg"),
+      radial-gradient(ellipse at 10% 20%, rgba(18, 75, 51, 0.15), transparent 38%),
+      radial-gradient(ellipse at 88% 60%, rgba(245, 189, 61, 0.06), transparent 32%);
+    background-repeat: repeat-y, no-repeat, no-repeat;
+    background-position: center top, left top, right center;
+    background-size: 100% 1000px, 100% 100%, 100% 100%;
+    opacity: 0.82;
+  }
+}
+
+@media (max-width: 700px) {
+  main::before {
+    background-image:
+      url("../imagens/Decoracoes/ceu-estrelado-natal-mobile.svg"),
+      radial-gradient(ellipse at 16% 16%, rgba(18, 75, 51, 0.12), transparent 40%),
+      radial-gradient(ellipse at 85% 70%, rgba(245, 189, 61, 0.055), transparent 36%);
+    background-repeat: repeat-y, no-repeat, no-repeat;
+    background-position: center top, left top, right center;
+    background-size: 100% auto, 100% 100%, 100% 100%;
+    opacity: 0.9;
+  }
+
+  .sobre,
+  .parceiros,
+  .motivos,
+  .cursos {
+    padding-block: 68px;
+  }
+
+  .sobre h2 {
+    font-size: clamp(34px, 8vw, 42px);
+    letter-spacing: -1.5px;
+  }
+
+  .parceiros-titulo h2,
+  .titulo-motivos h2 {
+    font-size: clamp(30px, 7vw, 42px);
+    letter-spacing: -1.2px;
+    line-height: 1.08;
+  }
+
+  .titulo-cursos h2 {
+    font-size: clamp(27px, 6.5vw, 34px);
+    letter-spacing: -0.8px;
+    line-height: 1.12;
+  }
+
+  .sobre-descricao,
+  .parceiros-titulo p,
+  .titulo-motivos p,
+  .titulo-cursos p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .titulo-cursos::before {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+}
+
+@media (max-width: 380px) {
+  .sobre,
+  .parceiros,
+  .motivos,
+  .cursos {
+    padding-block: 58px;
+  }
+
+  .sobre-categoria,
+  .parceiros-titulo > span,
+  .titulo-motivos > span {
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .sobre-categoria::before,
+  .sobre-categoria::after,
+  .parceiros-titulo > span::before,
+  .parceiros-titulo > span::after,
+  .titulo-motivos > span::before,
+  .titulo-motivos > span::after {
+    width: 15px;
+    flex-basis: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

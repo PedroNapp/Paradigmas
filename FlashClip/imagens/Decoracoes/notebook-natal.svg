@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="250" viewBox="0 0 380 250" fill="none">
+ <defs>
+  <linearGradient id="frame" x1="103" y1="23" x2="276" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#314536"/><stop offset=".55" stop-color="#14221A"/><stop offset="1" stop-color="#080E0A"/></linearGradient>
+  <linearGradient id="screen" x1="118" y1="37" x2="265" y2="151" gradientUnits="userSpaceOnUse"><stop stop-color="#10251A"/><stop offset="1" stop-color="#030806"/></linearGradient>
+  <linearGradient id="deck" x1="59" y1="164" x2="329" y2="207" gradientUnits="userSpaceOnUse"><stop stop-color="#324638"/><stop offset=".4" stop-color="#19271E"/><stop offset="1" stop-color="#0A110C"/></linearGradient>
+  <linearGradient id="edge" x1="60" y1="194" x2="324" y2="202" gradientUnits="userSpaceOnUse"><stop stop-color="#6D8A69"/><stop offset=".5" stop-color="#263B2B"/><stop offset="1" stop-color="#8A682E"/></linearGradient>
+ </defs>
+ <ellipse cx="190" cy="220" rx="139" ry="11" fill="#000" fill-opacity=".26"/>
+ <!-- straight, symmetrical display -->
+ <rect x="101" y="22" width="178" height="140" rx="8" fill="url(#frame)" stroke="#B58A38" stroke-opacity=".82" stroke-width="1.5"/>
+ <rect x="111" y="32" width="158" height="119" rx="3.5" fill="url(#screen)" stroke="#49664D" stroke-opacity=".8" stroke-width="1"/>
+ <circle cx="190" cy="27.5" r="1.5" fill="#E2BB5B"/>
+ <!-- tidy code editor, spaced to avoid visual clutter -->
+ <path d="M120 43H260" stroke="#314D36" stroke-width="1"/>
+ <circle cx="120" cy="39" r="1.7" fill="#CE9F42"/><circle cx="126" cy="39" r="1.7" fill="#789A70"/><circle cx="132" cy="39" r="1.7" fill="#A84A40"/>
+ <path d="M125 56H166M125 68H148M125 80H184M125 92H158M125 104H175M125 116H149M125 128H191" stroke="#D9AD4D" stroke-width="2.2" stroke-linecap="round"/>
+ <path d="M177 56H233M157 68H216M195 80H249M169 92H226M185 104H246M157 116H205M204 128H240" stroke="#568568" stroke-width="2.1" stroke-linecap="round"/>
+ <path d="M230 92L239 100L230 108M225 92L216 108" stroke="#F0C761" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+ <!-- hinge -->
+ <path d="M110 157H270" stroke="#C7A04A" stroke-opacity=".72" stroke-width="2" stroke-linecap="round"/>
+ <!-- balanced laptop base: one clean trapezoid, consistent perspective -->
+ <path d="M89 160H291L331 195Q334 199 326 202L58 202Q50 199 54 195L89 160Z" fill="url(#deck)" stroke="url(#edge)" stroke-width="1.4" stroke-linejoin="round"/>
+ <!-- keyboard plane -->
+ <path d="M101 165H279L306 190H77L101 165Z" fill="#09130D" stroke="#46634A" stroke-opacity=".8" stroke-width=".9" stroke-linejoin="round"/>
+ <!-- keyboard rows, aligned to the trapezoid -->
+ <g stroke="#8A773F" stroke-opacity=".74" stroke-width="1" stroke-linecap="round">
+  <path d="M106 170H275M101 175H281M95 180H286M88 185H294"/>
+  <path d="M119 167L107 188M140 167L132 188M161 167L157 188M182 167L182 188M203 167L207 188M224 167L232 188M245 167L257 188M264 168L280 188" stroke-opacity=".45"/>
+ </g>
+ <!-- centered trackpad following the same perspective -->
+ <path d="M155 178L220 178L226 189H149L155 178Z" fill="#111F16" stroke="#6D7F59" stroke-opacity=".8" stroke-width="1" stroke-linejoin="round"/>
+ <path d="M62 197H322" stroke="#E0B452" stroke-opacity=".5" stroke-width="1" stroke-linecap="round"/>
+ <!-- tiny restrained festive spark -->
+ <path d="M309 45V57M303 51H315" stroke="#E8C15F" stroke-opacity=".8" stroke-width="1.1" stroke-linecap="round"/>
+</svg>

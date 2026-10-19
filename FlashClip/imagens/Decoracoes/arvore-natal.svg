@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="600" viewBox="0 0 300 600" fill="none">
+  <defs>
+    <linearGradient id="folhas" x1="35" y1="90" x2="260" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#315b46" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#122a22" stop-opacity=".3"/>
+    </linearGradient>
+    <linearGradient id="luz" x1="65" y1="130" x2="240" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffdf8b"/>
+      <stop offset="1" stop-color="#d99b30"/>
+    </linearGradient>
+    <linearGradient id="presenteVerde" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#254D39"/><stop offset="1" stop-color="#0A1D15"/>
+    </linearGradient>
+    <linearGradient id="presenteVinho" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6E3037"/><stop offset="1" stop-color="#32171D"/>
+    </linearGradient>
+    <linearGradient id="fitaDourada" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFE7A1"/><stop offset=".52" stop-color="#D9AC45"/><stop offset="1" stop-color="#A97826"/>
+    </linearGradient>
+    <filter id="brilho" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- árvore em camadas delicadas -->
+  <path d="M150 34 119 91 133 87 91 150 111 146 66 215 91 209 43 278 80 269 27 341 80 328 12 411 288 411 220 328 273 341 220 269 257 278 209 209 234 215 189 146 209 150 167 87 181 91 150 34Z" fill="url(#folhas)" fill-opacity=".36" stroke="#52745d" stroke-opacity=".7" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M150 43 136 92 150 84 120 143 139 136 103 198 128 188 85 256 117 245 69 311 112 299 50 373 150 350 250 373 188 299 231 311 183 245 215 256 172 188 197 198 161 136 180 143 150 84 164 92 150 43Z" fill="url(#folhas)" fill-opacity=".28"/>
+  <!-- galhos internos -->
+  <path d="M150 72 150 392 M150 132 113 169 M150 184 191 219 M150 239 103 281 M150 292 205 333 M150 343 93 382" stroke="#719176" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- estrela -->
+  <path d="M150 8 155 23 171 24 158 33 163 49 150 39 137 49 142 33 129 24 145 23Z" fill="#f5bd3d" fill-opacity=".13" stroke="#f5bd3d" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M150 16V42 M137 29H163" stroke="#ffe6a3" stroke-opacity=".85" stroke-width="1"/>
+  <!-- cordão de luzes -->
+  <path d="M102 163 Q148 194 198 164 M78 229 Q148 267 222 229 M53 294 Q148 337 247 294 M30 359 Q148 405 270 359" stroke="url(#luz)" stroke-width="1.8" stroke-opacity=".88" stroke-linecap="round"/>
+  <g fill="#f5bd3d" filter="url(#brilho)">
+    <circle cx="116" cy="174" r="3.4"/><circle cx="161" cy="187" r="3"/><circle cx="190" cy="174" r="3.2"/>
+    <circle cx="96" cy="238" r="3.3"/><circle cx="148" cy="257" r="3.6"/><circle cx="204" cy="242" r="3"/>
+    <circle cx="74" cy="303" r="3.4"/><circle cx="132" cy="326" r="3"/><circle cx="187" cy="322" r="3.5"/><circle cx="231" cy="303" r="3"/>
+    <circle cx="52" cy="366" r="3.2"/><circle cx="109" cy="388" r="3.5"/><circle cx="173" cy="392" r="3.1"/><circle cx="247" cy="367" r="3.5"/>
+  </g>
+  <!-- tronco -->
+  <path d="M139 408 136 453 164 453 161 408" fill="#8a6238" fill-opacity=".45" stroke="#b58a50" stroke-opacity=".65" stroke-width="1.2"/>
+  <path d="M124 456H176 M132 463H168" stroke="#d7ac64" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- pequenas estrelas flutuantes -->
+  <g stroke="#f5bd3d" stroke-opacity=".65" stroke-width="1.4" stroke-linecap="round">
+    <path d="M49 116V130 M42 123H56"/><path d="M249 185V199 M242 192H256"/><path d="M35 236V246 M30 241H40"/><path d="M257 277V287 M252 282H262"/>
+  </g>
+
+  <!-- Presentes aos pés da árvore: formas vetoriais simples, proporcionais e editáveis. -->
+  <g id="presentes-arvore" stroke-linejoin="round">
+    <ellipse cx="150" cy="552" rx="103" ry="8" fill="#000000" fill-opacity=".22"/>
+    <ellipse cx="150" cy="548" rx="83" ry="4" fill="#D9AC45" fill-opacity=".07"/>
+
+    <!-- Caixa verde à esquerda -->
+    <g id="presente-verde">
+      <rect x="53" y="500" width="76" height="49" rx="2.5" fill="url(#presenteVerde)" stroke="#9A7938" stroke-opacity=".78" stroke-width="1.2"/>
+      <path d="M57 505H125" stroke="#7FA083" stroke-opacity=".32" stroke-width="1"/>
+      <rect x="48" y="490" width="86" height="14" rx="2" fill="#244633" stroke="#C69A3B" stroke-opacity=".8" stroke-width="1.1"/>
+      <rect x="84" y="491" width="13" height="58" fill="url(#fitaDourada)"/>
+      <rect x="49" y="516" width="84" height="7" fill="url(#fitaDourada)" fill-opacity=".95"/>
+      <path d="M90 491C78 480 68 485 76 493C80 496 86 495 90 491Z" fill="#D8AE51" stroke="#F5D989" stroke-width=".8"/>
+      <path d="M91 491C103 480 113 485 105 493C101 496 95 495 91 491Z" fill="#C99B3D" stroke="#F5D989" stroke-width=".8"/>
+      <circle cx="90.5" cy="491.5" r="3" fill="#F7DEA0"/>
+    </g>
+
+    <!-- Caixa vinho menor, posicionada à frente -->
+    <g id="presente-vinho">
+      <rect x="119" y="519" width="55" height="31" rx="2" fill="url(#presenteVinho)" stroke="#9B6B42" stroke-opacity=".78" stroke-width="1.05"/>
+      <rect x="115" y="512" width="63" height="10" rx="2" fill="#57252D" stroke="#B58C42" stroke-opacity=".8" stroke-width="1"/>
+      <rect x="140" y="513" width="10" height="37" fill="url(#fitaDourada)"/>
+      <path d="M145 513C136 505 130 509 136 514C139 516 143 515 145 513Z" fill="#D9AC45" stroke="#F3D17D" stroke-width=".7"/>
+      <path d="M145 513C154 505 160 509 154 514C151 516 147 515 145 513Z" fill="#B9842D" stroke="#F3D17D" stroke-width=".7"/>
+    </g>
+
+    <!-- Caixa verde-escura à direita -->
+    <g id="presente-dourado">
+      <rect x="166" y="489" width="79" height="60" rx="2.5" fill="url(#presenteVerde)" stroke="#B08B3D" stroke-opacity=".88" stroke-width="1.2"/>
+      <path d="M170 494H241" stroke="#8AA28A" stroke-opacity=".27" stroke-width="1"/>
+      <rect x="161" y="477" width="89" height="16" rx="2" fill="#1D3A2B" stroke="#D6AE50" stroke-opacity=".92" stroke-width="1.15"/>
+      <rect x="198" y="478" width="14" height="71" fill="url(#fitaDourada)"/>
+      <rect x="162" y="512" width="87" height="8" fill="url(#fitaDourada)"/>
+      <path d="M205 478C191 465 182 471 192 479C196 482 201 481 205 478Z" fill="#DAB14F" stroke="#F7DE94" stroke-width=".8"/>
+      <path d="M205 478C219 465 228 471 218 479C214 482 209 481 205 478Z" fill="#B7822B" stroke="#F7DE94" stroke-width=".8"/>
+      <circle cx="205" cy="478.5" r="3" fill="#F6D986"/>
+    </g>
+  </g>
+
+</svg>

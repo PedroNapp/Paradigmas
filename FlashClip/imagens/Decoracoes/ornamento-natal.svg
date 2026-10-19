@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="310" viewBox="0 0 220 310" fill="none">
+<defs>
+ <radialGradient id="glass" cx="0" cy="0" r="1" gradientTransform="matrix(83 113 -101 72 72 110)" gradientUnits="userSpaceOnUse"><stop stop-color="#274735"/><stop offset=".56" stop-color="#10251A"/><stop offset="1" stop-color="#050A07"/></radialGradient>
+ <linearGradient id="rim" x1="54" y1="88" x2="164" y2="215" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE7A0"/><stop offset=".48" stop-color="#C69638"/><stop offset="1" stop-color="#6C4C1D"/></linearGradient>
+ <linearGradient id="red" x1="79" y1="135" x2="144" y2="193" gradientUnits="userSpaceOnUse"><stop stop-color="#B53B3C" stop-opacity=".8"/><stop offset="1" stop-color="#4D171B" stop-opacity=".3"/></linearGradient>
+</defs>
+<path d="M110 2V48" stroke="#A77E30" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M104 41 110 34 116 41V54H104V41Z" fill="#B98A32" fill-opacity=".55" stroke="#E0BC62" stroke-width="1.2"/>
+<path d="M100 54H120L126 69H94L100 54Z" fill="#9B722A" stroke="#E7C56D" stroke-width="1.2"/>
+<circle cx="110" cy="158" r="81" fill="url(#glass)" stroke="url(#rim)" stroke-width="2"/>
+<circle cx="110" cy="158" r="72" stroke="#55765B" stroke-opacity=".72" stroke-width="1.2"/>
+<path d="M69 112C60 128 59 151 65 169" stroke="#E6D39A" stroke-opacity=".65" stroke-width="4" stroke-linecap="round"/>
+<path d="M83 94C102 81 125 82 141 95" stroke="#E8C56C" stroke-opacity=".36" stroke-width="1.4" stroke-linecap="round"/>
+<!-- ornament motif: elegant star and curved ribbon -->
+<path d="M110 111 118 136 144 136 123 152 131 177 110 162 89 177 97 152 76 136 102 136 110 111Z" fill="url(#red)" stroke="#D4A448" stroke-opacity=".9" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M80 184C96 197 125 202 143 185" stroke="#D6A647" stroke-width="2" stroke-linecap="round"/>
+<circle cx="149" cy="126" r="3" fill="#F4D47D"/><circle cx="76" cy="174" r="2.5" fill="#BF3438"/><circle cx="138" cy="191" r="2.6" fill="#BF3438"/>
+<path d="M177 89V101M171 95H183" stroke="#F1CC70" stroke-opacity=".85" stroke-width="1.1" stroke-linecap="round"/>
+</svg>
