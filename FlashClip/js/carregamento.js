@@ -34,7 +34,7 @@
       img.onerror=reject;img.src=src;
     });
   }
-  const images=['./imagens/logoFlash.png'];
+  const images=['./imagens/logoFlash.webp'];
   if(root.dataset.heroImage)images.push(root.dataset.heroImage);
   Promise.all(images.map(image)).then(()=>boot.report('images'),()=>boot.fail('images'));
   const styles=[...document.querySelectorAll('link[rel="stylesheet"]')];
