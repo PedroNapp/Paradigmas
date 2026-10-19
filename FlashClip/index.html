@@ -8,6 +8,7 @@
     <title>FlashClip</title>
 <style id="fc-loading-critical">
 html.fc-loading body{overflow:hidden!important}
+html.fc-loaded-before #fc-loading{display:none!important}
 html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visibility:hidden!important}
 #fc-loading{position:fixed;inset:0;z-index:30000;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at 50% 42%,#124b3388,transparent 64%),#030508;color:#f2f2f2;text-align:center;overflow:auto;transition:opacity .4s ease;font-family:'Avenir Next','Trebuchet MS',Arial,sans-serif}
 #fc-loading[hidden]{display:none!important}
@@ -36,8 +37,11 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 <script id="fc-loading-bootstrap">
 (() => {
   const root=document.documentElement;
-  root.classList.add('fc-loading');root.dataset.loadState='loading';
-  const boot=window.FlashClipBoot={states:{},error:false,revealed:false,bypassed:false,timer:0,
+  // A tela de carregamento aparece só na primeira visita; ao voltar para a home, a página abre direto.
+  let loadedBefore=false;try{loadedBefore=sessionStorage.getItem('flashclip-carregado-v1')==='1';}catch{}
+  if(loadedBefore){root.classList.add('fc-loaded-before');root.dataset.loadState='ready';}
+  else{root.classList.add('fc-loading');root.dataset.loadState='loading';}
+  const boot=window.FlashClipBoot={states:{},error:false,revealed:loadedBefore,bypassed:false,timer:0,
     report(name,status='ready') {this.states[name]=status;window.dispatchEvent(new CustomEvent('fc:load-state'));},
     fail(reason) {
       if(this.revealed)return;
@@ -60,10 +64,10 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
   };
   document.addEventListener('click',event=>{if(event.target.closest('[data-loading-retry]'))location.reload();if(event.target.closest('[data-loading-continue]'))boot.continueLight();});
   window.addEventListener('error',event=>{const el=event.target;if(el?.tagName==='LINK'&&el.rel==='stylesheet')boot.fail('styles');if(el?.tagName==='SCRIPT'&&el.src)boot.fail('scripts');},true);
-  boot.timer=setTimeout(()=>{if(!boot.revealed)boot.fail('timeout');},45000);
+  if(!loadedBefore)boot.timer=setTimeout(()=>{if(!boot.revealed)boot.fail('timeout');},45000);
 })();
 </script>
-<script defer src="js/carregamento.js?v=loading-1"></script>
+<script defer src="js/carregamento.js?v=nav-1"></script>
 
     <link rel="stylesheet" href="./css/cabecalho.css" />
     <link rel="stylesheet" href="./css/home.css?v=pedro-1" />
@@ -73,7 +77,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-1">
     <link rel="stylesheet" href="css/globo.css?v=pedro-2">
     <link rel="stylesheet" href="css/entrada.css?v=pedro-3">
-    <link rel="stylesheet" href="css/experiencia.css?v=1">
+    <link rel="stylesheet" href="css/experiencia.css?v=2">
     <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
     <script defer src="./notebooks/course-computers-loader.js?v=natal-3d-1"></script>
     <script type="module" src="js/globo.js?v=pedro-2"></script>
@@ -498,8 +502,8 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
 
     <script defer src="js/entrada.js?v=loading-1"></script>
     <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
-    <script defer src="js/experiencia.js?v=1"></script>
-    <script defer src="js/audio-natal.js?v=audio-6"></script>
+    <script defer src="js/experiencia.js?v=2"></script>
+    <script defer src="js/audio-natal.js?v=audio-7"></script>
     <dialog class="fc-globe-dialog" aria-label="Explore o globo de neve" aria-modal="true"></dialog>
     </body>
 </html>

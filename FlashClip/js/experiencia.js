@@ -1,4 +1,4 @@
-/* Botões magnéticos e transição entre telas, compartilhados por todas as páginas. */
+/* Botões magnéticos, compartilhados por todas as páginas. */
 (() => {
   const calmo = matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = matchMedia('(hover: hover) and (pointer: fine)');
@@ -53,23 +53,4 @@
   }, { passive: true });
   document.addEventListener('mouseout', evento => { if (!evento.relatedTarget) { cursor = null; pedirQuadro(); } });
   window.addEventListener('blur', () => { cursor = null; pedirQuadro(); });
-
-  // Chrome, Edge e Safari 18+ fazem a transição pelo CSS (@view-transition). Nos outros,
-  // a página sai com a mesma animação antes de navegar e a próxima entra pelo CSS.
-  if ('onpagereveal' in window || calmo.matches) return;
-  document.documentElement.classList.add('fc-sem-vt');
-  document.addEventListener('click', evento => {
-    const link = evento.target.closest?.('a[href]');
-    if (!link || evento.defaultPrevented || evento.button !== 0 || evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey) return;
-    if ((link.target && link.target !== '_self') || link.hasAttribute('download')) return;
-    const destino = new URL(link.href, location.href);
-    if (destino.origin !== location.origin) return;
-    // Âncoras na mesma página continuam com a rolagem suave de sempre.
-    if (destino.pathname === location.pathname && destino.search === location.search && destino.hash) return;
-    evento.preventDefault();
-    document.documentElement.classList.add('fc-saindo');
-    setTimeout(() => { location.href = destino.href; }, 280);
-  });
-  // Voltar pelo histórico (bfcache) não pode devolver a página ainda apagada.
-  window.addEventListener('pageshow', () => document.documentElement.classList.remove('fc-saindo'));
 })();

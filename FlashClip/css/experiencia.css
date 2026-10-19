@@ -1,5 +1,5 @@
 /* FlashClip · camada compartilhada por todas as telas: botões da home, botões magnéticos,
-   transição entre páginas e controles de música. */
+   troca direta entre páginas e controles de música. */
 :root {
   --fc-ink: #030508;
   --fc-paper: #f2f2f2;
@@ -42,21 +42,13 @@
   100% { box-shadow: 0 0 0 16px #f5bd3d00, 0 10px 30px -8px #f5bd3d00; scale: 1; }
 }
 
-/* Transição entre telas (Chrome, Edge e Safari 18+): a página sai desfocando e a nova sobe. */
+/* Troca de tela direta (Chrome, Edge e Safari 18.2+): o navegador mantém a tela atual até a
+   próxima estar pronta e troca de uma vez, sem animação e sem a tela preta no meio. */
 @view-transition { navigation: auto; }
-.navbar .logo img, .navbar-inscricoes .logo-inscricoes img { view-transition-name: fc-logo; }
-::view-transition-old(root) { animation: fc-tela-sai .34s cubic-bezier(.4, 0, .2, 1) both; }
-::view-transition-new(root) { animation: fc-tela-entra .55s cubic-bezier(.2, .8, .2, 1) .06s both; }
-::view-transition-group(fc-logo) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
-@keyframes fc-tela-sai { to { opacity: 0; scale: .985; filter: blur(6px); } }
-@keyframes fc-tela-entra { from { opacity: 0; translate: 0 22px; filter: blur(6px); } }
-
-/* Navegadores sem transição entre documentos usam a mesma ideia, feita pelo JS. */
-html.fc-sem-vt body { animation: fc-tela-entra .55s cubic-bezier(.2, .8, .2, 1) both; }
-html.fc-saindo body { animation: fc-tela-sai .3s cubic-bezier(.4, 0, .2, 1) both; pointer-events: none; }
+::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none; }
 
 /* Controles de música e efeitos, presentes em todas as telas. */
-.fc-audio-dock { position: fixed; z-index: 50; right: 14px; bottom: 12px; display: flex; gap: 14px; padding: 8px 15px; background: #080d11f0; border: 1px solid #f5bd3d36; border-radius: 25px; backdrop-filter: blur(10px); view-transition-name: fc-audio-dock; }
+.fc-audio-dock { position: fixed; z-index: 50; right: 14px; bottom: 12px; display: flex; gap: 14px; padding: 8px 15px; background: #080d11f0; border: 1px solid #f5bd3d36; border-radius: 25px; backdrop-filter: blur(10px); }
 .fc-audio-dock button { background: none; border: 0; color: #c9cdd1; font: 10px 'Avenir Next', Arial, sans-serif; cursor: pointer; padding: 5px 0; }
 .fc-audio-dock button:hover { color: var(--fc-gold); }
 body.fc-entry-active .fc-audio-dock { display: none; }
@@ -67,7 +59,6 @@ body.fc-entry-active .fc-audio-dock { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
   .fc-magnetic { translate: none; }
-  .fc-magnetic.fc-press, html.fc-sem-vt body, html.fc-saindo body { animation: none; }
+  .fc-magnetic.fc-press { animation: none; }
 }
