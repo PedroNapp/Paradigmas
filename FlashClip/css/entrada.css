@@ -205,14 +205,10 @@ html:has(body.fc-entry-active) { scrollbar-gutter: stable; }
 }
 
 .fc-entry-utility { flex-wrap: wrap; gap: 3px 14px; max-width: 600px; }
-.fc-audio-dock { position: fixed; z-index: 50; right: 14px; bottom: 12px; display: flex; gap: 14px; padding: 8px 15px; background: #080d11f0; border: 1px solid #f5bd3d36; border-radius: 25px; backdrop-filter: blur(10px); }
-.fc-audio-dock button { background: none; border: 0; color: #c9cdd1; font: 10px 'Avenir Next', Arial, sans-serif; cursor: pointer; padding: 5px 0; }
-body.fc-entry-active .fc-audio-dock { display: none; }
-@media(max-width:700px) { .fc-entry-utility { max-width: 300px; } .fc-audio-dock { right: 10px; bottom: 8px; } }
+/* Os controles de áudio fixos (.fc-audio-dock) ficam em experiencia.css, usado por todas as telas. */
+@media(max-width:700px) { .fc-entry-utility { max-width: 300px; } }
 
 @media (max-width: 700px), (hover: none) and (pointer: coarse) {
-  .fc-audio-dock { max-width: calc(100vw - 20px); flex-wrap: wrap; gap: 0 4px; padding: 2px 6px; }
-  .fc-audio-dock button,
   .fc-entry-utility > button {
     min-width: 44px;
     min-height: 44px;

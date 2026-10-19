@@ -1,7 +1,16 @@
 /* Trilha e efeitos originais, sintetizados localmente. Sem áudio ou serviços externos. */
 (() => {
+  // As escolhas do visitante valem para todas as telas; a sessão lembra se o som já foi liberado.
+  const PREFS='fc-audio-prefs', SESSION='fc-audio-session';
+  function read(storage,key){try{return JSON.parse(window[storage].getItem(key))||{};}catch{return {};}}
+  function write(storage,key,value){try{window[storage].setItem(key,JSON.stringify(value));}catch{}}
+  const prefs=read('localStorage',PREFS), session=read('sessionStorage',SESSION);
+  // A trilha segue o relógio da sessão: ao trocar de tela ela continua do ponto em que estaria.
+  if(!session.epoch){session.epoch=Date.now()/1000;write('sessionStorage',SESSION,session);}
+  // Só a home tem o globo; nela o primeiro som continua esperando o toque no globo.
+  const gated=!!document.getElementById('globo');
   let context, musicBus, musicOutput, effectsBus, master, timer=0, unlocked=false;
-  let music=true, effects=true, step=0, nextNote=0, revision=0, effectsRevision=0;
+  let music=prefs.music!==false, effects=prefs.effects!==false, step=0, nextNote=0, revision=0, effectsRevision=0;
   let lifecycle=Promise.resolve(), pageInactive=false, startedSilent=false, pressStarted=false, pressTarget=null, buttonUnlockTried=false, pendingEffect=null;
   const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const voices=new Set();
@@ -36,6 +45,7 @@
     context.onstatechange=()=>{
       document.body.dataset.audio=context.state;
       if(context.state!=='running'||!unlocked)return;
+      if(!session.unlocked){session.unlocked=true;write('sessionStorage',SESSION,session);}
       buttonUnlockTried=false;flushEffect();reconcile();
     };
   }
@@ -114,7 +124,8 @@
       }
       if(current!==revision)return;
       if(wantsRunning()&&music&&context.state==='running'&&!timer){
-        nextNote=context.currentTime+.06;timer=setInterval(schedule,100);schedule();
+        nextNote=context.currentTime+.06;step=Math.ceil((Date.now()/1000+.06-session.epoch)/subdivision);
+        timer=setInterval(schedule,100);schedule();
       }
       document.body.dataset.audio=context.state;
     }).catch(error=>{
@@ -140,7 +151,8 @@
     if(!activating(event)||audible())return;
     // Antes do primeiro som, só o globo e os controles de áudio ligam a trilha. Depois disso,
     // qualquer toque retoma o que o iOS suspendeu (aba em segundo plano, ligação, Siri).
-    if(!unlocked&&!event.target.closest?.('#globo,[data-entry-tap],[data-explore-globe],[data-replay-entry],[data-audio-music],[data-audio-effects]'))return;
+    // Nas outras telas, qualquer toque inicia a trilha.
+    if(!unlocked&&gated&&!event.target.closest?.('#globo,[data-entry-tap],[data-explore-globe],[data-replay-entry],[data-audio-music],[data-audio-effects]'))return;
     // Repete a cada gesto até o som sair: um toque recusado não encerra as tentativas.
     wake();
   }
@@ -155,8 +167,9 @@
     return true;
   }
   // Religar acontece dentro do clique, ainda no gesto, para o Safari aceitar o resume.
-  musicButtons.forEach(button=>button.addEventListener('click',()=>{if(onlyUnlock(music)){reconcile();return;}music=!music;label();if(music)wake();else reconcile();}));
-  effectsButtons.forEach(button=>button.addEventListener('click',()=>{if(onlyUnlock(effects)){reconcile();return;}effects=!effects;if(!effects)stopVoices(effectsBus);label();if(effects)wake();else reconcile();}));
+  function savePrefs(){write('localStorage',PREFS,{music,effects});}
+  musicButtons.forEach(button=>button.addEventListener('click',()=>{if(onlyUnlock(music)){reconcile();return;}music=!music;savePrefs();label();if(music)wake();else reconcile();}));
+  effectsButtons.forEach(button=>button.addEventListener('click',()=>{if(onlyUnlock(effects)){reconcile();return;}effects=!effects;savePrefs();if(!effects)stopVoices(effectsBus);label();if(effects)wake();else reconcile();}));
   function noise(duration,frequency,volume){
     if(!context)return;
     const buffer=context.createBuffer(1,Math.ceil(context.sampleRate*duration),context.sampleRate),data=buffer.getChannelData(0);
@@ -197,8 +210,13 @@
   });
   window.addEventListener('fc:shake',()=>playEffect(()=>{noise(.4,1900,.18);bell(93,context.currentTime,.12,effectsBus);}));
   window.addEventListener('fc:entry-complete',()=>playEffect(()=>{const now=context.currentTime;[74,78,81].forEach(n=>bell(n,now,.13,effectsBus));}));
+  // Toque nos botões magnéticos (Entrar, Inscrições, Criar conta...): um brilho curto de sino.
+  window.addEventListener('fc:ui-press',()=>playEffect(()=>{const now=context.currentTime;noise(.12,5200,.12);bell(93,now,.11,effectsBus);bell(98,now+.06,.09,effectsBus);}));
   document.addEventListener('visibilitychange',reconcile);
   window.addEventListener('pagehide',()=>{pageInactive=true;reconcile();});
   window.addEventListener('pageshow',()=>{pageInactive=false;if(unlocked)reconcile();});
   label();
+  // Som já liberado nesta sessão: a nova tela retoma sozinha quando o navegador permite
+  // (Chrome, depois de um clique no mesmo site); senão, o primeiro toque em qualquer lugar.
+  if(session.unlocked&&wantsRunning()){init();if(context){unlocked=true;reconcile();}}
 })();
