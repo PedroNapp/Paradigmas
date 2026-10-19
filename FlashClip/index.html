@@ -5,13 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>FlashClip</title>
+<style id="fc-loading-critical">
+html.fc-loading body{overflow:hidden!important}
+html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visibility:hidden!important}
+#fc-loading{position:fixed;inset:0;z-index:30000;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at 50% 42%,#124b3388,transparent 64%),#030508;color:#f2f2f2;text-align:center;overflow:auto;transition:opacity .4s ease;font-family:'Avenir Next','Trebuchet MS',Arial,sans-serif}
+#fc-loading[hidden]{display:none!important}
+#fc-loading.fc-loading-leaving{opacity:0;pointer-events:none}
+.fc-loading-content{width:min(390px,100%)}
+.fc-loading-logo{width:146px;height:auto;display:block;margin:0 auto 35px}
+.fc-loading-orb{position:relative;width:126px;height:126px;margin:0 auto 25px;border:1px solid #f5bd3d44;border-radius:50%;background:radial-gradient(circle at 30% 22%,#f5bd3d22,transparent 55%);box-shadow:inset 0 0 30px #f5bd3d09,0 0 60px #f5bd3d09;display:grid;place-items:center}
+.fc-loading-orb::before{content:'';position:absolute;inset:-7px;border:1px solid transparent;border-top-color:#f5bd3d;border-right-color:#f5bd3d55;border-radius:50%;animation:fc-load-orbit 2.2s linear infinite}
+.fc-loading-orb svg{width:65px;height:80px;overflow:visible}
+.fc-loading-flake{animation:fc-load-flake 2.5s ease-in-out infinite alternate;transform-origin:center}
+.fc-loading-flake:nth-of-type(2){animation-delay:-1.1s}.fc-loading-flake:nth-of-type(3){animation-delay:-1.8s}
+#fc-loading h1{font:400 clamp(27px,5vw,34px)/1.15 Georgia,'Times New Roman',serif;letter-spacing:-.035em;margin:0 0 13px;color:#f2f2f2}
+.fc-loading-message{font-size:12px;line-height:1.8;color:#aeb4b8;margin:0 auto;min-height:44px;max-width:340px}
+.fc-loading-steps{display:flex;justify-content:center;gap:24px;padding:0;margin:25px 0 0;list-style:none;font-size:10px;letter-spacing:.06em;color:#858d95}
+.fc-loading-steps li::before{content:'';display:block;width:5px;height:5px;border:1px solid #858d9566;border-radius:50%;margin:0 auto 9px}
+.fc-loading-steps li[data-ready="true"]{color:#f5bd3d}.fc-loading-steps li[data-ready="true"]::before{background:#f5bd3d;border-color:#f5bd3d;box-shadow:0 0 10px #f5bd3d55}
+.fc-loading-note{margin:24px 0 0;font-size:10px;line-height:1.7;color:#858d95}
+.fc-loading-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}.fc-loading-actions[hidden]{display:none}
+.fc-loading-actions button{font:600 12px 'Avenir Next',Arial,sans-serif;min-height:44px;padding:12px 19px;border:1px solid #f5bd3d55;background:transparent;border-radius:25px;color:#f5bd3d;cursor:pointer}.fc-loading-actions button:first-child{background:#f5bd3d;color:#030508;border-color:#f5bd3d}
+#fc-loading button:focus-visible{outline:2px solid #f5bd3d;outline-offset:5px}
+#fc-loading[data-state="error"] .fc-loading-orb::before{animation:none;border-color:#f5bd3d55}
+.fc-globe-view[data-renderer="fallback"] .fc-globe-canvas{display:none}
+@keyframes fc-load-orbit{to{transform:rotate(360deg)}}@keyframes fc-load-flake{from{transform:translateY(-4px);opacity:.4}to{transform:translateY(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){#fc-loading,#fc-loading *{animation:none!important;transition:none!important}}
+</style>
+<script id="fc-loading-bootstrap">
+(() => {
+  const root=document.documentElement;
+  root.classList.add('fc-loading');root.dataset.loadState='loading';
+  const boot=window.FlashClipBoot={states:{},error:false,revealed:false,bypassed:false,timer:0,
+    report(name,status='ready') {this.states[name]=status;window.dispatchEvent(new CustomEvent('fc:load-state'));},
+    fail(reason) {
+      if(this.revealed)return;
+      this.error=true;clearTimeout(this.timer);this.states[reason]='error';root.dataset.loadState='error';
+      const overlay=document.getElementById('fc-loading');
+      if(overlay){overlay.dataset.state='error';overlay.setAttribute('aria-busy','false');overlay.querySelector('h1').textContent='Vamos tentar de novo?';overlay.querySelector('[data-loading-message]').textContent='Alguns recursos não carregaram. Tente novamente ou continue com uma versão leve do evento.';overlay.querySelector('[data-loading-actions]').hidden=false;overlay.querySelector('[data-loading-note]').textContent='Você pode continuar mesmo se o 3D não estiver disponível.';}
+      window.dispatchEvent(new CustomEvent('fc:load-state'));
+    },
+    continueLight() {
+      if(this.revealed)return;
+      this.bypassed=true;this.revealed=true;clearTimeout(this.timer);
+      root.classList.remove('fc-loading');root.dataset.loadState='light';
+      const overlay=document.getElementById('fc-loading');if(overlay)overlay.hidden=true;
+      const view=document.getElementById('globo');if(view)view.dataset.renderer='fallback';
+      const explore=document.querySelector('[data-explore-globe]');if(explore)explore.disabled=true;
+      window.dispatchEvent(new CustomEvent('fc:globe-unavailable'));
+      window.dispatchEvent(new CustomEvent('fc:load-bypass'));
+      window.dispatchEvent(new CustomEvent('fc:preview-visible'));
+    }
+  };
+  document.addEventListener('click',event=>{if(event.target.closest('[data-loading-retry]'))location.reload();if(event.target.closest('[data-loading-continue]'))boot.continueLight();});
+  window.addEventListener('error',event=>{const el=event.target;if(el?.tagName==='LINK'&&el.rel==='stylesheet')boot.fail('styles');if(el?.tagName==='SCRIPT'&&el.src)boot.fail('scripts');},true);
+  boot.timer=setTimeout(()=>{if(!boot.revealed)boot.fail('timeout');},45000);
+})();
+</script>
+<script defer src="js/carregamento.js?v=loading-1"></script>
 
     <link rel="stylesheet" href="./css/cabecalho.css" />
-    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/home.css?v=pedro-1" />
     <link rel="stylesheet" href="./css/rodape.css" />
+      <meta name="theme-color" content="#030508">
+    <link rel="stylesheet" href="css/natal.css?v=pedro-3">
+    <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-1">
+    <link rel="stylesheet" href="css/globo.css?v=pedro-2">
+    <link rel="stylesheet" href="css/entrada.css?v=pedro-2">
+    <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+    <script defer src="./notebooks/course-computers-loader.js?v=natal-3d-1"></script>
+    <script type="module" src="js/globo.js?v=pedro-2"></script>
   </head>
 
-  <body>
+  <body class="natal-theme" data-lights="on">
+    <section id="fc-loading" role="region" aria-label="Carregamento do FlashClip" aria-busy="true" data-state="loading">
+      <div class="fc-loading-content">
+        <img class="fc-loading-logo" src="./imagens/logoFlash.png" width="146" height="50" alt="FlashClip">
+        <div class="fc-loading-orb" aria-hidden="true">
+          <svg viewBox="0 0 70 85" fill="none"><path d="M35 15 21 38h8L17 57h36L41 38h8L35 15Z" fill="#183626" stroke="#f5bd3d" stroke-width="1.2"/><path d="M35 6v7m-3.5-3.5h7M35 58v10M17 70h36" stroke="#f5bd3d" stroke-width="1.4" stroke-linecap="round"/><circle class="fc-loading-flake" cx="13" cy="24" r="1.4" fill="#f2f2f2"/><circle class="fc-loading-flake" cx="57" cy="37" r="1.2" fill="#f2f2f2"/><circle class="fc-loading-flake" cx="21" cy="46" r="1" fill="#f2f2f2"/></svg>
+        </div>
+        <h1>Preparando seu Natal.</h1>
+        <p class="fc-loading-message" data-loading-message role="status" aria-live="polite">Carregando os detalhes do nosso pequeno mundo…</p>
+        <ol class="fc-loading-steps" aria-label="Recursos da prévia"><li data-loading-step="globe">Globo</li><li data-loading-step="sleigh">Trenó</li><li data-loading-step="page">Evento</li></ol>
+        <p class="fc-loading-note" data-loading-note>A experiência aparece assim que estiver pronta.</p>
+        <div class="fc-loading-actions" data-loading-actions hidden><button type="button" data-loading-retry>Tentar novamente</button><button type="button" data-loading-continue>Continuar com versão leve</button></div>
+      </div>
+    </section>
+    <noscript><style>#fc-loading{display:none!important}</style></noscript>
+
+    <a class="fc-skip" href="#conteudo">Pular para o conteúdo</a>
     <!-- NAVBAR -->
     <header class="navbar">
       <a href="./index.html" class="logo">
@@ -89,78 +171,103 @@
 
     <!-- MAIN -->
 
-    <main>
-      <section class="hero" id="evento">
-        <div class="conteudo">
-          <h1>FlashClip</h1>
-
-          <p class="subtitulo">
-            Conectando pessoas, ideias e experiências em um único evento.
-          </p>
-
-          <!-- CONTADOR -->
-
-          <div class="contador">
-            <div class="tempo">
-              <strong id="dias"> 00 </strong>
-
-              <span> Dias </span>
-            </div>
-
-            <div class="separador">:</div>
-
-            <div class="tempo">
-              <strong id="horas"> 00 </strong>
-
-              <span> Horas </span>
-            </div>
-
-            <div class="separador">:</div>
-
-            <div class="tempo">
-              <strong id="minutos"> 00 </strong>
-
-              <span> Minutos </span>
-            </div>
-
-            <div class="separador">:</div>
-
-            <div class="tempo">
-              <strong id="segundos"> 00 </strong>
-
-              <span> Segundos </span>
-            </div>
-          </div>
-
-          <!-- BOTÕES -->
-
-          <div class="botoes">
-            <a href="./html/cursos.html" class="botao-principal">
-              Fazer inscrição
-            </a>
-
-            <a href="./html/sobre.html" class="botao-secundario"> Saiba mais</a>
-          </div>
-
-          <!-- INFORMAÇÕES -->
-
-          <div class="informacoes-evento">
-            <div>
-              <span> LOCAL </span>
-
-              <strong> Ulbra Palmas, TO </strong>
-            </div>
-
-            <div>
-              <span> DATA E HORA </span>
-
-              <strong> 05/12 às 14h </strong>
-            </div>
-          </div>
+    <main class="fc-home" id="conteudo">
+      <section class="fc-hero" id="evento" aria-labelledby="fc-title">
+  <div class="fc-snow" aria-hidden="true"><i style="--left:37.70%;--size:2.5px;--duration:24.8s;--delay:-5.8s"></i><i style="--left:87.17%;--size:2.1px;--duration:13.6s;--delay:-25.7s"></i><i style="--left:25.57%;--size:1.6px;--duration:18.9s;--delay:-15.9s"></i><i style="--left:12.44%;--size:2.2px;--duration:24.7s;--delay:-13.8s"></i><i style="--left:79.45%;--size:2.1px;--duration:24.5s;--delay:-4.9s"></i><i style="--left:35.87%;--size:1.9px;--duration:14.5s;--delay:-26.3s"></i><i style="--left:63.60%;--size:1.3px;--duration:21.2s;--delay:-11.2s"></i><i style="--left:18.94%;--size:1.4px;--duration:19.5s;--delay:-1.9s"></i><i style="--left:56.31%;--size:1.9px;--duration:14.8s;--delay:-23.6s"></i><i style="--left:4.05%;--size:1.4px;--duration:24.4s;--delay:-6.0s"></i><i style="--left:42.42%;--size:2.0px;--duration:19.1s;--delay:-13.3s"></i><i style="--left:50.47%;--size:1.9px;--duration:13.8s;--delay:-22.0s"></i><i style="--left:28.28%;--size:1.3px;--duration:18.7s;--delay:-22.0s"></i><i style="--left:62.88%;--size:1.8px;--duration:19.7s;--delay:-5.9s"></i><i style="--left:61.81%;--size:1.7px;--duration:13.9s;--delay:-3.5s"></i><i style="--left:9.26%;--size:2.2px;--duration:25.4s;--delay:-20.4s"></i><i style="--left:21.95%;--size:1.4px;--duration:26.3s;--delay:-10.1s"></i><i style="--left:16.72%;--size:2.0px;--duration:21.7s;--delay:-14.6s"></i><i style="--left:45.19%;--size:1.6px;--duration:19.9s;--delay:-12.4s"></i><i style="--left:68.13%;--size:1.8px;--duration:18.0s;--delay:-26.6s"></i><i style="--left:11.07%;--size:2.3px;--duration:18.8s;--delay:-21.7s"></i><i style="--left:70.82%;--size:2.0px;--duration:21.5s;--delay:-6.2s"></i><i style="--left:1.61%;--size:2.2px;--duration:16.6s;--delay:-3.0s"></i></div>
+  <div class="fc-edition">
+    <p class="fc-eyebrow">Tecnologia, encontros & Natal</p>
+    <span>EDIÇÃO 2026 / ULBRA PALMAS</span>
+  </div>
+  <div class="fc-hero-grid">
+    <div class="fc-hero-copy">
+      <h1 id="fc-title">O Natal<br> nas suas<br><em>mãos.</em></h1>
+      <p>Um pequeno mundo de grandes ideias. Gire, chacoalhe, descubra — e venha viver o FlashClip com a gente.</p>
+      <div class="botoes">
+        <a class="botao-principal" href="./html/cursos.html">Encontre seu curso <span aria-hidden="true">↗</span></a>
+        <a class="botao-secundario" href="#sobre">Conheça o FlashClip ↓</a>
+      </div>
+    </div>
+    <div class="fc-globe-dock">
+      <div class="fc-globe-experience" id="globo-experiencia" role="region" aria-label="Globo de neve interativo">
+        <div class="fc-globe-heading"><span>FLASHCLIP · PEQUENOS UNIVERSOS</span><button type="button" data-close-globe hidden aria-label="Fechar exploração">Fechar <span aria-hidden="true">×</span></button></div>
+        <div class="fc-globe-view" id="globo" tabindex="0" role="group" aria-label="Globo de neve 3D. Mova o mouse para girar; balance o cursor ou toque no globo para fazer nevar. Pelo teclado, use setas, espaço e Home." aria-describedby="globo-instrucao" data-renderer="loading">
+          <div class="fc-globe-fallback" aria-hidden="true"><svg viewBox="0 0 540 540" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="fc-glass" cx=".3" cy=".2" r=".85">
+              <stop stop-color="#d6dde4" stop-opacity=".16"/>
+              <stop offset=".35" stop-color="#3a4652" stop-opacity=".06"/>
+              <stop offset=".75" stop-color="#030508" stop-opacity=".04"/>
+              <stop offset="1" stop-color="#c9d2dc" stop-opacity=".22"/>
+            </radialGradient>
+            <radialGradient id="fc-aura"><stop stop-color="#f5bd3d" stop-opacity=".38"/><stop offset="1" stop-color="#f5bd3d" stop-opacity="0"/></radialGradient>
+            <linearGradient id="fc-metal" x1="0" x2="1"><stop stop-color="#7e5c2f"/><stop offset=".45" stop-color="#f8dfa8"/><stop offset="1" stop-color="#927448"/></linearGradient>
+            <filter id="fc-glow" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="fc-soft"><feGaussianBlur stdDeviation="14"/></filter>
+            <clipPath id="fc-sphere"><circle cx="270" cy="286" r="178"/></clipPath>
+          </defs>
+          <ellipse cx="275" cy="495" rx="157" ry="13" fill="#000" opacity=".2" filter="url(#fc-soft)"/>
+          <circle class="fc-halo" cx="270" cy="285" r="230" fill="url(#fc-aura)"/>
+          <path d="M270-30V65" stroke="#d6a84f" stroke-width="1"/>
+          <ellipse cx="270" cy="78" rx="14" ry="18" fill="none" stroke="url(#fc-metal)" stroke-width="4"/>
+          <path d="M245 101 250 85H290L296 101V113H245Z" fill="url(#fc-metal)"/>
+          <path d="M253 89V106M261 89V106M270 89V106M279 89V106M287 89V106" stroke="#705327" opacity=".6"/>
+          <circle class="fc-glass" cx="270" cy="286" r="179"/>
+          <g clip-path="url(#fc-sphere)">
+            <path d="M85 349Q268 440 458 321" stroke="#d6b974" stroke-width=".8" fill="none" opacity=".55"/>
+            <path d="M111 214Q265 145 428 218" stroke="#c9d2dc" stroke-width=".5" fill="none" opacity=".2"/>
+            <image class="fc-emblem" href="./imagens/logo.png" x="172" y="164" width="196" height="239" preserveAspectRatio="xMidYMid meet"/>
+            <path d="M149 204Q114 281 144 342" stroke="#f2f2f2" stroke-width="11" stroke-linecap="round" fill="none" opacity=".09"/>
+            <path d="M399 336Q417 294 406 249" stroke="#f2f2f2" stroke-width="3" stroke-linecap="round" fill="none" opacity=".19"/>
+            <ellipse cx="212" cy="164" rx="43" ry="15" fill="#f3e6c8" opacity=".08" transform="rotate(-31 212 164)"/>
+            <g class="fc-bulb" fill="#ffe4a3">
+              <circle cx="133" cy="367" r="2.7"/><circle cx="175" cy="385" r="3"/><circle cx="224" cy="394" r="2.5"/>
+              <circle cx="274" cy="393" r="3"/><circle cx="325" cy="380" r="2.5"/><circle cx="373" cy="360" r="3"/><circle cx="414" cy="340" r="2.6"/>
+              <circle cx="195" cy="187" r="1.6"/><circle cx="354" cy="221" r="1.8"/><circle cx="203" cy="334" r="1.5"/>
+            </g>
+          </g>
+          <path d="M167 148A179 179 0 0 1 371 139" fill="none" stroke="#fff0c4" opacity=".5" stroke-width="1.2"/>
+          <path d="M245 103C199 80 211 47 245 67L270 99C296 43 338 56 321 83L275 107" fill="#9c2c35" stroke="#cf7470" stroke-width=".7"/>
+          <path d="M263 102C250 128 230 134 210 143L229 147 230 166C254 145 269 126 274 106" fill="#ac3740"/>
+          <path d="M270 103C287 121 310 124 326 143L307 142 303 157C282 142 269 124 265 107" fill="#7b242d"/>
+          <ellipse cx="269" cy="102" rx="10" ry="7" fill="#bd4a4c"/>
+          <g class="fc-spark" fill="#f5bd3d"><path d="M92 143 95 155 107 158 95 161 92 173 89 161 77 158 89 155Z"/></g>
+          <g class="fc-spark" fill="#f5bd3d"><path d="M430 90 433 103 446 106 433 109 430 122 427 109 414 106 427 103Z"/></g>
+          <g class="fc-spark" fill="#f5bd3d"><path d="M447 425 449 432 456 434 449 436 447 443 445 436 438 434 445 432Z"/></g>
+          <g fill="#f5bd3d" opacity=".6"><circle cx="116" cy="440" r="1.8"/><circle cx="456" cy="224" r="1.7"/><circle cx="395" cy="55" r="1.3"/><circle cx="99" cy="254" r="1.2"/></g>
+          <path d="M50 309H80M65 294V324" stroke="#9da1a5" stroke-width=".5" opacity=".5"/>
+        </svg></div>
+          <div class="fc-globe-canvas"></div>
+          <span class="fc-globe-orbit" aria-hidden="true"></span>
+          <div class="fc-globe-loader">Preparando seu pequeno mundo…</div>
         </div>
-      </section>
-
-      <!-- Sobre -->
+        <p id="globo-instrucao" class="fc-globe-hint">Mova o mouse: o globo acompanha você. Balance para nevar. No celular, toque ou arraste.</p>
+        <div class="fc-globe-actions">
+          <button class="fc-explore" type="button" data-explore-globe disabled>Explorar de perto <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="fc-globe-options">
+          <button type="button" data-toggle-lights aria-pressed="true"><span class="fc-light-icon" aria-hidden="true"></span><span>Apagar luzes</span></button>
+          <button type="button" data-toggle-motion aria-pressed="false">Pausar movimento</button>
+          <button type="button" data-reset-globe>Recentrar</button>
+          <button type="button" data-replay-entry>Rever abertura</button>
+        </div>
+        <p class="fc-globe-status" role="status" aria-live="polite">Uma vila, infinitas possibilidades.</p>
+      </div>
+    </div>
+  </div>
+  <div class="fc-event-bar">
+    <div class="fc-event-date"><strong>05 / 12</strong><div><small>GUARDE A DATA</small><p>Sábado, às 14h · 2026</p></div></div>
+    <div class="fc-event-place"><small>VAMOS NOS ENCONTRAR</small><p>Ulbra Palmas, TO</p></div>
+    <div class="fc-countdown" aria-label="Contagem regressiva para o evento">
+      <span class="fc-countdown-label">Nos vemos em</span>
+      <div class="fc-time"><strong id="dias">00</strong><span>Dias</span></div>
+      <div class="fc-time"><strong id="horas">00</strong><span>Horas</span></div>
+      <div class="fc-time"><strong id="minutos">00</strong><span>Min.</span></div>
+      <div class="fc-time"><strong id="segundos">00</strong><span>Seg.</span></div>
+    </div>
+  </div>
+</section>
+<div class="fc-scroll-cue"><span>01 / Um encontro de possibilidades</span><a href="#sobre">Explore o evento ↓</a></div>
+<!-- Sobre -->
       <section class="sobre" id="sobre">
         <div class="sobre-conteudo">
           <span class="sobre-categoria">SOBRE O EVENTO</span>
@@ -324,9 +431,9 @@
         </div>
       </section>
 
-      <section class="cursos">
+      <section class="cursos" id="cursos">
         <div class="titulo-cursos">
-          <h2>Cursos disponíveis</h2>
+          <span>ESCOLHA SEU PRÓXIMO COMEÇO</span><h2>Conhecimento para levar<br>além deste Natal.</h2>
           <p>Confira os cursos disponíveis para inscrição.</p>
         </div>
 
@@ -334,6 +441,7 @@
           <p>Carregando cursos...</p>
         </div>
       </section>
+<section class="fc-closing" aria-labelledby="fc-closing-title"><div><p>Novas conexões. Novas possibilidades.</p><h2 id="fc-closing-title">O melhor presente?<br>Um novo começo.</h2></div><a class="botao-principal" href="./html/cursos.html">Quero fazer parte <span aria-hidden="true">↗</span></a></section>
     </main>
 
     <!-- FOOTER -->
@@ -355,7 +463,40 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script type="module" src="./js/auth.js"></script>
-    <script type="module" src="./js/script.js"></script>
+    <script type="module" src="./js/script.js?v=ready-1"></script>
     <script src="./js/cabecalho.js"></script>
-  </body>
+      <script defer src="js/natal.js"></script>
+  <section class="fc-entry" id="abertura" hidden role="region" aria-label="Abertura interativa do FlashClip" data-entry-step="0">
+  <div class="fc-entry-top">
+    <img src="./imagens/logoFlash.png" width="142" height="49" alt="FlashClip" />
+    <span>EDIÇÃO NATAL 2026</span>
+  </div>
+
+  <div class="fc-entry-mount"></div>
+
+  <div class="fc-entry-bottom">
+    <div class="fc-entry-copy">
+      <h1>Um toque de Natal.</h1>
+      <p id="entrada-instrucao" data-entry-instruction>Toque no globo 5 vezes para abrir o evento.</p>
+    </div>
+    <div class="fc-entry-progress" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <button class="fc-entry-tap" type="button" data-entry-tap>Toque para começar</button>
+    <p class="fc-entry-status" data-entry-status role="status" aria-live="polite" aria-atomic="true">0 de 5 toques.</p>
+    <div class="fc-entry-utility">
+      <button type="button" data-entry-skip>Pular abertura</button>
+      <span aria-hidden="true">·</span>
+      <button type="button" data-entry-pause aria-pressed="false">Pausar movimento</button>
+      <button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button>
+      <button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button>
+    </div>
+  </div>
+</section>
+
+    <script defer src="js/entrada.js?v=loading-1"></script>
+    <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
+    <script defer src="js/audio-natal.js?v=audio-4"></script>
+    <dialog class="fc-globe-dialog" aria-label="Explore o globo de neve" aria-modal="true"></dialog>
+    </body>
 </html>

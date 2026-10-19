@@ -1,0 +1,173 @@
+/* Um objeto operável. Conteúdo e controles permanecem em HTML. */
+/* Cenário da hero feito pelo Pedro: a cabana fica à direita, sob o globo. */
+.fc-hero {
+  min-height: 830px; padding-top: 28px;
+  background-color: #030508;
+  background-image: linear-gradient(90deg, rgba(3, 5, 8, .55) 0%, rgba(3, 5, 8, .12) 46%, rgba(3, 5, 8, 0) 72%), linear-gradient(180deg, rgba(3, 5, 8, 0) 70%, rgba(3, 5, 8, .7) 100%), url("../imagens/Cenario/flashclip-tela-principal.svg");
+  background-repeat: no-repeat; background-position: center, center, center bottom; background-size: cover, cover, cover;
+}
+.fc-hero::before { pointer-events: none; background: radial-gradient(ellipse at 71% 72%, #f5bd3d16, transparent 36%); }
+.fc-hero::after { opacity: .12; }
+.fc-hero-grid { grid-template-columns: .85fr 1.4fr; min-height: 635px; margin-right: -5vw; }
+.fc-hero-copy { padding: 5px 0 32px; }
+.fc-hero-copy h1 { font-size: clamp(75px, 7.8vw, 122px); letter-spacing: -.065em; }
+.fc-hero-copy > p { max-width: 285px; font-size: 14px; }
+.fc-hero-copy .botoes { align-items: flex-start; flex-direction: column; gap: 12px; }
+.fc-globe-dock { min-width: 0; position: relative; }
+.fc-globe-experience { position: relative; width: 100%; isolation: isolate; }
+.fc-globe-heading { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px 0; }
+.fc-globe-heading > span { font-size: 8px; letter-spacing: .22em; color: #aeb4b8; opacity: .7; }
+.fc-globe-heading [data-close-globe] { background: #11161b; border: 1px solid #f5bd3d55; color: #f2f2f2; padding: 11px 16px; border-radius: 30px; font: inherit; cursor: pointer; }
+.fc-globe-heading [hidden] { display: none; }
+.fc-globe-view { height: 485px; position: relative; width: 100%; outline-offset: -4px; touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.fc-globe-view:active { cursor: grabbing; }
+.fc-globe-canvas { position: absolute; inset: 0; z-index: 2; }
+.fc-globe-canvas canvas { display: block; width: 100%; height: 100%; }
+.fc-globe-fallback { position: absolute; inset: 0; display: grid; place-items: center; opacity: .55; }
+.fc-globe-fallback svg { height: 100%; max-width: 100%; }
+.fc-globe-view[data-renderer="webgl"] .fc-globe-fallback { display: none; }
+.fc-globe-view[data-renderer="webgl"] .fc-globe-loader { display: none; }
+.fc-globe-view[data-renderer="fallback"] .fc-globe-loader { bottom: 0; }
+.fc-globe-loader { position: absolute; left: 10%; right: 10%; bottom: 35%; z-index: 3; text-align: center; color: #f2f2f2; font-size: 12px; }
+.fc-globe-orbit { position: absolute; width: 76%; height: 17%; border: 1px solid #f5bd3d25; border-radius: 50%; bottom: 6%; left: 12%; pointer-events: none; transform: rotate(-8deg); }
+.fc-globe-hint { color: #aeb4b8; text-align: center; font-size: 10px; letter-spacing: .02em; padding: 0 12px; margin: -2px 0 16px; }
+.fc-globe-actions { display: flex; justify-content: center; align-items: center; gap: 14px; padding: 0 15px; }
+.fc-globe-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 30px; padding: 14px 22px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s; }
+.fc-globe-actions button:hover:not(:disabled) { transform: translateY(-2px); }
+.fc-shake { background: #f5bd3d; color: #030508; border: 1px solid #f5bd3d; box-shadow: 0 0 35px #f5bd3d13; }
+.fc-shake > span { font-size: 20px; line-height: 1; }
+.fc-explore { color: #f2f2f2; border: 1px solid #f5bd3d44; background: #0d121744; }
+.fc-globe-actions button:disabled { opacity: .5; cursor: default; }
+.fc-globe-options { display: flex; justify-content: center; gap: 18px; margin: 12px 0 0; }
+.fc-globe-options button { font: 10px inherit; font-family: inherit; font-size: 10px; color: #aeb4b8; background: transparent; border: 0; padding: 7px 0; cursor: pointer; border-bottom: 1px solid #f5bd3d22; }
+.fc-globe-options button:hover { color: #f5bd3d; }
+.fc-globe-status { text-align: center; font-size: 9px; color: #9da1a5; margin: 9px 0 12px; letter-spacing: .04em; min-height: 17px; }
+.fc-globe-dialog { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; padding: 0; margin: 0; border: 0; color: #f2f2f2; background: radial-gradient(ellipse at 50% 45%, #161d25, #030508 75%); overflow-y: auto; }
+.fc-globe-dialog::backdrop { background: #030508eF; }
+.fc-globe-dialog .fc-globe-experience { max-width: 1400px; min-height: 100%; margin: auto; padding: 0 25px 20px; }
+.fc-globe-dialog .fc-globe-heading { padding-top: 24px; }
+.fc-globe-dialog .fc-globe-view { height: calc(100dvh - 220px); min-height: 330px; }
+.fc-globe-dialog .fc-globe-hint { font-size: 12px; }
+body.fc-globe-open { overflow: hidden; }
+@media (min-width: 1500px) {
+  .fc-globe-view { height: 560px; }
+  .fc-hero { min-height: 900px; }
+}
+@media (max-width: 1100px) {
+  .fc-hero { min-height: 770px; }
+  .fc-hero-grid { grid-template-columns: .8fr 1.3fr; margin-right: -4vw; }
+  .fc-hero-copy h1 { font-size: clamp(65px, 8vw, 95px); }
+  .fc-globe-view { height: 440px; }
+  .fc-globe-actions { gap: 8px; }
+  .fc-globe-actions button { padding: 12px 15px; font-size: 11px; }
+}
+@media (max-width: 700px) {
+  .fc-hero {
+    padding: 22px 6% 0;
+    background-image: linear-gradient(180deg, rgba(3, 5, 8, .1) 0%, rgba(3, 5, 8, .05) 48%, rgba(3, 5, 8, .75) 100%), url("../imagens/Cenario/flashclip-tela-principal.svg");
+    background-position: center, right bottom; background-size: cover, auto 48%;
+  }
+  .fc-hero-grid { display: flex; flex-direction: column; margin: 0; min-height: 0; }
+  .fc-hero-copy { width: 100%; padding: 32px 0 0; }
+  .fc-hero-copy h1 { font-size: clamp(62px, 14.5vw, 88px); margin-bottom: 20px; }
+  .fc-hero-copy h1 br:nth-of-type(1) { display: none; }
+  .fc-hero-copy h1 br:nth-of-type(1)::after { content: ' '; }
+  .fc-hero-copy > p { font-size: 13px; max-width: 290px; }
+  .fc-hero-copy .botoes { flex-direction: row; align-items: center; gap: 17px; margin-top: 20px; flex-wrap: wrap; }
+  .fc-globe-dock { width: calc(100% + 10vw); margin-top: 25px; }
+  .fc-globe-heading { padding: 12px 6%; }
+  .fc-globe-heading > span { font-size: 7px; }
+  .fc-globe-view { height: 385px; }
+  .fc-globe-hint { font-size: 10px; max-width: 300px; margin: 0 auto 17px; }
+  .fc-globe-actions { gap: 10px; }
+  .fc-globe-actions button { font-size: 11px; padding: 13px 16px; }
+  .fc-globe-options { gap: 17px; }
+  .fc-globe-dialog .fc-globe-experience { padding: 0 6px 10px; }
+  .fc-globe-dialog .fc-globe-view { height: calc(100dvh - 240px); min-height: 300px; }
+  .fc-globe-dialog .fc-globe-heading { padding: 20px 14px 10px; }
+  .fc-event-bar { margin-top: 20px; }
+}
+@media (max-width: 360px) {
+  .fc-globe-view { height: 325px; }
+  .fc-globe-actions button { padding: 12px; font-size: 10px; }
+  .fc-globe-options { gap: 13px; }
+  .fc-hero-copy h1 { font-size: 58px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-globe-actions button { transition: none; }
+  .fc-globe-actions button:hover { transform: none; }
+}
+
+.fc-globe-actions button[hidden] { display: none; }
+@media (max-width: 700px) {
+  .fc-hero-copy { display: contents; }
+  .fc-hero-copy h1 { order: 0; font-size: clamp(43px, 8.5vw, 61px); text-align: center; letter-spacing: -.055em; padding: 24px 0 0; margin: 0; width: 100%; }
+  .fc-hero-copy h1 br:nth-of-type(1) { display: initial; }
+  .fc-hero-copy h1 br:nth-of-type(2) { display: none; }
+  .fc-hero-copy h1 em::before { content: ' '; }
+  .fc-globe-dock { order: 1; margin-top: 8px; }
+  .fc-globe-heading { justify-content: center; padding-top: 12px; }
+  .fc-globe-dialog .fc-globe-heading { justify-content: space-between; }
+  .fc-globe-view { height: min(100vw, 430px); }
+  .fc-hero-copy > p { order: 2; text-align: center; margin: 25px 0 0; }
+  .fc-hero-copy .botoes { order: 3; justify-content: center; margin-bottom: 10px; }
+}
+.fc-globe-dialog [data-replay-entry] { display: none; }
+
+/* O canvas acompanha o mouse sem uma moldura retangular ao receber foco. */
+.natal-theme .fc-globe-view:focus { outline: none; }
+.natal-theme #fc-title:focus { outline: none; }
+.fc-globe-experience:has(.fc-globe-view:focus-visible) .fc-globe-hint { color: #f2f2f2; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Controles confortáveis para os dedos, inclusive em paisagem. */
+@media (max-width: 700px), (hover: none) and (pointer: coarse) {
+  .fc-globe-options { flex-wrap: wrap; gap: 4px 8px; padding-inline: 12px; }
+  .fc-globe-options button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+
+@media (max-height: 440px) and (orientation: landscape) {
+  .fc-globe-dialog .fc-globe-experience {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr);
+    grid-template-rows: 44px minmax(0, 1fr) auto auto;
+    gap: 4px 16px;
+    height: 100dvh;
+    min-height: 0;
+    padding: 12px;
+  }
+  .fc-globe-dialog .fc-globe-heading { grid-column: 1 / -1; grid-row: 1; padding: 0; }
+  .fc-globe-dialog .fc-globe-view {
+    grid-column: 1;
+    grid-row: 2 / 5;
+    height: 100%;
+    min-height: 0;
+  }
+  .fc-globe-dialog .fc-globe-hint {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .fc-globe-dialog .fc-globe-actions { display: none; }
+  .fc-globe-dialog .fc-globe-options {
+    grid-column: 2;
+    grid-row: 3;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .fc-globe-dialog .fc-globe-options button { min-height: 44px; }
+  .fc-globe-dialog .fc-globe-status { grid-column: 2; grid-row: 4; min-height: 0; margin: 0; text-align: left; line-height: 1.4; }
+}
