@@ -79,6 +79,23 @@ if (botaoUsuario && nomeUsuario) {
 sincronizarUsuario();
 
 // =========================
+// CLIQUE DO BOTÃO MOBILE
+// =========================
+//
+// A ação do botão (ex.: ir para o login
+// quando o visitante não está logado)
+// é definida pelo auth.js só no botão
+// do desktop. O botão mobile repassa
+// o clique para ele.
+//
+
+if (botaoUsuario && botaoUsuarioMobile) {
+  botaoUsuarioMobile.addEventListener("click", function () {
+    botaoUsuario.click();
+  });
+}
+
+// =========================
 // MENU
 // =========================
 
