@@ -2071,14 +2071,9 @@ main > section {
   opacity: 0.45;
 }
 
-/* CURSOS: notebook natalino posicionado fora da área dos cards. */
+/* CURSOS: sem ilustração lateral; os notebooks dos cards já fazem esse papel. */
 .cursos::before {
-  right: max(16px, calc((100% - 1220px) / 2));
-  top: 76px;
-  width: clamp(175px, 20vw, 245px);
-  height: 155px;
-  background-image: url("../imagens/Decoracoes/notebook-natal.svg");
-  opacity: 0.48;
+  content: none;
 }
 
 /* Conteúdo de texto e listas permanecem acima das ilustrações. */
