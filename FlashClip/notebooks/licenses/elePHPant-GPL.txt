@@ -1,0 +1,15 @@
+elePHPant — mascote do PHP
+
+Arquivos: notebooks/logos/php-elephpant.svg (sem alterações)
+          notebooks/cursores/php.svg (o mesmo desenho, só com largura e altura de 32px)
+
+Autor: Vincent Pontier (http://www.elroubio.net/)
+Fonte: https://commons.wikimedia.org/wiki/File:Webysther_20160423_-_Elephpant.svg
+Mais informações: https://www.php.net/elephpant.php
+
+Licença: GNU General Public License (GPL), como indicado na página do arquivo
+no Wikimedia Commons. Texto da licença: https://www.gnu.org/licenses/gpl.html
+
+O desenho é usado apenas para identificar o curso de PHP no FlashClip.
+O nome e o logotipo do PHP pertencem aos seus respectivos donos; não há
+endosso implícito.

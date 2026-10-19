@@ -76,3 +76,7 @@
   .fc-computer-toggle, .fc-computer-canvas { transition: none; }
   .fc-computer-loading-ring { animation: none; }
 }
+
+/* No card de uma linguagem, o ponteiro vira o ícone dela (carregarCardsCursos.js define a variável). */
+.card-curso { cursor: var(--fc-cursor-linguagem, auto); }
+.card-curso .fc-computer-trigger { cursor: var(--fc-cursor-linguagem, pointer); }

@@ -4,7 +4,7 @@
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
-import { computerMarkup } from "../notebooks/course-identities.js?v=ready-3";
+import { computerMarkup, courseIdentity } from "../notebooks/course-identities.js?v=ready-4";
 
 // =========================
 // CONFIGURAÇÕES
@@ -186,6 +186,16 @@ export async function carregarCursos(
       const card = document.createElement("article");
 
       card.classList.add("card-curso");
+
+      // Dentro do card, o ponteiro vira o ícone da linguagem.
+      const identidade = courseIdentity(curso.nome);
+
+      if (identidade.cursor) {
+        card.style.setProperty(
+          "--fc-cursor-linguagem",
+          `url("${identidade.cursor}") 16 16, auto`,
+        );
+      }
 
       // =========================
       // BOTÃO

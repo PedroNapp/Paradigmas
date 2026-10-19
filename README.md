@@ -86,7 +86,7 @@ FlashClip/
 ├── app.html                   # Moldura: cada tela abre uma vez e fica guardada; trocar de aba não recarrega a página nem para a música
 ├── README.md                  # Esta documentação
 ├── models/                   # Modelos 3D (.glb) do globo de neve e do trenó
-├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT) e scripts
+├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT; elePHPant, GPL), ponteiros por linguagem e scripts
 ├── vendor/three/             # Three.js local (licença MIT)
 ├── vendor/lenis/             # Lenis local, rolagem suave (licença MIT)
 ├── admin/

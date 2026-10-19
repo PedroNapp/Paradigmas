@@ -16,13 +16,6 @@
   let lastProgress = '';
   let lastDrift = '';
 
-  // O botão "Pausar movimento" da abertura (entrada.js) pausa e retoma por este evento.
-  window.addEventListener('fc:toggle-motion', () => {
-    paused = !paused;
-    body.classList.toggle('fc-paused', paused);
-    if (paused) resetPose();
-    updateScroll();
-  });
 
   function resetPose() {
     if (!stage) return;

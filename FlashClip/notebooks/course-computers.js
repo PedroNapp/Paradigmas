@@ -1,4 +1,4 @@
-import { courseIdentity } from './course-identities.js';
+import { courseIdentity } from './course-identities.js?v=ready-4';
 
 const list = document.getElementById('listaCursos');
 if (list && !list.dataset.computerUnavailable) initializeComputers(list);

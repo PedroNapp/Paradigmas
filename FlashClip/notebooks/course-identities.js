@@ -4,7 +4,7 @@ const languages = {
   java: ['java', '#ef8d43', 'Java'],
   python: ['python', '#6cb1dc', 'Python'],
   'c++': ['cplusplus', '#6a9fdd', 'C++'],
-  php: ['php', '#a0a9dc', 'PHP'],
+  php: ['php-elephpant', '#a0a9dc', 'PHP'],
   prolog: ['prolog', '#ef9c6b', 'Prolog'],
   elixir: ['elixir', '#b29ad3', 'Elixir'],
   clojure: ['clojure', '#87bf72', 'Clojure'],
@@ -18,7 +18,9 @@ export function courseIdentity(value) {
   return {
     name, slug, color,
     logo: slug ? new URL(`./logos/${slug}.svg`, import.meta.url).href : null,
-    logoLabel: slug === 'prolog' ? 'Símbolo do SWI-Prolog' : `Logo de ${name}`,
+    // Ponteiro de 32px com o ícone da linguagem (notebooks/cursores/).
+    cursor: slug ? new URL(`./cursores/${slug.replace('-elephpant', '')}.svg`, import.meta.url).href : null,
+    logoLabel: slug === 'prolog' ? 'Símbolo do SWI-Prolog' : slug === 'php-elephpant' ? 'elePHPant, mascote do PHP' : `Logo de ${name}`,
   };
 }
 

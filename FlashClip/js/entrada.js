@@ -7,8 +7,6 @@
   const mount = entry.querySelector('.fc-entry-mount');
   const view = experience.querySelector('#globo');
   const tap = entry.querySelector('[data-entry-tap]');
-  const skip = entry.querySelector('[data-entry-skip]');
-  const pause = entry.querySelector('[data-entry-pause]');
   const status = entry.querySelector('[data-entry-status]');
   const dots = [...entry.querySelectorAll('.fc-entry-progress > i')];
   const subtitle = entry.querySelector('[data-entry-instruction]');
@@ -164,12 +162,11 @@
     }
   }
   function syncPause() {
-    const paused=document.body.classList.contains('fc-paused');
-    pause.setAttribute('aria-pressed',String(paused));pause.textContent=paused?'Retomar movimento':'Pausar movimento';
-    if(paused&&landing)finishLanding();
+    if(document.body.classList.contains('fc-paused')&&landing)finishLanding();
   }
-  tap.addEventListener('click',hit);skip.addEventListener('click',()=>finish({immediate:true}));
-  pause.addEventListener('click',()=>{window.dispatchEvent(new CustomEvent('fc:toggle-motion'));syncPause();});
+  tap.addEventListener('click',hit);
+  // A abertura não mostra botão de pular: Esc pula direto para o evento.
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active)finish({immediate:true});});
   new MutationObserver(syncPause).observe(document.body,{attributes:true,attributeFilter:['class']});
   window.addEventListener('fc:globe-tap',hit);
   window.addEventListener('fc:globe-ready',()=>{
