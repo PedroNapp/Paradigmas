@@ -1,39 +1,257 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="600" viewBox="0 0 300 600" fill="none">
-  <defs>
-    <linearGradient id="folhas" x1="35" y1="90" x2="260" y2="470" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#315b46" stop-opacity=".78"/>
-      <stop offset="1" stop-color="#122a22" stop-opacity=".3"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="300"
+   height="600"
+   viewBox="0 0 300 600"
+   fill="none"
+   version="1.1"
+   id="svg28"
+   sodipodi:docname="arvore-natal-alt.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview28"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.92"
+     inkscape:cx="149.82877"
+     inkscape:cy="128.76712"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg28" />
+  <defs
+     id="defs5">
+    <linearGradient
+       id="folhas"
+       x1="35"
+       y1="90"
+       x2="260"
+       y2="470"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#315b46"
+         stop-opacity=".78"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#122a22"
+         stop-opacity=".3"
+         id="stop2" />
     </linearGradient>
-    <linearGradient id="luz" x1="65" y1="130" x2="240" y2="450" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ffdf8b"/>
-      <stop offset="1" stop-color="#d99b30"/>
+    <linearGradient
+       id="luz"
+       x1="65"
+       y1="130"
+       x2="240"
+       y2="450"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#ffdf8b"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#d99b30"
+         id="stop4" />
     </linearGradient>
-    <filter id="brilho" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter
+       id="brilho"
+       x="-0.037147238"
+       y="-0.033694684"
+       width="1.0742945"
+       height="1.0673894">
+      <feGaussianBlur
+         stdDeviation="3"
+         result="blur"
+         id="feGaussianBlur4" />
+      <feMerge
+         id="feMerge5">
+        <feMergeNode
+           in="blur"
+           id="feMergeNode4" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode5" />
+      </feMerge>
     </filter>
   </defs>
   <!-- árvore em camadas delicadas -->
-  <path d="M150 34 119 91 133 87 91 150 111 146 66 215 91 209 43 278 80 269 27 341 80 328 12 411 288 411 220 328 273 341 220 269 257 278 209 209 234 215 189 146 209 150 167 87 181 91 150 34Z" fill="url(#folhas)" fill-opacity=".36" stroke="#52745d" stroke-opacity=".7" stroke-width="1.8" stroke-linejoin="round"/>
-  <path d="M150 43 136 92 150 84 120 143 139 136 103 198 128 188 85 256 117 245 69 311 112 299 50 373 150 350 250 373 188 299 231 311 183 245 215 256 172 188 197 198 161 136 180 143 150 84 164 92 150 43Z" fill="url(#folhas)" fill-opacity=".28"/>
+  <path
+     d="M150 34 119 91 133 87 91 150 111 146 66 215 91 209 43 278 80 269 27 341 80 328 12 411 288 411 220 328 273 341 220 269 257 278 209 209 234 215 189 146 209 150 167 87 181 91 150 34Z"
+     fill="url(#folhas)"
+     fill-opacity=".36"
+     stroke="#52745d"
+     stroke-opacity=".7"
+     stroke-width="1.8"
+     stroke-linejoin="round"
+     id="path5" />
+  <path
+     d="M150 43 136 92 150 84 120 143 139 136 103 198 128 188 85 256 117 245 69 311 112 299 50 373 150 350 250 373 188 299 231 311 183 245 215 256 172 188 197 198 161 136 180 143 150 84 164 92 150 43Z"
+     fill="url(#folhas)"
+     fill-opacity=".28"
+     id="path6" />
   <!-- galhos internos -->
-  <path d="M150 72 150 392 M150 132 113 169 M150 184 191 219 M150 239 103 281 M150 292 205 333 M150 343 93 382" stroke="#719176" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/>
+  <path
+     d="m 150,72 v 320 m 0,-260 -19.53425,32.54795 M 150,184 192.71233,236.46575 M 150,239 103,281 m 47,11 55,41 m -57.05479,-12.26027 -60.424662,32.15068"
+     stroke="#719176"
+     stroke-opacity="0.5"
+     stroke-width="1.4"
+     stroke-linecap="round"
+     id="path7"
+     sodipodi:nodetypes="cccccccccccc" />
   <!-- estrela -->
-  <path d="M150 8 155 23 171 24 158 33 163 49 150 39 137 49 142 33 129 24 145 23Z" fill="#f5bd3d" fill-opacity=".13" stroke="#f5bd3d" stroke-width="1.6" stroke-linejoin="round"/>
-  <path d="M150 16V42 M137 29H163" stroke="#ffe6a3" stroke-opacity=".85" stroke-width="1"/>
+  <path
+     d="M150 8 155 23 171 24 158 33 163 49 150 39 137 49 142 33 129 24 145 23Z"
+     fill="#f5bd3d"
+     fill-opacity=".13"
+     stroke="#f5bd3d"
+     stroke-width="1.6"
+     stroke-linejoin="round"
+     id="path8"
+     style="fill:#ffcc5a;fill-opacity:1" />
   <!-- cordão de luzes -->
-  <path d="M102 163 Q148 194 198 164 M78 229 Q148 267 222 229 M53 294 Q148 337 247 294 M30 359 Q148 405 270 359" stroke="url(#luz)" stroke-width="1.8" stroke-opacity=".88" stroke-linecap="round"/>
-  <g fill="#f5bd3d" filter="url(#brilho)">
-    <circle cx="116" cy="174" r="3.4"/><circle cx="161" cy="187" r="3"/><circle cx="190" cy="174" r="3.2"/>
-    <circle cx="96" cy="238" r="3.3"/><circle cx="148" cy="257" r="3.6"/><circle cx="204" cy="242" r="3"/>
-    <circle cx="74" cy="303" r="3.4"/><circle cx="132" cy="326" r="3"/><circle cx="187" cy="322" r="3.5"/><circle cx="231" cy="303" r="3"/>
-    <circle cx="52" cy="366" r="3.2"/><circle cx="109" cy="388" r="3.5"/><circle cx="173" cy="392" r="3.1"/><circle cx="247" cy="367" r="3.5"/>
+  <path
+     d="m 102,163 c 30.66667,20.66667 62.66667,21 96,1 M 78,229 c 46.66667,25.33333 94.66667,25.33333 144,0 M 61.561644,295.71233 C 136.7515,329.74564 187.63372,316.7516 238.43836,294.68493 M 52.260274,361.05479 c 50.298576,19.60793 112.011506,31.72978 194.452056,0"
+     stroke="url(#luz)"
+     stroke-width="1.8"
+     stroke-opacity="0.88"
+     stroke-linecap="round"
+     id="path10"
+     sodipodi:nodetypes="cccccccc" />
+  <g
+     fill="#f5bd3d"
+     filter="url(#brilho)"
+     id="g23">
+    <circle
+       cx="119.76712"
+       cy="177.76712"
+       r="3.4000001"
+       id="circle10"
+       style="fill:#00ff00" />
+    <circle
+       cx="150.38356"
+       cy="183.9178"
+       r="3"
+       id="circle11"
+       style="fill:#ff0000" />
+    <circle
+       cx="182.12329"
+       cy="177.0822"
+       r="3.2"
+       id="circle12"
+       style="fill:#00ff00" />
+    <circle
+       cx="95.657532"
+       cy="242.79453"
+       r="3.3"
+       id="circle13"
+       style="fill:#ff00ff" />
+    <circle
+       cx="149.71233"
+       cy="254.26027"
+       r="3.5999999"
+       id="circle14"
+       style="fill:#e3e2db" />
+    <circle
+       cx="201.60274"
+       cy="244.05479"
+       r="3"
+       id="circle15"
+       style="fill:#ff00ff" />
+    <circle
+       cx="75.027397"
+       cy="306.76712"
+       r="3.4000001"
+       id="circle16"
+       style="fill:#ffffff" />
+    <circle
+       cx="123.78082"
+       cy="319.49316"
+       r="3"
+       id="circle17"
+       style="fill:#ffff00" />
+    <circle
+       cx="181.86301"
+       cy="319.26028"
+       r="3.5"
+       id="circle18"
+       style="fill:#ffff00" />
+    <circle
+       cx="223.46574"
+       cy="306.76712"
+       r="3"
+       id="circle19"
+       style="fill:#ffffff" />
+    <circle
+       cx="56.109589"
+       cy="368.73972"
+       r="3.2"
+       id="circle20"
+       style="fill:#00ff00" />
+    <circle
+       cx="107.9726"
+       cy="382.52054"
+       r="3.5"
+       id="circle21"
+       style="fill:#ff2a2a" />
+    <circle
+       cx="183.95891"
+       cy="384.46576"
+       r="3.0999999"
+       id="circle22"
+       style="fill:#00ff00" />
+    <circle
+       cx="243.23288"
+       cy="368.71234"
+       r="3.5"
+       id="circle23"
+       style="fill:#ff0000" />
   </g>
   <!-- tronco -->
-  <path d="M139 408 136 453 164 453 161 408" fill="#8a6238" fill-opacity=".45" stroke="#b58a50" stroke-opacity=".65" stroke-width="1.2"/>
-  <path d="M124 456H176 M132 463H168" stroke="#d7ac64" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round"/>
+  <path
+     d="M139 408 136 453 164 453 161 408"
+     fill="#8a6238"
+     fill-opacity=".45"
+     stroke="#b58a50"
+     stroke-opacity=".65"
+     stroke-width="1.2"
+     id="path23" />
+  <path
+     d="M124 456H176 M132 463H168"
+     stroke="#d7ac64"
+     stroke-opacity=".55"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     id="path24" />
   <!-- pequenas estrelas flutuantes -->
-  <g stroke="#f5bd3d" stroke-opacity=".65" stroke-width="1.4" stroke-linecap="round">
-    <path d="M49 116V130 M42 123H56"/><path d="M249 185V199 M242 192H256"/><path d="M35 236V246 M30 241H40"/><path d="M257 277V287 M252 282H262"/>
+  <g
+     stroke="#f5bd3d"
+     stroke-opacity=".65"
+     stroke-width="1.4"
+     stroke-linecap="round"
+     id="g28">
+    <path
+       d="M49 116V130 M42 123H56"
+       id="path25" />
+    <path
+       d="M249 185V199 M242 192H256"
+       id="path26" />
+    <path
+       d="M35 236V246 M30 241H40"
+       id="path27" />
+    <path
+       d="M257 277V287 M252 282H262"
+       id="path28" />
   </g>
 </svg>

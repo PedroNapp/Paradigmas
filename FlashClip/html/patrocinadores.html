@@ -3,52 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030508" />
 
     <title>Patrocinadores | FlashClip</title>
 
     <link rel="stylesheet" href="../css/cabecalho.css" />
-
     <link rel="stylesheet" href="../css/patrocinadores.css" />
-
     <link rel="stylesheet" href="../css/rodape.css" />
   </head>
 
   <body>
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
     <header class="navbar">
       <a href="../index.html" class="logo">
         <img src="../imagens/logoFlash.png" alt="FlashClip" />
       </a>
 
       <nav class="nav-links">
-        <a href="../index.html"> Home </a>
-
-        <a href="../html/cursos.html"> Cursos </a>
-
-        <a href="../html/programacao.html"> Programação </a>
-
-        <a href="../html/instrutores.html"> Instrutores </a>
-
-        <a href="../html/patrocinadores.html" class="ativo"> Patrocinadores </a>
-
-        <a href="../html/contato.html"> Contato </a>
-
-        <a href="../html/sobre.html"> Sobre </a>
-
-        <a href="../html/faq.html"> FAQ </a>
+        <a href="../index.html">Home</a>
+        <a href="../html/cursos.html">Cursos</a>
+        <a href="../html/programacao.html">Programação</a>
+        <a href="../html/instrutores.html">Instrutores</a>
+        <a href="../html/patrocinadores.html" class="ativo">Patrocinadores</a>
+        <a href="../html/contato.html">Contato</a>
+        <a href="../html/sobre.html">Sobre</a>
+        <a href="../html/faq.html">FAQ</a>
       </nav>
 
       <div class="nav-acoes">
         <div class="usuario-container">
           <button class="usuario" id="botaoUsuario">U</button>
-
           <div class="nome-usuario" id="nomeUsuario">Usuário</div>
         </div>
-
-        <a href="../html/inscricoes.html" class="inscricoes"> Inscrições </a>
+        <a href="../html/inscricoes.html" class="inscricoes">Inscrições</a>
       </div>
 
       <button class="botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false">
@@ -57,277 +43,124 @@
 
       <div class="menu-mobile" id="menuMobile">
         <nav class="menu-links">
-          <a href="../index.html"> Home </a>
-
-          <a href="../html/cursos.html"> Cursos </a>
-
-          <a href="../html/programacao.html"> Programação </a>
-
-          <a href="../html/instrutores.html"> Instrutores </a>
-
-          <a href="../html/patrocinadores.html" class="ativo"> Patrocinadores </a>
-
-          <a href="../html/contato.html"> Contato </a>
-
-          <a href="../html/sobre.html"> Sobre </a>
-
-          <a href="../html/faq.html"> FAQ </a>
+          <a href="../index.html">Home</a>
+          <a href="../html/cursos.html">Cursos</a>
+          <a href="../html/programacao.html">Programação</a>
+          <a href="../html/instrutores.html">Instrutores</a>
+          <a href="../html/patrocinadores.html" class="ativo">Patrocinadores</a>
+          <a href="../html/contato.html">Contato</a>
+          <a href="../html/sobre.html">Sobre</a>
+          <a href="../html/faq.html">FAQ</a>
         </nav>
 
         <div class="menu-divisor"></div>
 
         <div class="menu-usuario">
           <button class="usuario" id="botaoUsuarioMobile">U</button>
-
-          <span id="nomeUsuarioMobile"> Usuário </span>
+          <span id="nomeUsuarioMobile">Usuário</span>
         </div>
 
-        <a href="../html/inscricoes.html" class="inscricoes"> Inscrições </a>
+        <a href="../html/inscricoes.html" class="inscricoes">Inscrições</a>
       </div>
     </header>
 
     <main>
-      <!-- =========================
-             INTRO
-        ========================== -->
-
       <section class="patrocinadores-intro">
-        <span> APOIO AO EVENTO </span>
-
         <h1>Nossos Patrocinadores</h1>
-
-        <p>Conheça as empresas que tornam o FlashClip possível</p>
+        <p>Conheça as empresas que tornam o FlashClip possível.</p>
       </section>
 
-      <!-- =========================
-             PATROCINADORES
-        ========================== -->
-
-      <section class="patrocinadores">
-        <!-- FILTROS -->
-
-        <div class="filtros">
-          <button class="filtro ativo" data-filtro="todos">Todos</button>
-
-          <button class="filtro" data-filtro="diamante">Diamante</button>
-
-          <button class="filtro" data-filtro="prata">Prata</button>
-
-          <button class="filtro" data-filtro="bronze">Bronze</button>
+      <section class="patrocinadores" aria-label="Patrocinadores do FlashClip">
+        <div class="filtros" aria-label="Filtrar patrocinadores por categoria">
+          <button class="filtro ativo" type="button" data-filtro="todos">Todos</button>
+          <button class="filtro" type="button" data-filtro="diamante">Diamante</button>
+          <button class="filtro" type="button" data-filtro="prata">Prata</button>
+          <button class="filtro" type="button" data-filtro="bronze">Bronze</button>
         </div>
 
-        <!-- CARDS -->
-
         <div class="lista-patrocinadores">
-          <!-- =========================
-                     SUA INTERNET
-                ========================== -->
-
           <article class="card-patrocinador" data-categoria="diamante">
             <div class="nivel diamante">
-              <span class="simbolo">◆</span>
+              <span class="simbolo" aria-hidden="true">◆</span>
               Diamante
             </div>
 
             <div class="logo-patrocinador">
-              <img
-                src="https://i.ibb.co/nqCT8t9f/Logo.png"
-                alt="SUA Internet"
-              />
+              <img src="https://i.ibb.co/nqCT8t9f/Logo.png" alt="SUA Internet" loading="lazy" />
             </div>
 
             <div class="info-patrocinador">
               <h2>SUA Internet</h2>
-
-              <p>
-                Sua Internet é uma empresa de internet que oferece serviços de
-                internet para residências e empresas.
-              </p>
+              <p>Sua Internet é uma empresa de internet que oferece serviços de internet para residências e empresas.</p>
             </div>
 
             <div class="links-patrocinador">
-              <a
-                href="https://suainternet.com.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Site da SUA Internet"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                >
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                  <path d="M12 3c3 3 3 15 0 18" />
-                  <path d="M12 3c-3 3-3 15 0 18" />
+              <a href="https://suainternet.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Site da SUA Internet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3c3 3 3 15 0 18" /><path d="M12 3c-3 3-3 15 0 18" />
                 </svg>
-
                 Site
               </a>
-
-              <a
-                href="https://instagram.com/suainternet"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram da SUA Internet"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-
-                  <circle cx="12" cy="12" r="4" />
-
-                  <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
+              <a href="https://instagram.com/suainternet" target="_blank" rel="noopener noreferrer" aria-label="Instagram da SUA Internet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                 </svg>
-
                 Instagram
               </a>
             </div>
           </article>
 
-          <!-- =========================
-                     POSTO IPANEMA
-                ========================== -->
-
           <article class="card-patrocinador" data-categoria="prata">
             <div class="nivel prata">
-              <span class="simbolo">◆</span>
+              <span class="simbolo" aria-hidden="true">◆</span>
               Prata
             </div>
 
             <div class="logo-patrocinador">
-              <img
-                src="https://i.ibb.co/RGxhcB04/posto-ipanema.png"
-                alt="Posto Ipanema"
-              />
+              <img src="https://i.ibb.co/RGxhcB04/posto-ipanema.png" alt="Posto Ipanema" loading="lazy" />
             </div>
 
             <div class="info-patrocinador">
               <h2>Posto Ipanema</h2>
-
-              <p>
-                Posto de combustível e serviços: troca de óleo, loja de
-                conveniência e calibragem de pneus.
-              </p>
+              <p>Posto de combustível e serviços: troca de óleo, loja de conveniência e calibragem de pneus.</p>
             </div>
 
             <div class="links-patrocinador">
-              <a
-                href="https://instagram.com/postoipanemapmw"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram do Posto Ipanema"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-
-                  <circle cx="12" cy="12" r="4" />
-
-                  <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
+              <a href="https://instagram.com/postoipanemapmw" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Posto Ipanema">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                 </svg>
-
                 Instagram
               </a>
             </div>
           </article>
 
-          <!-- =========================
-                     CRP TECNOLOGIA
-                ========================== -->
-
           <article class="card-patrocinador" data-categoria="bronze">
             <div class="nivel bronze">
-              <span class="simbolo">◆</span>
+              <span class="simbolo" aria-hidden="true">◆</span>
               Bronze
             </div>
 
             <div class="logo-patrocinador">
-              <img
-                src="https://i.ibb.co/XZxvTy5y/CRP-TECNOLOGIA.png"
-                alt="CRP Tecnologia"
-              />
+              <img src="https://i.ibb.co/XZxvTy5y/CRP-TECNOLOGIA.png" alt="CRP Tecnologia" loading="lazy" />
             </div>
 
             <div class="info-patrocinador">
               <h2>CRP Tecnologia</h2>
-
-              <p>
-                CRP Tecnologia, uma empresa de desenvolvimento de software com
-                mais de 18 anos de experiência no mercado nacional e
-                internacional.
-              </p>
+              <p>CRP Tecnologia, uma empresa de desenvolvimento de software com mais de 18 anos de experiência no mercado nacional e internacional.</p>
             </div>
 
             <div class="links-patrocinador">
-              <a
-                href="https://crptecnologia.com.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Site da CRP Tecnologia"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                >
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                  <path d="M12 3c3 3 3 15 0 18" />
-                  <path d="M12 3c-3 3-3 15 0 18" />
+              <a href="https://crptecnologia.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Site da CRP Tecnologia">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3c3 3 3 15 0 18" /><path d="M12 3c-3 3-3 15 0 18" />
                 </svg>
-
                 Site
               </a>
-
-              <a
-                href="https://instagram.com/crptecnologia"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram da CRP Tecnologia"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-
-                  <circle cx="12" cy="12" r="4" />
-
-                  <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
+              <a href="https://instagram.com/crptecnologia" target="_blank" rel="noopener noreferrer" aria-label="Instagram da CRP Tecnologia">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                 </svg>
-
                 Instagram
               </a>
             </div>
@@ -335,63 +168,58 @@
         </div>
       </section>
 
-      <!-- =========================
-             SEJA UM APOIADOR
-        ========================== -->
+      <!-- Seção institucional sobre colaboração, sem presumir patrocínios confirmados. -->
+      <section class="agradecimento" aria-labelledby="titulo-agradecimento">
+        <div class="agradecimento-painel">
+          <div class="agradecimento-conteudo">
+            <div class="agradecimento-emblema" aria-hidden="true"></div>
+            <span class="agradecimento-etiqueta">UMA MENSAGEM DE GRATIDÃO</span>
+            <h2 id="titulo-agradecimento">Nosso muito obrigado a todos que acreditam nessa ideia.</h2>
+            <p>
+              Agradecemos a cada pessoa que acompanha o FlashClip, compartilha nossa proposta e incentiva a criação
+              de espaços de aprendizado, troca de experiências e novas oportunidades. Cada palavra de apoio e cada
+              gesto de incentivo nos motivam a continuar construindo uma iniciativa que aproxima pessoas por meio
+              da educação, da tecnologia e da inovação.
+            </p>
+
+            <div class="agradecimento-apoiadores" aria-label="Valores que inspiram o FlashClip">
+              <span>Educação</span>
+              <span>Tecnologia</span>
+              <span>Inovação</span>
+            </div>
+
+            <p class="agradecimento-fecho">Obrigado por dedicar um momento para conhecer e apoiar a proposta do FlashClip.</p>
+          </div>
+        </div>
+      </section>
 
       <section class="cta">
-        <span> SEJA UM APOIADOR </span>
-
-        <h2>Quer ser um patrocinador?</h2>
-
-        <p>
-          Entre em contato e descubra como sua empresa pode apoiar o FlashClip.
-        </p>
-
-        <a href="../contato/contato.html" class="botao-contato">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M21 11.5a8.4 8.4 0 0 1-9
-                        8.5 8.7 8.7 0 0 1-4-.9L3 21l1.9-4.5
-                        A8.3 8.3 0 0 1 3 12
-                        a8.5 8.5 0 0 1 9-8.5
-                        8.5 8.5 0 0 1 9 8.5Z"
-            />
+        <span>SEJA UM APOIADOR</span>
+        <h2>Quer fazer parte dessa história?</h2>
+        <p>Entre em contato e descubra como sua empresa pode apoiar as próximas edições do FlashClip.</p>
+        <a href="../html/contato.html" class="botao-contato">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.7 8.7 0 0 1-4-.9L3 21l1.9-4.5A8.3 8.3 0 0 1 3 12a8.5 8.5 0 0 1 9-8.5 8.5 8.5 0 0 1 9 8.5Z" />
           </svg>
-
           Fale Conosco
         </a>
       </section>
     </main>
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
     <footer>
       <div class="footer-conteudo">
         <p>© 2026/2 FlashClip. Todos os direitos reservados.</p>
-
         <div class="contatos">
-          <a href="#"> Instagram </a>
-
-          <a href="#"> Facebook </a>
-
-          <a href="mailto:contato.flashclip@gmail.com"> E-mail </a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="mailto:contato.flashclip@gmail.com">E-mail</a>
         </div>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="../js/auth.js"></script>
-    <script type = "module" src="../js/cabecalho.js"></script>
+    <script type="module" src="../js/cabecalho.js"></script>
     <script type="module" src="../js/patrocinadores.js"></script>
   </body>
 </html>

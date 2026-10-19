@@ -1,301 +1,605 @@
+/* ==========================================================
+   FLASHCLIP — CONTATO
+   Tema natalino escuro, coerente com Sobre e Programação.
+   Mantém os seletores e o HTML existentes.
+   SVGs esperados em ../imagens/Decoracoes/
+   ========================================================== */
+
+:root {
+  --contato-bg: #030508;
+  --contato-panel: rgba(10, 19, 20, 0.94);
+  --contato-panel-soft: rgba(13, 24, 24, 0.96);
+  --contato-gold: #f5bd3d;
+  --contato-gold-bright: #ffdc82;
+  --contato-green: #0b4938;
+  --contato-text: #f4f5f3;
+  --contato-muted: #aab4b7;
+  --contato-border: rgba(174, 194, 190, 0.19);
+}
+
 /* =========================
-   RESET
+   RESET E FUNDO GLOBAL
 ========================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-
-    background: #111111;
-
-    color: #ffffff;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--contato-text);
+  background: var(--contato-bg);
 }
 
+main {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--contato-bg);
+}
+
+/* Céu estrelado compartilhado com as páginas Sobre e Programação. */
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.76;
+  background-image:
+    url("../imagens/Decoracoes/ceu-estrelado-natal.svg"),
+    radial-gradient(ellipse at 8% 14%, rgba(0, 150, 94, 0.105), transparent 29%),
+    radial-gradient(ellipse at 93% 48%, rgba(148, 29, 43, 0.055), transparent 25%),
+    radial-gradient(ellipse at 52% 88%, rgba(245, 189, 61, 0.035), transparent 30%);
+  background-position: center top, left top, right center, center bottom;
+  background-size: 100% 1100px, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: repeat-y, no-repeat, no-repeat, no-repeat;
+}
+
+/* Linhas geométricas quase imperceptíveis, no mesmo estilo das outras telas. */
+main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(135deg, transparent 0 19%, rgba(0, 217, 130, 0.07) 19.08%, transparent 19.2% 100%),
+    linear-gradient(315deg, transparent 0 71%, rgba(245, 189, 61, 0.055) 71.08%, transparent 71.2% 100%);
+  background-size: 100% 850px, 100% 1000px;
+  background-position: center top, center 300px;
+  background-repeat: repeat-y;
+}
+
+main > section {
+  position: relative;
+  z-index: 1;
+}
 
 /* =========================
-   INTRO
+   INTRODUÇÃO
 ========================= */
 
 .contato-intro {
-    padding: 100px 20px 70px;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #272727 0%,
-            #111111 55%
-        );
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 96px 20px 55px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 8%, rgba(245, 189, 61, 0.055), transparent 43%),
+    radial-gradient(ellipse at 12% 65%, rgba(11, 73, 56, 0.12), transparent 31%);
+  border-bottom: 1px solid rgba(245, 189, 61, 0.09);
 }
 
-.contato-intro span {
-    display: block;
+.contato-intro > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin-bottom: 19px;
+  color: var(--contato-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  line-height: 1.5;
+}
 
-    margin-bottom: 20px;
+.contato-intro > span::before,
+.contato-intro > span::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--contato-gold));
+  opacity: 0.72;
+}
 
-    color: #f5bd3d;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    letter-spacing: 4px;
+.contato-intro > span::after {
+  transform: scaleX(-1);
 }
 
 .contato-intro h1 {
-    margin-bottom: 18px;
-
-    font-size: clamp(45px, 7vw, 75px);
-
-    line-height: 1;
-
-    letter-spacing: -4px;
+  max-width: 950px;
+  margin: 0 auto 18px;
+  color: #f7f8f6;
+  font-size: clamp(42px, 6.4vw, 70px);
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -2.8px;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.35);
 }
 
 .contato-intro p {
-    color: #999999;
-
-    font-size: 17px;
-
-    line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--contato-muted);
+  font-size: 16px;
+  line-height: 1.75;
+  text-wrap: pretty;
 }
 
+/* Galhos natalinos nos cantos: deixam o centro livre para o título. */
+.contato-intro::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.66;
+  background: url("../imagens/Decoracoes/contato-ornamentos-intro.svg") center top / 100% auto no-repeat;
+}
+
+.contato-intro > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reutiliza o mesmo divisor dourado da tela Sobre. */
+.contato-intro::after {
+  content: "";
+  display: block;
+  width: min(340px, 76%);
+  height: 28px;
+  margin: 22px auto 0;
+  pointer-events: none;
+  background: url("../imagens/Decoracoes/sobre-divisor-dourado.svg") center / contain no-repeat;
+  opacity: 0.94;
+}
 
 /* =========================
-   CONTATO
+   COLUNAS DE CONTATO
 ========================= */
 
 .contato {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 30px 30px 100px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 30px 96px;
+  background: transparent;
 }
 
-
 /* =========================
-   INFORMAÇÕES
+   CARD DE INFORMAÇÕES
 ========================= */
 
 .informacoes {
-    padding: 35px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 0;
+  padding: 34px 35px 28px;
+  background:
+    linear-gradient(150deg, rgba(14, 23, 24, 0.97), rgba(8, 14, 17, 0.98));
+  border: 1px solid rgba(174, 194, 190, 0.14);
+  border-radius: 15px;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.018);
+}
 
-    background: #171d24;
+.informacoes::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 30px;
+  width: 72px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(245, 189, 61, 0.74), transparent);
+  opacity: 0.72;
+}
 
-    border: 1px solid #353d47;
+/* Presente natalino discreto no canto inferior do card. */
+.informacoes::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: -2px;
+  width: 132px;
+  height: 112px;
+  pointer-events: none;
+  background: url("../imagens/Decoracoes/presente-natal.svg") right bottom / contain no-repeat;
+  opacity: 0.50;
+}
 
-    border-radius: 14px;
+.informacoes > * {
+  position: relative;
+  z-index: 1;
 }
 
 .titulo-contato {
-    margin-bottom: 35px;
+  margin-bottom: 22px;
 }
 
 .titulo-contato span {
-    display: block;
-
-    margin-bottom: 12px;
-
-    color: #f5bd3d;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    letter-spacing: 3px;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--contato-gold);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 2.6px;
 }
 
 .titulo-contato h2 {
-    font-size: 28px;
-
-    letter-spacing: -1px;
+  color: var(--contato-text);
+  font-size: clamp(25px, 2.5vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.9px;
 }
 
-
 /* =========================
-   ITEM DE CONTATO
+   ITENS DE CONTATO
 ========================= */
 
 .item-contato {
-    display: flex;
-
-    align-items: center;
-
-    gap: 16px;
-
-    padding: 20px 0;
-
-    border-bottom: 1px solid #2c333c;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(183, 199, 196, 0.12);
+  transition: border-color 180ms ease;
 }
 
 .item-contato:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .item-contato .icone {
-    width: 45px;
-    height: 45px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: #f5bd3d;
-
-    background: rgba(245, 189, 61, 0.08);
-
-    border: 1px solid rgba(245, 189, 61, 0.2);
-
-    border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  color: var(--contato-gold);
+  background: rgba(245, 189, 61, 0.065);
+  border: 1px solid rgba(245, 189, 61, 0.22);
+  border-radius: 11px;
+  box-shadow: none;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .item-contato .icone svg {
-    width: 23px;
-    height: 23px;
+  display: block;
+  width: 23px;
+  height: 23px;
 }
 
-.item-contato div:last-child {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
+.item-contato > div:last-child {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
 .item-contato span {
-    color: #777777;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
+  color: #849094;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
 }
 
 .item-contato a,
 .item-contato strong {
-    color: #ffffff;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    text-decoration: none;
-
-    line-height: 1.5;
+  color: #edf0ed;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease;
 }
 
 .item-contato a:hover {
-    color: #f5bd3d;
+  color: var(--contato-gold-bright);
 }
 
+.item-contato:hover .icone {
+  color: #ffdc82;
+  background: rgba(245, 189, 61, 0.10);
+  border-color: rgba(245, 189, 61, 0.38);
+}
+
+.item-contato:focus-within .icone {
+  border-color: var(--contato-gold);
+  box-shadow: 0 0 0 3px rgba(245, 189, 61, 0.09);
+}
 
 /* =========================
    MAPA
 ========================= */
 
 .mapa {
-    min-height: 500px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 500px;
+  background: #0a1113;
+  border: 1px solid rgba(174, 194, 190, 0.14);
+  border-radius: 15px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+}
 
-    overflow: hidden;
-
-    background: #171d24;
-
-    border: 1px solid #353d47;
-
-    border-radius: 14px;
+.mapa::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 26px;
+  width: 70px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(245, 189, 61, 0.72), transparent);
 }
 
 .mapa iframe {
-    width: 100%;
-    height: 100%;
-
-    min-height: 500px;
-
-    display: block;
-
-    border: none;
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: 0;
 }
-
 
 /* =========================
-   RESPONSIVO
+   TABLET
 ========================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .contato-intro {
+    padding: 82px 24px 48px;
+  }
 
-    .contato-intro {
-        padding: 80px 5% 55px;
-    }
+  .contato {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 760px;
+    gap: 18px;
+    padding: 24px 24px 76px;
+  }
 
-    .contato {
-        grid-template-columns: 1fr;
+  .informacoes {
+    padding: 30px 32px 24px;
+  }
 
-        padding: 20px 5% 75px;
-    }
-
-    .mapa,
-    .mapa iframe {
-        min-height: 400px;
-    }
+  .mapa,
+  .mapa iframe {
+    min-height: 400px;
+  }
 }
 
+/* =========================
+   CELULAR
+========================= */
 
-@media (max-width: 480px) {
+@media (max-width: 700px) {
+  main::before {
+    opacity: 0.68;
+    background-image:
+      url("../imagens/Decoracoes/ceu-estrelado-natal-mobile.svg"),
+      radial-gradient(ellipse at 8% 12%, rgba(0, 150, 94, 0.095), transparent 30%),
+      radial-gradient(ellipse at 92% 58%, rgba(148, 29, 43, 0.04), transparent 26%),
+      radial-gradient(ellipse at 55% 90%, rgba(245, 189, 61, 0.025), transparent 28%);
+    background-position: center top, left top, right center, center bottom;
+    background-size: 100% 1000px, 100% 100%, 100% 100%, 100% 100%;
+    background-repeat: repeat-y, no-repeat, no-repeat, no-repeat;
+  }
 
-    .contato-intro {
-        padding-top: 65px;
-    }
+  main::after {
+    opacity: 0.14;
+  }
 
-    .contato-intro h1 {
-        font-size: 42px;
+  .contato-intro {
+    padding: 66px 20px 41px;
+  }
 
-        letter-spacing: -2px;
-    }
+  .contato-intro::before {
+    background-image: url("../imagens/Decoracoes/contato-ornamentos-intro-mobile.svg");
+    background-size: 100% auto;
+    background-position: center top;
+    opacity: 0.52;
+  }
 
-    .contato-intro p {
-        font-size: 15px;
-    }
+  .contato-intro > span {
+    gap: 9px;
+    margin-bottom: 16px;
+    font-size: 10px;
+    letter-spacing: 2.6px;
+  }
 
-    .informacoes {
-        padding: 25px 20px;
-    }
+  .contato-intro > span::before,
+  .contato-intro > span::after {
+    width: 17px;
+  }
 
-    .titulo-contato h2 {
-        font-size: 24px;
-    }
+  .contato-intro h1 {
+    font-size: clamp(36px, 8vw, 47px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
 
-    .item-contato {
-        gap: 12px;
-    }
+  .contato-intro p {
+    max-width: 460px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
 
-    .item-contato a,
-    .item-contato strong {
-        font-size: 13px;
-    }
+  .contato-intro::after {
+    width: min(300px, 78%);
+    height: 25px;
+    margin-top: 17px;
+  }
 
-    .mapa,
-    .mapa iframe {
-        min-height: 350px;
-    }
+  .contato {
+    gap: 15px;
+    padding: 19px 16px 64px;
+  }
+
+  .informacoes {
+    padding: 26px 22px 20px;
+    border-radius: 14px;
+  }
+
+  .informacoes::after {
+    width: 92px;
+    height: 80px;
+    opacity: 0.09;
+  }
+
+  .titulo-contato {
+    margin-bottom: 15px;
+  }
+
+  .titulo-contato span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .titulo-contato h2 {
+    font-size: 25px;
+  }
+
+  .item-contato {
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .item-contato .icone {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+  }
+
+  .item-contato .icone svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .item-contato span {
+    font-size: 9px;
+    letter-spacing: 0.9px;
+  }
+
+  .item-contato a,
+  .item-contato strong {
+    font-size: 13px;
+  }
+
+  .mapa,
+  .mapa iframe {
+    min-height: 360px;
+  }
+
+  .mapa {
+    border-radius: 14px;
+  }
+}
+
+/* =========================
+   CELULAR ESTREITO
+========================= */
+
+@media (max-width: 380px) {
+  .contato-intro {
+    padding: 58px 16px 35px;
+  }
+
+  .contato-intro h1 {
+    font-size: 35px;
+    letter-spacing: -1.4px;
+  }
+
+  .contato-intro p {
+    font-size: 14px;
+  }
+
+  .contato {
+    padding: 16px 12px 54px;
+  }
+
+  .informacoes {
+    padding: 23px 17px 17px;
+  }
+
+  .item-contato {
+    gap: 10px;
+  }
+
+  .item-contato .icone {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .item-contato a,
+  .item-contato strong {
+    font-size: 12.5px;
+  }
+
+  .mapa,
+  .mapa iframe {
+    min-height: 320px;
+  }
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

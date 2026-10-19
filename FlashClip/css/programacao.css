@@ -181,7 +181,7 @@ main > section {
 
 .programacao-intro h1 {
   max-width: 920px;
-  margin: 0 auto 18px;
+  margin: 0 auto 25px;
 
   color: var(--prog-white);
 
@@ -194,7 +194,7 @@ main > section {
     100deg,
     #fff 12%,
     #f6f4ed 54%,
-    var(--prog-gold) 100%
+    var(--prog-white) 100%
   );
 
   -webkit-background-clip: text;

@@ -1,473 +1,694 @@
+/* =========================================================
+   FLASHCLIP — SOBRE
+   Refinamento visual natalino, mantendo as classes existentes.
+   SVGs esperados em ../imagens/Decoracoes/
+========================================================= */
+
 /* =========================
    RESET
 ========================= */
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #111111;
-    color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #030508;
+  color: #ffffff;
 }
 
-
 /* =========================
-   CONTEÚDO
+   CONTEÚDO E CENÁRIO
 ========================= */
-
 .sobre {
-    width: 100%;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  background: #030508;
 }
 
+/*
+   CENÁRIO GLOBAL — mesma iluminação sutil da tela de Programação.
+   Reutiliza o céu estrelado compartilhado pelo projeto.
+*/
+.sobre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  background-image:
+    url("../imagens/Decoracoes/ceu-estrelado-natal.svg"),
+    radial-gradient(ellipse at 8% 12%, rgba(0, 150, 94, 0.11), transparent 28%),
+    radial-gradient(
+      ellipse at 92% 42%,
+      rgba(160, 30, 42, 0.07),
+      transparent 25%
+    ),
+    radial-gradient(
+      ellipse at 55% 78%,
+      rgba(245, 189, 61, 0.035),
+      transparent 27%
+    );
+  background-position:
+    center top,
+    left top,
+    right center,
+    center bottom;
+  background-size:
+    100% 1050px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  background-repeat: repeat-y, no-repeat, no-repeat, no-repeat;
+}
+
+/* Textura geométrica quase imperceptível, igual à Programação. */
+.sobre::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(
+      135deg,
+      transparent 0 17%,
+      rgba(0, 217, 130, 0.075) 17.08%,
+      transparent 17.2% 100%
+    ),
+    linear-gradient(
+      315deg,
+      transparent 0 68%,
+      rgba(245, 189, 61, 0.055) 68.08%,
+      transparent 68.2% 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0 84%,
+      rgba(215, 25, 47, 0.06) 84.08%,
+      transparent 84.2% 100%
+    );
+  background-size:
+    100% 780px,
+    100% 900px,
+    100% 1050px;
+  background-position:
+    center top,
+    center 230px,
+    center 430px;
+  background-repeat: repeat-y;
+}
+
+.sobre > * {
+  position: relative;
+  z-index: 1;
+}
 
 /* =========================
-   INTRO
+   INTRODUÇÃO
 ========================= */
-
 .sobre-intro {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    padding: 105px 7% 65px;
-
-    text-align: center;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 105px 7% 76px;
+  text-align: center;
 }
 
 .sobre-intro h1 {
-    margin-bottom: 16px;
-
-    color: #ffffff;
-
-    font-size: clamp(42px, 6vw, 68px);
-
-    line-height: 1;
-
-    letter-spacing: -3px;
+  margin-bottom: 17px;
+  color: #f7f8f6;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 750;
+  line-height: 1.04;
+  letter-spacing: -2.8px;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.35);
 }
 
 .sobre-intro p {
-    color: #999999;
-
-    font-size: 17px;
-
-    line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto;
+  color: #b7c0c3;
+  font-size: 17px;
+  line-height: 1.7;
 }
 
+.sobre-intro::after {
+  content: "";
+  display: block;
+  width: 300px;
+  max-width: 72%;
+  height: 24px;
+  margin: 22px auto 0;
+  background: url("../imagens/Decoracoes/sobre-divisor-dourado.svg") center /
+    contain no-repeat;
+  opacity: 0.94;
+}
 
 /* =========================
-   CARDS
+   CARDS PRINCIPAIS
 ========================= */
-
 .bloco-sobre {
-    max-width: 750px;
+  position: relative;
+  isolation: isolate;
+  max-width: 750px;
+  margin: 0 auto 16px;
+  padding: 30px 35px;
+  overflow: hidden;
+  background:
+    linear-gradient(115deg, rgba(13, 24, 24, 0.97), rgba(9, 17, 18, 0.96)),
+    #0d1515;
+  border: 1px solid rgba(123, 145, 146, 0.35);
+  border-radius: 14px;
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
 
-    margin: 0 auto 16px;
-
-    padding: 30px 35px;
-
-    background: #171d24;
-
-    border: 1px solid #353d47;
-
-    border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+.bloco-sobre::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 12px;
+  bottom: 12px;
+  left: 8px;
+  width: 3px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #f5bd3d, rgba(245, 189, 61, 0.35));
+  box-shadow: 0 0 13px rgba(245, 189, 61, 0.13);
 }
 
 .bloco-sobre:hover {
-    background: #1a222b;
-
-    border-color: #f5bd3d;
-
-    transform: translateY(-2px);
+  background: linear-gradient(
+    115deg,
+    rgba(16, 31, 28, 0.98),
+    rgba(10, 20, 20, 0.98)
+  );
+  border-color: rgba(245, 189, 61, 0.62);
+  box-shadow:
+    0 17px 38px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(245, 189, 61, 0.035);
+  transform: translateY(-2px);
 }
-
 
 /* =========================
    ÍCONE + TÍTULO
 ========================= */
-
 .cabecalho-bloco {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 
 .cabecalho-bloco h2 {
-    margin: 0;
-
-    color: #ffffff;
-
-    font-size: 24px;
-
-    line-height: 1.2;
-
-    letter-spacing: -0.8px;
+  margin: 0;
+  color: #f5f6f3;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
 }
 
-
-/* =========================
-   ÍCONE
-========================= */
-
 .icone {
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    color: #f5bd3d;
-
-    background: rgba(245, 189, 61, 0.08);
-
-    border: 1px solid rgba(245, 189, 61, 0.25);
-
-    border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #f5bd3d;
+  background: linear-gradient(
+    145deg,
+    rgba(245, 189, 61, 0.11),
+    rgba(245, 189, 61, 0.035)
+  );
+  border: 1px solid rgba(245, 189, 61, 0.43);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 .icone svg {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
 
-
 /* =========================
-   CONTEÚDO DOS CARDS
+   TEXTO E LISTAS
 ========================= */
-
 .conteudo-bloco {
-    width: 100%;
-
-    max-width: 700px;
-
-    margin: 0 auto;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
 }
-
-
-/* =========================
-   TEXTO
-========================= */
 
 .conteudo-bloco > p {
-    margin-bottom: 14px;
-
-    color: #a7adb4;
-
-    font-size: 14px;
-
-    line-height: 1.6;
+  margin-bottom: 14px;
+  color: #aeb8bb;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-
-/* =========================
-   LISTAS
-========================= */
-
 .conteudo-bloco ul {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-
-    list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
 }
 
 .conteudo-bloco li {
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 8px;
-
-    color: #a7adb4;
-
-    font-size: 13px;
-
-    line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #aeb8bb;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .conteudo-bloco li span {
-    flex-shrink: 0;
-
-    color: #f5bd3d;
-
-    font-weight: 600;
+  flex-shrink: 0;
+  color: #f5bd3d;
+  font-weight: 700;
 }
 
+/* =========================
+   CARD “O QUE NOS MOVE”
+   Mantém a largura dos cards principais (750px), sem expandir a seção.
+   O seletor :has identifica o bloco que contém .valores.
+========================= */
+.bloco-sobre:has(.valores) {
+  max-width: 750px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 30px 30px 27px;
+  background:
+    radial-gradient(
+      ellipse at 8% 12%,
+      rgba(0, 150, 94, 0.075),
+      transparent 55%
+    ),
+    linear-gradient(145deg, rgba(12, 24, 21, 0.98), rgba(8, 15, 14, 0.98));
+  border-color: rgba(245, 189, 61, 0.43);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.19),
+    inset 0 1px 0 rgba(245, 189, 61, 0.08);
+}
+
+.bloco-sobre:has(.valores)::before {
+  display: none;
+}
+
+.bloco-sobre:has(.valores)::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: url("../imagens/Decoracoes/sobre-estrelas.svg") center / 500px
+    auto repeat;
+  opacity: 0.16;
+}
+
+.bloco-sobre:has(.valores) .cabecalho-bloco {
+  justify-content: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.bloco-sobre:has(.valores) .cabecalho-bloco h2 {
+  text-align: center;
+}
+
+.bloco-sobre:has(.valores) .conteudo-bloco {
+  max-width: 100%;
+}
+
+.bloco-sobre:has(.valores) .conteudo-bloco > p {
+  max-width: 570px;
+  margin: 0 auto 19px;
+  text-align: center;
+}
+
+.bloco-sobre:has(.valores) .valores {
+  margin-top: 18px;
+}
 
 /* =========================
-   VALORES
+   VALORES / MINI-CARDS
 ========================= */
-
 .valores {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 12px;
-
-    margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 18px;
 }
 
 .valores div {
-    padding: 14px;
+  position: relative;
+  min-width: 0;
+  padding: 15px 16px 14px;
+  background: rgba(15, 27, 27, 0.85);
+  border: 1px solid rgba(105, 127, 126, 0.29);
+  border-radius: 10px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
 
-    background: #1b222a;
-
-    border: 1px solid #343d47;
-
-    border-radius: 8px;
+.valores div:hover {
+  background: rgba(19, 36, 31, 0.95);
+  border-color: rgba(245, 189, 61, 0.5);
+  transform: translateY(-2px);
 }
 
 .valores h3 {
-    margin-bottom: 5px;
-
-    color: #ffffff;
-
-    font-size: 15px;
+  margin-bottom: 6px;
+  color: #f2f4f0;
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 .valores p {
-    color: #888f97;
-
-    font-size: 13px;
-
-    line-height: 1.5;
+  color: #a4afb0;
+  font-size: 13px;
+  line-height: 1.55;
 }
 
-
 /* =========================
-   CTA
+   CHAMADA PARA AÇÃO
 ========================= */
-
 .cta {
-    padding: 100px 7%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 88px 7% 92px;
+  margin-top: 36px;
+  text-align: center;
+  border-top: 1px solid rgba(245, 189, 61, 0.22);
+  background:
+    radial-gradient(ellipse at 8% 12%, rgba(0, 150, 94, 0.11), transparent 45%),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(245, 189, 61, 0.07),
+      transparent 45%
+    ),
+    #080d0b;
+}
 
-    margin-top: 35px;
+.cta::before,
+.cta::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -16px;
+  width: clamp(95px, 18vw, 190px);
+  height: clamp(160px, 24vw, 260px);
+  background: url("../imagens/Decoracoes/arvore-natal-alt.svg") bottom
+    center / contain no-repeat;
+  opacity: 0.46;
+  pointer-events: none;
+}
 
-    text-align: center;
+.cta::before {
+  left: 0;
+}
 
-    border-top: 1px solid #292929;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(245, 189, 61, 0.08),
-            transparent 45%
-        );
+.cta::after {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 .cta > span {
-    display: block;
-
-    margin-bottom: 18px;
-
-    color: #f5bd3d;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    letter-spacing: 4px;
+  display: block;
+  margin-bottom: 17px;
+  color: #f5bd3d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .cta h2 {
-    max-width: 700px;
-
-    margin: 0 auto 18px;
-
-    font-size: clamp(36px, 5vw, 55px);
-
-    line-height: 1;
-
-    letter-spacing: -3px;
+  max-width: 700px;
+  margin: 0 auto 18px;
+  color: #f5f6f3;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -1.8px;
 }
 
 .cta p {
-    max-width: 520px;
-
-    margin: 0 auto 30px;
-
-    color: #999999;
-
-    font-size: 14px;
-
-    line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 28px;
+  color: #adb7b8;
+  font-size: 14px;
+  line-height: 1.75;
 }
 
 .cta-botoes {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 13px;
 }
 
 .botao-principal,
 .botao-secundario {
-    padding: 13px 23px;
-
-    border-radius: 30px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition:
-        background 0.2s,
-        border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 23px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .botao-principal {
-    background: #ffffff;
-
-    color: #111111;
+  color: #15130d;
+  background: #f5bd3d;
+  border: 1px solid #f5bd3d;
+  box-shadow: 0 4px 18px rgba(245, 189, 61, 0.13);
 }
 
 .botao-principal:hover {
-    background: #dddddd;
+  background: #ffd36b;
+  border-color: #ffd36b;
+  box-shadow: 0 7px 22px rgba(245, 189, 61, 0.2);
+  transform: translateY(-1px);
 }
 
 .botao-secundario {
-    color: #ffffff;
-
-    border: 1px solid #555555;
+  color: #f5c95f;
+  background: rgba(5, 12, 9, 0.52);
+  border: 1px solid rgba(245, 189, 61, 0.66);
 }
 
 .botao-secundario:hover {
-    border-color: #ffffff;
+  color: #ffffff;
+  background: rgba(245, 189, 61, 0.09);
+  border-color: #f5bd3d;
+  transform: translateY(-1px);
 }
 
+/* Mesmo comportamento de fundo da Programação em telas pequenas. */
+@media (max-width: 700px) {
+  .sobre::before {
+    background-image:
+      url("../imagens/Decoracoes/ceu-estrelado-natal-mobile.svg"),
+      radial-gradient(
+        ellipse at 10% 18%,
+        rgba(0, 150, 94, 0.09),
+        transparent 30%
+      ),
+      radial-gradient(
+        ellipse at 88% 66%,
+        rgba(245, 189, 61, 0.035),
+        transparent 28%
+      );
+    background-position:
+      center top,
+      left top,
+      right center;
+    background-size:
+      100% 820px,
+      100% 100%,
+      100% 100%;
+    background-repeat: repeat-y, no-repeat, no-repeat;
+    opacity: 0.66;
+  }
+
+  .sobre::after {
+    opacity: 0.22;
+  }
+}
 
 /* =========================
    RESPONSIVO
 ========================= */
-
 @media (max-width: 800px) {
+  .sobre-intro {
+    padding: 80px 5% 64px;
+  }
 
-    .sobre-intro {
-        padding: 80px 5% 55px;
-    }
+  .sobre-intro h1 {
+    letter-spacing: -1.8px;
+  }
 
-    .sobre-intro h1 {
-        letter-spacing: -2px;
-    }
+  .bloco-sobre {
+    margin: 0 5% 14px;
+    padding: 25px 22px;
+  }
 
+  .icone {
+    width: 46px;
+    height: 46px;
+  }
 
-    /* CARDS */
+  .icone svg {
+    width: 25px;
+    height: 25px;
+  }
 
-    .bloco-sobre {
-        margin: 0 5% 14px;
+  .conteudo-bloco {
+    max-width: none;
+  }
 
-        padding: 25px 20px;
-    }
+  .bloco-sobre:has(.valores) {
+    margin: 25px 5%;
+    padding: 25px 20px 22px;
+  }
 
-    .icone {
-        width: 48px;
-        height: 48px;
-    }
-
-    .icone svg {
-        width: 26px;
-        height: 26px;
-    }
-
-    .conteudo-bloco {
-        max-width: none;
-    }
-
-
-    /* VALORES */
-
-    .valores {
-        grid-template-columns: 1fr;
-    }
-
-
-    /* CTA */
-
-    .cta {
-        padding: 80px 5%;
-    }
-
-    .cta-botoes {
-        flex-direction: column;
-
-        align-items: center;
-    }
-
-    .botao-principal,
-    .botao-secundario {
-        width: 100%;
-
-        max-width: 280px;
-
-        text-align: center;
-    }
+  .cta {
+    padding: 76px 5% 82px;
+  }
 }
 
-
-/* =========================
-   TELAS PEQUENAS
-========================= */
-
 @media (max-width: 480px) {
+  .sobre-intro {
+    padding-top: 65px;
+    padding-bottom: 53px;
+  }
 
-    .sobre-intro {
-        padding-top: 65px;
-    }
+  .sobre-intro h1 {
+    font-size: 42px;
+    letter-spacing: -1.4px;
+  }
 
-    .sobre-intro h1 {
-        font-size: 42px;
-    }
+  .sobre-intro p {
+    font-size: 15px;
+  }
 
-    .sobre-intro p {
-        font-size: 15px;
-    }
+  .sobre-intro::after {
+    margin-top: 18px;
+  }
 
-    .bloco-sobre {
-        padding: 22px 18px;
-    }
+  .bloco-sobre {
+    padding: 22px 18px;
+    border-radius: 12px;
+  }
 
-    .icone {
-        width: 46px;
-        height: 46px;
-    }
+  .cabecalho-bloco {
+    gap: 12px;
+  }
 
-    .icone svg {
-        width: 24px;
-        height: 24px;
-    }
+  .cabecalho-bloco h2 {
+    font-size: 21px;
+  }
 
-    .conteudo-bloco > p {
-        font-size: 13px;
-    }
+  .icone {
+    width: 43px;
+    height: 43px;
+  }
 
-    .valores {
-        gap: 10px;
-    }
+  .icone svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .conteudo-bloco > p {
+    font-size: 13px;
+  }
+
+  .bloco-sobre:has(.valores) {
+    padding: 23px 16px 18px;
+  }
+
+  .valores {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .valores div {
+    padding: 13px 14px;
+  }
+
+  .cta {
+    padding: 66px 5% 74px;
+  }
+
+  .cta > span {
+    font-size: 10px;
+    letter-spacing: 2.2px;
+  }
+
+  .cta h2 {
+    font-size: 35px;
+    letter-spacing: -1.2px;
+  }
+
+  .cta-botoes {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .botao-principal,
+  .botao-secundario {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .cta::before,
+  .cta::after {
+    width: 78px;
+    height: 135px;
+    opacity: 0.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="190" viewBox="0 0 390 190" fill="none">
+  <defs>
+    <linearGradient id="pine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2A6947" stop-opacity=".8"/><stop offset="1" stop-color="#0B2A1D" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE4A0"/><stop offset="1" stop-color="#D79B31"/></linearGradient>
+  </defs>
+  <g stroke="url(#pine)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+    <path d="M-25 0Q33 19 70 62Q88 83 97 111"/>
+    <path d="M6 8L-1 34M22 16L38 -1M39 30L27 53M54 45L72 27M68 62L58 84M81 78L98 65"/>
+    <path d="M415 0Q357 19 320 62Q302 83 293 111"/>
+    <path d="M384 8L391 34M368 16L352 -1M351 30L363 53M336 45L318 27M322 62L332 84M309 78L292 65"/>
+  </g>
+  <g stroke="#B98D38" stroke-width="1.05" opacity=".62"><path d="M12 20Q42 46 76 77M378 20Q348 46 314 77"/></g>
+  <g fill="url(#gold)"><circle cx="42" cy="49" r="4.1"/><circle cx="69" cy="71" r="3.2"/><circle cx="348" cy="49" r="4.1"/><circle cx="321" cy="71" r="3.2"/></g>
+  <g stroke="#F5BD3D" stroke-width="1" stroke-linecap="round" opacity=".52"><path d="M89 20v13M82.5 26.5h13M301 20v13M294.5 26.5h13"/></g>
+</svg>

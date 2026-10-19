@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="500" viewBox="0 0 700 500" fill="none">
+  <g fill="#F5BD3D">
+    <circle cx="28" cy="46" r="1.4" opacity=".52"/><circle cx="109" cy="134" r="1" opacity=".45"/>
+    <circle cx="173" cy="54" r="1.5" opacity=".4"/><circle cx="228" cy="206" r="1" opacity=".46"/>
+    <circle cx="291" cy="94" r="1.2" opacity=".38"/><circle cx="346" cy="34" r="1" opacity=".5"/>
+    <circle cx="419" cy="161" r="1.2" opacity=".48"/><circle cx="486" cy="72" r="1.5" opacity=".38"/>
+    <circle cx="565" cy="128" r="1" opacity=".52"/><circle cx="653" cy="49" r="1.2" opacity=".4"/>
+    <circle cx="62" cy="281" r="1.2" opacity=".4"/><circle cx="144" cy="363" r="1" opacity=".45"/>
+    <circle cx="252" cy="312" r="1.4" opacity=".42"/><circle cx="323" cy="435" r="1" opacity=".36"/>
+    <circle cx="402" cy="279" r="1" opacity=".42"/><circle cx="532" cy="349" r="1.4" opacity=".45"/>
+    <circle cx="619" cy="244" r="1" opacity=".48"/><circle cx="681" cy="421" r="1.3" opacity=".38"/>
+  </g>
+  <g fill="#FFE6A0">
+    <circle cx="88" cy="198" r="2" opacity=".45"/><circle cx="374" cy="117" r="1.8" opacity=".32"/>
+    <circle cx="596" cy="190" r="1.7" opacity=".34"/><circle cx="198" cy="433" r="1.6" opacity=".32"/>
+  </g>
+  <g stroke="#F5BD3D" stroke-width="1" opacity=".24">
+    <path d="M88 188v6M85 191h6"/><path d="M596 180v6M593 183h6"/>
+    <path d="M374 109v5M371.5 111.5h5"/><path d="M532 339v6M529 342h6"/>
+  </g>
+</svg>
