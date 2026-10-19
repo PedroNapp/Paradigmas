@@ -82,6 +82,7 @@ Não foi encontrado no pacote um framework frontend, um gerenciador de pacotes, 
 ```text
 FlashClip/
 ├── index.html                 # Página inicial
+├── app.html                   # Moldura: as telas abrem dentro dela e a música não para ao navegar
 ├── README.md                  # Esta documentação
 ├── models/                   # Modelos 3D (.glb) do globo de neve e do trenó
 ├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT) e scripts
@@ -94,6 +95,7 @@ FlashClip/
 │   ├── natal.css               # Tema de Natal da página inicial, na paleta escura
 │   ├── globo.css               # Globo de neve 3D da página inicial
 │   ├── entrada.css             # Abertura interativa (toques no globo, Papai Noel)
+│   ├── experiencia.css         # Botões magnéticos, transição entre telas e controles de áudio (todas as páginas)
 │   ├── cabecalho.css
 │   ├── rodape.css
 │   ├── home.css
@@ -126,7 +128,9 @@ FlashClip/
     ├── globo.js                # Globo de neve 3D (mouse, toque, teclado, chacoalhar)
     ├── entrada.js              # Abertura com cinco toques e trenó
     ├── abertura-3d.js          # Animação 3D do trenó na abertura
-    ├── audio-natal.js          # Música e efeitos sintetizados, liberados no toque
+    ├── audio-natal.js          # Música e efeitos sintetizados, liberados no toque; toca na moldura
+    ├── moldura.js              # Abre cada página dentro de app.html (?sem-moldura abre sozinha)
+    ├── experiencia.js          # Botões magnéticos e transição entre telas
     ├── natal.js                # Barra de progresso, revelações e detalhes do tema
     ├── shake-gesture.js        # Detecta o gesto de chacoalhar
     ├── snow-physics.js         # Física da neve dentro do globo

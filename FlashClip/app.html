@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#030508" />
+    <title>FlashClip</title>
+    <!-- A moldura fica aberta enquanto o visitante navega: as telas trocam dentro dela
+         e a música (audio-natal.js) continua tocando aqui, sem reiniciar. -->
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #030508; }
+      #tela { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #030508; }
+    </style>
+    <script src="js/audio-natal.js?v=audio-6"></script>
+  </head>
+
+  <body>
+    <iframe
+      id="tela"
+      title="FlashClip"
+      allow="autoplay; fullscreen; accelerometer; gyroscope; magnetometer; clipboard-write"
+      allowfullscreen
+    ></iframe>
+
+    <script>
+      (() => {
+        const tela = document.getElementById("tela");
+        const raiz = new URL(".", location.href);
+
+        // O endereço da tela vai depois do #: app.html#html/cursos.html
+        function destino() {
+          let alvo = "index.html";
+          try { alvo = decodeURIComponent(location.hash.slice(1)) || alvo; } catch {}
+          const url = new URL(alvo, raiz);
+          const valido = url.origin === location.origin && url.pathname.startsWith(raiz.pathname) && !url.pathname.endsWith("/app.html");
+          return valido ? url.href : new URL("index.html", raiz).href;
+        }
+
+        let atual = "";
+        const ligadas = new WeakSet();
+        tela.src = destino();
+
+        // Barra de endereço e título acompanham a tela, para recarregar ou compartilhar o link.
+        function sincronizar(janela) {
+          const local = janela.location;
+          atual = local.pathname.slice(raiz.pathname.length) + local.search + local.hash;
+          history.replaceState(null, "", `#${atual}`);
+          document.title = janela.document.title || "FlashClip";
+        }
+
+        // Cada página avisa ao abrir (js/moldura.js); o load fica de reserva.
+        function chegou(janela) {
+          sincronizar(janela);
+          if (ligadas.has(janela.document)) return;
+          ligadas.add(janela.document);
+          // Links para outros sites saem da moldura em vez de abrir dentro dela.
+          janela.document.addEventListener("click", evento => {
+            const link = evento.target.closest?.("a[href]");
+            if (link && !link.target && new URL(link.href, janela.location.href).origin !== location.origin) link.target = "_top";
+          }, true);
+          janela.addEventListener("hashchange", () => sincronizar(janela));
+          janela.focus();
+        }
+        window.FCMoldura = { chegou };
+
+        tela.addEventListener("load", () => {
+          try { chegou(tela.contentWindow); } catch {}
+        });
+
+        // Endereço trocado à mão na barra: leva a tela junto.
+        window.addEventListener("hashchange", () => {
+          if (location.hash.slice(1) !== atual) tela.contentWindow.location.replace(destino());
+        });
+      })();
+    </script>
+  </body>
+</html>
