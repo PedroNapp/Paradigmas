@@ -4,6 +4,7 @@
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
+import { logoDoCurso } from "./logosCursos.js";
 
 // =========================
 // CONFIGURAÇÕES
@@ -279,6 +280,7 @@ export async function carregarCursos(
 
       const imagemCurso =
         montarImagem(curso.imagem, caminhoImagens) ||
+        montarImagem(logoDoCurso(curso.nome), caminhoImagens) ||
         `${caminhoImagens}curso-padrao.png`;
 
       // =========================

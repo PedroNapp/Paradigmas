@@ -1,4 +1,5 @@
 import { clienteSupabase } from "./supabase.js";
+import { logoDoCurso } from "./logosCursos.js";
 
 const listaInscricoes = document.getElementById("listaInscricoes");
 
@@ -213,7 +214,7 @@ async function carregarInscricoes() {
         formatarData(matricula.dataInscricao),
       );
 
-      const imagem = montarImagem(curso.imagem);
+      const imagem = montarImagem(curso.imagem || logoDoCurso(curso.nome));
 
       const card = document.createElement("article");
       card.className = "card-inscricao";

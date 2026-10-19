@@ -4,6 +4,7 @@ import {
   carregarDadosCursos,
   carregarDadosVagas
 } from "./dados.js";
+import { logoDoCurso } from "./logosCursos.js";
 
 // =========================
 // ELEMENTOS
@@ -306,6 +307,7 @@ async function carregarCurso() {
       imagem:
         cursoBanco.imagem ||
         cursoCatalogo?.imagem ||
+        logoDoCurso(cursoBanco.nome) ||
         "",
 
       ministrantes:
