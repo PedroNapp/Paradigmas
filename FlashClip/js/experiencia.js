@@ -54,6 +54,22 @@
   document.addEventListener('mouseout', evento => { if (!evento.relatedTarget) { cursor = null; pedirQuadro(); } });
   window.addEventListener('blur', () => { cursor = null; pedirQuadro(); });
 
+  // Rolagem suave da roda do mouse (Lenis, em vendor/lenis). Toque e teclado continuam nativos,
+  // e quem pede menos movimento no sistema fica com a rolagem normal.
+  if (window.Lenis && !calmo.matches) {
+    const raiz = document.documentElement;
+    // Carregamento, abertura e diálogos travam a página: aí a roda não desliza o fundo.
+    const travada = () => [raiz, document.body].some(el => getComputedStyle(el).overflowY === 'hidden');
+    window.FCRolagem = new Lenis({
+      autoRaf: true,
+      // Âncoras deslizam também; o Lenis já para abaixo do cabeçalho fixo (scroll-padding-top).
+      anchors: true,
+      virtualScroll: () => !travada(),
+      // O menu do celular rola por conta própria.
+      prevent: node => node.classList?.contains('menu-mobile'),
+    });
+  }
+
   // Dentro da moldura (app.html) a troca de tela não recarrega a página e a moldura faz a transição.
   let naMoldura = false;
   try { naMoldura = window.parent !== window && !!window.parent.FCMoldura; } catch {}

@@ -73,6 +73,7 @@ O painel está em `admin/admin.html` e utiliza `admin/admin.js` e `admin/admin.c
 | `localStorage` | Cache de dados de cursos/vagas e nome exibido do usuário |
 | SVG, PNG e JPG | Logos, ilustrações, imagens de cursos e avatares |
 | Three.js (local, em `vendor/three`, licença MIT) | Globo de neve, trenó e notebooks 3D dos cursos |
+| Lenis (local, em `vendor/lenis`, licença MIT) | Rolagem suave da roda do mouse em todas as páginas |
 | Web Audio API | Música e efeitos de Natal sintetizados no navegador, sem arquivos de áudio |
 
 Não foi encontrado no pacote um framework frontend, um gerenciador de pacotes, uma suíte de testes automatizados, um arquivo `.env`, nem scripts de migração/criação do banco.
@@ -87,6 +88,7 @@ FlashClip/
 ├── models/                   # Modelos 3D (.glb) do globo de neve e do trenó
 ├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT) e scripts
 ├── vendor/three/             # Three.js local (licença MIT)
+├── vendor/lenis/             # Lenis local, rolagem suave (licença MIT)
 ├── admin/
 │   ├── admin.html              # Dashboard administrativo
 │   ├── admin.css               # Estilos do painel

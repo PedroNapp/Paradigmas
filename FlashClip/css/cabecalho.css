@@ -1,26 +1,31 @@
 /* =========================
    CABEÇALHO
+   O mesmo em todas as páginas: o desenho da home
+   (preto, dourado), fixo no topo ao rolar.
 ========================= */
 
+html {
+  scroll-padding-top: 105px;
+}
+
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 1000;
 
-  height: 80px;
-  padding: 0 2%;
+  height: 88px;
+  padding: 0 5%;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 30px;
 
-  background: rgba(10, 10, 13, 0.92);
+  background: #030508;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(245, 189, 61, 0.16);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  font-family: "Avenir Next", "Trebuchet MS", Arial, sans-serif;
 }
 
 /* =========================
@@ -152,8 +157,9 @@
 /* IMAGEM DA LOGO */
 
 .logo img {
-  width: 155px;
-  height: auto;
+  width: 166px;
+  height: 58px;
+  max-width: none;
 
   display: block;
 
@@ -180,9 +186,7 @@
   display: flex;
   align-items: center;
 
-  margin-left: 70px;
-
-  gap: 25px;
+  gap: 26px;
 }
 
 /* LINKS */
@@ -190,10 +194,11 @@
 .nav-links a {
   position: relative;
 
-  color: #a6a6aa;
+  color: #c9cdd1;
 
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.035em;
 
   text-decoration: none;
   white-space: nowrap;
@@ -214,11 +219,11 @@
   bottom: 0;
 
   width: 0;
-  height: 2px;
+  height: 1px;
 
   border-radius: 10px;
 
-  background: #d6a84f;
+  background: #f5bd3d;
 
   transform: translateX(-50%);
 
@@ -228,7 +233,7 @@
 /* hover */
 
 .nav-links a:hover {
-  color: #ffffff;
+  color: #f5bd3d;
 }
 
 .nav-links a:hover::after {
@@ -238,7 +243,7 @@
 /* página atual */
 
 .nav-links a.ativo {
-  color: #ffffff;
+  color: #f5bd3d;
 }
 
 .nav-links a.ativo::after {
@@ -253,7 +258,7 @@
   display: flex;
   align-items: center;
 
-  gap: 18px;
+  gap: 30px;
 
   flex-shrink: 0;
 }
@@ -393,7 +398,7 @@
   border-radius: 8px;
 
   background: #151519;
-  color: #eeeeee;
+  color: #a5abb0;
 
   font-size: 12px;
 
@@ -434,11 +439,11 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(245, 189, 61, 0.16);
   border-radius: 10px;
 
-  background: #151519;
-  color: #ffffff;
+  background: transparent;
+  color: #f2f2f2;
 
   font-size: 22px;
 
@@ -467,11 +472,42 @@
 }
 
 /* =========================
+   NOTEBOOK
+   Menos folga para o menu caber inteiro.
+========================= */
+
+@media (min-width: 1101px) and (max-width: 1260px) {
+  .navbar {
+    gap: 18px;
+
+    padding: 0 3%;
+  }
+
+  .logo img {
+    width: 140px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .nav-acoes {
+    gap: 20px;
+  }
+}
+
+/* =========================
    TELAS MENORES
 ========================= */
 
 @media (max-width: 1100px) {
   .navbar {
+    height: 78px;
+
     padding: 0 5%;
   }
 
@@ -499,7 +535,7 @@
   .menu-mobile {
     position: absolute;
 
-    top: 80px;
+    top: 78px;
     left: 5%;
     right: 5%;
 
@@ -508,15 +544,15 @@
 
     padding: 10px;
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border: 1px solid rgba(245, 189, 61, 0.16);
+    border-radius: 0 0 12px 12px;
 
-    background: rgba(17, 17, 20, 0.96);
+    background: #0d1217;
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 24px 45px rgba(0, 0, 0, 0.33);
 
     opacity: 0;
     visibility: hidden;
@@ -556,9 +592,9 @@
 
     border-radius: 7px;
 
-    color: #aaaaaa;
+    color: #f2f2f2;
 
-    font-size: 14px;
+    font-size: 15px;
 
     text-decoration: none;
 
@@ -577,7 +613,9 @@
   }
 
   .menu-mobile .menu-links a.ativo {
-    color: #d6a84f;
+    color: #f5bd3d;
+
+    background: rgba(245, 189, 61, 0.05);
   }
 
   /* -------------------------
@@ -653,15 +691,16 @@
    CELULAR
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .navbar {
-    height: 70px;
+    height: 72px;
 
     padding: 0 5%;
   }
 
   .logo img {
-    width: 130px;
+    width: 145px;
+    height: 50px;
   }
 
   .botao-menu {
@@ -672,10 +711,13 @@
   }
 
   .menu-mobile {
-    top: 70px;
+    top: 72px;
 
     left: 4%;
     right: 4%;
+
+    max-height: calc(100svh - 90px);
+    overflow-y: auto;
   }
 }
 
@@ -686,10 +728,6 @@
 @media (max-width: 380px) {
   .navbar {
     padding: 0 4%;
-  }
-
-  .logo img {
-    width: 120px;
   }
 
   .menu-mobile {

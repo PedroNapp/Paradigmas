@@ -24,30 +24,12 @@ body.natal-theme {
 .fc-skip:focus { top: 15px; }
 .natal-theme main { background: transparent; }
 .natal-theme main:not(.fc-home)::before, .natal-theme main::after { display: none; }
-.natal-theme .navbar {
-  position: sticky; top: 0; height: 88px; min-height: 88px;
-  padding: 0 5%; gap: 30px; background: var(--fc-ink);
-  border-bottom: 1px solid var(--fc-line); box-shadow: none;
-  backdrop-filter: none; -webkit-backdrop-filter: none;
-}
 .natal-theme .navbar::before { display: none; }
 .natal-theme .navbar::after {
   bottom: -1px; left: 0; right: auto; height: 1px; width: 100%;
   transform: scaleX(var(--fc-progress, 0)); transform-origin: left;
   background: var(--fc-gold); animation: none; opacity: 1;
 }
-.natal-theme .logo img { width: 166px; height: 58px; max-width: none; object-fit: contain; }
-.natal-theme .nav-links { gap: 22px; margin-left: 0; }
-.natal-theme .nav-links a { color: #c9cdd1; font-size: 11px; letter-spacing: .035em; font-weight: 500; }
-.natal-theme .nav-links a:hover, .natal-theme .nav-links a.ativo { color: var(--fc-gold); }
-.natal-theme .nav-links a::after { background: var(--fc-gold); height: 1px; }
-.natal-theme .usuario { background: transparent; color: var(--fc-gold); border: 1px solid var(--fc-line); box-shadow: none; }
-.natal-theme .nome-usuario { color: var(--fc-muted); font-size: 10px; }
-.natal-theme .inscricoes { background: var(--fc-paper); color: var(--fc-ink); border: 0; border-radius: 3px; font-weight: 600; font-size: 12px; padding: 12px 19px; }
-.natal-theme .botao-menu { color: var(--fc-paper); background: transparent; border-color: var(--fc-line); }
-.natal-theme .menu-mobile { background: #0d1217; border: 1px solid var(--fc-line); border-radius: 0 0 12px 12px; box-shadow: 0 24px 45px #0005; }
-.natal-theme .menu-links a { color: var(--fc-paper); }
-.natal-theme .menu-links a.ativo { color: var(--fc-gold); background: #f5bd3d0d; }
 .natal-theme .voltar-evento, .natal-theme .botao-voltar { color: var(--fc-gold); border-color: var(--fc-line); background: transparent; }
 
 /* Abertura: uma ideia vira um ornamento. O conteúdo segue sendo HTML. */
@@ -207,14 +189,7 @@ body.natal-theme {
 @keyframes fc-twinkle { from { opacity: .35; scale: .85; } to { opacity: .9; scale: 1.1; } }
 @keyframes fc-fall { to { translate: 24px 730px; } }
 
-@media (min-width: 1101px) and (max-width: 1260px) {
-  .natal-theme .navbar { gap: 18px; padding-inline: 3%; }
-  .natal-theme .nav-links { gap: 14px; }
-  .natal-theme .logo img { width: 140px; }
-}
 @media (max-width: 1100px) {
-  .natal-theme .navbar { height: 78px; min-height: 78px; padding-inline: 5%; }
-  .natal-theme .menu-mobile { top: 78px; }
   .fc-hero { padding-top: 30px; }
   .fc-hero-copy h1 { font-size: clamp(60px, 8vw, 85px); }
   .fc-ornament-stage { height: 450px; }
@@ -222,9 +197,6 @@ body.natal-theme {
   .fc-event-place { display: none; }
 }
 @media (max-width: 700px) {
-  .natal-theme .navbar { height: 72px; min-height: 72px; }
-  .natal-theme .logo img { width: 145px; height: 50px; }
-  .natal-theme .menu-mobile { top: 72px; max-height: calc(100svh - 90px); overflow-y: auto; }
   .fc-hero { padding: 26px 6% 0; }
   .fc-edition > span { font-size: 8px; }
   .fc-eyebrow { font-size: 8px; letter-spacing: .12em; gap: 8px; }

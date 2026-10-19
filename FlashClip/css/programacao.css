@@ -23,6 +23,7 @@ html {
 }
 
 body {
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--prog-white);
   background: var(--prog-bg);

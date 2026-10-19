@@ -11,7 +11,7 @@
 :is(.navbar, .menu-mobile) .usuario { background: transparent; color: var(--fc-gold); border: 1px solid var(--fc-line); box-shadow: none; }
 :is(.navbar, .menu-mobile) .usuario:hover { background: #f5bd3d12; border-color: #f5bd3d70; }
 :is(.navbar, .menu-mobile) .inscricoes { background: var(--fc-paper); color: var(--fc-ink); border: 0; border-radius: 3px; font-weight: 600; }
-.nav-acoes .inscricoes { font-size: 12px; padding: 12px 19px; }
+.nav-acoes .inscricoes { font-size: 13px; padding: 12px 20px; }
 :is(.navbar, .menu-mobile) .inscricoes:hover { background: #ffffff; }
 
 /* Entrar, Criar conta e Confirmar matrícula seguem o botão dourado da home. */
@@ -71,3 +71,6 @@ body.fc-entry-active .fc-audio-dock { display: none; }
   .fc-magnetic { translate: none; }
   .fc-magnetic.fc-press, html.fc-sem-vt body, html.fc-saindo body { animation: none; }
 }
+
+/* Rolagem suave (Lenis): o próprio Lenis anima, então o smooth do CSS sairia em dobro. */
+html.lenis { scroll-behavior: auto; }
