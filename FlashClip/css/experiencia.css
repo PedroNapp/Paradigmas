@@ -41,7 +41,8 @@
   transition: translate .45s cubic-bezier(.2, .9, .25, 1.3), background .25s, box-shadow .3s, border-color .25s;
 }
 .fc-magnetic.fc-atraido { transition: translate .12s linear, background .25s, box-shadow .3s, border-color .25s; }
-.fc-magnetic:hover:not(:disabled) {
+/* O brilho segue o cursor só nos botões dourados de conta; Entrar e Inscrições têm o próprio hover. */
+:is(.botao-login, .botao-cadastro, .botao-confirmar).fc-magnetic:hover:not(:disabled) {
   background-image: radial-gradient(circle at var(--fc-gx, 50%) var(--fc-gy, 50%), #ffffff8c, transparent 58%);
   box-shadow: 0 10px 30px -8px #f5bd3d70, 0 0 0 1px #f5bd3d40;
 }

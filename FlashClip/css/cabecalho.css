@@ -333,7 +333,8 @@ html {
   border: 1px solid rgba(245, 189, 59, 0.3);
   border-radius: 8px;
 
-  background: transparent;
+  /* o dourado entra da esquerda no hover */
+  background: linear-gradient(#f5bd3b, #f5bd3b) left center / 0% 100% no-repeat transparent;
   color: #f5bd3b;
 
   font-family: inherit;
@@ -342,17 +343,47 @@ html {
   letter-spacing: 0.02em;
 
   cursor: pointer;
+}
 
+.usuario:hover {
+  background-size: 100% 100%;
+  border-color: #f5bd3b;
+  color: #11130f;
+}
+
+/* Os dois são magnéticos (experiencia.js): o deslize do ímã
+   soma com as transições de cada botão. */
+
+:is(.navbar, .menu-mobile) .usuario {
   transition:
-    background 0.2s ease,
+    translate 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.3),
+    background-size 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+:is(.navbar, .menu-mobile) .usuario.fc-atraido {
+  transition:
+    translate 0.12s linear,
+    background-size 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+:is(.navbar, .menu-mobile) .inscricoes {
+  transition:
+    translate 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.3),
+    transform 0.2s ease,
+    background-color 0.2s ease,
     border-color 0.2s ease;
 }
 
-/* fundo verde-dourado bem sutil e borda mais visível */
-
-.usuario:hover {
-  background: rgba(201, 189, 86, 0.08);
-  border-color: rgba(245, 189, 59, 0.6);
+:is(.navbar, .menu-mobile) .inscricoes.fc-atraido {
+  transition:
+    translate 0.12s linear,
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 :is(.inscricoes, .usuario):focus-visible {
@@ -367,6 +398,10 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .inscricoes:hover {
     transform: none;
+  }
+
+  :is(.navbar, .menu-mobile) :is(.usuario, .inscricoes) {
+    transition: none;
   }
 }
 
