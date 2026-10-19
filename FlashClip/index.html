@@ -69,7 +69,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <link rel="stylesheet" href="./css/home.css?v=pedro-3" />
     <link rel="stylesheet" href="./css/rodape.css" />
       <meta name="theme-color" content="#030508">
-    <link rel="stylesheet" href="css/natal.css?v=pedro-9">
+    <link rel="stylesheet" href="css/natal.css?v=pedro-10">
     <link rel="stylesheet" href="css/parceiros.css?v=1">
     <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-3">
     <link rel="stylesheet" href="css/globo.css?v=pedro-6">
@@ -185,7 +185,18 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <div class="fc-hero-copy">
       <h1 id="fc-title">O Natal<br> nas suas<br><em>mãos.</em></h1>
       <div class="botoes">
-        <a class="botao-principal" href="./html/cursos.html">Encontre seu curso <span aria-hidden="true">↗</span></a>
+        <!-- Botão redondo no estilo do Almoxá: um líquido dourado sobe no hover (css/natal.css). -->
+        <a class="fc-botao-liquido" href="./html/cursos.html">
+          <span class="fc-liquido-seco" aria-hidden="true"></span>
+          <svg class="fc-liquido-contorno" viewBox="0 0 100 100" aria-hidden="true"><path d="M52 2 C 78 1, 98 21, 99 49 C 100 76, 80 99, 52 98 C 25 97, 1 78, 2 50 C 3 23, 26 3, 52 2 Z" /></svg>
+          <span class="fc-liquido-molhado" aria-hidden="true">
+            <svg class="fc-liquido-onda fc-liquido-onda-a" viewBox="0 0 100 16" preserveAspectRatio="none"><path d="M0 9 C 16 3, 34 13, 50 8 C 66 3, 84 13, 100 8 V16 H0 Z" /></svg>
+            <svg class="fc-liquido-onda fc-liquido-onda-b" viewBox="0 0 100 16" preserveAspectRatio="none"><path d="M0 11 C 20 15, 38 5, 56 10 C 72 14, 88 6, 100 10 V16 H0 Z" /></svg>
+            <span class="fc-liquido-corpo"></span>
+          </span>
+          <span class="fc-liquido-texto">Encontre seu curso <span class="fc-liquido-seta" aria-hidden="true">↗</span></span>
+          <span class="fc-liquido-texto fc-liquido-texto-molhado" aria-hidden="true">Encontre seu curso <span class="fc-liquido-seta">↗</span></span>
+        </a>
         <a class="botao-secundario" href="#parceiros">Conheça o FlashClip ↓</a>
       </div>
     </div>
@@ -357,7 +368,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <script defer src="js/entrada.js?v=loading-3"></script>
     <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
     <script defer src="./vendor/lenis/lenis.min.js"></script>
-    <script defer src="js/experiencia.js?v=6"></script>
+    <script defer src="js/experiencia.js?v=7"></script>
     <script defer src="js/audio-natal.js?v=audio-6"></script>
     </body>
 </html>
