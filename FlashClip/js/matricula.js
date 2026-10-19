@@ -2,7 +2,8 @@
 import { clienteSupabase } from "./supabase.js";
 import {
   carregarDadosCursos,
-  carregarDadosVagas
+  carregarDadosVagas,
+  limparCacheCursos
 } from "./dados.js";
 
 // =========================
@@ -792,6 +793,14 @@ async function confirmarMatricula() {
     matriculaConcluida = true;
 
     botaoConfirmar.textContent = "Matrícula confirmada";
+
+    // Vagas mudaram: limpa o cache e avisa as outras telas abertas
+    // na moldura para remontar os cards de curso.
+    limparCacheCursos();
+
+    if ("BroadcastChannel" in window) {
+      new BroadcastChannel("flashclip-matriculas").postMessage("matricula");
+    }
 
     transicionarMatricula();
 

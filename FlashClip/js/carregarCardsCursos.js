@@ -37,6 +37,40 @@ function montarImagem(caminho, caminhoImagens) {
 }
 
 // =========================
+// MANTER ATUALIZADO
+// =========================
+// A moldura (app.html) mantém cada tela aberta. Quando a pessoa
+// entra ou sai da conta em outra tela, ou se matricula, os cards
+// são montados de novo com o estado atual.
+
+export const CANAL_MATRICULAS = "flashclip-matriculas";
+
+const listasAcompanhadas = new WeakSet();
+
+function manterAtualizado(listaCursos, recarregar) {
+  if (listasAcompanhadas.has(listaCursos)) {
+    return;
+  }
+
+  listasAcompanhadas.add(listaCursos);
+
+  clienteSupabase.auth.onAuthStateChange(function (evento, sessao) {
+    const email = sessao?.user?.email || "";
+
+    // Só remonta quando a conta muda de fato (o Supabase também
+    // avisa ao renovar o token). O setTimeout tira a recarga de
+    // dentro do aviso, como a documentação do Supabase pede.
+    if (email !== (listaCursos.dataset.sessao ?? email)) {
+      setTimeout(recarregar, 0);
+    }
+  });
+
+  if ("BroadcastChannel" in window) {
+    new BroadcastChannel(CANAL_MATRICULAS).addEventListener("message", recarregar);
+  }
+}
+
+// =========================
 // CARREGAR CURSOS
 // =========================
 
@@ -51,6 +85,16 @@ export async function carregarCursos(
     return;
   }
 
+  manterAtualizado(listaCursos, function () {
+    carregarCursos(
+      listaCursos,
+      limite,
+      caminhoMatricula,
+      caminhoLogin,
+      caminhoImagens,
+    );
+  });
+
   try {
     // =========================
     // SESSÃO
@@ -59,6 +103,8 @@ export async function carregarCursos(
     const {
       data: { session },
     } = await clienteSupabase.auth.getSession();
+
+    listaCursos.dataset.sessao = session?.user?.email || "";
 
     let temMatriculaNoPeriodo = false;
 
