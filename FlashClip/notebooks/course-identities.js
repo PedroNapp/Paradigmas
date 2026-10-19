@@ -30,8 +30,8 @@ export function computerMarkup(value) {
   const language = courseIdentity(value);
   const name = escapeHTML(language.name);
   const brand = escapeHTML(new URL('../imagens/logoFlash.png', import.meta.url).href);
-  return `<details class="fc-course-computer" data-language="${name}" data-renderer="pending" style="--computer-accent:${language.color}">
-    <summary class="fc-computer-trigger" aria-label="Abrir notebook de ${name}" aria-busy="true">
+  return `<details class="fc-course-computer" open data-language="${name}" data-renderer="pending" style="--computer-accent:${language.color}">
+    <summary class="fc-computer-trigger" aria-label="Fechar notebook de ${name}" aria-busy="true">
       <canvas class="fc-computer-canvas" aria-hidden="true"></canvas>
       <span class="fc-computer-loading" role="status"><span class="fc-computer-loading-ring" aria-hidden="true"></span><span>Preparando notebook…</span></span>
       <span class="fc-computer-fallback" aria-hidden="true">

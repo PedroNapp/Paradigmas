@@ -25,6 +25,21 @@
 .botao-confirmar .seta-confirmar { font-size: 17px; }
 :is(.botao-login, .botao-cadastro, .botao-confirmar):hover:not(:disabled) { background: #ffd45e; filter: none; }
 
+/* Botão dos cards de curso (home e Cursos): dourado, largura toda e seta à direita. */
+.rodape-curso .botao-curso {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  width: 100%; min-height: 50px; padding: 14px 20px;
+  border: 1px solid var(--fc-gold); border-radius: 4px;
+  background: var(--fc-gold); color: var(--fc-ink);
+  font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: .01em; line-height: 1.2; text-decoration: none;
+  box-shadow: none;
+  transition: background .2s, translate .25s, box-shadow .25s;
+}
+.rodape-curso .botao-curso::after { content: "→"; font-size: 18px; line-height: 1; transition: translate .25s; }
+.rodape-curso .botao-curso:hover { background: #ffd45e; color: var(--fc-ink); transform: none; translate: 0 -2px; box-shadow: 0 10px 24px -10px #f5bd3d80; }
+.rodape-curso .botao-curso:hover::after { translate: 3px 0; }
+.rodape-curso .botao-curso:focus-visible { outline: 2px solid var(--fc-gold); outline-offset: 3px; }
+
 /* Botão magnético: o JS puxa o botão na direção do cursor e marca onde ele está. */
 .fc-magnetic {
   translate: var(--fc-mx, 0px) var(--fc-my, 0px);
@@ -70,6 +85,8 @@ body.fc-entry-active .fc-audio-dock { display: none; }
   @view-transition { navigation: none; }
   .fc-magnetic { translate: none; }
   .fc-magnetic.fc-press, html.fc-sem-vt body, html.fc-saindo body { animation: none; }
+  .rodape-curso .botao-curso, .rodape-curso .botao-curso::after { transition: none; }
+  .rodape-curso .botao-curso:hover, .rodape-curso .botao-curso:hover::after { translate: none; }
 }
 
 /* Rolagem suave (Lenis): o próprio Lenis anima, então o smooth do CSS sairia em dobro. */
