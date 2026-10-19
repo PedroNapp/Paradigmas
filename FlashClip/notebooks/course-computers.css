@@ -60,7 +60,7 @@
 .fc-computer-fallback-open b { font: 600 15px 'Avenir Next', Arial, sans-serif; }
 .fc-course-computer[open] .fc-computer-closed { display: none; }
 .fc-course-computer[open] .fc-computer-fallback-open { display: flex; }
-.fc-computer-hint { position: absolute; z-index: 1; left: 17px; right: 17px; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--fc-computer-hint, #d1d9c7); font: 500 10px/1.4 'Avenir Next', Arial, sans-serif; letter-spacing: .025em; pointer-events: none; }
+.fc-computer-hint { position: absolute; z-index: 1; left: 17px; right: 17px; bottom: 12px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; color: var(--fc-computer-hint, #d1d9c7); font: 500 10px/1.4 'Avenir Next', Arial, sans-serif; letter-spacing: .025em; pointer-events: none; }
 .fc-computer-toggle { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 25%, transparent); border-radius: 50%; color: var(--fc-computer-accent, #e6c88c); font-size: 14px; transition: transform .35s, background .35s; }
 .fc-course-computer[open] .fc-computer-toggle { transform: rotate(135deg); background: color-mix(in srgb, var(--fc-computer-accent, #e6c88c) 5%, transparent); }
 .fc-computer-description { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

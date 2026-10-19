@@ -2,7 +2,7 @@
   const list = document.getElementById('listaCursos');
   if (!list) return;
 
-  const moduleURL = new URL('./course-computers.js?v=natal-3d-1', document.currentScript.src);
+  const moduleURL = new URL('./course-computers.js?v=natal-3d-2', document.currentScript.src);
   let unavailable = false;
   let observer;
   const timer = setTimeout(() => fallback(new Error('Tempo limite ao iniciar os notebooks 3D.')), 20000);

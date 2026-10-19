@@ -2,7 +2,7 @@
 // CARREGAR CARDS
 // =========================
 
-import { carregarCursos } from "./carregarCardsCursos.js?v=ready-1";
+import { carregarCursos } from "./carregarCardsCursos.js?v=ready-2";
 
 const listaCursos = document.getElementById("listaCursos");
 

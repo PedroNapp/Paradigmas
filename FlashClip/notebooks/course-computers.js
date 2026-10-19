@@ -235,7 +235,6 @@ function initializeComputers(list) {
       state.from = state.progress; state.target = element.open ? 1 : 0;
       state.started = performance.now(); state.duration = Math.max(180, 1000 * Math.abs(state.target - state.from));
       trigger.setAttribute('aria-label', `${element.open ? 'Fechar' : 'Abrir'} notebook de ${identity.name}`);
-      element.querySelector('[data-computer-action]').textContent = element.open ? 'Fechar notebook' : 'Abrir notebook';
       state.dirty = true;
       if (state.near) prepare(state);
       queue();

@@ -4,7 +4,7 @@
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
-import { computerMarkup } from "../notebooks/course-identities.js?v=ready-1";
+import { computerMarkup } from "../notebooks/course-identities.js?v=ready-2";
 
 // =========================
 // CONFIGURAÇÕES

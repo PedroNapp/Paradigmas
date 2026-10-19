@@ -43,7 +43,7 @@ export function computerMarkup(value) {
           <b>${name}</b>
         </span>
       </span>
-      <span class="fc-computer-hint"><span data-computer-action>Abrir notebook</span><span class="fc-computer-toggle" aria-hidden="true">↗︎</span></span>
+      <span class="fc-computer-hint"><span class="fc-computer-toggle" aria-hidden="true">↗︎</span></span>
     </summary>
     <span class="fc-computer-description">${escapeHTML(language.logoLabel)}. Clique no notebook novamente para fechar.</span>
   </details>`;
