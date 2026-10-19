@@ -91,7 +91,7 @@ FlashClip/
 │   ├── admin.css               # Estilos do painel
 │   └── admin.js                # Consultas e ações administrativas
 ├── css/                        # Folhas de estilo por página/componente
-│   ├── natal.css               # Tema de Natal na paleta escura, usado em todas as páginas
+│   ├── natal.css               # Tema de Natal da página inicial, na paleta escura
 │   ├── globo.css               # Globo de neve 3D da página inicial
 │   ├── entrada.css             # Abertura interativa (toques no globo, Papai Noel)
 │   ├── cabecalho.css
