@@ -67,12 +67,22 @@
   color: #e8c66a;
 }
 
+/*
+   steps(1): a lâmpada acende e apaga de uma vez,
+   então o SVG só é redesenhado nas trocas, e não
+   a cada quadro.
+*/
+
 .pisca-lampada .pisca-vidro {
   fill: currentColor;
 
   filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 7px currentColor);
 
-  animation: piscar 1.8s ease-in-out infinite;
+  animation: piscar 1.6s steps(1, end) infinite;
+}
+
+.pisca-lampada.alterna .pisca-vidro {
+  animation-delay: -0.8s;
 }
 
 .pisca-lampada .pisca-reflexo {

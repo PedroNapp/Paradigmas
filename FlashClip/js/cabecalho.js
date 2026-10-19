@@ -170,8 +170,12 @@ function desenharPiscaPisca(svg, largura) {
       const inclinacao =
         (Math.atan((curva * 4 * (1 - 2 * t)) / larguraVao) * 180) / Math.PI;
 
+      // duas fileiras que se alternam, como num pisca-pisca de verdade
+      const fileira = indice % 2 ? " alterna" : "";
+
       const lampada = criarElementoPisca("g", {
-        class: "pisca-lampada " + CORES_PISCA[indice % CORES_PISCA.length],
+        class:
+          "pisca-lampada " + CORES_PISCA[indice % CORES_PISCA.length] + fileira,
         transform:
           "translate(" + x + " " + y + ") rotate(" + inclinacao * 0.6 + ")",
       });
@@ -187,19 +191,12 @@ function desenharPiscaPisca(svg, largura) {
         }),
       );
 
-      const vidro = criarElementoPisca("path", {
-        class: "pisca-vidro",
-        d: "M -2.7 3.4 C -4 6.6 -1.3 10.6 0 12.2 C 1.3 10.6 4 6.6 2.7 3.4 Z",
-      });
-
-      // duas fileiras que se alternam, com pequenas variações
-      const atraso = (indice % 2) * 0.9 + ((indice * 0.37) % 0.5);
-      const duracao = 1.6 + ((indice * 0.53) % 0.8);
-
-      vidro.style.animationDelay = "-" + atraso.toFixed(2) + "s";
-      vidro.style.animationDuration = duracao.toFixed(2) + "s";
-
-      lampada.appendChild(vidro);
+      lampada.appendChild(
+        criarElementoPisca("path", {
+          class: "pisca-vidro",
+          d: "M -2.7 3.4 C -4 6.6 -1.3 10.6 0 12.2 C 1.3 10.6 4 6.6 2.7 3.4 Z",
+        }),
+      );
 
       lampada.appendChild(
         criarElementoPisca("ellipse", {
