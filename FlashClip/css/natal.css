@@ -75,16 +75,26 @@ body.natal-theme {
 .natal-theme[data-lights="off"] .fc-emblem { opacity: .65; }
 .fc-snow { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: -1; }
 .fc-snow i { position: absolute; left: var(--left); top: -12px; width: var(--size); height: var(--size); border-radius: 50%; background: #e8e8e8; opacity: .32; animation: fc-fall var(--duration) linear infinite; animation-delay: var(--delay); }
-.fc-event-bar { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 26px 0; border-top: 1px solid var(--fc-line); }
-.fc-event-date { display: flex; align-items: center; gap: 18px; }
-.fc-event-date > strong { font: 400 42px Georgia, serif; letter-spacing: -.04em; color: var(--fc-paper); }
-.fc-event-date p, .fc-event-place p { font-size: 11px; color: var(--fc-muted); }
-.fc-event-date small, .fc-event-place small { display: block; color: var(--fc-gold); font-size: 9px; letter-spacing: .14em; margin-bottom: 3px; }
-.fc-countdown { display: flex; align-items: center; gap: 21px; }
-.fc-countdown-label { max-width: 70px; font-size: 9px; text-transform: uppercase; letter-spacing: .12em; color: var(--fc-muted); }
-.fc-time { min-width: 34px; text-align: center; }
-.fc-time strong { display: block; color: var(--fc-paper); font-family: Georgia, serif; font-size: 29px; font-weight: 400; line-height: 1.2; font-variant-numeric: tabular-nums; }
-.fc-time span { color: var(--fc-muted); font-size: 8px; text-transform: uppercase; letter-spacing: .13em; }
+/* Faixa do evento: um painel escuro e legível sobre o fundo com brilho. */
+.fc-event-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: stretch; margin-top: 8px; border: 1px solid #f5bd3d38; border-radius: 6px; background: #060c0ad1; box-shadow: 0 18px 40px #00000059; }
+.fc-event-bar > * { display: flex; align-items: center; padding: 22px 30px; }
+.fc-event-bar > * + * { border-left: 1px solid var(--fc-line); }
+.fc-event-date { gap: 18px; }
+.fc-event-date > strong { font: 400 48px/1 Georgia, serif; letter-spacing: -.04em; color: var(--fc-paper); white-space: nowrap; }
+.fc-event-date p, .fc-event-place p { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.35; color: var(--fc-paper); }
+.fc-event-date small, .fc-event-place small { display: block; margin-bottom: 6px; color: var(--fc-gold); font-size: 11px; font-weight: 600; letter-spacing: .16em; }
+.fc-event-place { gap: 14px; }
+.fc-event-icon { flex: none; width: 26px; height: 26px; color: var(--fc-gold); }
+.fc-countdown { justify-content: flex-end; gap: 10px; }
+.fc-countdown-label { max-width: 86px; margin-right: 8px; font-size: 11px; font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: .14em; color: var(--fc-gold); }
+.fc-time { min-width: 66px; padding: 10px 8px 9px; text-align: center; border: 1px solid #f5bd3d2e; border-radius: 4px; background: #ffffff08; }
+.fc-time strong { display: block; color: var(--fc-paper); font: 400 32px/1.1 Georgia, serif; font-variant-numeric: tabular-nums; }
+.fc-time span { display: block; margin-top: 4px; color: #c9cdd1; font-size: 10px; text-transform: uppercase; letter-spacing: .14em; }
+@media (max-width: 1260px) {
+  /* Data e local lado a lado; a contagem desce para a linha de baixo. */
+  .fc-event-bar { grid-template-columns: 1fr 1fr; }
+  .fc-event-bar > .fc-countdown { grid-column: 1 / -1; justify-content: center; border-left: 0; border-top: 1px solid var(--fc-line); }
+}
 .fc-scroll-cue { display: flex; align-items: center; justify-content: space-between; padding: 20px 7%; border-top: 1px solid var(--fc-line); background: #080d11; }
 .fc-scroll-cue span { color: var(--fc-muted); font-size: 9px; letter-spacing: .17em; text-transform: uppercase; }
 .fc-scroll-cue a { color: var(--fc-gold); font-size: 11px; text-decoration: none; }
@@ -190,7 +200,6 @@ body.natal-theme {
   .fc-hero-copy h1 { font-size: clamp(60px, 8vw, 85px); }
   .fc-ornament-stage { height: 450px; }
   .fc-stamp { right: -7%; }
-  .fc-event-place { display: none; }
 }
 @media (max-width: 700px) {
   .fc-hero { padding: 26px 6% 0; }
@@ -207,11 +216,15 @@ body.natal-theme {
   .fc-stamp { right: 0; top: 34%; width: 62px; height: 62px; font-size: 7px; }
   .fc-stamp b { font-size: 23px; }
   .fc-scene-controls { bottom: 0; }
-  .fc-event-bar { flex-wrap: wrap; gap: 24px; padding: 24px 0; margin-top: 20px; }
-  .fc-event-date > strong { font-size: 36px; }
+  .fc-event-bar { grid-template-columns: 1fr; margin-top: 20px; }
+  .fc-event-bar > * { padding: 18px 20px; }
+  .fc-event-bar > * + * { border-left: 0; border-top: 1px solid var(--fc-line); }
+  .fc-event-date > strong { font-size: 40px; }
   .fc-event-date { gap: 14px; }
-  .fc-countdown { gap: 17px; }
-  .fc-countdown-label { font-size: 8px; }
+  .fc-countdown { flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
+  .fc-countdown-label { flex: 1 0 100%; max-width: none; margin: 0 0 4px; }
+  .fc-time { flex: 1 1 0; min-width: 0; }
+  .fc-time strong { font-size: 28px; }
   .fc-scroll-cue { padding-inline: 6%; }
   .natal-theme .fc-home .sobre { padding: 60px 7%; }
   .natal-theme .fc-home .sobre-conteudo { grid-template-columns: 1fr; gap: 25px; }

@@ -26,6 +26,19 @@ html {
   border-bottom: 1px solid rgba(245, 189, 61, 0.16);
 
   font-family: "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Some ao descer a página (cabecalho.js); o pisca-pisca sai junto. */
+.navbar.navbar-oculta {
+  transform: translateY(calc(-100% - 28px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar {
+    transition: none;
+  }
 }
 
 /* =========================

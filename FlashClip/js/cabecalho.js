@@ -323,3 +323,47 @@ if (botaoMenu && menuMobile) {
   }
 }
 
+
+// =========================
+// CABEÇALHO QUE SOME AO ROLAR
+// =========================
+
+// Depois do topo da página, o cabeçalho sai de cena ao descer
+// e volta assim que a pessoa rola um pouco para cima.
+
+if (navbarPisca) {
+  const LIMITE_TOPO = 160;
+
+  let ultimaRolagem = window.scrollY;
+  let quadroRolagem = 0;
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (quadroRolagem) {
+        return;
+      }
+
+      quadroRolagem = requestAnimationFrame(function () {
+        quadroRolagem = 0;
+
+        const rolagem = window.scrollY;
+        const menuAberto = menuMobile?.classList.contains("aberto");
+
+        if (rolagem < LIMITE_TOPO || menuAberto || rolagem < ultimaRolagem - 4) {
+          navbarPisca.classList.remove("navbar-oculta");
+        } else if (rolagem > ultimaRolagem + 4) {
+          navbarPisca.classList.add("navbar-oculta");
+        }
+
+        ultimaRolagem = rolagem;
+      });
+    },
+    { passive: true },
+  );
+
+  // Quem navega pelo teclado traz o cabeçalho de volta ao chegar nele.
+  navbarPisca.addEventListener("focusin", function () {
+    navbarPisca.classList.remove("navbar-oculta");
+  });
+}
