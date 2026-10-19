@@ -7,12 +7,7 @@
   --fc-line: rgba(245, 189, 61, .16);
 }
 
-/* Entrar e Inscrições com o mesmo desenho do cabeçalho da home em todas as páginas. */
-:is(.navbar, .menu-mobile) .usuario { background: transparent; color: var(--fc-gold); border: 1px solid var(--fc-line); box-shadow: none; }
-:is(.navbar, .menu-mobile) .usuario:hover { background: #f5bd3d12; border-color: #f5bd3d70; }
-:is(.navbar, .menu-mobile) .inscricoes { background: var(--fc-paper); color: var(--fc-ink); border: 0; border-radius: 3px; font-weight: 600; }
-.nav-acoes .inscricoes { font-size: 13px; padding: 12px 20px; }
-:is(.navbar, .menu-mobile) .inscricoes:hover { background: #ffffff; }
+/* Entrar e Inscrições do cabeçalho ficam em cabecalho.css. */
 
 /* Entrar, Criar conta e Confirmar matrícula seguem o botão dourado da home. */
 .botao-login, .botao-cadastro, .botao-confirmar {

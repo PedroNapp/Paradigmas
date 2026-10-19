@@ -277,84 +277,44 @@ html {
 }
 
 /* =========================
-   BOTÃO INSCRIÇÕES
+   BOTÕES DA DIREITA
+   Entrar (secundário) e Inscrições (principal):
+   mesma altura e raio, sem brilhos nem sombras.
 ========================= */
 
 .inscricoes {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  padding: 11px 20px;
+  min-height: 42px;
+  padding: 0 20px;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 25px;
+  border: 1px solid #f5bd3b;
+  border-radius: 8px;
 
-  background: #f2f2f2;
-  color: #111111;
+  background: #f5bd3b;
+  color: #11130f;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.02em;
 
   text-decoration: none;
   white-space: nowrap;
 
-  overflow: hidden;
-
   transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-/* brilho passando pelo botão */
-
-.inscricoes::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: -100%;
-
-  width: 50%;
-  height: 100%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.5),
-    transparent
-  );
-
-  transform: skewX(-20deg);
-
-  transition: left 0.5s ease;
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .inscricoes:hover {
-  background: #ffffff;
+  background: #ffcb57;
+  border-color: #ffcb57;
 
   transform: translateY(-1px);
-
-  box-shadow: 0 0 18px rgba(214, 168, 79, 0.14);
 }
-
-.inscricoes:hover::before {
-  left: 140%;
-}
-
-/* =========================
-   USUÁRIO
-========================= */
-
-.usuario-container {
-  position: relative;
-}
-
-/* botão */
-
-/* =========================
-   USUÁRIO
-========================= */
 
 .usuario-container {
   position: relative;
@@ -364,35 +324,50 @@ html {
   min-width: 42px;
   height: 42px;
 
-  padding: 0 14px;
+  padding: 0 18px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 25px;
+  border: 1px solid rgba(245, 189, 59, 0.3);
+  border-radius: 8px;
 
-  background: #f2f2f2;
-  color: #111111;
+  background: transparent;
+  color: #f5bd3b;
 
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.02em;
 
   cursor: pointer;
 
   transition:
-    background 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
+/* fundo verde-dourado bem sutil e borda mais visível */
+
 .usuario:hover {
-  background: #ffffff;
+  background: rgba(201, 189, 86, 0.08);
+  border-color: rgba(245, 189, 59, 0.6);
+}
 
-  transform: translateY(-1px);
+:is(.inscricoes, .usuario):focus-visible {
+  outline: 2px solid #f5bd3b;
+  outline-offset: 3px;
+}
 
-  box-shadow: 0 0 18px rgba(214, 168, 79, 0.14);
+.inscricoes:active {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inscricoes:hover {
+    transform: none;
+  }
 }
 
 /* =========================
@@ -672,31 +647,13 @@ html {
     ------------------------- */
 
   .menu-mobile .inscricoes {
-    display: block;
+    display: flex;
 
     margin: 6px 4px 4px;
 
     padding: 12px;
 
-    border-radius: 8px;
-
-    background: #f2f2f2;
-    color: #111111;
-
-    text-align: center;
-
     font-size: 14px;
-    font-weight: 600;
-
-    transition:
-      background 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .menu-mobile .inscricoes:hover {
-    background: #ffffff;
-
-    transform: translateY(-1px);
   }
 }
 

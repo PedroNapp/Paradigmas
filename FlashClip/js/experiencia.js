@@ -2,7 +2,7 @@
 (() => {
   const calmo = matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = matchMedia('(hover: hover) and (pointer: fine)');
-  const botoes = [...document.querySelectorAll('.navbar .inscricoes, .menu-mobile .inscricoes, #botaoUsuario, #botaoUsuarioMobile, .botao-login, .botao-cadastro, .botao-confirmar')];
+  const botoes = [...document.querySelectorAll('.botao-login, .botao-cadastro, .botao-confirmar')];
   const desvio = new WeakMap();
   let cursor = null, quadro = 0;
 
