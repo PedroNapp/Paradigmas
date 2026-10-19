@@ -76,7 +76,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <link rel="stylesheet" href="css/experiencia.css?v=1">
     <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
     <script defer src="./notebooks/course-computers-loader.js?v=natal-3d-1"></script>
-    <script type="module" src="js/globo.js?v=pedro-2"></script>
+    <script type="module" src="js/globo.js?v=pedro-3"></script>
   </head>
 
   <body class="natal-theme" data-lights="on">
@@ -186,13 +186,13 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
       <p>Um pequeno mundo de grandes ideias. Gire, chacoalhe, descubra — e venha viver o FlashClip com a gente.</p>
       <div class="botoes">
         <a class="botao-principal" href="./html/cursos.html">Encontre seu curso <span aria-hidden="true">↗</span></a>
-        <a class="botao-secundario" href="#sobre">Conheça o FlashClip ↓</a>
+        <a class="botao-secundario" href="#parceiros">Conheça o FlashClip ↓</a>
       </div>
     </div>
     <div class="fc-globe-dock">
       <div class="fc-globe-experience" id="globo-experiencia" role="region" aria-label="Globo de neve interativo">
-        <div class="fc-globe-heading"><span>FLASHCLIP · PEQUENOS UNIVERSOS</span><button type="button" data-close-globe hidden aria-label="Fechar exploração">Fechar <span aria-hidden="true">×</span></button></div>
-        <div class="fc-globe-view" id="globo" tabindex="0" role="group" aria-label="Globo de neve 3D. Mova o mouse para girar; balance o cursor ou toque no globo para fazer nevar. Pelo teclado, use setas, espaço e Home." aria-describedby="globo-instrucao" data-renderer="loading">
+        <div class="fc-globe-heading"><span>FLASHCLIP · PEQUENOS UNIVERSOS</span></div>
+        <div class="fc-globe-view" id="globo" tabindex="0" role="group" aria-label="Globo de neve 3D. Mova o mouse para girar; balance o cursor ou toque no globo para fazer nevar. Pelo teclado, use setas, espaço e Home." data-renderer="loading">
           <div class="fc-globe-fallback" aria-hidden="true"><svg viewBox="0 0 540 540" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="fc-glass" cx=".3" cy=".2" r=".85">
@@ -242,17 +242,6 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
           <span class="fc-globe-orbit" aria-hidden="true"></span>
           <div class="fc-globe-loader">Preparando seu pequeno mundo…</div>
         </div>
-        <p id="globo-instrucao" class="fc-globe-hint">Mova o mouse: o globo acompanha você. Balance para nevar. No celular, toque ou arraste.</p>
-        <div class="fc-globe-actions">
-          <button class="fc-explore" type="button" data-explore-globe disabled>Explorar de perto <span aria-hidden="true">↗</span></button>
-        </div>
-        <div class="fc-globe-options">
-          <button type="button" data-toggle-lights aria-pressed="true"><span class="fc-light-icon" aria-hidden="true"></span><span>Apagar luzes</span></button>
-          <button type="button" data-toggle-motion aria-pressed="false">Pausar movimento</button>
-          <button type="button" data-reset-globe>Recentrar</button>
-          <button type="button" data-replay-entry>Rever abertura</button>
-        </div>
-        <p class="fc-globe-status" role="status" aria-live="polite">Uma vila, infinitas possibilidades.</p>
       </div>
     </div>
   </div>
@@ -268,21 +257,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     </div>
   </div>
 </section>
-<div class="fc-scroll-cue"><span>01 / Um encontro de possibilidades</span><a href="#sobre">Explore o evento ↓</a></div>
-<!-- Sobre -->
-      <section class="sobre" id="sobre">
-        <div class="sobre-conteudo">
-          <span class="sobre-categoria">SOBRE O EVENTO</span>
-
-          <h2>Muito além do código.</h2>
-
-          <p class="sobre-descricao">
-            O FlashClip é um evento de tecnologia criado para aproximar
-            estudantes, conhecimento e novas ideias. Um espaço para aprender,
-            compartilhar experiências e se conectar com outras pessoas da área.
-          </p>
-        </div>
-      </section>
+<div class="fc-scroll-cue"><span>01 / Um encontro de possibilidades</span><a href="#parceiros">Explore o evento ↓</a></div>
 
       <!-- PARCEIROS -->
       <section class="parceiros" id="parceiros">
@@ -304,132 +279,6 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
           >
             <img src="https://i.ibb.co/nqCT8t9f/Logo.png" alt="Sua Internet" />
           </a>
-        </div>
-      </section>
-
-      <!-- POR QUE PARTICIPAR -->
-      <section class="motivos" id="motivos">
-        <div class="titulo-motivos">
-          <span>FLASHCLIP</span>
-          <h2>Por que participar?</h2>
-          <p>
-            Uma oportunidade para aprender, compartilhar conhecimentos e
-            desenvolver novas habilidades.
-          </p>
-        </div>
-
-        <div class="lista-motivos">
-          <!-- MOTIVO 01 -->
-          <article class="card-motivo">
-            <span class="numero-motivo">01</span>
-
-            <div class="icone-motivo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-                <line x1="14" y1="4" x2="10" y2="20" />
-              </svg>
-            </div>
-
-            <h3>Introdução à Programação</h3>
-            <p>Aprenda os fundamentos e dê seus primeiros passos no código.</p>
-          </article>
-
-          <!-- MOTIVO 02 -->
-          <article class="card-motivo">
-            <span class="numero-motivo">02</span>
-
-            <div class="icone-motivo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-            </div>
-
-            <h3>Curso Rápido e Focado</h3>
-            <p>Apenas 3 horas de duração, com conteúdo objetivo e prático.</p>
-          </article>
-
-          <!-- MOTIVO 03 -->
-          <article class="card-motivo">
-            <span class="numero-motivo">03</span>
-
-            <div class="icone-motivo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="9" cy="8" r="3" />
-                <path d="M3 21v-2a6 6 0 0 1 12 0v2" />
-                <path d="M16 4.5a3 3 0 0 1 0 7" />
-                <path d="M17 15a5 5 0 0 1 4 5v1" />
-              </svg>
-            </div>
-
-            <h3>Aprendizado Colaborativo</h3>
-            <p>
-              Aprenda de forma prática e compartilhe conhecimentos com seus
-              colegas.
-            </p>
-          </article>
-
-          <!-- MOTIVO 04 -->
-          <article class="card-motivo">
-            <span class="numero-motivo">04</span>
-
-            <div class="icone-motivo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 15l-3.5 2 1-4-3-2.5 4-.3L12 6l1.5 4.2 4 .3-3 2.5 1 4z"
-                />
-                <path d="M5 3h14v18l-7-4-7 4z" />
-              </svg>
-            </div>
-
-            <h3>Certificado Digital</h3>
-            <p>Receba um certificado para adicionar ao seu currículo.</p>
-          </article>
         </div>
       </section>
 
@@ -467,7 +316,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <script type="module" src="./js/auth.js"></script>
     <script type="module" src="./js/script.js?v=ready-1"></script>
     <script src="./js/cabecalho.js"></script>
-      <script defer src="js/natal.js"></script>
+      <script defer src="js/natal.js?v=2"></script>
   <section class="fc-entry" id="abertura" hidden role="region" aria-label="Abertura interativa do FlashClip" data-entry-step="0">
   <div class="fc-entry-top">
     <img src="./imagens/logoFlash.png" width="142" height="49" alt="FlashClip" />
@@ -496,10 +345,9 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
   </div>
 </section>
 
-    <script defer src="js/entrada.js?v=loading-1"></script>
+    <script defer src="js/entrada.js?v=loading-2"></script>
     <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
-    <script defer src="js/experiencia.js?v=1"></script>
+    <script defer src="js/experiencia.js?v=2"></script>
     <script defer src="js/audio-natal.js?v=audio-6"></script>
-    <dialog class="fc-globe-dialog" aria-label="Explore o globo de neve" aria-modal="true"></dialog>
     </body>
 </html>

@@ -54,9 +54,12 @@
   document.addEventListener('mouseout', evento => { if (!evento.relatedTarget) { cursor = null; pedirQuadro(); } });
   window.addEventListener('blur', () => { cursor = null; pedirQuadro(); });
 
+  // Dentro da moldura (app.html) a troca de tela não recarrega a página e a moldura faz a transição.
+  let naMoldura = false;
+  try { naMoldura = window.parent !== window && !!window.parent.FCMoldura; } catch {}
   // Chrome, Edge e Safari 18+ fazem a transição pelo CSS (@view-transition). Nos outros,
   // a página sai com a mesma animação antes de navegar e a próxima entra pelo CSS.
-  if ('onpagereveal' in window || calmo.matches) return;
+  if (naMoldura || 'onpagereveal' in window || calmo.matches) return;
   document.documentElement.classList.add('fc-sem-vt');
   document.addEventListener('click', evento => {
     const link = evento.target.closest?.('a[href]');

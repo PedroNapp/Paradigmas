@@ -6,8 +6,6 @@
   const scene = stage?.querySelector('.fc-scene');
   const hero = scene?.closest('.fc-hero');
   const navbar = document.querySelector('.navbar');
-  const lightButton = document.querySelector('[data-toggle-lights]');
-  const motionButton = document.querySelector('[data-toggle-motion]');
   let paused = false;
   let scrollFrame = 0;
   let pointerFrame = 0;
@@ -18,18 +16,10 @@
   let lastProgress = '';
   let lastDrift = '';
 
-  lightButton?.addEventListener('click', () => {
-    const on = body.dataset.lights !== 'on';
-    body.dataset.lights = on ? 'on' : 'off';
-    lightButton.setAttribute('aria-pressed', String(on));
-    lightButton.querySelector('span:last-child').textContent = on ? 'Apagar luzes' : 'Acender luzes';
-  });
-
-  motionButton?.addEventListener('click', () => {
+  // O botão "Pausar movimento" da abertura (entrada.js) pausa e retoma por este evento.
+  window.addEventListener('fc:toggle-motion', () => {
     paused = !paused;
     body.classList.toggle('fc-paused', paused);
-    motionButton.setAttribute('aria-pressed', String(paused));
-    motionButton.textContent = paused ? 'Retomar movimento' : 'Pausar movimento';
     if (paused) resetPose();
     updateScroll();
   });

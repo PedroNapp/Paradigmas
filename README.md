@@ -82,7 +82,7 @@ Não foi encontrado no pacote um framework frontend, um gerenciador de pacotes, 
 ```text
 FlashClip/
 ├── index.html                 # Página inicial
-├── app.html                   # Moldura: as telas abrem dentro dela e a música não para ao navegar
+├── app.html                   # Moldura: cada tela abre uma vez e fica guardada; trocar de aba não recarrega a página nem para a música
 ├── README.md                  # Esta documentação
 ├── models/                   # Modelos 3D (.glb) do globo de neve e do trenó
 ├── notebooks/                # Notebooks 3D dos cards de curso: modelo, logos (Devicon, MIT) e scripts

@@ -202,11 +202,15 @@
   window.addEventListener('pagehide',()=>{pageInactive=true;reconcile();});
   window.addEventListener('pageshow',()=>{pageInactive=false;if(unlocked)reconcile();});
   // Liga uma tela (a própria página, ou a página dentro da moldura) ao motor de áudio.
+  // A moldura chama de novo quando uma tela guardada volta a aparecer: aí só troca a tela ativa.
+  const attached=new WeakSet();
   function attach(win){
     const doc=win.document;view=win;
     gated=!!doc.getElementById('globo');
     musicButtons=[...doc.querySelectorAll('[data-audio-music]')];
     effectsButtons=[...doc.querySelectorAll('[data-audio-effects]')];
+    if(attached.has(doc)){label();if(context)setState();return;}
+    attached.add(doc);
     musicButtons.forEach(button=>button.addEventListener('click',toggleMusic));
     effectsButtons.forEach(button=>button.addEventListener('click',toggleEffects));
     for(const type of ['pointerdown','pointerup','touchend','click','keydown'])doc.addEventListener(type,gesture,{capture:true,passive:true});

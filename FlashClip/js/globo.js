@@ -13,17 +13,11 @@ function fallback(error) {
   view.dataset.renderer = 'fallback';
   window.dispatchEvent(new CustomEvent('fc:globe-unavailable'));
   view.querySelector('.fc-globe-loader').textContent = 'A visualização 3D não está disponível neste navegador.';
-  document.querySelector('.fc-globe-hint').textContent = 'Você pode continuar explorando o evento e os cursos normalmente.';
-  document.querySelector('[data-explore-globe]').disabled = true;
 }
 
 async function initGlobe() {
   const root = document.querySelector('.fc-globe-experience');
-  const dock = document.querySelector('.fc-globe-dock');
   const hero = document.querySelector('.fc-hero');
-  const dialog = document.querySelector('.fc-globe-dialog');
-  const closeButton = root.querySelector('[data-close-globe]');
-  const expandButton = root.querySelector('[data-explore-globe]');
   const status = root.querySelector('.fc-globe-status');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const scene = new THREE.Scene();
@@ -132,7 +126,7 @@ async function initGlobe() {
   window.addEventListener('fc:entry-reset',()=>{opening.reset();targetYaw=homeYaw;targetPitch=0;yaw=homeYaw;pitch=0;kick=0;previous=0;resize();schedule();});
   window.addEventListener('fc:entry-land',e=>{opening.land(e.detail.duration);targetYaw=homeYaw;targetPitch=0;kick=0;scrollDepth=0;visible=true;resize();schedule();});
   if(document.body.classList.contains('fc-entry-active'))startEntry();
-  function report(text) { if(status.textContent!==text) status.textContent=text; }
+  function report(text) { if(status&&status.textContent!==text) status.textContent=text; }
   function canMove() { return !paused&&!reduced.matches; }
   function syncData() {
     view.dataset.yaw=yaw.toFixed(3); view.dataset.pitch=pitch.toFixed(3);
@@ -209,7 +203,7 @@ async function initGlobe() {
     }
     pivot.rotation.set(pitch+Math.sin(kickTime*26)*kick,yaw,Math.cos(kickTime*29)*kick*.7);
     pivot.position.x=Math.sin(kickTime*23)*kick*.2;
-    const desiredDistance=opening.active?7.8:dialog.open?7.6:8.4-scrollDepth*.38;
+    const desiredDistance=opening.active?7.8:8.4-scrollDepth*.38;
     if(canMove()){dolly+=(desiredDistance-dolly)*(1-Math.exp(-5*dt));needsMore ||= Math.abs(desiredDistance-dolly)>.0001;}else dolly=desiredDistance;
     const fitWidth=4.35/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*camera.aspect);
     const distance=Math.max(dolly,fitWidth);
@@ -235,7 +229,7 @@ async function initGlobe() {
   const heroResize=new ResizeObserver(measureHero);if(hero)heroResize.observe(hero);
   window.addEventListener('resize',measureHero,{passive:true});measureHero();
   window.addEventListener('scroll',()=>{
-    if(dialog.open||opening.active||opening.playing||document.body.classList.contains('fc-entry-landing'))return;
+    if(opening.active||opening.playing||document.body.classList.contains('fc-entry-landing'))return;
     if(!scrolling){scrolling=true;cancelAnimationFrame(frame);frame=0;previous=0;}
     clearTimeout(scrollTimer);
     scrollTimer=setTimeout(()=>{
@@ -291,19 +285,6 @@ async function initGlobe() {
     if(e.key==='ArrowUp')targetPitch=Math.max(-.24,targetPitch-.08);if(e.key==='ArrowDown')targetPitch=Math.min(.22,targetPitch+.08);
     if(reduced.matches){yaw=targetYaw;pitch=targetPitch;}schedule();
   });
-  root.querySelector('[data-reset-globe]').addEventListener('click',reset);
-  expandButton.addEventListener('click',()=>{
-    if(dialog.open)return;
-    dock.style.minHeight=`${root.getBoundingClientRect().height}px`;
-    dialog.appendChild(root);closeButton.hidden=false;expandButton.hidden=true;
-    document.body.classList.add('fc-globe-open');dialog.showModal();
-    closeButton.focus();visible=true;resize();
-  });
-  closeButton.addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>{
-    dock.appendChild(root);dock.style.minHeight='';closeButton.hidden=true;expandButton.hidden=false;
-    document.body.classList.remove('fc-globe-open');resize();expandButton.focus({preventScroll:true});
-  });
   renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);frame=0;disposed=true;fallback('WebGL context lost');});
   window.addEventListener('fc:load-bypass',()=>{disposed=true;cancelAnimationFrame(frame);frame=0;renderer.dispose();renderer.domElement.remove();});
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(frame);frame=0;previous=0;});
@@ -319,7 +300,6 @@ async function initGlobe() {
   if(cancelled())return;
   if(renderer.getContext().isContextLost())throw new Error('WebGL não está disponível.');
   view.dataset.renderer='webgl';view.dataset.asset='Higgsfield 3D Jutsu';
-  expandButton.disabled=false;
   snow.scatter();applyLight();resize();
   cancelAnimationFrame(frame);frame=0;render(performance.now(),true);
   window.dispatchEvent(new CustomEvent('fc:globe-ready'));

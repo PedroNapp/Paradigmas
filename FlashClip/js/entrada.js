@@ -169,7 +169,7 @@
     if(paused&&landing)finishLanding();
   }
   tap.addEventListener('click',hit);skip.addEventListener('click',()=>finish({immediate:true}));
-  pause.addEventListener('click',()=>{experience.querySelector('[data-toggle-motion]').click();syncPause();});
+  pause.addEventListener('click',()=>{window.dispatchEvent(new CustomEvent('fc:toggle-motion'));syncPause();});
   new MutationObserver(syncPause).observe(document.body,{attributes:true,attributeFilter:['class']});
   window.addEventListener('fc:globe-tap',hit);
   window.addEventListener('fc:globe-ready',()=>{

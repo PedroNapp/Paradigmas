@@ -5,72 +5,245 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#030508" />
     <title>FlashClip</title>
-    <!-- A moldura fica aberta enquanto o visitante navega: as telas trocam dentro dela
-         e a música (audio-natal.js) continua tocando aqui, sem reiniciar. -->
+    <!-- A moldura fica aberta enquanto o visitante navega. Cada tela abre uma vez num quadro
+         próprio e fica guardada: trocar de aba só mostra outro quadro, sem recarregar a página,
+         e a música (audio-natal.js) continua tocando aqui. -->
     <style>
       html, body { margin: 0; height: 100%; overflow: hidden; background: #030508; }
-      #tela { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #030508; }
+      .tela { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #030508; }
+      /* A tela nova carrega por trás da atual, já no tamanho certo, e só aparece pronta. */
+      .tela[data-estado="carregando"] { visibility: hidden; }
+      /* Guardada sem desenhar: o 3D e as animações dela param até voltar. */
+      .tela[data-estado="guardada"] { display: none; }
+      #indo { position: fixed; z-index: 10; top: 0; left: 0; width: 100%; height: 2px; background: #f5bd3d; box-shadow: 0 0 10px #f5bd3d88; transform: scaleX(0); transform-origin: left; opacity: 0; pointer-events: none; }
     </style>
-    <script src="js/audio-natal.js?v=audio-6"></script>
+    <script src="js/audio-natal.js?v=audio-7"></script>
   </head>
 
   <body>
-    <iframe
-      id="tela"
-      title="FlashClip"
-      allow="autoplay; fullscreen; accelerometer; gyroscope; magnetometer; clipboard-write"
-      allowfullscreen
-    ></iframe>
+    <div id="indo" aria-hidden="true"></div>
 
     <script>
       (() => {
-        const tela = document.getElementById("tela");
         const raiz = new URL(".", location.href);
+        const barra = document.getElementById("indo");
+        const calmo = matchMedia("(prefers-reduced-motion: reduce)");
+        // Telas que dependem da sessão ou de um envio abrem sempre do zero.
+        const SEMPRE_NOVAS = /^html\/(login|cadastro|matricula|inscricoes)\.html/;
+        const LIMITE = 8;
+        const telas = new Map();
+        const ligadas = new WeakSet();
+        let atual = null, pendente = null, pedido = 0;
+
+        // index.html e as páginas de html/ abrem na moldura; o resto (admin, outros sites) sai dela.
+        function ehTela(url) {
+          if (url.origin !== location.origin || !url.pathname.startsWith(raiz.pathname)) return false;
+          return /^(index\.html|html\/[\w-]+\.html)?$/.test(url.pathname.slice(raiz.pathname.length));
+        }
+        function chaveDe(url) {
+          return (url.pathname.slice(raiz.pathname.length) || "index.html") + url.search;
+        }
+        function telaDe(janela) {
+          for (const tela of telas.values()) if (tela.frame.contentWindow === janela) return tela;
+          return null;
+        }
 
         // O endereço da tela vai depois do #: app.html#html/cursos.html
         function destino() {
           let alvo = "index.html";
           try { alvo = decodeURIComponent(location.hash.slice(1)) || alvo; } catch {}
           const url = new URL(alvo, raiz);
-          const valido = url.origin === location.origin && url.pathname.startsWith(raiz.pathname) && !url.pathname.endsWith("/app.html");
-          return valido ? url.href : new URL("index.html", raiz).href;
+          return ehTela(url) ? url : new URL("index.html", raiz);
         }
 
-        let atual = "";
-        const ligadas = new WeakSet();
-        tela.src = destino();
-
-        // Barra de endereço e título acompanham a tela, para recarregar ou compartilhar o link.
-        function sincronizar(janela) {
+        // Barra de endereço e título acompanham a tela, para voltar, recarregar ou compartilhar o link.
+        function sincronizar(janela, modo = "replace") {
           const local = janela.location;
-          atual = local.pathname.slice(raiz.pathname.length) + local.search + local.hash;
-          history.replaceState(null, "", `#${atual}`);
+          const endereco = `#${local.pathname.slice(raiz.pathname.length) || "index.html"}${local.search}${local.hash}`;
+          if (modo === "push" && location.hash !== endereco) history.pushState(null, "", endereco);
+          else history.replaceState(null, "", endereco);
           document.title = janela.document.title || "FlashClip";
+          telaDe(janela)?.frame.setAttribute("title", document.title);
+        }
+
+        function rolar(janela, hash, sempre) {
+          if (!hash || (!sempre && janela.location.hash === hash)) return;
+          try { janela.history.replaceState(janela.history.state, "", hash); } catch {}
+          let id = hash.slice(1);
+          try { id = decodeURIComponent(id); } catch {}
+          janela.document.getElementById(id)?.scrollIntoView({ behavior: calmo.matches ? "auto" : "smooth" });
+        }
+
+        // Fio dourado no topo enquanto uma tela nova carrega por trás da atual.
+        let fio = null, fioEspera = 0;
+        function carregando(sim) {
+          clearTimeout(fioEspera);
+          if (sim) {
+            fioEspera = setTimeout(() => {
+              fio = barra.animate([{ opacity: 1, transform: "scaleX(0)" }, { opacity: 1, transform: "scaleX(.9)" }], { duration: 6000, easing: "cubic-bezier(.1, .7, .2, 1)", fill: "forwards" });
+            }, 150);
+            return;
+          }
+          if (!fio) return;
+          const ponto = getComputedStyle(barra).transform;
+          fio.cancel(); fio = null;
+          barra.animate([{ opacity: 1, transform: ponto }, { opacity: 1, transform: "scaleX(1)", offset: .6 }, { opacity: 0, transform: "scaleX(1)" }], { duration: 400, easing: "ease-out" });
+        }
+
+        function descartar(tela) {
+          if (telas.get(tela.chave) === tela) telas.delete(tela.chave);
+          if (pendente === tela) pendente = null;
+          tela.frame.remove();
+        }
+        // Guarda até LIMITE telas; as vistas há mais tempo saem primeiro (a home fica).
+        function limitar() {
+          for (const tela of telas.values()) {
+            if (telas.size <= LIMITE) break;
+            if (tela !== atual && tela !== pendente && tela.chave !== "index.html") descartar(tela);
+          }
+        }
+
+        function criar(url, chave) {
+          const frame = document.createElement("iframe");
+          frame.className = "tela";
+          frame.title = "FlashClip";
+          frame.allow = "autoplay; fullscreen; accelerometer; gyroscope; magnetometer; clipboard-write";
+          frame.allowFullscreen = true;
+          frame.dataset.estado = "carregando";
+          const tela = { frame, chave, pedido: 0 };
+          // Pronta no load, ou pouco depois do DOMContentLoaded se as imagens demorarem.
+          tela.pronta = new Promise(resolve => {
+            let espera = 0;
+            tela.avisar = () => { clearTimeout(espera); espera = setTimeout(resolve, 450); };
+            frame.addEventListener("load", () => { try { chegou(frame.contentWindow); } catch {} resolve(); });
+            setTimeout(resolve, 8000);
+          });
+          frame.src = url.href;
+          document.body.appendChild(frame);
+          telas.set(chave, tela);
+          return tela;
+        }
+
+        // A tela nova aparece por cima da anterior. O cabeçalho é o mesmo nas duas, então só o
+        // conteúdo parece mudar; a anterior fica guardada como estava.
+        function trocar(nova, velha) {
+          nova.frame.dataset.estado = "visivel";
+          nova.frame.style.zIndex = 1;
+          if (!velha || velha === nova) return;
+          velha.frame.style.zIndex = 0;
+          const fim = () => {
+            if (atual === velha) return;
+            velha.frame.dataset.estado = "guardada";
+            velha.frame.style.zIndex = "";
+            if (SEMPRE_NOVAS.test(velha.chave)) descartar(velha);
+          };
+          if (calmo.matches || document.hidden) { fim(); return; }
+          nova.frame.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: "cubic-bezier(.4, 0, .2, 1)" }).finished.then(fim, fim);
+          // Se a animação não andar (aba em segundo plano), a anterior é guardada do mesmo jeito.
+          setTimeout(fim, 700);
+        }
+
+        function mostrar(tela, modo, hash) {
+          const velha = atual;
+          atual = tela;
+          telas.delete(tela.chave); telas.set(tela.chave, tela);
+          trocar(tela, velha);
+          const janela = tela.frame.contentWindow;
+          if (janela.location.href !== "about:blank") {
+            try { window.FCAudio?.attach(janela); } catch {}
+            rolar(janela, hash, modo === "push");
+            sincronizar(janela, modo);
+            janela.focus();
+          }
+          limitar();
+        }
+
+        function ir(href, modo = "push") {
+          const url = new URL(href, raiz);
+          const chave = chaveDe(url);
+          const n = ++pedido;
+          if (pendente && pendente.chave !== chave) { descartar(pendente); carregando(false); }
+          let tela = telas.get(chave);
+          if (tela && tela === pendente) { tela.pedido = n; return; }
+          if (tela && tela !== atual && SEMPRE_NOVAS.test(chave)) { descartar(tela); tela = null; }
+          if (tela && tela === atual) {
+            const janela = tela.frame.contentWindow;
+            if (url.hash) rolar(janela, url.hash, true);
+            else janela.scrollTo({ top: 0, behavior: calmo.matches ? "auto" : "smooth" });
+            return;
+          }
+          if (tela) { mostrar(tela, modo, url.hash); return; }
+          tela = criar(url, chave);
+          // A primeira tela aparece na hora: ela mesma mostra o carregamento.
+          if (!atual) { mostrar(tela, modo); return; }
+          tela.pedido = n; pendente = tela;
+          carregando(true);
+          tela.pronta.then(() => {
+            if (pendente !== tela || tela.pedido !== pedido) return;
+            pendente = null;
+            carregando(false);
+            mostrar(tela, modo);
+          });
+        }
+
+        // Clique num link de outra tela: troca de quadro em vez de navegar dentro dele.
+        function clicou(evento, janela) {
+          const link = evento.target.closest?.("a[href]");
+          if (!link || evento.defaultPrevented || evento.button !== 0 || evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey || link.hasAttribute("download")) return;
+          if (link.target && link.target !== "_self") return;
+          const url = new URL(link.href, janela.location.href);
+          // Links para outros sites (e para o painel admin) saem da moldura em vez de abrir dentro dela.
+          if (!ehTela(url)) { link.target = "_top"; return; }
+          const aqui = janela.location;
+          if (url.pathname === aqui.pathname && url.search === aqui.search && url.hash) return;
+          evento.preventDefault();
+          ir(url.href);
+        }
+        // Redirecionamentos pelo JS (login, matrícula...) também trocam de quadro, onde o
+        // navegador tem a Navigation API.
+        function navegou(evento) {
+          if (!evento.cancelable || evento.destination.sameDocument || evento.downloadRequest || evento.formData) return;
+          if (evento.navigationType === "reload" || evento.navigationType === "traverse") return;
+          const url = new URL(evento.destination.url);
+          if (url.origin !== location.origin) return;
+          evento.preventDefault();
+          if (ehTela(url)) ir(url.href, evento.navigationType === "replace" ? "replace" : "push");
+          else location.href = url.href;
         }
 
         // Cada página avisa ao abrir (js/moldura.js); o load fica de reserva.
         function chegou(janela) {
-          sincronizar(janela);
-          if (ligadas.has(janela.document)) return;
-          ligadas.add(janela.document);
-          // Links para outros sites saem da moldura em vez de abrir dentro dela.
-          janela.document.addEventListener("click", evento => {
-            const link = evento.target.closest?.("a[href]");
-            if (link && !link.target && new URL(link.href, janela.location.href).origin !== location.origin) link.target = "_top";
-          }, true);
-          janela.addEventListener("hashchange", () => sincronizar(janela));
-          janela.focus();
+          const tela = telaDe(janela);
+          if (!tela) return;
+          const doc = janela.document;
+          if (!ligadas.has(doc)) {
+            ligadas.add(doc);
+            janela.addEventListener("click", evento => clicou(evento, janela));
+            janela.navigation?.addEventListener("navigate", navegou);
+            janela.addEventListener("hashchange", () => { if (telaDe(janela) === atual) sincronizar(janela); });
+          }
+          // A tela navegou sozinha (navegador sem a Navigation API): o quadro passa a ser do novo endereço.
+          const chave = chaveDe(janela.location);
+          if (chave !== tela.chave) {
+            const outra = telas.get(chave);
+            if (outra && outra !== tela && outra !== atual) descartar(outra);
+            if (telas.get(tela.chave) === tela) telas.delete(tela.chave);
+            tela.chave = chave;
+            telas.set(chave, tela);
+          }
+          tela.avisar?.();
+          if (tela === atual) { sincronizar(janela); janela.focus(); }
         }
         window.FCMoldura = { chegou };
 
-        tela.addEventListener("load", () => {
-          try { chegou(tela.contentWindow); } catch {}
+        // Voltar, avançar ou trocar o endereço à mão leva a tela junto.
+        window.addEventListener("popstate", () => {
+          const url = destino();
+          if (atual && chaveDe(url) === atual.chave) { rolar(atual.frame.contentWindow, url.hash, false); return; }
+          ir(url.href, "replace");
         });
 
-        // Endereço trocado à mão na barra: leva a tela junto.
-        window.addEventListener("hashchange", () => {
-          if (location.hash.slice(1) !== atual) tela.contentWindow.location.replace(destino());
-        });
+        ir(destino().href, "replace");
       })();
     </script>
   </body>
