@@ -477,7 +477,7 @@ h1 {
 }
 
 .informacoes-evento span {
-  color: #62666b;
+  color: #f9f9f9;
 
   font-size: 10px;
   letter-spacing: 2px;
@@ -2570,5 +2570,44 @@ main > section {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Texto das informações do evento */
+.informacoes-evento span {
+  color: #f9f9f9;
+  font-size: 12px;
+  letter-spacing: 2px;
+
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+.informacoes-evento strong {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+/* Proteção discreta apenas em telas pequenas */
+@media (max-width: 600px) {
+  .informacoes-evento {
+    padding: 7px 10px;
+
+    background: rgba(3, 5, 8, 0.2);
+    border-radius: 6px;
+
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+
+  .informacoes-evento span {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .informacoes-evento strong {
+    font-size: 13px;
   }
 }
