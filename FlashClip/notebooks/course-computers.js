@@ -1,4 +1,4 @@
-import { courseIdentity } from './course-identities.js?v=ready-4';
+import { courseIdentity } from './course-identities.js?v=ready-5';
 
 const list = document.getElementById('listaCursos');
 if (list && !list.dataset.computerUnavailable) initializeComputers(list);
@@ -48,8 +48,9 @@ function initializeComputers(list) {
     if (enginePromise) return enginePromise;
     engineTimer = setTimeout(fallbackAll, 20000);
     enginePromise = (async () => {
-      const [THREE, { GLTFLoader }, { RoomEnvironment }, { createNotebookScene }] = await Promise.all([
-        import('three'), import('three/addons/loaders/GLTFLoader.js'),
+      // Os modelos usam compressão meshopt (EXT_meshopt_compression), lida pelo MeshoptDecoder.
+      const [THREE, { GLTFLoader }, { MeshoptDecoder }, { RoomEnvironment }, { createNotebookScene }] = await Promise.all([
+        import('three'), import('three/addons/loaders/GLTFLoader.js'), import('three/addons/libs/meshopt_decoder.module.js'),
         import('three/addons/environments/RoomEnvironment.js'), import('./notebook-scene.js'),
       ]);
       await whenQuiet();
@@ -70,9 +71,9 @@ function initializeComputers(list) {
       let model;
       pendingCleanup = () => { disposeTemplate(model?.scene); environmentTarget.dispose(); renderer.dispose(); };
       try {
-        model = await new GLTFLoader().loadAsync(new URL('./models/notebook.glb', import.meta.url).href);
+        model = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(new URL('./models/notebook.glb', import.meta.url).href);
         if (unavailable || stopped) { disposeTemplate(model.scene); return null; }
-        const brandTexture = await new THREE.TextureLoader().loadAsync(new URL('../imagens/logoFlash.png', import.meta.url).href);
+        const brandTexture = await new THREE.TextureLoader().loadAsync(new URL('../imagens/logoFlash.webp', import.meta.url).href);
         if (unavailable || stopped) { brandTexture.dispose(); return null; }
         brandTexture.colorSpace = THREE.SRGBColorSpace;
         brandTexture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());

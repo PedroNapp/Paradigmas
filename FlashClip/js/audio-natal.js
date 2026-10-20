@@ -96,7 +96,9 @@
     if(!context||!music||!wantsRunning()||context.state!=='running')return;
     // Se a thread ficou bloqueada, não despeje todas as notas perdidas de uma vez.
     if(nextNote<context.currentTime-subdivision)nextNote=context.currentTime+.03;
-    while(nextNote<context.currentTime+.3){
+    // Agenda um segundo à frente: a moldura divide a mesma linha de execução com a tela, e o
+    // globo 3D começando a desenhar não pode deixar a música com buracos.
+    while(nextNote<context.currentTime+1){
       const index=step%melody.length,note=melody[index];
       if(note!==null)bell(note,nextNote,step%4===0?.24:.17);
       if(step%16===0)for(const midi of chords[Math.floor(index/16)])tone(hz(midi),nextNote,beat*5,.09,musicBus,'triangle');

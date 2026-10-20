@@ -31,7 +31,7 @@ const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
 export function computerMarkup(value) {
   const language = courseIdentity(value);
   const name = escapeHTML(language.name);
-  const brand = escapeHTML(new URL('../imagens/logoFlash.png', import.meta.url).href);
+  const brand = escapeHTML(new URL('../imagens/logoFlash.webp', import.meta.url).href);
   return `<details class="fc-course-computer" open data-language="${name}" data-renderer="pending" style="--computer-accent:${language.color}">
     <summary class="fc-computer-trigger" aria-label="Fechar notebook de ${name}" aria-busy="true">
       <canvas class="fc-computer-canvas" aria-hidden="true"></canvas>

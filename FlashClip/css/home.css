@@ -1935,7 +1935,7 @@ h1 {
       rgba(3, 5, 8, 0.04) 48%,
       rgba(3, 5, 8, 0) 72%
     ),
-    url("../imagens/Cenario/flashclip-tela-principal.svg");
+    url("../imagens/Cenario/flashclip-tela-principal-2560.webp");
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;
   background-size: cover, cover;
@@ -1958,7 +1958,7 @@ h1 {
         rgba(3, 5, 8, 0.02) 48%,
         rgba(3, 5, 8, 0.12) 100%
       ),
-      url("../imagens/Cenario/flashclip-tela-principal.svg");
+      url("../imagens/Cenario/flashclip-tela-principal-1280.webp");
     background-repeat: no-repeat, no-repeat;
     background-position: center, right bottom;
     background-size: cover, auto 48%;
