@@ -1,5 +1,6 @@
 
 import { clienteSupabase } from "./supabase.js";
+import { inteiroPositivo } from "./seguranca.js";
 import {
   carregarDadosCursos,
   carregarDadosVagas,
@@ -18,7 +19,8 @@ const botaoConfirmar = document.getElementById("botaoConfirmar");
 // =========================
 
 const parametros = new URLSearchParams(window.location.search);
-const cursoId = parametros.get("id");
+// Só dígitos: "1e3", "0x10" ou texto viram null e a página mostra o erro.
+const cursoId = inteiroPositivo(parametros.get("id"));
 
 let cursoAtual = null;
 let matriculaEmAndamento = false;

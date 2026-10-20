@@ -1,4 +1,5 @@
 import { carregarDadosInstrutores } from "./dados.js";
+import { escaparHTML } from "./seguranca.js";
 
 const listaInstrutores = document.getElementById("listaInstrutores");
 
@@ -70,7 +71,7 @@ async function carregarInstrutores() {
       titulo.innerHTML = `
                     <span>CURSO</span>
                     <h2>
-                        ${curso}
+                        ${escaparHTML(curso)}
                     </h2>
                 `;
 
@@ -97,8 +98,8 @@ async function carregarInstrutores() {
                             <div class="foto-instrutor">
 
                                 <img
-                                    src="${instrutor.foto}"
-                                    alt="${instrutor.nome}"
+                                    src="${escaparHTML(instrutor.foto)}"
+                                    alt="${escaparHTML(instrutor.nome)}"
                                     loading="lazy"
                                     onerror="this.onerror=null; this.src='../imagens/usuario-padrao.png';"
                                  >
@@ -106,11 +107,11 @@ async function carregarInstrutores() {
                             </div>
 
                             <h3>
-                                ${instrutor.nome}
+                                ${escaparHTML(instrutor.nome)}
                             </h3>
 
                             <span class="nome-curso">
-                                ${curso}
+                                ${escaparHTML(curso)}
                             </span>
                         `;
 

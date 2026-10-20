@@ -4,6 +4,7 @@
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
+import { escaparHTML } from "./seguranca.js";
 import { computerMarkup, courseIdentity } from "../notebooks/course-identities.js?v=ready-5";
 
 // =========================
@@ -360,7 +361,7 @@ export async function carregarCursos(
         avataresInstrutores += `
             <div class="instrutor-avatar">
               <img
-                src="${imagemInstrutor}"
+                src="${escaparHTML(imagemInstrutor)}"
                 alt="Instrutor do curso"
                 class="imagem-instrutor"
               >
@@ -410,7 +411,7 @@ export async function carregarCursos(
           ${notebook}
 
           <span class="status-curso">
-            ${curso.status}
+            ${escaparHTML(curso.status)}
           </span>
 
         </div>
@@ -418,11 +419,11 @@ export async function carregarCursos(
         <div class="conteudo-curso">
 
           <h3>
-            ${curso.nome}
+            ${escaparHTML(curso.nome)}
           </h3>
 
           <p class="descricao-curso">
-            ${curso.descricao}
+            ${escaparHTML(curso.descricao)}
           </p>
 
           <div class="informacoes-curso">
@@ -446,7 +447,7 @@ export async function carregarCursos(
                 <small>SALA</small>
 
                 <strong>
-                  ${salaExibida}
+                  ${escaparHTML(salaExibida)}
                 </strong>
               </div>
             </div>
@@ -458,7 +459,7 @@ export async function carregarCursos(
                 <small>VAGAS</small>
 
                 <strong>
-                  ${curso.vagas}
+                  ${escaparHTML(curso.vagas)}
                 </strong>
               </div>
             </div>

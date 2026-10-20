@@ -44,6 +44,8 @@
               id="nome"
               placeholder="Digite seu nome completo"
               minlength="5"
+              maxlength="100"
+              autocomplete="name"
               required
             />
           </div>
@@ -98,6 +100,8 @@
               type="email"
               id="email"
               placeholder="seu@email.com"
+              maxlength="254"
+              autocomplete="email"
               required
             />
           </div>
@@ -111,6 +115,7 @@
                 id="senha"
                 placeholder="Mínimo de 8 caracteres"
                 minlength="8"
+                maxlength="72"
                 autocomplete="new-password"
                 required
               />
@@ -204,7 +209,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module" src="../js/cadastro.js"></script>
+    <script type="module" src="../js/cadastro.js?v=2"></script>
     <div class="fc-audio-dock" role="group" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
     <script defer src="../vendor/lenis/lenis.min.js"></script>
     <script defer src="../js/experiencia.js?v=8"></script>

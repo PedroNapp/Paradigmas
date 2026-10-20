@@ -41,6 +41,38 @@ const botaoConfirmarStatus = document.getElementById("botaoConfirmarStatus");
 let matriculaSelecionada = null;
 
 // =============================
+// SEGURANÇA DAS ENTRADAS
+// =============================
+// Mesmas regras de js/seguranca.js (este painel é um script comum, não um
+// módulo). Nome, e-mail e telefone vêm do cadastro público: tudo é escapado
+// antes de virar HTML. Ids de <select> e botões podem ser alterados pelo
+// navegador: só seguem se forem números inteiros positivos.
+
+function escaparHTML(valor) {
+  return String(valor ?? "").replace(/[&<>"']/g, function (caractere) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[caractere];
+  });
+}
+
+function inteiroPositivo(valor) {
+  const texto = String(valor ?? "").trim();
+
+  if (!/^\d{1,15}$/.test(texto)) {
+    return null;
+  }
+
+  const numero = Number(texto);
+
+  return Number.isSafeInteger(numero) && numero > 0 ? numero : null;
+}
+
+// =============================
 // BOTÃO VOLTAR
 // =============================
 
@@ -416,7 +448,7 @@ async function carregarParticipantes(cursoId) {
       botao = `
         <button
           class="botao-atender"
-          data-id="${matricula.id}">
+          data-id="${escaparHTML(matricula.id)}">
           Marcar como atendido
         </button>
       `;
@@ -425,19 +457,19 @@ async function carregarParticipantes(cursoId) {
     card.innerHTML = `
 
   <h3>
-    ${usuario.nome}
+    ${escaparHTML(usuario.nome)}
   </h3>
 
   <div class="info-participante">
-    ${usuario.idade} anos
+    ${escaparHTML(usuario.idade)} anos
   </div>
 
   <div class="info-participante">
-    📧 ${usuario.email || "E-mail não informado"}
+    📧 ${escaparHTML(usuario.email || "E-mail não informado")}
   </div>
 
   <div class="info-participante">
-    📞 ${usuario.telefone || "Telefone não informado"}
+    📞 ${escaparHTML(usuario.telefone || "Telefone não informado")}
   </div>
 
   <div class="status-participante">
@@ -448,7 +480,7 @@ async function carregarParticipantes(cursoId) {
       status === "Pendente" ? "status-pendente" : "status-atendido"
     }">
 
-      ${status}
+      ${escaparHTML(status)}
 
     </span>
 
@@ -469,7 +501,7 @@ async function carregarParticipantes(cursoId) {
 
   botoes.forEach(function (botao) {
     botao.addEventListener("click", function () {
-      matriculaSelecionada = botao.dataset.id;
+      matriculaSelecionada = inteiroPositivo(botao.dataset.id);
 
       modalStatus.classList.add("ativo");
     });
@@ -481,7 +513,7 @@ async function carregarParticipantes(cursoId) {
 // =============================
 
 selectCurso.addEventListener("change", function () {
-  const cursoId = selectCurso.value;
+  const cursoId = inteiroPositivo(selectCurso.value);
 
   carregarParticipantes(cursoId);
 });
@@ -527,7 +559,7 @@ botaoConfirmarStatus.addEventListener("click", async function () {
 
     // Atualiza os cards
 
-    await carregarParticipantes(selectCurso.value);
+    await carregarParticipantes(inteiroPositivo(selectCurso.value));
 
     // Atualiza o número de pendentes
 

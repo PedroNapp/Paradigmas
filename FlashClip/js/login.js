@@ -1,5 +1,6 @@
 
 import { clienteSupabase } from "./supabase.js";
+import { emailNormalizado, LIMITES } from "./seguranca.js";
 
 // =========================
 // ELEMENTOS
@@ -158,7 +159,7 @@ if (formulario) {
       return;
     }
 
-    const email =
+    const emailDigitado =
       document.getElementById("email").value.trim();
 
     const senha =
@@ -170,9 +171,18 @@ if (formulario) {
     // VALIDAÇÃO
     // =========================
 
-    if (!email || !senha) {
+    if (!emailDigitado || !senha) {
       mostrarMensagem(
         "Preencha o e-mail e a senha para continuar."
+      );
+      return;
+    }
+
+    const email = emailNormalizado(emailDigitado);
+
+    if (!email || senha.length > LIMITES.senha) {
+      mostrarMensagem(
+        "E-mail ou senha inválidos."
       );
       return;
     }
