@@ -9,6 +9,15 @@
 
 /* Entrar e Inscrições do cabeçalho ficam em cabecalho.css. */
 
+/* Foco visível igual em todas as telas: contorno dourado para quem navega pelo teclado. */
+:focus-visible { outline: 2px solid var(--fc-gold); outline-offset: 3px; }
+
+/* "Pular para o conteúdo": escondido até receber o foco do teclado. */
+.fc-skip { position: fixed; left: 20px; top: -100px; z-index: 3000; padding: 12px 20px; border-radius: 4px; background: var(--fc-paper); color: var(--fc-ink); font-weight: 600; text-decoration: none; }
+.fc-skip:focus { top: 15px; }
+/* O conteúdo recebe o foco do "Pular" sem ganhar contorno em volta da página inteira. */
+#conteudo:focus { outline: none; }
+
 /* Entrar, Criar conta e Confirmar matrícula seguem o botão dourado da home. */
 .botao-login, .botao-cadastro, .botao-confirmar {
   display: flex; align-items: center; justify-content: center; gap: 24px;
@@ -60,7 +69,7 @@
 
 /* Controles de música e efeitos, presentes em todas as telas. */
 .fc-audio-dock { position: fixed; z-index: 50; right: 14px; bottom: 12px; display: flex; gap: 14px; padding: 8px 15px; background: #080d11f0; border: 1px solid #f5bd3d36; border-radius: 25px; backdrop-filter: blur(10px); }
-.fc-audio-dock button { background: none; border: 0; color: #c9cdd1; font: 10px 'Avenir Next', Arial, sans-serif; cursor: pointer; padding: 5px 0; }
+.fc-audio-dock button { min-height: 24px; background: none; border: 0; color: #c9cdd1; font: 10px 'Avenir Next', Arial, sans-serif; cursor: pointer; padding: 5px 0; }
 .fc-audio-dock button:hover { color: var(--fc-gold); }
 body.fc-entry-active .fc-audio-dock { display: none; }
 @media (max-width: 700px) { .fc-audio-dock { right: 10px; bottom: 8px; } }

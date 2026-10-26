@@ -15,6 +15,8 @@
       .tela[data-estado="carregando"] { visibility: hidden; }
       /* Guardada sem desenhar: o 3D e as animações dela param até voltar. */
       .tela[data-estado="guardada"] { display: none; }
+      /* Só para leitores de tela: anuncia a tela que acabou de abrir. */
+      .so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
       #indo { position: fixed; z-index: 10; top: 0; left: 0; width: 100%; height: 2px; background: #f5bd3d; box-shadow: 0 0 10px #f5bd3d88; transform: scaleX(0); transform-origin: left; opacity: 0; pointer-events: none; }
     </style>
     <script src="js/audio-natal.js?v=audio-8"></script>
@@ -22,6 +24,7 @@
 
   <body>
     <div id="indo" aria-hidden="true"></div>
+    <p id="anuncio" class="so-leitor" aria-live="polite"></p>
 
     <script>
       (() => {
@@ -83,6 +86,14 @@
           let id = hash.slice(1);
           try { id = decodeURIComponent(id); } catch {}
           janela.document.getElementById(id)?.scrollIntoView({ behavior: calmo.matches ? "auto" : "smooth" });
+        }
+
+        // A troca de quadro não recarrega a página, então o leitor de tela não percebe sozinho:
+        // a região "anuncio" lê o título da tela nova.
+        const anuncio = document.getElementById("anuncio");
+        function anunciar(texto) {
+          anuncio.textContent = "";
+          setTimeout(() => { anuncio.textContent = texto; }, 60);
         }
 
         // Fio dourado no topo enquanto uma tela nova carrega por trás da atual.
@@ -178,6 +189,7 @@
             rolar(janela, hash, modo === "push");
             sincronizar(janela, modo);
             janela.focus();
+            if (velha) anunciar(`Página aberta: ${document.title}`);
           }
           limitar();
         }

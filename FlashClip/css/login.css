@@ -703,3 +703,9 @@ footer.footer-login {
     animation: none;
   }
 }
+
+/* Foco do teclado bem visível nos campos (o contorno padrão foi tirado acima). */
+.campo :is(input, select):focus-visible {
+  outline: 2px solid #f5bd3d;
+  outline-offset: 2px;
+}

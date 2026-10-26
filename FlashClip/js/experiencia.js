@@ -54,6 +54,14 @@
   document.addEventListener('mouseout', evento => { if (!evento.relatedTarget) { cursor = null; pedirQuadro(); } });
   window.addEventListener('blur', () => { cursor = null; pedirQuadro(); });
 
+  // "Pular para o conteúdo": além de rolar, leva o foco do teclado para o conteúdo.
+  document.querySelector('.fc-skip')?.addEventListener('click', () => {
+    const alvo = document.getElementById('conteudo');
+    if (!alvo) return;
+    if (!alvo.hasAttribute('tabindex')) alvo.setAttribute('tabindex', '-1');
+    alvo.focus({ preventScroll: true });
+  });
+
   // Rolagem suave da roda do mouse (Lenis, em vendor/lenis). Toque e teclado continuam nativos,
   // e quem pede menos movimento no sistema fica com a rolagem normal.
   if (window.Lenis && !calmo.matches) {

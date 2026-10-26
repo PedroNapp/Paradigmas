@@ -111,6 +111,11 @@ function mostrarErro(campo, mensagem) {
   }
 
   mensagemErro.textContent = mensagem;
+
+  // Leitores de tela leem a mensagem junto com o campo.
+  mensagemErro.id = `erro-${campo.id}`;
+  campo.setAttribute("aria-invalid", "true");
+  campo.setAttribute("aria-describedby", mensagemErro.id);
 }
 
 // =========================
@@ -121,6 +126,8 @@ function limparErro(campo) {
   campo.setCustomValidity("");
 
   campo.classList.remove("campo-invalido");
+  campo.removeAttribute("aria-invalid");
+  campo.removeAttribute("aria-describedby");
 
   const containerCampo = campo.closest(".campo") || campo.parentElement;
 
@@ -638,6 +645,8 @@ if (formulario) {
     // =========================
 
     if (!validarFormulario()) {
+      // O foco vai para o campo com erro, e o leitor de tela lê o rótulo e a mensagem.
+      formulario.querySelector(".campo-invalido")?.focus();
       return;
     }
 

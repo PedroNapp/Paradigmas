@@ -367,3 +367,15 @@ if (navbarPisca) {
     navbarPisca.classList.remove("navbar-oculta");
   });
 }
+
+// =========================
+// PÁGINA ATUAL NO MENU
+// =========================
+
+// O link da página aberta é anunciado como "página atual" pelos leitores de tela.
+
+document
+  .querySelectorAll(".nav-links a.ativo, .menu-links a.ativo")
+  .forEach(function (link) {
+    link.setAttribute("aria-current", "page");
+  });

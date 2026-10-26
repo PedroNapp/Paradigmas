@@ -28,7 +28,7 @@ footer {
 ========================= */
 
 footer p {
-    color: #666666;
+    color: #a5abb0;
 
     font-size: 12px;
 }
@@ -45,7 +45,12 @@ footer p {
 }
 
 .contatos a {
-    color: #777777;
+    display: inline-block;
+
+    /* área de toque de 24px de altura */
+    padding: 5px 0;
+
+    color: #a5abb0;
 
     font-size: 12px;
 

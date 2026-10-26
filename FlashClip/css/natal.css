@@ -20,8 +20,6 @@ body.natal-theme {
 .natal-theme *, .natal-theme *::before, .natal-theme *::after { box-sizing: border-box; }
 .natal-theme ::selection { background: var(--fc-gold); color: var(--fc-ink); }
 .natal-theme :focus-visible { outline: 2px solid var(--fc-gold); outline-offset: 6px; }
-.fc-skip { position: fixed; left: 20px; top: -100px; padding: 12px 20px; z-index: 3000; background: var(--fc-paper); color: var(--fc-ink); }
-.fc-skip:focus { top: 15px; }
 .natal-theme main { background: transparent; }
 .natal-theme main:not(.fc-home)::before, .natal-theme main::after { display: none; }
 .natal-theme .navbar::before { display: none; }
