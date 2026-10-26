@@ -1413,7 +1413,7 @@ main > section {
   height: min(290px, 90%);
   transform: translateY(-50%);
   pointer-events: none;
-  background: url("../imagens/Decoracoes/arvore-natal-com-presentes.svg") center bottom / contain no-repeat;
+  background: url("../imagens/Decoracoes/arvore-natal.svg") center bottom / contain no-repeat;
   opacity: 0.19;
 }
 

@@ -216,7 +216,7 @@ main > section {
   height: 316px;
   pointer-events: none;
   opacity: 0.17;
-  background: url("../imagens/Decoracoes/arvore-natal-com-presentes.svg")
+  background: url("../imagens/Decoracoes/arvore-natal.svg")
     center / contain no-repeat;
 }
 
@@ -513,7 +513,7 @@ main > section {
   width: 148px;
   height: 124px;
   pointer-events: none;
-  background: url("../imagens/Decoracoes/contato-presente-canto.svg") center
+  background: url("../imagens/Decoracoes/presente-natal.svg") center
     bottom / contain no-repeat;
   opacity: 0.18;
 }
