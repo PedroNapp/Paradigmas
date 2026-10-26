@@ -60,6 +60,14 @@
 /* =========================
    ABRIR E FECHAR
    ========================= */
+/* Fechado, o aviso no alto do palco diz que os cursos estão dentro do notebook. */
+.fc-notebook-dica { position: absolute; z-index: 2; top: 5%; left: 6%; right: 6%; margin: 0; color: #f2f2f2; font: 400 clamp(19px, 2.6vw, 30px)/1.2 Georgia, "Times New Roman", serif; letter-spacing: -.02em; text-align: center; pointer-events: none; transition: opacity .3s ease; }
+.fc-notebook-dica span { display: block; margin-bottom: 10px; color: var(--fc-gold, #f5bd3d); font: 700 11px/1.4 'Avenir Next', Arial, sans-serif; letter-spacing: .22em; text-transform: uppercase; }
+.fc-notebook[data-aberto="true"] .fc-notebook-dica { opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s; }
+@media (max-width: 600px) {
+  .fc-notebook-dica { top: 3%; font-size: 17px; }
+  .fc-notebook-dica span { margin-bottom: 6px; font-size: 10px; }
+}
 .fc-notebook-abrir { position: absolute; z-index: 3; inset: 0; display: block; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
 .fc-notebook-abrir[hidden], .fc-notebook-fechar[hidden] { display: none; }
 .fc-notebook-abrir-rotulo { position: absolute; left: 50%; bottom: 7%; translate: -50% 0; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 20px; border: 1px solid #f5bd3d80; border-radius: 999px; background: #080d11e6; color: var(--fc-gold, #f5bd3d); font: 600 14px 'Avenir Next', Arial, sans-serif; white-space: nowrap; transition: background .25s, border-color .25s; }
@@ -193,6 +201,6 @@
 html.fc-notebook-travado, html.fc-notebook-travado body { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-  .fc-notebook-canvas, .fc-notebook-desenho, .fc-notebook-fechado, .fc-notebook-encaixe, .fc-notebook-tela, .fc-tela-item { transition: none; }
+  .fc-notebook-canvas, .fc-notebook-desenho, .fc-notebook-fechado, .fc-notebook-encaixe, .fc-notebook-tela, .fc-notebook-dica, .fc-tela-item { transition: none; }
   .fc-tela-item:hover { translate: none; }
 }

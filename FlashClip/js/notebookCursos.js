@@ -136,7 +136,12 @@ function marcacao(idTela) {
         </div>
       </div>
 
-      <button type="button" class="fc-notebook-abrir" data-notebook-abrir aria-controls="${idTela}" aria-expanded="false">
+      <p class="fc-notebook-dica" id="${idTela}-dica">
+        <span data-notebook-contagem>Os cursos estão no notebook</span>
+        Abra o notebook para ver os cursos e se inscrever.
+      </p>
+
+      <button type="button" class="fc-notebook-abrir" data-notebook-abrir aria-controls="${idTela}" aria-describedby="${idTela}-dica" aria-expanded="false">
         <span class="fc-notebook-abrir-rotulo">Abrir o notebook <span aria-hidden="true">↗</span></span>
       </button>
 
@@ -176,6 +181,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   const botaoAmpliar = raiz.querySelector("[data-tela-ampliar]");
   const botaoAbrir = raiz.querySelector("[data-notebook-abrir]");
   const botaoFechar = raiz.querySelector("[data-notebook-fechar]");
+  const contagem = raiz.querySelector("[data-notebook-contagem]");
 
   const estado = {
     aberto: false,
@@ -686,6 +692,13 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       });
 
       estado.cursos = cursos || [];
+
+      // O aviso do notebook fechado diz quantos cursos estão dentro dele.
+      if (estado.cursos.length > 0) {
+        contagem.textContent = estado.cursos.length === 1
+          ? "1 curso dentro do notebook"
+          : `${estado.cursos.length} cursos dentro do notebook`;
+      }
 
       if (["carregando", "erro"].includes(estado.vista)) {
         estado.vista = "lista";
