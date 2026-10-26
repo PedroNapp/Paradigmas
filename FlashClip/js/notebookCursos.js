@@ -5,7 +5,7 @@
 // mostra os detalhes e confirma a inscrição. A tela é HTML de verdade
 // (clique, teclado e leitor de tela); o 3D (notebooks/notebook-cursos.js)
 // é só a moldura e carrega quando o notebook chega perto da tela.
-// Sem 3D, a mesma tela aparece num notebook desenhado em CSS.
+// Sem 3D (sem WebGL ou com erro), a tela funciona sozinha, como um painel.
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
@@ -35,9 +35,10 @@ const LOCAL_EVENTO = "Ulbra Palmas";
 
 const LIMITE_INSTRUTORES = 4;
 
-const MODULO_3D = new URL("../notebooks/notebook-cursos.js?v=3", import.meta.url);
+// Quanto a tela dos cursos espera o notebook 3D antes de aparecer sozinha.
+const ESPERA_3D = 4000;
 
-const MARCA = new URL("../imagens/logoFlash.webp", import.meta.url).href;
+const MODULO_3D = new URL("../notebooks/notebook-cursos.js?v=3", import.meta.url);
 
 let contador = 0;
 
@@ -108,17 +109,6 @@ function marcacao(idTela) {
   return `
     <div class="fc-notebook-palco" data-renderer="pending">
       <canvas class="fc-notebook-canvas" aria-hidden="true"></canvas>
-
-      <div class="fc-notebook-desenho" aria-hidden="true">
-        <svg class="fc-notebook-fechado" viewBox="0 0 360 190" fill="none">
-          <ellipse cx="182" cy="151" rx="133" ry="15" fill="#000" opacity=".32"/>
-          <path d="M61 64 264 47 314 126 111 148 61 74Z" fill="#161d25" stroke="#3a4552"/>
-          <path d="m61 64 203-17 50 79-203 19Z" fill="#1d2630" stroke="#4d5966"/>
-          <path d="m111 145 203-19v6l-203 21-50-73v-6Z" fill="#090d12" stroke="#2f3944"/>
-          <path d="m161 144 56-6" stroke="#f5bd3d" stroke-width="2" stroke-linecap="round"/>
-          <image href="${escaparHTML(MARCA)}" x=".3" y=".32" width=".4" height=".35" transform="matrix(203 -17 50 81 61 64)"/>
-        </svg>
-      </div>
 
       <div class="fc-notebook-encaixe" aria-hidden="true"></div>
 
@@ -197,12 +187,14 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   let motor3D = null;
   let desistiuDo3D = false;
   let esperaFechar = 0;
+  let esperaTela = 0;
 
   // =========================
   // TELA LIGADA E DESLIGADA
   // =========================
 
   function ligarTela() {
+    clearTimeout(esperaTela);
     palco.classList.add("fc-tela-ligada");
     tela.inert = false;
 
@@ -213,6 +205,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   }
 
   function desligarTela() {
+    clearTimeout(esperaTela);
     sairDoAmpliado();
     palco.classList.remove("fc-tela-ligada");
     tela.inert = true;
@@ -247,7 +240,15 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
         esperaFechar = setTimeout(() => motor3D?.definirAberto(false), 160);
       }
     } else if (valor) {
-      ligarTela();
+      // A tela aparece junto com o notebook 3D. Se ele demorar ou não estiver
+      // disponível, ela aparece sozinha, para os cursos não ficarem escondidos.
+      clearTimeout(esperaTela);
+
+      if (desistiuDo3D) {
+        ligarTela();
+      } else {
+        esperaTela = setTimeout(ligarTela, ESPERA_3D);
+      }
     }
   }
 
@@ -753,11 +754,12 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   // NOTEBOOK 3D
   // =========================
 
-  function usarDesenho() {
+  // Sem 3D (sem WebGL, erro ou demora), a tela dos cursos funciona sozinha.
+  function usarSem3D() {
     desistiuDo3D = true;
     motor3D?.destruir();
     motor3D = null;
-    palco.dataset.renderer = "desenho";
+    palco.dataset.renderer = "sem3d";
 
     if (estado.aberto) {
       ligarTela();
@@ -766,11 +768,11 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
 
   async function carregar3D() {
     if (!temWebGL()) {
-      usarDesenho();
+      usarSem3D();
       return;
     }
 
-    const limite = setTimeout(usarDesenho, 20000);
+    const limite = setTimeout(usarSem3D, 20000);
 
     try {
       const { criarNotebook3D } = await import(MODULO_3D.href);
@@ -785,7 +787,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
             ligarTela();
           }
         },
-        aoFalhar: usarDesenho,
+        aoFalhar: usarSem3D,
       });
 
       clearTimeout(limite);
@@ -797,22 +799,51 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
 
       motor3D = motor;
       palco.dataset.renderer = "webgl";
+
+      // A pessoa pode ter aberto ou fechado enquanto o 3D carregava.
+      motor3D.definirAberto(estado.aberto, { imediato: true });
     } catch (erro) {
       clearTimeout(limite);
-      console.warn("O notebook continua na versão desenhada.", erro);
-      usarDesenho();
+      console.warn("Sem o notebook 3D; a tela dos cursos continua funcionando.", erro);
+      usarSem3D();
     }
   }
 
-  // Só carrega quando o notebook chega perto da tela.
+  // O 3D começa a carregar quando o notebook chega perto da tela, ou logo
+  // depois que a página termina de abrir (na home, o three.js já veio com o globo).
+  let iniciou3D = false;
+
+  function iniciar3D() {
+    if (iniciou3D) {
+      return;
+    }
+
+    iniciou3D = true;
+    observador.disconnect();
+    carregar3D();
+  }
+
   const observador = new IntersectionObserver(function (entradas) {
     if (entradas.some((entrada) => entrada.isIntersecting)) {
-      observador.disconnect();
-      carregar3D();
+      iniciar3D();
     }
   }, { rootMargin: "600px 0px" });
 
   observador.observe(palco);
+
+  function depoisDeAbrir() {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(iniciar3D, { timeout: 6000 });
+    } else {
+      setTimeout(iniciar3D, 1500);
+    }
+  }
+
+  if (document.readyState === "complete") {
+    depoisDeAbrir();
+  } else {
+    window.addEventListener("load", depoisDeAbrir, { once: true });
+  }
 
   // =========================
   // INÍCIO

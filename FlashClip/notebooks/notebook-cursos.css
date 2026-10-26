@@ -23,15 +23,6 @@
 .fc-notebook-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
 .fc-notebook-palco[data-renderer="webgl"] .fc-notebook-canvas { opacity: 1; }
 
-/* =========================
-   NOTEBOOK DESENHADO
-   ========================= */
-/* Enquanto o 3D carrega, ou quando ele não está disponível. */
-.fc-notebook-desenho { position: absolute; inset: 0; pointer-events: none; transition: opacity .35s ease; }
-.fc-notebook-fechado { position: absolute; left: 50%; top: 44%; width: min(64%, 540px); translate: -50% -50%; transition: opacity .35s ease; }
-.fc-notebook-palco[data-renderer="webgl"] .fc-notebook-desenho,
-.fc-notebook[data-aberto="true"] .fc-notebook-fechado { opacity: 0; }
-
 .fc-notebook-encaixe,
 .fc-notebook-tela {
   position: absolute;
@@ -40,22 +31,9 @@
   width: var(--tela-largura);
   aspect-ratio: var(--tela-proporcao);
 }
-.fc-notebook-encaixe { pointer-events: none; transition: opacity .35s ease; }
-/* Moldura da tela e base com teclado, nas proporções do modelo 3D. */
-.fc-notebook-encaixe::before,
-.fc-notebook-encaixe::after { content: ""; position: absolute; }
-.fc-notebook-encaixe::before { inset: -5.5% -3.4% -6%; border-radius: 2.4% / 3.8%; background: #11161c; box-shadow: inset 0 0 0 1px #2b343e; }
-.fc-notebook-encaixe::after {
-  top: 106%; left: -5%; right: -5%; height: 64%;
-  border-radius: 1.2% 1.2% 3% 3% / 2% 2% 6% 6%;
-  background:
-    linear-gradient(#0b1015, #0b1015) 50% 88% / 26% 26% no-repeat,
-    linear-gradient(#0e141a, #0e141a) 50% 22% / 84% 44% no-repeat,
-    linear-gradient(#232c36, #161d25);
-  box-shadow: inset 0 1px 0 #3a4552, 0 18px 30px -18px #000;
-}
-.fc-notebook:not([data-aberto="true"]) .fc-notebook-encaixe,
-.fc-notebook-palco[data-renderer="webgl"] .fc-notebook-encaixe { opacity: 0; }
+.fc-notebook-encaixe { pointer-events: none; }
+/* Sem 3D, a tela dos cursos fica como um painel, sem a moldura do notebook. */
+.fc-notebook-palco[data-renderer="sem3d"] .fc-notebook-tela { border: 1px solid #f5bd3d33; border-radius: 12px; box-shadow: 0 24px 50px -24px #000; }
 
 /* =========================
    ABRIR E FECHAR
@@ -201,6 +179,6 @@
 html.fc-notebook-travado, html.fc-notebook-travado body { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-  .fc-notebook-canvas, .fc-notebook-desenho, .fc-notebook-fechado, .fc-notebook-encaixe, .fc-notebook-tela, .fc-notebook-dica, .fc-tela-item { transition: none; }
+  .fc-notebook-canvas, .fc-notebook-tela, .fc-notebook-dica, .fc-tela-item { transition: none; }
   .fc-tela-item:hover { translate: none; }
 }

@@ -53,7 +53,7 @@ setInterval(atualizarContador, 1000);
 
 // Na home o notebook dos cursos começa fechado.
 
-import { montarNotebookCursos } from "./notebookCursos.js?v=1";
+import { montarNotebookCursos } from "./notebookCursos.js?v=2";
 
 montarNotebookCursos(document.getElementById("notebookCursos"), {
   aberto: false,

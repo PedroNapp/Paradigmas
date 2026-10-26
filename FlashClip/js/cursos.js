@@ -3,7 +3,7 @@
 // =========================
 // Na página de Cursos o notebook já começa aberto.
 
-import { montarNotebookCursos } from "./notebookCursos.js?v=1";
+import { montarNotebookCursos } from "./notebookCursos.js?v=2";
 
 montarNotebookCursos(document.getElementById("notebookCursos"), {
   aberto: true,
