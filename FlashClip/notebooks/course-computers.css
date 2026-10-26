@@ -80,3 +80,9 @@
 /* No card de uma linguagem, o ponteiro vira o ícone dela (carregarCardsCursos.js define a variável). */
 .card-curso { cursor: var(--fc-cursor-linguagem, auto); }
 .card-curso .fc-computer-trigger { cursor: var(--fc-cursor-linguagem, pointer); }
+
+/* No celular o notebook fica mais baixo, para o card não ocupar a tela inteira. */
+@media (max-width: 600px) {
+  .cabecalho-curso:has(.fc-course-computer) { min-height: 175px; }
+  .fc-computer-trigger { height: 175px; }
+}

@@ -87,3 +87,53 @@ body.fc-entry-active .fc-audio-dock { display: none; }
 
 /* Rolagem suave (Lenis): o próprio Lenis anima, então o smooth do CSS sairia em dobro. */
 html.lenis { scroll-behavior: auto; }
+
+/* =========================
+   TÍTULOS NA SERIFADA DA HOME
+   ========================= */
+/* Títulos de página e de seção como no hero (Georgia); títulos de cartões seguem sem serifa. */
+:is(.cursos-intro, .contato-intro, .faq-intro, .instrutores-intro, .patrocinadores-intro, .sobre-intro, .programacao-intro) h1,
+:is(.login-cabecalho, .cadastro-cabecalho, .cabecalho-matricula, .titulo-inscricoes) h1,
+:is(.titulo-cursos, .titulo-contato, .informacoes-titulo, .agradecimento-painel, .cta) h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  text-transform: none;
+}
+
+/* =========================
+   CONTROLES DE ÁUDIO NO CELULAR
+   ========================= */
+/* Um botão redondo com o ícone; o toque abre os dois ajustes (experiencia.js). */
+.fc-audio-abrir { display: none; }
+@media (max-width: 700px) {
+  .fc-audio-dock { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 2px; padding: 0; border-radius: 26px; }
+  .fc-audio-dock:not(.fc-audio-aberta) > :not(.fc-audio-abrir) { display: none; }
+  .fc-audio-dock.fc-audio-aberta { padding: 6px; border-radius: 18px; }
+  .fc-audio-dock .fc-audio-abrir { display: grid; place-items: center; order: 2; align-self: flex-end; width: 48px; height: 48px; min-width: 48px; padding: 0; border-radius: 50%; color: var(--fc-gold); font-size: 20px; line-height: 1; }
+  .fc-audio-dock .fc-audio-abrir[aria-expanded="true"] { background: #f5bd3d14; }
+  .fc-audio-dock.fc-audio-mudo .fc-audio-abrir { color: #8f979c; text-decoration: line-through; }
+  .fc-audio-dock button:not(.fc-audio-abrir) { padding: 8px 12px; text-align: left; }
+}
+
+/* =========================
+   FILTRO DE CURSOS POR LINGUAGEM
+   ========================= */
+/* Montado por carregarCardsCursos.js acima da lista (home e Cursos). */
+.fc-filtro-cursos { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.fc-filtro-cursos[hidden] { display: none; }
+.fc-filtro-cursos button { flex: none; min-height: 36px; padding: 0 14px; border: 1px solid #f5bd3d4d; border-radius: 999px; background: transparent; color: #c9cdd1; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+.fc-filtro-cursos button:hover { border-color: #f5bd3d99; color: #f2f2f2; }
+.fc-filtro-cursos button[aria-pressed="true"] { background: var(--fc-gold); border-color: var(--fc-gold); color: var(--fc-ink); }
+.card-curso[hidden] { display: none !important; }
+/* No celular, duração, sala e vagas ficam numa linha só, com o ícone em cima. */
+@media (max-width: 600px) {
+  :is(.natal-theme, body) .card-curso .informacoes-curso { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 16px; }
+  .card-curso .info-item { flex-direction: column; gap: 4px; padding: 8px; }
+  .card-curso .instrutores-curso { margin-top: 14px; padding-top: 12px; }
+}
+/* No celular os botões ficam numa linha que rola de lado, sem empurrar a lista para baixo. */
+@media (max-width: 700px) {
+  .fc-filtro-cursos { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .fc-filtro-cursos::-webkit-scrollbar { display: none; }
+}

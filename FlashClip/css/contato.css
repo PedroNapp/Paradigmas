@@ -603,3 +603,22 @@ main > section {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Enquanto o mapa carrega, um fundo de espera no lugar do espaço vazio. */
+.mapa::after {
+  content: "Carregando mapa…";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  color: #a5abb0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  background: radial-gradient(ellipse at 50% 45%, rgba(245, 189, 61, 0.07), transparent 60%), #0a1113;
+}
+
+/* Mapa no tema escuro do site: cores invertidas e tons devolvidos ao lugar. */
+.mapa iframe {
+  filter: invert(0.9) hue-rotate(180deg) saturate(0.75) brightness(0.95);
+}

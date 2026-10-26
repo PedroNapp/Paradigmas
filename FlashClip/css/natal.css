@@ -271,3 +271,11 @@ body.natal-theme {
   .fc-motion-ready .fc-reveal { opacity: 1; translate: none; }
   .fc-snow { display: none; }
 }
+
+/* Faixa do evento: adicionar à agenda (script.js gera o .ics; o link abre o Google Agenda). */
+/* contain: a linha dos botões não alarga a coluna da data, então "Ulbra Palmas, TO" segue numa linha só. */
+.fc-agenda { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 10px; contain: inline-size; }
+.fc-agenda button { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 14px; border: 1px solid #f5bd3d66; border-radius: 999px; background: transparent; color: var(--fc-gold); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s; }
+.fc-agenda button:hover { background: #f5bd3d14; border-color: var(--fc-gold); }
+.fc-agenda a { display: inline-flex; align-items: center; min-height: 24px; color: #c9cdd1; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
+.fc-agenda a:hover { color: var(--fc-gold); }

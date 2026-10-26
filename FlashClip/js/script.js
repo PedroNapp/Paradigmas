@@ -51,10 +51,63 @@ setInterval(atualizarContador, 1000);
 // CURSOS
 // =========================
 
-import { carregarCursos } from "./carregarCardsCursos.js?v=ready-7";
+import { carregarCursos } from "./carregarCardsCursos.js?v=ready-8";
 
 const listaCursos = document.getElementById("listaCursos");
 
 carregarCursos(listaCursos, 11, "./html/matricula.html", "./html/login.html", "./imagens/")
   .then(()=>window.FlashClipBoot?.report('courses'))
   .catch(()=>window.FlashClipBoot?.fail('courses'));
+
+// =========================
+// ADICIONAR À AGENDA
+// =========================
+// Gera um arquivo .ics (Google Agenda, Outlook, Apple) com o horário do
+// contador. Termina às 17h, quando acaba o coffee-break da programação.
+
+const botaoAgenda = document.querySelector("[data-agenda-ics]");
+
+function horarioIcs(data) {
+  return data.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+}
+
+botaoAgenda?.addEventListener("click", function () {
+  const fimEvento = new Date(dataEvento.getTime() + 3 * 60 * 60 * 1000);
+
+  const programacao = new URL("./html/programacao.html", location.href);
+  programacao.search = "";
+
+  const linhas = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//FlashClip//Evento//PT-BR",
+    "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:flashclip-2026@flashclip",
+    `DTSTAMP:${horarioIcs(new Date())}`,
+    `DTSTART:${horarioIcs(dataEvento)}`,
+    `DTEND:${horarioIcs(fimEvento)}`,
+    "SUMMARY:FlashClip 2026",
+    "LOCATION:Ulbra Palmas\\, Palmas - TO",
+    `DESCRIPTION:Cursos de programação do FlashClip. Programação: ${programacao.href}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ];
+
+  const arquivo = new Blob([linhas.join("\r\n")], {
+    type: "text/calendar;charset=utf-8",
+  });
+
+  const link = document.createElement("a");
+
+  link.href = URL.createObjectURL(arquivo);
+  link.download = "flashclip-2026.ics";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(function () {
+    URL.revokeObjectURL(link.href);
+  }, 1000);
+});

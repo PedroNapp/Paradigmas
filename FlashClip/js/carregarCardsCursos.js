@@ -19,6 +19,82 @@ const IMAGEM_INSTRUTOR_PADRAO = "../imagens/usuario-padrao.png";
 
 const LIMITE_INSTRUTORES = 4;
 
+// Início dos cursos (o mesmo horário do contador da home). Enquanto o curso
+// não começou, o selo mostra a data no lugar de "Não iniciado".
+const INICIO_CURSOS = { iso: "2026-12-05T14:00-03:00", texto: "5 dez · 14h" };
+
+function seloDoCurso(status) {
+  const texto = String(status ?? "").trim();
+
+  if (texto === "" || ["não iniciado", "nao iniciado"].includes(texto.toLowerCase())) {
+    return `<time datetime="${INICIO_CURSOS.iso}">${INICIO_CURSOS.texto}</time>`;
+  }
+
+  return escaparHTML(texto);
+}
+
+// =========================
+// FILTRO POR LINGUAGEM
+// =========================
+// Botões acima da lista ("Todos", "C#", "Java"...) que mostram só os cards
+// daquela linguagem. A escolha continua quando os cards são remontados.
+
+function montarFiltro(listaCursos) {
+  const cards = Array.from(listaCursos.querySelectorAll(".card-curso"));
+
+  let filtro = listaCursos.previousElementSibling;
+
+  if (!filtro || !filtro.classList.contains("fc-filtro-cursos")) {
+    filtro = document.createElement("div");
+    filtro.className = "fc-filtro-cursos";
+    filtro.setAttribute("role", "group");
+    filtro.setAttribute("aria-label", "Filtrar cursos por linguagem");
+    listaCursos.before(filtro);
+  }
+
+  // Com poucos cursos o filtro não ajuda.
+  if (cards.length < 4) {
+    filtro.hidden = true;
+    return;
+  }
+
+  filtro.hidden = false;
+
+  const opcoes = ["Todos", ...new Set(cards.map(function (card) {
+    return card.dataset.linguagem;
+  }))];
+
+  const escolhida = opcoes.includes(listaCursos.dataset.filtro)
+    ? listaCursos.dataset.filtro
+    : "Todos";
+
+  function aplicar(nome) {
+    listaCursos.dataset.filtro = nome;
+
+    filtro.querySelectorAll("button").forEach(function (botao) {
+      botao.setAttribute("aria-pressed", String(botao.textContent === nome));
+    });
+
+    cards.forEach(function (card) {
+      card.hidden = nome !== "Todos" && card.dataset.linguagem !== nome;
+    });
+  }
+
+  filtro.replaceChildren(...opcoes.map(function (nome) {
+    const botao = document.createElement("button");
+
+    botao.type = "button";
+    botao.textContent = nome;
+    botao.addEventListener("click", function () {
+      aplicar(nome);
+    });
+
+    return botao;
+  }));
+
+  aplicar(escolhida);
+}
+
 // =========================
 // FUNÇÃO PARA IMAGEM
 // =========================
@@ -214,6 +290,8 @@ export async function carregarCursos(
     if (!cursos || cursos.length === 0) {
       listaCursos.innerHTML = "<p>Nenhum curso disponível.</p>";
 
+      montarFiltro(listaCursos);
+
       return;
     }
 
@@ -236,6 +314,8 @@ export async function carregarCursos(
 
       // Dentro do card, o ponteiro vira o ícone da linguagem.
       const identidade = courseIdentity(curso.nome);
+
+      card.dataset.linguagem = identidade.name;
 
       if (identidade.cursor) {
         card.style.setProperty(
@@ -411,7 +491,7 @@ export async function carregarCursos(
           ${notebook}
 
           <span class="status-curso">
-            ${escaparHTML(curso.status)}
+            ${seloDoCurso(curso.status)}
           </span>
 
         </div>
@@ -497,9 +577,13 @@ export async function carregarCursos(
 
       listaCursos.appendChild(card);
     });
+
+    montarFiltro(listaCursos);
   } catch (erro) {
     console.error("Erro ao carregar cursos:", erro);
 
     listaCursos.innerHTML = "<p>Erro ao carregar os cursos.</p>";
+
+    montarFiltro(listaCursos);
   }
 }

@@ -62,6 +62,30 @@
     alvo.focus({ preventScroll: true });
   });
 
+  // No celular, os controles de música viram um botão redondo com o ícone; o toque abre
+  // os dois ajustes e um toque fora (ou Esc) fecha. O ícone fica riscado com a música desligada.
+  const doca = document.querySelector('.fc-audio-dock');
+  if (doca) {
+    const abrir = document.createElement('button');
+    abrir.type = 'button';
+    abrir.className = 'fc-audio-abrir';
+    abrir.setAttribute('aria-expanded', 'false');
+    abrir.setAttribute('aria-label', 'Controles de áudio');
+    abrir.textContent = '♫';
+    doca.prepend(abrir);
+    const fechar = () => { doca.classList.remove('fc-audio-aberta'); abrir.setAttribute('aria-expanded', 'false'); };
+    abrir.addEventListener('click', () => {
+      const aberta = doca.classList.toggle('fc-audio-aberta');
+      abrir.setAttribute('aria-expanded', String(aberta));
+    });
+    document.addEventListener('click', evento => { if (!doca.contains(evento.target)) fechar(); });
+    document.addEventListener('keydown', evento => { if (evento.key === 'Escape') fechar(); });
+    const musica = doca.querySelector('[data-audio-music]');
+    const marcar = () => doca.classList.toggle('fc-audio-mudo', musica?.getAttribute('aria-pressed') === 'false');
+    if (musica) new MutationObserver(marcar).observe(musica, { attributes: true, attributeFilter: ['aria-pressed'] });
+    marcar();
+  }
+
   // Rolagem suave da roda do mouse (Lenis, em vendor/lenis). Toque e teclado continuam nativos,
   // e quem pede menos movimento no sistema fica com a rolagem normal.
   if (window.Lenis && !calmo.matches) {
