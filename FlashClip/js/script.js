@@ -51,11 +51,16 @@ setInterval(atualizarContador, 1000);
 // CURSOS
 // =========================
 
-import { carregarCursos } from "./carregarCardsCursos.js?v=ready-8";
+// Na home o notebook dos cursos começa fechado.
 
-const listaCursos = document.getElementById("listaCursos");
+import { montarNotebookCursos } from "./notebookCursos.js?v=1";
 
-carregarCursos(listaCursos, 11, "./html/matricula.html", "./html/login.html", "./imagens/")
+montarNotebookCursos(document.getElementById("notebookCursos"), {
+  aberto: false,
+  caminhoLogin: "./html/login.html",
+  caminhoInscricoes: "./html/inscricoes.html",
+  caminhoImagens: "./imagens/",
+})
   .then(()=>window.FlashClipBoot?.report('courses'))
   .catch(()=>window.FlashClipBoot?.fail('courses'));
 

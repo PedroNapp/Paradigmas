@@ -1,0 +1,198 @@
+/* Notebook único da lista de cursos (js/notebookCursos.js e notebooks/notebook-cursos.js).
+   O CSS decide onde fica a tela (.fc-notebook-encaixe); o 3D se ajusta a ela. */
+.fc-notebook {
+  --palco-proporcao: 1.3;
+  --tela-esquerda: 15%;
+  --tela-topo: 6%;
+  --tela-largura: 70%;
+  --tela-proporcao: 1.65;
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .fc-notebook { --palco-proporcao: 1.2; --tela-esquerda: 12%; --tela-topo: 5%; --tela-largura: 76%; }
+}
+@media (max-width: 600px) {
+  .fc-notebook { --palco-proporcao: .98; --tela-esquerda: 3%; --tela-topo: 5%; --tela-largura: 94%; }
+}
+.fc-notebook-carregando { margin: 0; padding: 60px 0; color: #a5abb0; text-align: center; }
+
+.fc-notebook-palco { position: relative; aspect-ratio: var(--palco-proporcao); }
+.fc-notebook-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.fc-notebook-palco[data-renderer="webgl"] .fc-notebook-canvas { opacity: 1; }
+
+/* =========================
+   NOTEBOOK DESENHADO
+   ========================= */
+/* Enquanto o 3D carrega, ou quando ele não está disponível. */
+.fc-notebook-desenho { position: absolute; inset: 0; pointer-events: none; transition: opacity .35s ease; }
+.fc-notebook-fechado { position: absolute; left: 50%; top: 44%; width: min(64%, 540px); translate: -50% -50%; transition: opacity .35s ease; }
+.fc-notebook-palco[data-renderer="webgl"] .fc-notebook-desenho,
+.fc-notebook[data-aberto="true"] .fc-notebook-fechado { opacity: 0; }
+
+.fc-notebook-encaixe,
+.fc-notebook-tela {
+  position: absolute;
+  left: var(--tela-esquerda);
+  top: var(--tela-topo);
+  width: var(--tela-largura);
+  aspect-ratio: var(--tela-proporcao);
+}
+.fc-notebook-encaixe { pointer-events: none; transition: opacity .35s ease; }
+/* Moldura da tela e base com teclado, nas proporções do modelo 3D. */
+.fc-notebook-encaixe::before,
+.fc-notebook-encaixe::after { content: ""; position: absolute; }
+.fc-notebook-encaixe::before { inset: -5.5% -3.4% -6%; border-radius: 2.4% / 3.8%; background: #11161c; box-shadow: inset 0 0 0 1px #2b343e; }
+.fc-notebook-encaixe::after {
+  top: 106%; left: -5%; right: -5%; height: 64%;
+  border-radius: 1.2% 1.2% 3% 3% / 2% 2% 6% 6%;
+  background:
+    linear-gradient(#0b1015, #0b1015) 50% 88% / 26% 26% no-repeat,
+    linear-gradient(#0e141a, #0e141a) 50% 22% / 84% 44% no-repeat,
+    linear-gradient(#232c36, #161d25);
+  box-shadow: inset 0 1px 0 #3a4552, 0 18px 30px -18px #000;
+}
+.fc-notebook:not([data-aberto="true"]) .fc-notebook-encaixe,
+.fc-notebook-palco[data-renderer="webgl"] .fc-notebook-encaixe { opacity: 0; }
+
+/* =========================
+   ABRIR E FECHAR
+   ========================= */
+.fc-notebook-abrir { position: absolute; z-index: 3; inset: 0; display: block; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
+.fc-notebook-abrir[hidden], .fc-notebook-fechar[hidden] { display: none; }
+.fc-notebook-abrir-rotulo { position: absolute; left: 50%; bottom: 7%; translate: -50% 0; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 20px; border: 1px solid #f5bd3d80; border-radius: 999px; background: #080d11e6; color: var(--fc-gold, #f5bd3d); font: 600 14px 'Avenir Next', Arial, sans-serif; white-space: nowrap; transition: background .25s, border-color .25s; }
+.fc-notebook-abrir:hover .fc-notebook-abrir-rotulo { background: #f5bd3d1a; border-color: var(--fc-gold, #f5bd3d); }
+.fc-notebook-abrir:focus-visible { outline: none; }
+.fc-notebook-abrir:focus-visible .fc-notebook-abrir-rotulo { outline: 2px solid var(--fc-gold, #f5bd3d); outline-offset: 3px; }
+.fc-notebook-fechar { position: absolute; z-index: 3; right: 2%; bottom: 3%; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid #f5bd3d55; border-radius: 50%; background: #080d11cc; color: var(--fc-gold, #f5bd3d); font-size: 16px; cursor: pointer; transition: background .25s; }
+.fc-notebook-fechar:hover { background: #f5bd3d1a; }
+
+/* =========================
+   TELA
+   ========================= */
+.fc-notebook-tela {
+  z-index: 2;
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1% / 1.6%;
+  /* Mesmo fundo da textura da tela 3D (notebook-cursos.js). */
+  background: radial-gradient(ellipse at 50% 38%, #1c2530, #05080b 78%);
+  color: #f2f2f2;
+  font: 400 14px/1.45 'Avenir Next', Arial, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  /* Some rápido ao fechar; acende com calma depois que a tampa abre. */
+  transition: opacity .15s ease, visibility 0s linear .15s;
+}
+.fc-tela-ligada .fc-notebook-tela, .fc-notebook-tela.fc-tela-ampliada { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+
+/* As medidas em cqi/cqh acompanham o tamanho da tela, então o conteúdo cresce junto com o notebook. */
+.fc-tela-barra { flex: none; display: flex; align-items: center; gap: 12px; min-height: max(28px, 8.5cqh); padding: 0 3.4cqi; border-bottom: 1px solid #f5bd3d26; color: #a5abb0; font-size: clamp(9.5px, 1.55cqi, 11.5px); font-weight: 600; letter-spacing: .1em; }
+.fc-tela-marca { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fc-tela-marca span { color: #f5bd3d; }
+.fc-tela-conta { letter-spacing: .02em; text-transform: none; white-space: nowrap; }
+.fc-tela-conta a { color: #f5bd3d; }
+.fc-tela-ampliar { display: none; align-items: center; gap: 5px; min-height: 28px; padding: 0 9px; border: 1px solid #f5bd3d55; border-radius: 999px; background: none; color: #f5bd3d; font: inherit; letter-spacing: .04em; cursor: pointer; }
+
+.fc-tela-corpo { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 3.2cqi 3.6cqi; font-size: clamp(11px, 2.05cqi, 15px); scrollbar-width: thin; scrollbar-color: #f5bd3d55 transparent; }
+.fc-tela-estado { margin: 0; color: #a5abb0; }
+.fc-tela-corpo h3 { margin: 0; font: 400 1.55em/1.15 Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
+.fc-tela-corpo h3:focus { outline: none; }
+.fc-tela-corpo p { margin: 0; }
+
+/* Lista */
+.fc-tela-topo { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 2.6cqi; }
+.fc-tela-topo p { color: #a5abb0; font-size: .86em; }
+.fc-tela-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(max(84px, 15cqi), 1fr)); gap: max(6px, 1.3cqi); margin: 0; padding: 0; list-style: none; }
+.fc-tela-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  width: 100%; min-height: max(84px, 15cqi); padding: 10px 6px;
+  border: 1px solid #ffffff17; border-radius: 10px;
+  background: #ffffff08; color: inherit; font: inherit;
+  cursor: var(--fc-cursor-linguagem, pointer);
+  transition: border-color .2s, background .2s, translate .2s;
+}
+.fc-tela-item img, .fc-tela-sigla { width: max(28px, 6.4cqi); height: max(28px, 6.4cqi); object-fit: contain; }
+.fc-tela-sigla { display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--fc-cor) 25%, transparent); color: var(--fc-cor); font-weight: 700; }
+.fc-tela-item b { font-size: .92em; font-weight: 600; }
+.fc-tela-item small { color: #a5abb0; font-size: .74em; }
+.fc-tela-item:hover { border-color: color-mix(in srgb, var(--fc-cor) 60%, transparent); background: color-mix(in srgb, var(--fc-cor) 9%, transparent); translate: 0 -2px; }
+.fc-tela-item-inscrito { border-color: #f5bd3d99; }
+.fc-tela-item-inscrito small { color: #f5bd3d; font-weight: 600; }
+
+/* Curso */
+.fc-tela-voltar { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; margin: 0 0 2.2cqi; padding: 0; border: 0; background: none; color: #c9cdd1; font: inherit; font-size: .86em; cursor: pointer; }
+.fc-tela-voltar:hover { color: #f5bd3d; }
+.fc-tela-curso { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 2.4cqi; }
+.fc-tela-curso-logo { width: max(40px, 9cqi); height: max(40px, 9cqi); object-fit: contain; }
+.fc-tela-curso-texto p { margin-top: 4px; color: #c9cdd1; font-size: .92em; }
+.fc-tela-selo { padding: 5px 10px; border: 1px solid #f5bd3d55; border-radius: 999px; color: #f5bd3d; font-size: .7em; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.fc-tela-info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: max(6px, 1.2cqi); margin: 2.6cqi 0 0; }
+.fc-tela-info div { padding: 8px 10px; border: 1px solid #ffffff14; border-radius: 8px; background: #ffffff06; }
+.fc-tela-info dt { color: #8f979c; font-size: .66em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fc-tela-info dd { margin: 2px 0 0; font-weight: 600; }
+.fc-tela-instrutores { display: flex; align-items: center; gap: 10px; margin-top: 2.2cqi; }
+.fc-tela-avatares { display: flex; }
+.fc-tela-avatares img { width: 30px; height: 30px; margin-right: -8px; border: 2px solid #0b1015; border-radius: 50%; object-fit: cover; background: #1c2530; }
+.fc-tela-avatares:not(:empty) { margin-right: 8px; }
+.fc-tela-instrutores small { display: block; color: #8f979c; font-size: .66em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fc-tela-acao { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 2.6cqi; }
+.fc-tela-nota { color: #c9cdd1; }
+.fc-tela-nota-ok { color: #f5bd3d; font-weight: 600; }
+
+/* Botões */
+.fc-tela-botao { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 40px; padding: 0 18px; border: 1px solid #f5bd3d66; border-radius: 6px; background: transparent; color: #f2f2f2; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: background .2s, border-color .2s; }
+.fc-tela-botao:hover { border-color: #f5bd3d; background: #f5bd3d14; }
+.fc-tela-botao-ouro { border-color: #f5bd3d; background: #f5bd3d; color: #030508; }
+.fc-tela-botao-ouro:hover { background: #ffd45e; }
+.fc-tela-botao:disabled { opacity: .6; cursor: progress; }
+.fc-tela-botoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2.6cqi; }
+
+/* Confirmar e concluído */
+.fc-tela-confirmar, .fc-tela-feito { max-width: 560px; }
+.fc-tela-confirmar p { margin-top: 1.6cqi; color: #c9cdd1; }
+.fc-tela-mensagem { padding: 10px 12px; border-left: 3px solid #e76661; border-radius: 4px; background: #e766611a; color: #f2f2f2 !important; }
+.fc-tela-mensagem[data-tipo="aviso"], .fc-tela-mensagem[data-tipo="login"] { border-left-color: #f5bd3d; background: #f5bd3d14; }
+.fc-tela-mensagem a { color: #f5bd3d; }
+.fc-tela-feito { margin: 0 auto; padding-top: 2cqi; text-align: center; }
+.fc-tela-feito p { margin-top: 1.4cqi; color: #c9cdd1; }
+.fc-tela-feito .fc-tela-botoes { justify-content: center; }
+.fc-tela-feito-icone { display: inline-grid; place-items: center; width: 46px; height: 46px; margin-bottom: 10px; border: 1px solid #f5bd3d; border-radius: 50%; color: #f5bd3d; font-size: 22px; }
+.fc-tela-vazia { display: grid; justify-items: start; gap: 14px; }
+
+/* Tela estreita: o selo desce e as informações ficam numa coluna de três linhas curtas. */
+@container (max-width: 460px) {
+  .fc-tela-curso { grid-template-columns: auto 1fr; }
+  .fc-tela-selo { grid-column: 1 / -1; justify-self: start; }
+  .fc-tela-info div { padding: 6px 8px; }
+  .fc-tela-botao { min-height: 36px; padding: 0 14px; }
+}
+
+/* =========================
+   CELULAR: TELA AMPLIADA
+   ========================= */
+@media (max-width: 700px) {
+  .fc-tela-ampliar { display: inline-flex; }
+}
+.fc-notebook-tela.fc-tela-ampliada {
+  position: fixed;
+  z-index: 3000;
+  inset: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom));
+  width: auto;
+  aspect-ratio: auto;
+  border: 1px solid #f5bd3d40;
+  border-radius: 14px;
+  box-shadow: 0 0 0 100vmax #000000c4;
+}
+.fc-tela-ampliada .fc-tela-barra { font-size: 11px; }
+.fc-tela-ampliada .fc-tela-corpo { font-size: 14px; }
+html.fc-notebook-travado, html.fc-notebook-travado body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-notebook-canvas, .fc-notebook-desenho, .fc-notebook-fechado, .fc-notebook-encaixe, .fc-notebook-tela, .fc-tela-item { transition: none; }
+  .fc-tela-item:hover { translate: none; }
+}

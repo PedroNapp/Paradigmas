@@ -16,12 +16,11 @@
 
     <link rel="stylesheet" href="../css/rodape.css?v=2" />
 
-    <!-- Notebooks 3D nos cards de curso -->
-    <link rel="stylesheet" href="../notebooks/course-computers.css?v=natal-3d-4">
+    <!-- Notebook 3D com os cursos na tela -->
+    <link rel="stylesheet" href="../notebooks/notebook-cursos.css?v=1">
     <script type="importmap">{"imports":{"three":"../vendor/three/build/three.module.min.js","three/addons/":"../vendor/three/examples/jsm/"}}</script>
-    <script defer src="../notebooks/course-computers-loader.js?v=natal-3d-4"></script>
     <link rel="stylesheet" href="../vendor/lenis/lenis.css" />
-    <link rel="stylesheet" href="../css/experiencia.css?v=9" />
+    <link rel="stylesheet" href="../css/experiencia.css?v=10" />
   </head>
 
   <body>
@@ -131,12 +130,8 @@
 
         <!-- LISTA -->
 
-        <div class="lista-cursos" id="listaCursos">
-          <div class="estado-cursos">
-            <span class="carregando"></span>
-
-            <p>Carregando cursos...</p>
-          </div>
+        <div class="fc-notebook" id="notebookCursos">
+          <p class="fc-notebook-carregando">Carregando cursos...</p>
         </div>
       </section>
 
@@ -265,7 +260,7 @@
 
     <script type="module" src="../js/auth.js"></script>
     <script type = "module" src="../js/cabecalho.js?v=3"></script>
-    <script type="module" src="../js/cursos.js?v=natal-3d-8"></script>
+    <script type="module" src="../js/cursos.js?v=natal-3d-9"></script>
     <div class="fc-audio-dock" role="region" aria-label="Controles de áudio"><button type="button" data-audio-music aria-pressed="true">♫ Música ligada</button><button type="button" data-audio-effects aria-pressed="true">♪ Efeitos ligados</button></div>
     <script defer src="../vendor/lenis/lenis.min.js"></script>
     <script defer src="../js/experiencia.js?v=10"></script>

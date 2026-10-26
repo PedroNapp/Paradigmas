@@ -3,9 +3,9 @@ import { clienteSupabase } from "./supabase.js";
 import { inteiroPositivo } from "./seguranca.js";
 import {
   carregarDadosCursos,
-  carregarDadosVagas,
-  limparCacheCursos
+  carregarDadosVagas
 } from "./dados.js";
+import { normalizarPeriodo, realizarMatricula } from "./matricular.js";
 
 // =========================
 // ELEMENTOS
@@ -37,32 +37,6 @@ const IMAGEM_INSTRUTOR_PADRAO = "../imagens/usuario-padrao.png";
 
 const mensagemMatricula = document.getElementById("mensagemMatricula");
 
-let redirecionandoLogin = false;
-// =========================
-// NORMALIZAR PERÍODO
-// =========================
-
-function normalizarPeriodo(valor) {
-  const periodo = String(valor ?? "")
-    .trim()
-    .toLowerCase();
-
-  // Ex.: 2026/02, 2026/2 e 2026-2.
-  const correspondencia = periodo.match(
-    /^(\d{4})\s*[/.-]\s*0*(\d{1,2})$/
-  );
-
-  if (correspondencia) {
-    const ano = correspondencia[1];
-    const etapa = Number(correspondencia[2]);
-
-    if (etapa >= 1 && etapa <= 12) {
-      return `${ano}/${etapa}`;
-    }
-  }
-
-  return periodo.replace(/\s+/g, " ");
-}
 
 // =========================
 // ESCAPAR HTML
@@ -545,286 +519,47 @@ async function confirmarMatricula() {
 
   botaoConfirmar.textContent = "Verificando matrícula...";
 
-  try {
-    // =========================
-    // VERIFICAR LOGIN
-    // =========================
+  // As verificações e a gravação ficam em matricular.js,
+  // as mesmas da tela do notebook de cursos.
+  const resultado = await realizarMatricula(cursoId);
 
-    const {
-      data: dadosSessao,
-      error: erroSessao
-    } = await clienteSupabase.auth.getSession();
+  matriculaEmAndamento = false;
 
-    if (erroSessao) {
-      throw erroSessao;
-    }
+  // =========================
+  // MATRÍCULA CONCLUÍDA
+  // =========================
 
-    const session = dadosSessao.session;
-
-    if (!session) {
-      mostrarMensagem(
-        "Você precisa entrar na sua conta para realizar a matrícula. Redirecionando para o login...",
-        "aviso"
-      );
-
-      redirecionandoLogin = true;
-
-      window.setTimeout(function () {
-        window.location.href = "../html/login.html";
-      }, 1800);
-
-      return;
-    }
-
-    // =========================
-    // BUSCAR USUÁRIO
-    // =========================
-
-    const {
-      data: usuario,
-      error: erroUsuario
-    } = await clienteSupabase
-      .from("usuarios")
-      .select("idUsuario")
-      .eq("email", session.user.email)
-      .maybeSingle();
-
-    if (erroUsuario) {
-      console.error("Erro ao buscar usuário:", erroUsuario);
-
-      mostrarMensagem(
-        "Não foi possível identificar seu usuário. Tente novamente."
-      );
-
-      return;
-    }
-
-    if (!usuario) {
-      mostrarMensagem(
-        "Seu cadastro não foi localizado. Entre novamente ou contate o suporte."
-      );
-
-      return;
-    }
-
-    const usuarioId = usuario.idUsuario;
-
-    // =========================
-    // VALIDAR PERÍODO
-    // =========================
-
-    const periodoAtual = normalizarPeriodo(
-      cursoAtual.periodo
-    );
-
-    if (!periodoAtual) {
-      mostrarMensagem(
-        "Não foi possível identificar o período deste curso."
-      );
-
-      return;
-    }
-
-    // =========================
-    // VERIFICAR VAGAS
-    // =========================
-
-    if (
-      cursoAtual.vagas === null ||
-      cursoAtual.vagas === undefined ||
-      !Number.isFinite(Number(cursoAtual.vagas))
-    ) {
-      mostrarMensagem(
-        "Não foi possível confirmar a disponibilidade de vagas. Tente novamente.",
-        "aviso"
-      );
-
-      return;
-    }
-
-    if (Number(cursoAtual.vagas) <= 0) {
-      mostrarMensagem(
-        "Este curso não possui mais vagas. Escolha outro curso.",
-        "aviso"
-      );
-
-      return;
-    }
-
-    // =========================
-    // BUSCAR MATRÍCULAS EXISTENTES
-    // =========================
-
-    const {
-      data: matriculas,
-      error: erroMatriculas
-    } = await clienteSupabase
-      .from("matriculas")
-      .select(`
-        idMatricula,
-        idCurso,
-        cursos (
-          periodo
-        )
-      `)
-      .eq("idUsuario", usuarioId);
-
-    if (erroMatriculas) {
-      console.error(
-        "Erro ao buscar matrículas:",
-        erroMatriculas
-      );
-
-      throw erroMatriculas;
-    }
-
-    const listaMatriculas = matriculas || [];
-
-    // =========================
-    // VALIDAR DADOS EXISTENTES
-    // =========================
-
-    const possuiPeriodoIndefinido = listaMatriculas.some(
-      function (matricula) {
-        const cursoRelacionado = Array.isArray(matricula.cursos)
-          ? matricula.cursos[0]
-          : matricula.cursos;
-
-        return !normalizarPeriodo(
-          cursoRelacionado?.periodo
-        );
-      }
-    );
-
-    if (possuiPeriodoIndefinido) {
-      mostrarMensagem(
-        "Não foi possível verificar todas as suas matrículas. Atualize a página e tente novamente.",
-        "aviso"
-      );
-
-      return;
-    }
-
-    // =========================
-    // VERIFICAR CONFLITO
-    // =========================
-
-    const jaMatriculado = listaMatriculas.some(
-      function (matricula) {
-        const cursoRelacionado = Array.isArray(matricula.cursos)
-          ? matricula.cursos[0]
-          : matricula.cursos;
-
-        return (
-          normalizarPeriodo(cursoRelacionado.periodo) ===
-          periodoAtual
-        );
-      }
-    );
-
-    if (jaMatriculado) {
-      mostrarMensagem(
-        "Você já possui uma matrícula neste período. Cada aluno pode se inscrever em apenas um curso por período.",
-        "aviso"
-      );
-
-      return;
-    }
-
-    // =========================
-    // REALIZAR MATRÍCULA
-    // =========================
-
-    const {
-      error: erroInsercao
-    } = await clienteSupabase
-      .from("matriculas")
-      .insert({
-        idUsuario: usuarioId,
-        idCurso: Number(cursoId),
-        dataInscricao: new Date().toISOString()
-      });
-
-    // =========================
-    // VERIFICAR ERRO DA INSERÇÃO
-    // =========================
-
-    if (erroInsercao) {
-      console.error(
-        "Erro retornado pelo Supabase:",
-        erroInsercao
-      );
-
-      const mensagemErro = String(
-        erroInsercao.message || ""
-      ).toLowerCase();
-
-      if (
-        mensagemErro.includes(
-          "você já possui uma matrícula neste período".toLowerCase()
-        )
-      ) {
-        mostrarMensagem(
-          "Você já possui uma matrícula neste período. Não é possível se inscrever em outro curso agora.",
-          "aviso"
-        );
-
-        return;
-      }
-
-      if (
-        mensagemErro.includes(
-          "não há vagas disponíveis para este curso".toLowerCase()
-        )
-      ) {
-        mostrarMensagem(
-          "As vagas deste curso se esgotaram. Escolha outro curso.",
-          "aviso"
-        );
-
-        return;
-      }
-
-      throw erroInsercao;
-    }
-
-    // =========================
-    // MATRÍCULA CONCLUÍDA
-    // =========================
-
+  if (resultado.ok) {
     matriculaConcluida = true;
 
     botaoConfirmar.textContent = "Matrícula confirmada";
 
-    // Vagas mudaram: limpa o cache e avisa as outras telas abertas
-    // na moldura para remontar os cards de curso.
-    limparCacheCursos();
-
-    if ("BroadcastChannel" in window) {
-      new BroadcastChannel("flashclip-matriculas").postMessage("matricula");
-    }
-
     transicionarMatricula();
 
-  } catch (erro) {
-    console.error("Erro ao realizar matrícula:", erro);
+    return;
+  }
 
+  // =========================
+  // SEM LOGIN
+  // =========================
+
+  if (resultado.tipo === "login") {
     mostrarMensagem(
-      "Não foi possível realizar sua matrícula. Verifique sua conexão e tente novamente."
+      `${resultado.mensagem} Redirecionando para o login...`,
+      "aviso"
     );
 
-  } finally {
-    matriculaEmAndamento = false;
+    window.setTimeout(function () {
+      window.location.href = "../html/login.html";
+    }, 1800);
 
-    if (
-      botaoConfirmar &&
-      !matriculaConcluida &&
-      !redirecionandoLogin
-    ) {
-      botaoConfirmar.disabled = !cursoAtual;
-      botaoConfirmar.innerHTML = textoOriginal;
-    }
+    return;
   }
+
+  mostrarMensagem(resultado.mensagem, resultado.tipo);
+
+  botaoConfirmar.disabled = !cursoAtual;
+  botaoConfirmar.innerHTML = textoOriginal;
 }
 
 

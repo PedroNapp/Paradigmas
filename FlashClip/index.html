@@ -75,13 +75,12 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
       <meta name="theme-color" content="#030508">
     <link rel="stylesheet" href="css/natal.css?v=pedro-12">
     <link rel="stylesheet" href="css/parceiros.css?v=1">
-    <link rel="stylesheet" href="./notebooks/course-computers.css?v=natal-3d-4">
+    <link rel="stylesheet" href="./notebooks/notebook-cursos.css?v=1">
     <link rel="stylesheet" href="css/globo.css?v=pedro-6">
     <link rel="stylesheet" href="css/entrada.css?v=pedro-4">
     <link rel="stylesheet" href="./vendor/lenis/lenis.css" />
-    <link rel="stylesheet" href="css/experiencia.css?v=9">
+    <link rel="stylesheet" href="css/experiencia.css?v=10">
     <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.min.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
-    <script defer src="./notebooks/course-computers-loader.js?v=natal-3d-4"></script>
     <script type="module" src="js/globo.js?v=pedro-4"></script>
   </head>
 
@@ -319,8 +318,8 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
           <p>Confira os cursos disponíveis para inscrição.</p>
         </div>
 
-        <div class="lista-cursos" id="listaCursos">
-          <p>Carregando cursos...</p>
+        <div class="fc-notebook" id="notebookCursos">
+          <p class="fc-notebook-carregando">Carregando cursos...</p>
         </div>
       </section>
 <section class="fc-closing" aria-labelledby="fc-closing-title"><div><p>Novas conexões. Novas possibilidades.</p><h2 id="fc-closing-title">O melhor presente?<br>Um novo começo.</h2></div><a class="botao-principal" href="./html/cursos.html">Quero fazer parte <span aria-hidden="true">↗</span></a></section>
@@ -343,7 +342,7 @@ html.fc-loading body>:not(#fc-loading):not(script):not(style):not(noscript){visi
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script type="module" src="./js/auth.js"></script>
-    <script type="module" src="./js/script.js?v=ready-8"></script>
+    <script type="module" src="./js/script.js?v=ready-9"></script>
     <script src="./js/cabecalho.js?v=3"></script>
       <script defer src="js/natal.js?v=3"></script>
   <section class="fc-entry" id="abertura" hidden role="region" aria-label="Abertura interativa do FlashClip" data-entry-step="0">
