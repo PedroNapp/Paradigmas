@@ -481,7 +481,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
 
       <dl class="fc-tela-info">
         <div><dt>Duração</dt><dd>${DURACAO_PADRAO}</dd></div>
-        <div><dt>Sala</dt><dd>${escaparHTML(salaDoCurso(curso))}</dd></div>
+        <div><dt>Labin</dt><dd>${escaparHTML(salaDoCurso(curso))}</dd></div>
         <div><dt>Vagas</dt><dd>${vagas === null ? "—" : vagas}</dd></div>
       </dl>
 
