@@ -171,6 +171,25 @@
         "embeddedScripts": false,
         "externalResourceReferences": false
       }
+    },
+    {
+      "course": "Scratch",
+      "normalizedCourse": "Scratch",
+      "slug": "scratch",
+      "file": "scratch.svg",
+      "provider": "SVG fornecido pelo usuário",
+      "source": "Arquivo scratch (1).svg anexado nesta conversa",
+      "referencedAsset": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Scratch_S.svg",
+      "license": "Verificar os termos da fonte referenciada e as regras de uso da marca Scratch antes de publicação",
+      "sha256": "24460715dae0c293b3cff3e4b8f16531b5d376dd4317489c51572aba41f32235",
+      "bytes": 700,
+      "validation": {
+        "xmlParsed": true,
+        "embeddedScripts": false,
+        "externalResourceReferences": true,
+        "externalResource": "O SVG incorpora o Scratch_S.svg da Wikimedia por meio de xlink:href."
+      },
+      "identityNote": "Mantido exatamente conforme o arquivo SVG indicado pelo usuário como a versão correta."
     }
   ],
   "wordmarks": [

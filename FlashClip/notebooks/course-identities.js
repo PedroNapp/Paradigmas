@@ -9,6 +9,7 @@ const languages = {
   elixir: ['elixir', '#b29ad3', 'Elixir'],
   clojure: ['clojure', '#87bf72', 'Clojure'],
   ruby: ['ruby', '#e76661', 'Ruby'],
+  scratch: ['scratch', '#ffab19', 'Scratch'],
   minikanren: [null, '#e6c88c', 'miniKanren'],
 };
 
