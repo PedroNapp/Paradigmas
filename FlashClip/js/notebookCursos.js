@@ -1,22 +1,87 @@
 // =========================
-// NOTEBOOK DE CURSOS
+// CURSOS: MODO SIMPLES E NOTEBOOK AVANÇADO
 // =========================
-// Um notebook só, no lugar dos cards: a tela dele lista os cursos,
-// mostra os detalhes e confirma a inscrição. A tela é HTML de verdade
-// (clique, teclado e leitor de tela); o 3D (notebooks/notebook-cursos.js)
-// é só a moldura e carrega quando o notebook chega perto da tela.
-// Sem 3D (sem WebGL ou com erro), a tela funciona sozinha, como um painel.
+// O modo simples mostra cards completos com as informações dos cursos.
+// O modo avançado reaproveita o notebook atual, incluindo detalhes e matrícula.
+// Os dois modos compartilham os mesmos dados e as mesmas validações.
+// A tela do notebook é HTML acessível; o 3D é apenas a moldura visual.
 
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
 import { escaparHTML } from "./seguranca.js";
-import {
-  CANAL_MATRICULAS,
-  normalizarPeriodo,
-  realizarMatricula,
-  situacaoDaConta,
-} from "./matricular.js";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
 import { courseIdentity } from "../notebooks/course-identities.js?v=ready-6";
+
+// O módulo de matrícula é importado dinamicamente, mas a situação da conta
+// é consultada assim que a página abre para os cards refletirem inscrições existentes.
+// O CSS avançado e o notebook 3D continuam sob demanda.
+const CANAL_MATRICULAS = "flashclip-matriculas";
+let normalizarPeriodo = null;
+let realizarMatricula = null;
+let situacaoDaConta = null;
+let moduloMatriculasPromise = null;
+
+function carregarModuloMatriculas() {
+  if (!moduloMatriculasPromise) {
+    moduloMatriculasPromise = import("./matricular.js?v=1")
+      .then((modulo) => {
+        normalizarPeriodo = modulo.normalizarPeriodo;
+        realizarMatricula = modulo.realizarMatricula;
+        situacaoDaConta = modulo.situacaoDaConta;
+        return modulo;
+      })
+      .catch((erro) => {
+        moduloMatriculasPromise = null;
+        throw erro;
+      });
+  }
+
+  return moduloMatriculasPromise;
+}
+
+// No modo simples, apenas o CSS dos cards é carregado. Os estilos do
+// notebook completo entram quando o usuário escolhe o modo avançado.
+const CAMINHO_CSS_AVANCADO = new URL("../notebooks/notebook-cursos.css?v=6", import.meta.url);
+let cssAvancadoPromise = null;
+
+function carregarCssAvancado() {
+  const existente = [...document.querySelectorAll('link[rel="stylesheet"]')]
+    .find((link) => {
+      try {
+        return new URL(link.href).pathname === CAMINHO_CSS_AVANCADO.pathname;
+      } catch {
+        return false;
+      }
+    });
+
+  if (existente?.sheet) {
+    return Promise.resolve();
+  }
+
+  if (cssAvancadoPromise) {
+    return cssAvancadoPromise;
+  }
+
+  cssAvancadoPromise = new Promise((resolve, reject) => {
+    const link = existente || document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = CAMINHO_CSS_AVANCADO.href;
+    link.addEventListener("load", resolve, { once: true });
+    link.addEventListener("error", () => {
+      link.remove();
+      reject(new Error("Não foi possível carregar o estilo do notebook."));
+    }, { once: true });
+
+    if (!existente) {
+      document.head.append(link);
+    }
+  }).catch((erro) => {
+    cssAvancadoPromise = null;
+    throw erro;
+  });
+
+  return cssAvancadoPromise;
+}
 
 // =========================
 // CONFIGURAÇÕES
@@ -45,20 +110,6 @@ let contador = 0;
 // =========================
 // FUNÇÕES DE APOIO
 // =========================
-
-function montarImagem(caminho, caminhoImagens) {
-  if (!caminho || String(caminho).trim() === "") {
-    return `${caminhoImagens}usuario-padrao.png`;
-  }
-
-  const valor = String(caminho).trim();
-
-  if (valor.startsWith("http://") || valor.startsWith("https://")) {
-    return valor;
-  }
-
-  return `${caminhoImagens}${valor.replace(/^\.\/imagens\//, "")}`;
-}
 
 function textoDoSelo(status) {
   const texto = String(status ?? "").trim();
@@ -107,7 +158,22 @@ function temWebGL() {
 
 function marcacao(idTela) {
   return `
-    <div class="fc-notebook-palco" data-renderer="pending">
+    <div class="fc-modos-visualizacao" role="group" aria-label="Modo de visualização dos cursos">
+      <button type="button" class="fc-modo-visualizacao fc-modo-ativo" data-modo-visualizacao="simples" aria-pressed="true">Simples</button>
+      <button type="button" class="fc-modo-visualizacao" data-modo-visualizacao="avancado" aria-pressed="false">Avançado</button>
+    </div>
+
+    <section class="fc-cursos-simples" data-cursos-simples aria-label="Cursos disponíveis">
+      <div class="fc-cursos-simples-topo">
+        <h3>Escolha seu curso</h3>
+        <p>Confira as informações e faça sua inscrição diretamente no card.</p>
+      </div>
+      <div data-lista-cursos-simples>
+        <p class="fc-notebook-carregando">Carregando cursos...</p>
+      </div>
+    </section>
+
+    <div class="fc-notebook-palco" data-renderer="pending" hidden>
       <canvas class="fc-notebook-canvas" aria-hidden="true"></canvas>
 
       <div class="fc-notebook-encaixe" aria-hidden="true"></div>
@@ -152,7 +218,6 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   }
 
   const {
-    aberto = false,
     caminhoLogin = "./login.html",
     caminhoInscricoes = "./inscricoes.html",
     caminhoImagens = "./imagens/",
@@ -162,6 +227,9 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
 
   raiz.innerHTML = marcacao(`telaCursos${contador}`);
 
+  const botoesModo = [...raiz.querySelectorAll("[data-modo-visualizacao]")];
+  const areaSimples = raiz.querySelector("[data-cursos-simples]");
+  const listaSimples = raiz.querySelector("[data-lista-cursos-simples]");
   const palco = raiz.querySelector(".fc-notebook-palco");
   const canvas = raiz.querySelector(".fc-notebook-canvas");
   const encaixe = raiz.querySelector(".fc-notebook-encaixe");
@@ -175,6 +243,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
 
   const estado = {
     aberto: false,
+    modo: "simples",
     vista: "carregando",
     idSelecionado: null,
     cursos: [],
@@ -182,8 +251,10 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     mensagem: null,
     enviando: false,
     focarAoLigar: false,
+    veioDoSimples: false,
   };
 
+  let atualizacaoContaPromise = null;
   let motor3D = null;
   let desistiuDo3D = false;
   let esperaFechar = 0;
@@ -260,6 +331,90 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     definirAberto(false, { peloUsuario: true });
   });
 
+  botoesModo.forEach(function (botao) {
+    botao.addEventListener("click", function () {
+      selecionarModo(botao.dataset.modoVisualizacao);
+    });
+  });
+
+  let verificandoInscricaoSimples = false;
+
+  listaSimples.addEventListener("click", async function (evento) {
+    const botaoInscrever = evento.target.closest('[data-acao="inscrever"]');
+
+    if (botaoInscrever) {
+      const card = botaoInscrever.closest("[data-curso-card]");
+
+      if (!card || verificandoInscricaoSimples || botaoInscrever.disabled) {
+        return;
+      }
+
+      const idCurso = Number(card.dataset.cursoCard);
+      if (!Number.isInteger(idCurso) || idCurso <= 0) {
+        return;
+      }
+
+      verificandoInscricaoSimples = true;
+      botoesModo.forEach((botao) => { botao.disabled = true; });
+      botaoInscrever.disabled = true;
+      botaoInscrever.textContent = "Verificando…";
+
+      try {
+        // A situação da conta e as matrículas já começam a ser carregadas
+        // junto com os cursos. Se ainda estiverem em andamento, aguardamos.
+        if (estado.conta === null || estado.conta.erro) {
+          await atualizarConta();
+        }
+
+        const curso = estado.cursos.find((item) => Number(item.idCurso) === idCurso);
+
+        if (!curso || !estado.conta || estado.conta.erro || !estado.conta.sessao) {
+          desenharCursosSimples();
+          return;
+        }
+
+        // Revalida o estado exibido antes de abrir a confirmação. A gravação
+        // continua sendo protegida por realizarMatricula() no servidor.
+        if (
+          matriculaNoCurso(curso) ||
+          matriculaNoPeriodo(curso) ||
+          (numeroDeVagas(curso) !== null && numeroDeVagas(curso) <= 0)
+        ) {
+          desenharCursosSimples();
+          return;
+        }
+
+        estado.idSelecionado = idCurso;
+        estado.mensagem = null;
+        estado.veioDoSimples = true;
+
+        // O modo avançado usa a mesma tela e o mesmo componente de matrícula.
+        // Com a conta validada, já abre na confirmação do curso escolhido.
+        await selecionarModo("avancado", idCurso, true);
+      } finally {
+        verificandoInscricaoSimples = false;
+        botoesModo.forEach((botao) => { botao.disabled = false; });
+      }
+      return;
+    }
+
+    const tentarConta = evento.target.closest('[data-acao="recarregar-conta"]');
+    if (tentarConta) {
+      tentarConta.disabled = true;
+      tentarConta.textContent = "Verificando…";
+      await atualizarConta();
+      return;
+    }
+
+    const acao = evento.target.closest('[data-acao="recarregar"]');
+
+    if (acao) {
+      estado.vista = "carregando";
+      desenhar();
+      atualizarCursos();
+    }
+  });
+
   // =========================
   // TELA AMPLIADA (CELULAR)
   // =========================
@@ -327,6 +482,10 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   }
 
   function matriculaNoPeriodo(curso) {
+    if (!normalizarPeriodo) {
+      return false;
+    }
+
     const periodo = normalizarPeriodo(curso.periodo);
 
     return Boolean(periodo) && (estado.conta?.matriculas || []).some(function (matricula) {
@@ -345,6 +504,164 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
         <button type="button" class="fc-tela-botao" data-acao="recarregar">Tentar de novo</button>
       </div>
     `;
+  }
+
+  // Os dados de instrutores são compartilhados entre os cards e o notebook avançado.
+  function dadosDosInstrutores(curso) {
+    const ministrantes = curso.ministrantes || [];
+
+    const avatares = ministrantes.slice(0, LIMITE_INSTRUTORES).map(function (ministrante) {
+      const nome = ministrante.usuarios?.nome || "Instrutor do curso";
+
+      const imagem = prepararImagemMinistrante(ministrante.referenciaFoto, caminhoImagens);
+      return `<img src="${escaparHTML(imagem.src)}" ${atributosFallbackImagem(imagem, `${caminhoImagens}usuario-padrao.png`)} alt="" title="${escaparHTML(nome)}" width="30" height="30" loading="lazy" decoding="async">`;
+    }).join("");
+
+    const nomes = ministrantes
+      .map((ministrante) => ministrante.usuarios?.nome)
+      .filter(Boolean);
+
+    let textoInstrutores = "Instrutores a definir";
+
+    if (nomes.length === 1) {
+      textoInstrutores = nomes[0];
+    } else if (nomes.length > 1) {
+      textoInstrutores = `${nomes[0]} e mais ${nomes.length - 1}`;
+    } else if (ministrantes.length > 0) {
+      textoInstrutores = ministrantes.length === 1 ? "1 instrutor" : `${ministrantes.length} instrutores`;
+    }
+
+    return { avatares, textoInstrutores };
+  }
+
+  // O modo simples apresenta as mesmas informações do detalhe avançado,
+  // mas sem exigir que a pessoa abra ou navegue pelo notebook.
+  function desenharCursosSimples() {
+    if (estado.vista === "carregando" && estado.cursos.length === 0) {
+      listaSimples.innerHTML = `<p class="fc-notebook-carregando">Carregando cursos...</p>`;
+      return;
+    }
+
+    if (estado.vista === "erro" && estado.cursos.length === 0) {
+      listaSimples.innerHTML = `
+        <div class="fc-cursos-simples-vazio">
+          <p>Não foi possível carregar os cursos.</p>
+          <button type="button" class="fc-tela-botao" data-acao="recarregar">Tentar novamente</button>
+        </div>
+      `;
+      return;
+    }
+
+    if (estado.cursos.length === 0) {
+      listaSimples.innerHTML = `<p class="fc-cursos-simples-vazio">Nenhum curso disponível no momento.</p>`;
+      return;
+    }
+
+    const cards = estado.cursos.map(function (curso) {
+      const identidade = courseIdentity(curso.nome);
+      const vagas = numeroDeVagas(curso);
+      const instrutores = dadosDosInstrutores(curso);
+      const idCurso = Number(curso.idCurso);
+
+      const logo = identidade.logo
+        ? `<img src="${escaparHTML(identidade.logo)}" alt="${escaparHTML(identidade.logoLabel)}" width="56" height="56" loading="lazy" decoding="async">`
+        : `<span class="fc-curso-simples-sigla" aria-hidden="true">${escaparHTML(identidade.name.slice(0, 2))}</span>`;
+
+      const status = String(curso.status ?? "").trim();
+      const statusNormalizado = status.toLowerCase();
+      const mostrarStatus = status && !["não iniciado", "nao iniciado"].includes(statusNormalizado);
+
+      return `
+        <li>
+          <article class="fc-curso-card" data-curso-card="${idCurso}" style="--fc-cor:${identidade.color}">
+            <header class="fc-curso-card-cabecalho">
+              <div class="fc-curso-card-identidade">
+                <span class="fc-curso-card-logo">${logo}</span>
+                <div class="fc-curso-card-titulo">
+                  <h3>${escaparHTML(identidade.name)}</h3>
+                  <p>${escaparHTML(curso.descricao || "Sem descrição disponível.")}</p>
+                </div>
+              </div>
+              <time class="fc-curso-card-data" datetime="${INICIO_CURSOS.iso}">${INICIO_CURSOS.curto}</time>
+            </header>
+
+            ${mostrarStatus ? `<span class="fc-curso-card-status">${escaparHTML(status)}</span>` : ""}
+
+            <dl class="fc-curso-card-info">
+              <div><dt>Duração</dt><dd>${DURACAO_PADRAO}</dd></div>
+              <div><dt>Labin</dt><dd>${escaparHTML(salaDoCurso(curso))}</dd></div>
+              <div><dt>Vagas</dt><dd>${vagas === null ? "—" : vagas}</dd></div>
+            </dl>
+
+            <div class="fc-curso-card-instrutores">
+              <span class="fc-curso-card-avatares" aria-hidden="true">${instrutores.avatares}</span>
+              <span class="fc-curso-card-nomes"><small>Instrutores</small>${escaparHTML(instrutores.textoInstrutores)}</span>
+            </div>
+
+            <div class="fc-curso-card-acao">
+              ${acaoDoCursoSimples(curso)}
+            </div>
+          </article>
+        </li>
+      `;
+    }).join("");
+
+    listaSimples.innerHTML = `<ul class="fc-cursos-simples-grade" aria-label="Cursos disponíveis">${cards}</ul>`;
+  }
+
+  function atualizarModoVisualizacao() {
+    const simples = estado.modo === "simples";
+
+    areaSimples.hidden = !simples;
+    palco.hidden = simples;
+
+    botoesModo.forEach(function (botao) {
+      const ativo = botao.dataset.modoVisualizacao === estado.modo;
+      botao.classList.toggle("fc-modo-ativo", ativo);
+      botao.setAttribute("aria-pressed", String(ativo));
+    });
+  }
+
+  async function selecionarModo(modo, cursoId = null, abrirConfirmacao = false) {
+    if (modo === "simples") {
+      estado.modo = "simples";
+      estado.idSelecionado = null;
+      estado.vista = "lista";
+      estado.mensagem = null;
+      estado.veioDoSimples = false;
+      definirAberto(false, { imediato: true });
+      atualizarModoVisualizacao();
+      desenharCursosSimples();
+      return;
+    }
+
+    // O CSS do notebook não pesa no carregamento inicial dos cards.
+    try {
+      await carregarCssAvancado();
+    } catch (erro) {
+      console.warn("Não foi possível carregar o estilo avançado do notebook:", erro);
+    }
+
+    estado.modo = "avancado";
+
+    if (cursoId !== null) {
+      estado.idSelecionado = Number(cursoId);
+      estado.vista = abrirConfirmacao ? "confirmar" : "curso";
+      estado.mensagem = null;
+    } else if (!estado.idSelecionado) {
+      estado.vista = "lista";
+    }
+
+    atualizarModoVisualizacao();
+    definirAberto(true, { imediato: true, peloUsuario: true });
+    desenhar();
+    iniciar3D();
+
+    // Se a verificação inicial ainda não terminou ou falhou, tenta novamente.
+    // A inicialização normal já consulta a conta também no modo simples.
+    if (estado.conta === null || estado.conta.erro) {
+      atualizarConta();
+    }
   }
 
   function vistaLista() {
@@ -407,6 +724,12 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     `;
   }
 
+  function acaoDoCursoSimples(curso) {
+    // Enquanto a conta/matrículas não terminarem de carregar, não oferecemos
+    // uma ação que possa levar a uma confirmação incorreta.
+    return acaoDoCurso(curso);
+  }
+
   function acaoDoCurso(curso) {
     const vagas = numeroDeVagas(curso);
 
@@ -414,12 +737,17 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       return `<p class="fc-tela-nota">Verificando sua conta…</p>`;
     }
 
-    if (!estado.conta.sessao) {
-      return `<a class="fc-tela-botao fc-tela-botao-ouro" href="${caminhoLogin}">Entrar para se inscrever <span aria-hidden="true">→</span></a>`;
+    if (estado.conta.erro) {
+      return `
+        <div class="fc-tela-nota">
+          <p>Não foi possível verificar sua inscrição.</p>
+          <button type="button" class="fc-tela-botao" data-acao="recarregar-conta">Tentar novamente</button>
+        </div>
+      `;
     }
 
-    if (estado.conta.erro) {
-      return `<p class="fc-tela-nota">Não foi possível verificar sua inscrição.</p>`;
+    if (!estado.conta.sessao) {
+      return `<a class="fc-tela-botao fc-tela-botao-ouro" href="${caminhoLogin}">Entrar para se inscrever <span aria-hidden="true">→</span></a>`;
     }
 
     if (matriculaNoCurso(curso)) {
@@ -443,27 +771,8 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   function vistaCurso(curso) {
     const identidade = courseIdentity(curso.nome);
     const vagas = numeroDeVagas(curso);
-    const ministrantes = curso.ministrantes || [];
-
-    const avatares = ministrantes.slice(0, LIMITE_INSTRUTORES).map(function (ministrante) {
-      const nome = ministrante.usuarios?.nome || "Instrutor do curso";
-
-      return `<img src="${escaparHTML(montarImagem(ministrante.referenciaFoto, caminhoImagens))}" alt="" title="${escaparHTML(nome)}" width="30" height="30" loading="lazy">`;
-    }).join("");
-
-    const nomes = ministrantes
-      .map((ministrante) => ministrante.usuarios?.nome)
-      .filter(Boolean);
-
-    let textoInstrutores = "Instrutores a definir";
-
-    if (nomes.length === 1) {
-      textoInstrutores = nomes[0];
-    } else if (nomes.length > 1) {
-      textoInstrutores = `${nomes[0]} e mais ${nomes.length - 1}`;
-    } else if (ministrantes.length > 0) {
-      textoInstrutores = ministrantes.length === 1 ? "1 instrutor" : `${ministrantes.length} instrutores`;
-    }
+    const instrutores = dadosDosInstrutores(curso);
+    const { avatares, textoInstrutores } = instrutores;
 
     return `
       <button type="button" class="fc-tela-voltar" data-acao="lista"><span aria-hidden="true">←</span> Todos os cursos</button>
@@ -509,7 +818,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     }
 
     return `
-      <button type="button" class="fc-tela-voltar" data-acao="curso" data-id="${Number(curso.idCurso)}"><span aria-hidden="true">←</span> Voltar</button>
+      ${estado.veioDoSimples ? "" : `<button type="button" class="fc-tela-voltar" data-acao="curso" data-id="${Number(curso.idCurso)}"><span aria-hidden="true">←</span> Voltar</button>`}
 
       <div class="fc-tela-confirmar">
         <h3 data-tela-titulo tabindex="-1">Confirmar inscrição</h3>
@@ -527,7 +836,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
             ${estado.enviando ? "Confirmando…" : "Confirmar inscrição"}
           </button>
 
-          <button type="button" class="fc-tela-botao" data-acao="curso" data-id="${Number(curso.idCurso)}"${estado.enviando ? " disabled" : ""}>Cancelar</button>
+          <button type="button" class="fc-tela-botao" data-acao="${estado.veioDoSimples ? "voltar-simples" : "curso"}" data-id="${Number(curso.idCurso)}"${estado.enviando ? " disabled" : ""}>${estado.veioDoSimples ? "Voltar aos cursos" : "Cancelar"}</button>
         </div>
       </div>
     `;
@@ -572,6 +881,11 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   }
 
   function desenhar({ focar = false } = {}) {
+    if (estado.modo === "simples") {
+      desenharCursosSimples();
+      return;
+    }
+
     const curso = cursoSelecionado();
 
     // O curso escolhido pode sumir numa atualização: volta para a lista.
@@ -611,14 +925,27 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     estado.mensagem = null;
     desenhar();
 
-    const resultado = await realizarMatricula(estado.idSelecionado);
+    let resultado;
+
+    try {
+      await carregarModuloMatriculas();
+      resultado = await realizarMatricula(estado.idSelecionado);
+    } catch (erro) {
+      console.error("Erro ao preparar a matrícula:", erro);
+      resultado = {
+        ok: false,
+        tipo: "erro",
+        mensagem: "Não foi possível preparar a matrícula. Tente novamente.",
+      };
+    }
 
     estado.enviando = false;
 
     if (resultado.ok) {
       estado.vista = "feito";
       desenhar({ focar: true });
-      atualizarTudo();
+      atualizarCursos();
+      atualizarConta();
       return;
     }
 
@@ -646,7 +973,17 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       estado.vista = "curso";
       estado.mensagem = null;
       desenhar({ focar: true });
+    } else if (acao === "voltar-simples") {
+      estado.mensagem = null;
+      estado.veioDoSimples = false;
+      selecionarModo("simples");
     } else if (acao === "lista") {
+      if (estado.veioDoSimples) {
+        estado.veioDoSimples = false;
+        selecionarModo("simples");
+        return;
+      }
+
       const anterior = estado.idSelecionado;
 
       estado.vista = "lista";
@@ -672,6 +1009,10 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       estado.vista = "carregando";
       desenhar();
       atualizarCursos();
+    } else if (acao === "recarregar-conta") {
+      alvo.disabled = true;
+      alvo.textContent = "Verificando…";
+      atualizarConta();
     }
   });
 
@@ -716,16 +1057,33 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   }
 
   async function atualizarConta() {
-    try {
-      estado.conta = await situacaoDaConta();
-    } catch (erro) {
-      console.error("Erro ao verificar a conta:", erro);
-      estado.conta = { sessao: null, usuario: null, matriculas: [], erro: true };
+    // Evita disparar consultas duplicadas quando a página inicializa e o
+    // Supabase emite o evento INITIAL_SESSION quase ao mesmo tempo.
+    if (atualizacaoContaPromise) {
+      return atualizacaoContaPromise;
     }
 
-    // Na confirmação, a tela não troca enquanto a pessoa decide.
-    if (!estado.enviando) {
-      desenhar();
+    atualizacaoContaPromise = (async function () {
+      try {
+        await carregarModuloMatriculas();
+        estado.conta = await situacaoDaConta();
+      } catch (erro) {
+        console.error("Erro ao verificar a conta:", erro);
+        estado.conta = { sessao: null, usuario: null, matriculas: [], erro: true };
+      }
+
+      // Na confirmação, a tela não troca enquanto a pessoa decide.
+      if (!estado.enviando) {
+        desenhar();
+      }
+
+      return estado.conta;
+    })();
+
+    try {
+      return await atualizacaoContaPromise;
+    } finally {
+      atualizacaoContaPromise = null;
     }
   }
 
@@ -741,7 +1099,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     const anterior = estado.conta?.sessao?.user?.email || "";
 
     // O Supabase também avisa ao renovar o token: só muda quando a conta muda.
-    if (estado.conta && email !== anterior) {
+    if (!estado.conta || email !== anterior) {
       setTimeout(atualizarConta, 0);
     }
   });
@@ -809,8 +1167,8 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     }
   }
 
-  // O 3D começa a carregar quando o notebook chega perto da tela, ou logo
-  // depois que a página termina de abrir (na home, o three.js já veio com o globo).
+  // O notebook 3D só é carregado quando a pessoa escolhe o modo avançado.
+  // No modo simples, a página usa apenas os cards e não precisa iniciar o WebGL.
   let iniciou3D = false;
 
   function iniciar3D() {
@@ -819,39 +1177,20 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     }
 
     iniciou3D = true;
-    observador.disconnect();
     carregar3D();
-  }
-
-  const observador = new IntersectionObserver(function (entradas) {
-    if (entradas.some((entrada) => entrada.isIntersecting)) {
-      iniciar3D();
-    }
-  }, { rootMargin: "600px 0px" });
-
-  observador.observe(palco);
-
-  function depoisDeAbrir() {
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(iniciar3D, { timeout: 6000 });
-    } else {
-      setTimeout(iniciar3D, 1500);
-    }
-  }
-
-  if (document.readyState === "complete") {
-    depoisDeAbrir();
-  } else {
-    window.addEventListener("load", depoisDeAbrir, { once: true });
   }
 
   // =========================
   // INÍCIO
   // =========================
 
-  definirAberto(aberto, { imediato: true });
+  atualizarModoVisualizacao();
+  definirAberto(false, { imediato: true });
   desenhar();
-  atualizarConta();
 
+  // Os cards precisam refletir inscrições existentes desde a primeira
+  // renderização, tanto na home quanto na página de cursos. O CSS avançado
+  // e o notebook 3D continuam carregando somente quando solicitados.
+  atualizarConta();
   await atualizarCursos();
 }

@@ -1,5 +1,5 @@
-/* Notebook único da lista de cursos (js/notebookCursos.js e notebooks/notebook-cursos.js).
-   O CSS decide onde fica a tela (.fc-notebook-encaixe); o 3D se ajusta a ela. */
+/* Cursos em modo simples e notebook avançado (js/notebookCursos.js).
+   O CSS do notebook também posiciona a tela sobre a moldura 3D. */
 .fc-notebook {
   --palco-proporcao: 1.3;
   --tela-esquerda: 15%;
@@ -181,4 +181,159 @@ html.fc-notebook-travado, html.fc-notebook-travado body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .fc-notebook-canvas, .fc-notebook-tela, .fc-notebook-dica, .fc-tela-item { transition: none; }
   .fc-tela-item:hover { translate: none; }
+}
+
+/* =========================
+   SELETOR DE VISUALIZAÇÃO
+   ========================= */
+.fc-modos-visualizacao {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 0 auto 18px;
+  max-width: 980px;
+}
+.fc-modo-visualizacao {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 1px solid #ffffff22;
+  border-radius: 999px;
+  background: #ffffff08;
+  color: #a5abb0;
+  font: 600 12px 'Avenir Next', Arial, sans-serif;
+  cursor: pointer;
+  transition: color .2s, background .2s, border-color .2s;
+}
+.fc-modo-visualizacao:hover { border-color: #f5bd3d88; color: #f2f2f2; }
+.fc-modo-visualizacao.fc-modo-ativo {
+  border-color: #f5bd3d;
+  background: #f5bd3d;
+  color: #080d11;
+}
+.fc-modo-visualizacao:focus-visible,
+.fc-curso-simples:focus-visible { outline: 2px solid #f5bd3d; outline-offset: 3px; }
+
+/* =========================
+   MODO SIMPLES: CARDS COM INFORMAÇÕES COMPLETAS
+   Mostra os mesmos dados do detalhe avançado sem exigir a navegação pelo notebook.
+   ========================= */
+.fc-cursos-simples { max-width: 1100px; margin: 0 auto; }
+.fc-cursos-simples[hidden], .fc-notebook-palco[hidden] { display: none !important; }
+.fc-cursos-simples-topo { margin: 0 0 18px; }
+.fc-cursos-simples-topo h3 {
+  margin: 0;
+  color: #f2f2f2;
+  font: 400 clamp(22px, 3vw, 28px)/1.15 Georgia, 'Times New Roman', serif;
+  letter-spacing: -.02em;
+}
+.fc-cursos-simples-topo p { margin: 6px 0 0; color: #a5abb0; font: 400 13px/1.5 'Avenir Next', Arial, sans-serif; }
+.fc-cursos-simples-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  align-items: stretch;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fc-curso-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #ffffff18;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #1a222b 0%, #0b1015 100%);
+  color: #f2f2f2;
+  box-shadow: 0 14px 32px -26px #000;
+  transition: border-color .2s, transform .2s, background .2s;
+}
+.fc-curso-card:hover { border-color: color-mix(in srgb, var(--fc-cor) 48%, #ffffff18); transform: translateY(-2px); }
+.fc-curso-card-cabecalho { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; min-width: 0; }
+.fc-curso-card-identidade { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.fc-curso-card-logo { display: grid; place-items: center; flex: 0 0 56px; width: 56px; height: 56px; }
+.fc-curso-card-logo img { display: block; width: 56px; height: 56px; object-fit: contain; }
+.fc-curso-simples-sigla {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--fc-cor) 20%, transparent);
+  color: var(--fc-cor);
+  font-size: 16px;
+  font-weight: 700;
+}
+.fc-curso-card-titulo { min-width: 0; }
+.fc-curso-card-titulo h3 { margin: 0; color: #f2f2f2; font: 600 clamp(18px, 2vw, 22px)/1.15 Georgia, 'Times New Roman', serif; letter-spacing: -.02em; }
+.fc-curso-card-titulo p { margin: 6px 0 0; color: #c3c9ce; font-size: 13px; line-height: 1.45; overflow-wrap: anywhere; }
+.fc-curso-card-data {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid #f5bd3d55;
+  border-radius: 999px;
+  color: #f5bd3d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.fc-curso-card-status {
+  align-self: flex-start;
+  margin: 12px 0 0 70px;
+  padding: 4px 9px;
+  border: 1px solid #ffffff22;
+  border-radius: 999px;
+  color: #c9cdd1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.fc-curso-card-evento { display: flex; align-items: center; gap: 7px; margin: 15px 0 0 70px; color: #a5abb0; font-size: 12px; }
+.fc-curso-card-evento::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #f5bd3d; }
+.fc-curso-card-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin: 17px 0 0;
+}
+.fc-curso-card-info div { min-width: 0; padding: 10px 12px; border: 1px solid #ffffff14; border-radius: 9px; background: #ffffff06; }
+.fc-curso-card-info dt { color: #8f979c; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fc-curso-card-info dd { margin: 4px 0 0; color: #f2f2f2; font-size: 14px; font-weight: 650; overflow-wrap: anywhere; }
+.fc-curso-card-instrutores { display: flex; align-items: center; gap: 12px; min-height: 42px; margin-top: 16px; }
+.fc-curso-card-avatares { display: flex; flex: 0 0 auto; padding-left: 2px; }
+.fc-curso-card-avatares img { width: 30px; height: 30px; margin-left: -3px; margin-right: -7px; border: 2px solid #10161c; border-radius: 50%; object-fit: cover; background: #1c2530; }
+.fc-curso-card-avatares img:first-child { margin-left: 0; }
+.fc-curso-card-nomes { min-width: 0; color: #e0e3e6; font-size: 13px; line-height: 1.35; }
+.fc-curso-card-nomes small { display: block; margin-bottom: 3px; color: #8f979c; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fc-curso-card-acao { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: auto; padding-top: 16px; }
+.fc-curso-card-acao .fc-tela-botao { min-height: 40px; }
+.fc-curso-card-acao .fc-tela-nota { margin: 0; color: #c9cdd1; font-size: 12px; }
+.fc-curso-card-acao .fc-tela-nota-ok { color: #f5bd3d; }
+.fc-cursos-simples-vazio { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; color: #a5abb0; font-size: 13px; }
+.fc-cursos-simples-vazio p { margin: 0; }
+
+@media (max-width: 760px) {
+  .fc-cursos-simples-grade { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .fc-modos-visualizacao { justify-content: center; margin-bottom: 14px; }
+  .fc-curso-card { padding: 15px; }
+  .fc-curso-card-cabecalho { gap: 10px; }
+  .fc-curso-card-identidade { gap: 10px; }
+  .fc-curso-card-logo, .fc-curso-card-logo img { flex-basis: 46px; width: 46px; height: 46px; }
+  .fc-curso-card-data { padding: 6px 8px; font-size: 9px; }
+  .fc-curso-card-status, .fc-curso-card-evento { margin-left: 56px; }
+  .fc-curso-card-info { gap: 6px; margin-top: 14px; }
+  .fc-curso-card-info div { padding: 8px; }
+  .fc-curso-card-info dt { font-size: 9px; }
+  .fc-curso-card-info dd { font-size: 12px; }
+}
+@media (max-width: 390px) {
+  .fc-curso-card-cabecalho { flex-wrap: wrap; }
+  .fc-curso-card-data { margin-left: 56px; }
+  .fc-curso-card-info { grid-template-columns: 1fr; }
 }

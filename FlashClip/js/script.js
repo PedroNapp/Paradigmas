@@ -51,12 +51,11 @@ setInterval(atualizarContador, 1000);
 // CURSOS
 // =========================
 
-// Na home o notebook dos cursos começa fechado.
+// Na home os cursos começam no modo simples; o notebook 3D carrega ao abrir o avançado.
 
-import { montarNotebookCursos } from "./notebookCursos.js?v=2";
+import { montarNotebookCursos } from "./notebookCursos.js?v=6";
 
 montarNotebookCursos(document.getElementById("notebookCursos"), {
-  aberto: false,
   caminhoLogin: "./html/login.html",
   caminhoInscricoes: "./html/inscricoes.html",
   caminhoImagens: "./imagens/",
