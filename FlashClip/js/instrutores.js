@@ -1,5 +1,6 @@
 import { carregarDadosInstrutores } from "./dados.js";
 import { escaparHTML } from "./seguranca.js";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
 
 const listaInstrutores = document.getElementById("listaInstrutores");
 
@@ -28,8 +29,10 @@ async function carregarInstrutores() {
 
       const nome = ministrante.usuarios?.nome || "Instrutor";
 
-      const foto =
-        ministrante.referenciaFoto || "../imagens/usuario-padrao.png";
+      const foto = prepararImagemMinistrante(
+        ministrante.referenciaFoto,
+        "../imagens/"
+      );
 
       if (!cursos[curso]) {
         cursos[curso] = [];
@@ -98,10 +101,13 @@ async function carregarInstrutores() {
                             <div class="foto-instrutor">
 
                                 <img
-                                    src="${escaparHTML(instrutor.foto)}"
+                                    src="${escaparHTML(instrutor.foto.src)}"
+                                    ${atributosFallbackImagem(instrutor.foto, "../imagens/usuario-padrao.png")}
                                     alt="${escaparHTML(instrutor.nome)}"
+                                    width="146"
+                                    height="146"
                                     loading="lazy"
-                                    onerror="this.onerror=null; this.src='../imagens/usuario-padrao.png';"
+                                    decoding="async"
                                  >
 
                             </div>

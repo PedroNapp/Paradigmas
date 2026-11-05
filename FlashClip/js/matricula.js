@@ -6,6 +6,7 @@ import {
   carregarDadosVagas
 } from "./dados.js";
 import { normalizarPeriodo, realizarMatricula } from "./matricular.js";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
 
 // =========================
 // ELEMENTOS
@@ -362,17 +363,21 @@ async function carregarCurso() {
             instrutor.nomeInstrutor ||
             "Instrutor do curso";
 
-          const imagem = montarImagem(
+          const imagem = prepararImagemMinistrante(
             instrutor.referenciaFoto,
-            IMAGEM_INSTRUTOR_PADRAO
+            "../imagens/"
           );
 
           return `
             <img
-              src="${escaparHTML(imagem)}"
+              src="${escaparHTML(imagem.src)}"
+              ${atributosFallbackImagem(imagem, IMAGEM_INSTRUTOR_PADRAO)}
               alt="${escaparHTML(nomeInstrutor)}"
               class="avatar-instrutor-matricula"
+              width="30"
+              height="30"
               loading="lazy"
+              decoding="async"
             >
           `;
         }).join("")
