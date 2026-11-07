@@ -62,8 +62,8 @@
     alvo.focus({ preventScroll: true });
   });
 
-  // No celular, os controles de música viram um botão redondo com o ícone; o toque abre
-  // os dois ajustes e um toque fora (ou Esc) fecha. O ícone fica riscado com a música desligada.
+  // Os controles de música ficam num botão redondo com o ícone; o clique abre os dois
+  // ajustes e um clique fora (ou Esc) fecha. O ícone fica riscado com a música desligada.
   const doca = document.querySelector('.fc-audio-dock');
   if (doca) {
     const abrir = document.createElement('button');

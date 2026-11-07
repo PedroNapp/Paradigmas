@@ -102,16 +102,14 @@ html.lenis { scroll-behavior: auto; }
 }
 
 /* =========================
-   CONTROLES DE ÁUDIO NO CELULAR
+   CONTROLES DE ÁUDIO
    ========================= */
-/* Um botão redondo com o ícone; o toque abre os dois ajustes (experiencia.js). */
-.fc-audio-abrir { display: none; }
-@media (max-width: 700px) {
-  .fc-audio-dock { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 2px; padding: 0; border-radius: 26px; }
-  .fc-audio-dock:not(.fc-audio-aberta) > :not(.fc-audio-abrir) { display: none; }
-  .fc-audio-dock.fc-audio-aberta { padding: 6px; border-radius: 18px; }
-  .fc-audio-dock .fc-audio-abrir { display: grid; place-items: center; order: 2; align-self: flex-end; width: 48px; height: 48px; min-width: 48px; padding: 0; border-radius: 50%; color: var(--fc-gold); font-size: 20px; line-height: 1; }
-  .fc-audio-dock .fc-audio-abrir[aria-expanded="true"] { background: #f5bd3d14; }
-  .fc-audio-dock.fc-audio-mudo .fc-audio-abrir { color: #8f979c; text-decoration: line-through; }
-  .fc-audio-dock button:not(.fc-audio-abrir) { padding: 8px 12px; text-align: left; }
-}
+/* No computador e no celular, só um botão redondo com o ícone; o clique abre os dois
+   ajustes (experiencia.js). Sem o texto de música e efeitos sempre à vista. */
+.fc-audio-dock { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 2px; padding: 0; border-radius: 26px; }
+.fc-audio-dock:not(.fc-audio-aberta) > :not(.fc-audio-abrir) { display: none; }
+.fc-audio-dock.fc-audio-aberta { padding: 6px; border-radius: 18px; }
+.fc-audio-dock .fc-audio-abrir { display: grid; place-items: center; order: 2; align-self: flex-end; width: 48px; height: 48px; min-width: 48px; padding: 0; border-radius: 50%; color: var(--fc-gold); font-size: 20px; line-height: 1; }
+.fc-audio-dock .fc-audio-abrir[aria-expanded="true"] { background: #f5bd3d14; }
+.fc-audio-dock.fc-audio-mudo .fc-audio-abrir { color: #8f979c; text-decoration: line-through; }
+.fc-audio-dock button:not(.fc-audio-abrir) { padding: 8px 12px; text-align: left; }
