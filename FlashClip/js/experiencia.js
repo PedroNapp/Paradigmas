@@ -1,8 +1,11 @@
-/* Botões magnéticos, compartilhados por todas as páginas. */
+/* Toque, brilho e ímã dos botões, compartilhados por todas as páginas. */
 (() => {
   const calmo = matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = matchMedia('(hover: hover) and (pointer: fine)');
   const botoes = [...document.querySelectorAll('.navbar .inscricoes, .menu-mobile .inscricoes, #botaoUsuario, #botaoUsuarioMobile, .fc-hero-copy .fc-botao-liquido, .botao-login, .botao-cadastro, .botao-confirmar')];
+  // Só o botão do hero é puxado pelo cursor. Entrar, Inscrições e os botões dourados de conta
+  // ficam parados: guardam o toque, o som e o brilho, sem o ímã.
+  const puxados = new Set(document.querySelectorAll('.fc-hero-copy .fc-botao-liquido'));
   const desvio = new WeakMap();
   let cursor = null, quadro = 0;
 
@@ -35,7 +38,7 @@
         const distancia = Math.hypot(ox, oy);
         if (distancia < alcance) {
           const forca = 1 - distancia / alcance;
-          dx = ox * .45 * forca; dy = oy * .55 * forca;
+          if (puxados.has(botao)) { dx = ox * .45 * forca; dy = oy * .55 * forca; }
           botao.style.setProperty('--fc-gx', `${cursor.x - (caixa.left - dx0)}px`);
           botao.style.setProperty('--fc-gy', `${cursor.y - (caixa.top - dy0)}px`);
         }
