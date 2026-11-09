@@ -14,8 +14,8 @@ const TEMPO_CACHE_VAGAS = 2 * 60 * 1000;
 // CHAVES DO LOCALSTORAGE
 // =====================================================
 
-const CHAVE_DADOS = "flashclip_dados";
-const CHAVE_DADOS_ATUALIZADO = "flashclip_dados_atualizado";
+const CHAVE_DADOS = "flashclip_dados_v2";
+const CHAVE_DADOS_ATUALIZADO = "flashclip_dados_atualizado_v2";
 
 const CHAVE_VAGAS = "flashclip_vagas";
 const CHAVE_VAGAS_ATUALIZADO = "flashclip_vagas_atualizado";
@@ -24,6 +24,7 @@ const CHAVE_VAGAS_ATUALIZADO = "flashclip_vagas_atualizado";
 // CARREGAR DADOS
 // =====================================================
 
+
 export async function carregarDados(forcarAtualizacao = false) {
   // ---------------------------------------------------
   // TENTA USAR O CACHE
@@ -31,7 +32,6 @@ export async function carregarDados(forcarAtualizacao = false) {
 
   if (!forcarAtualizacao) {
     const dadosSalvos = localStorage.getItem(CHAVE_DADOS);
-
     const ultimaAtualizacao = localStorage.getItem(CHAVE_DADOS_ATUALIZADO);
 
     if (dadosSalvos && ultimaAtualizacao) {
@@ -51,36 +51,28 @@ export async function carregarDados(forcarAtualizacao = false) {
   }
 
   // ---------------------------------------------------
-  // BUSCA TODOS OS DADOS NECESSÁRIOS
+  // BUSCA CURSOS E MINISTRANTES
   // ---------------------------------------------------
 
   const { data: cursos, error } = await clienteSupabase
     .from("cursos")
-    .select(
-      `
+    .select(`
+      idCurso,
+      nome,
+      descricao,
+      imagem,
+      status,
+      sala,
+      vagas,
+      periodo,
+
+      ministrantes (
+        idMinistrante,
+        idUsuario,
         idCurso,
-        nome,
-        descricao,
-        imagem,
-        status,
-        sala,
-        vagas,
-        periodo,
-
-        ministrantes (
-          idMinistrante,
-          idUsuario,
-          idCurso,
-          referenciaFoto,
-
-          usuarios (
-            idUsuario,
-            nome,
-            email
-          )
-        )
-      `,
-    )
+        referenciaFoto
+      )
+    `)
     .order("idCurso", {
       ascending: true,
     });
@@ -92,7 +84,6 @@ export async function carregarDados(forcarAtualizacao = false) {
   if (error) {
     console.error("Erro ao carregar dados:", error);
 
-    // Usa cache antigo se existir
     const cacheAntigo = localStorage.getItem(CHAVE_DADOS);
 
     if (cacheAntigo) {
@@ -113,33 +104,70 @@ export async function carregarDados(forcarAtualizacao = false) {
   }
 
   // ---------------------------------------------------
+  // BUSCA NOMES NA VIEW PÚBLICA
+  // ---------------------------------------------------
+
+  const { data: usuarios, error: erroUsuarios } = await clienteSupabase
+    .from("usuarios_ministrantes_publicos")
+    .select("idUsuario, nome");
+
+  if (erroUsuarios) {
+    console.error("Erro ao carregar nomes dos ministrantes:", erroUsuarios);
+  }
+
+  // ---------------------------------------------------
+  // ORGANIZA OS USUÁRIOS POR ID
+  // ---------------------------------------------------
+
+  const mapaUsuarios = new Map();
+
+  (usuarios || []).forEach(function (usuario) {
+    mapaUsuarios.set(String(usuario.idUsuario), {
+      idUsuario: usuario.idUsuario,
+      nome: usuario.nome,
+    });
+  });
+
+  // ---------------------------------------------------
   // ORGANIZA OS DADOS
   // ---------------------------------------------------
 
   const instrutores = [];
 
-  (cursos || []).forEach(function (curso) {
-    const ministrantes = curso.ministrantes || [];
+  const cursosOrganizados = (cursos || []).map(function (curso) {
+    const ministrantes = (curso.ministrantes || []).map(function (ministrante) {
+      const usuario = mapaUsuarios.get(String(ministrante.idUsuario)) || null;
 
-    ministrantes.forEach(function (ministrante) {
+      const ministranteOrganizado = {
+        ...ministrante,
+        usuarios: usuario,
+      };
+
       instrutores.push({
         idMinistrante: ministrante.idMinistrante,
         idUsuario: ministrante.idUsuario,
         idCurso: ministrante.idCurso,
         referenciaFoto: ministrante.referenciaFoto,
 
-        usuarios: ministrante.usuarios || null,
+        usuarios: usuario,
 
         cursos: {
           idCurso: curso.idCurso,
           nome: curso.nome,
         },
       });
+
+      return ministranteOrganizado;
     });
+
+    return {
+      ...curso,
+      ministrantes: ministrantes,
+    };
   });
 
   const dados = {
-    cursos: cursos || [],
+    cursos: cursosOrganizados,
     instrutores: instrutores,
   };
 
@@ -149,10 +177,14 @@ export async function carregarDados(forcarAtualizacao = false) {
 
   localStorage.setItem(CHAVE_DADOS, JSON.stringify(dados));
 
-  localStorage.setItem(CHAVE_DADOS_ATUALIZADO, Date.now().toString());
+  localStorage.setItem(
+    CHAVE_DADOS_ATUALIZADO,
+    Date.now().toString()
+  );
 
   return dados;
 }
+
 
 // =====================================================
 // CARREGAR CURSOS
