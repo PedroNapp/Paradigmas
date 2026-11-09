@@ -7,6 +7,7 @@
   const mount = entry.querySelector('.fc-entry-mount');
   const view = experience.querySelector('#globo');
   const tap = entry.querySelector('[data-entry-tap]');
+  const skip = entry.querySelector('[data-entry-skip]');
   const status = entry.querySelector('[data-entry-status]');
   const dots = [...entry.querySelectorAll('.fc-entry-progress > i')];
   const subtitle = entry.querySelector('[data-entry-instruction]');
@@ -165,7 +166,8 @@
     if(document.body.classList.contains('fc-paused')&&landing)finishLanding();
   }
   tap.addEventListener('click',hit);
-  // A abertura não mostra botão de pular: Esc pula direto para o evento.
+  // O botão e a tecla Esc levam direto ao evento, sem a animação de chegada.
+  skip?.addEventListener('click',()=>finish({immediate:true}));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active)finish({immediate:true});});
   new MutationObserver(syncPause).observe(document.body,{attributes:true,attributeFilter:['class']});
   window.addEventListener('fc:globe-tap',hit);
