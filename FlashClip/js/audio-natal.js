@@ -17,13 +17,25 @@
   let lifecycle=Promise.resolve(), pageInactive=false, startedSilent=false, pressStarted=false, pressTarget=null, buttonUnlockTried=false, pendingEffect=null;
   const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const voices=new Set();
-  let musicButtons=[], effectsButtons=[];
-  const beat=60/104, subdivision=beat/2;
-  // Melodia original de oito compassos: sinos sobre D, G, Bm e A.
-  const melody=[74,null,78,81,null,78,76,null,74,78,81,86,null,81,78,null,79,null,83,86,null,83,81,null,79,78,76,74,null,76,78,null,78,null,81,83,null,81,78,null,76,78,81,78,null,74,73,null,76,null,81,85,null,81,78,null,76,73,69,73,76,null,null,null];
-  const chords=[[50,57,62,66],[43,55,59,62],[47,54,59,62],[45,57,61,64]];
+  let musicButtons=[], effectsButtons=[], trackButtons=[];
+  // Jingle Bells (James Lord Pierpont, 1857, domínio público): refrão em Sol, um compasso = 8 colcheias.
+  const jb=bar=>({a:[83,null,83,null,83,null,null,null],c:[83,null,86,null,79,null,null,81],d:[83,null,null,null,null,null,null,null],e:[84,null,84,null,84,null,null,84],f:[84,null,83,null,83,null,83,83],g:[83,null,81,null,81,null,83,null],h:[81,null,null,null,86,null,null,null],o:[86,null,86,null,84,null,81,null],p:[79,null,null,null,null,null,null,null]})[bar];
+  const G=[43,55,59,62],C=[48,55,60,64],A7=[45,55,61,64],D7=[50,57,60,66];
+  const tracks={
+    // Melodia original de oito compassos: sinos sobre D, G, Bm e A.
+    flashclip:{name:'FlashClip',beat:60/104,chordSteps:16,chordBeats:5,
+      melody:[74,null,78,81,null,78,76,null,74,78,81,86,null,81,78,null,79,null,83,86,null,83,81,null,79,78,76,74,null,76,78,null,78,null,81,83,null,81,78,null,76,78,81,78,null,74,73,null,76,null,81,85,null,81,78,null,76,73,69,73,76,null,null,null],
+      chords:[[50,57,62,66],G,[47,54,59,62],[45,57,61,64]]},
+    // Com guizos de trenó em cada tempo. Pulso na mínima ("JIN-gle BELLS") a ~110: semínima a 220.
+    jingle:{name:'Jingle Bells',beat:60/220,chordSteps:8,chordBeats:3.5,sleigh:true,
+      melody:[...'aacdefghaacdefop'].flatMap(jb),
+      chords:[G,G,G,G,C,G,A7,D7,G,G,G,G,C,G,D7,G]},
+  };
+  let trackId=tracks[prefs.track]?prefs.track:'flashclip';
+  const sub=()=>tracks[trackId].beat/2;
   const hz=midi=>440*Math.pow(2,(midi-69)/12);
   function label(){
+    for(const b of trackButtons)b.textContent='♫ Trilha: '+tracks[trackId].name;
     for(const b of musicButtons){b.setAttribute('aria-pressed',String(music));b.textContent=music?'♫ Música ligada':'♫ Música desligada';}
     for(const b of effectsButtons){b.setAttribute('aria-pressed',String(effects));b.textContent=effects?'♪ Efeitos ligados':'♪ Efeitos desligados';}
   }
@@ -95,14 +107,16 @@
   function schedule(){
     if(!context||!music||!wantsRunning()||context.state!=='running')return;
     // Se a thread ficou bloqueada, não despeje todas as notas perdidas de uma vez.
-    if(nextNote<context.currentTime-subdivision)nextNote=context.currentTime+.03;
+    const t=tracks[trackId],s=sub();
+    if(nextNote<context.currentTime-s)nextNote=context.currentTime+.03;
     // Agenda um segundo à frente: a moldura divide a mesma linha de execução com a tela, e o
     // globo 3D começando a desenhar não pode deixar a música com buracos.
     while(nextNote<context.currentTime+1){
-      const index=step%melody.length,note=melody[index];
+      const index=step%t.melody.length,note=t.melody[index];
       if(note!==null)bell(note,nextNote,step%4===0?.24:.17);
-      if(step%16===0)for(const midi of chords[Math.floor(index/16)])tone(hz(midi),nextNote,beat*5,.09,musicBus,'triangle');
-      nextNote+=subdivision;step++;
+      if(step%t.chordSteps===0)for(const midi of t.chords[Math.floor(index/t.chordSteps)])tone(hz(midi),nextNote,t.beat*t.chordBeats,.09,musicBus,'triangle');
+      if(t.sleigh&&step%2===0)noise(.07,7500,step%4===0?.07:.045,musicBus,nextNote);
+      nextNote+=s;step++;
     }
     setState();
   }
@@ -130,7 +144,7 @@
       }
       if(current!==revision)return;
       if(wantsRunning()&&music&&context.state==='running'&&!timer){
-        nextNote=context.currentTime+.06;step=Math.ceil((Date.now()/1000+.06-session.epoch)/subdivision);
+        nextNote=context.currentTime+.06;step=Math.ceil((Date.now()/1000+.06-session.epoch)/sub());
         timer=setInterval(schedule,100);schedule();
       }
       setState();
@@ -158,7 +172,7 @@
     // Antes do primeiro som, só o globo e os controles de áudio ligam a trilha. Depois disso,
     // qualquer toque retoma o que o iOS suspendeu (aba em segundo plano, ligação, Siri).
     // Nas outras telas, qualquer toque inicia a trilha.
-    if(!unlocked&&gated&&!event.target.closest?.('#globo,[data-entry-tap],[data-explore-globe],[data-replay-entry],[data-audio-music],[data-audio-effects]'))return;
+    if(!unlocked&&gated&&!event.target.closest?.('#globo,[data-entry-tap],[data-explore-globe],[data-replay-entry],[data-audio-music],[data-audio-effects],[data-audio-track]'))return;
     // Repete a cada gesto até o som sair: um toque recusado não encerra as tentativas.
     wake();
   }
@@ -172,18 +186,25 @@
     return true;
   }
   // Religar acontece dentro do clique, ainda no gesto, para o Safari aceitar o resume.
-  function savePrefs(){write('localStorage',PREFS,{music,effects});}
+  function savePrefs(){write('localStorage',PREFS,{music,effects,track:trackId});}
+  // Troca de trilha: recomeça do início e liga a música, já que o visitante quer ouvi-la.
+  function toggleTrack(){
+    const ids=Object.keys(tracks);trackId=ids[(ids.indexOf(trackId)+1)%ids.length];
+    // Época um pouco à frente: o primeiro passo calculado cai na nota 0, não na 1.
+    session.epoch=Date.now()/1000+.1;write('sessionStorage',SESSION,session);
+    music=true;savePrefs();label();stopMusic();wake();
+  }
   function toggleMusic(){if(onlyUnlock(music)){reconcile();return;}music=!music;savePrefs();label();if(music)wake();else reconcile();}
   function toggleEffects(){if(onlyUnlock(effects)){reconcile();return;}effects=!effects;savePrefs();if(!effects)stopVoices(effectsBus);label();if(effects)wake();else reconcile();}
-  function noise(duration,frequency,volume){
+  function noise(duration,frequency,volume,bus=effectsBus,at=context?.currentTime){
     if(!context)return;
     const buffer=context.createBuffer(1,Math.ceil(context.sampleRate*duration),context.sampleRate),data=buffer.getChannelData(0);
     for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1);
     const source=context.createBufferSource();source.buffer=buffer;
     const filter=context.createBiquadFilter();filter.type='bandpass';filter.frequency.value=frequency;filter.Q.value=.7;
-    const gain=context.createGain(),now=context.currentTime;
-    gain.gain.setValueAtTime(volume,now);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
-    source.connect(filter);filter.connect(gain);gain.connect(effectsBus);track(source,effectsBus,[filter,gain]);source.start();source.stop(now+duration);
+    const gain=context.createGain();
+    gain.gain.setValueAtTime(volume,at);gain.gain.exponentialRampToValueAtTime(.0001,at+duration);
+    source.connect(filter);filter.connect(gain);gain.connect(bus);track(source,bus,[filter,gain]);source.start(at);source.stop(at+duration);
   }
   function canPlay(){return unlocked&&effects&&context?.state==='running'&&!pageInactive&&!document.hidden;}
   // O primeiro toque pode chegar antes de o iOS ligar o áudio. Guarde só o efeito mais recente
@@ -211,8 +232,11 @@
     gated=!!doc.getElementById('globo');
     musicButtons=[...doc.querySelectorAll('[data-audio-music]')];
     effectsButtons=[...doc.querySelectorAll('[data-audio-effects]')];
-    if(attached.has(doc)){label();if(context)setState();return;}
+    if(attached.has(doc)){trackButtons=[...doc.querySelectorAll('[data-audio-track]')];label();if(context)setState();return;}
     attached.add(doc);
+    // O botão de trilha é criado aqui, ao lado do de música, para não repetir HTML em cada página.
+    for(const b of musicButtons){const t=doc.createElement('button');t.type='button';t.dataset.audioTrack='';b.after(t);t.addEventListener('click',toggleTrack);}
+    trackButtons=[...doc.querySelectorAll('[data-audio-track]')];
     musicButtons.forEach(button=>button.addEventListener('click',toggleMusic));
     effectsButtons.forEach(button=>button.addEventListener('click',toggleEffects));
     for(const type of ['pointerdown','pointerup','touchend','click','keydown'])doc.addEventListener(type,gesture,{capture:true,passive:true});
