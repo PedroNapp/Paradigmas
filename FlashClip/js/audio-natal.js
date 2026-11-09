@@ -31,7 +31,7 @@
       melody:[...'aacdefghaacdefop'].flatMap(jb),
       chords:[G,G,G,G,C,G,A7,D7,G,G,G,G,C,G,D7,G]},
   };
-  let trackId=tracks[prefs.track]?prefs.track:'flashclip';
+  let trackId=tracks[prefs.track]?prefs.track:'jingle';
   const sub=()=>tracks[trackId].beat/2;
   const hz=midi=>440*Math.pow(2,(midi-69)/12);
   function label(){

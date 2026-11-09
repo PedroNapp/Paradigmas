@@ -321,6 +321,11 @@ main > section {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
+.logo-patrocinador--claro {
+  background: #f3eee4;
+  border-color: rgba(0, 0, 0, 0.08)
+}
+
 .logo-patrocinador img {
   display: block;
   width: auto;
@@ -329,6 +334,10 @@ main > section {
   max-height: 112px;
   object-fit: contain;
   object-position: center;
+}
+
+.logo-patrocinador--claro img {
+  max-width: 94%;
 }
 
 .logo-patrocinador img[src*="posto-ipanema"] {
