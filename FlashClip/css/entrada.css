@@ -49,7 +49,22 @@
   padding: 13px clamp(20px, 4vw, 60px) 0;
 }
 .fc-entry-top img { width: 122px; height: 43px; object-fit: contain; }
-.fc-entry-top > span { font-size: 8px; line-height: 1.4; letter-spacing: .19em; color: #a5abb0; text-align: right; }
+.fc-entry-top-actions { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.fc-entry-top-actions > span { font-size: 8px; line-height: 1.4; letter-spacing: .19em; color: #a5abb0; text-align: right; }
+.fc-entry-skip {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #f5bd3d80;
+  border-radius: 30px;
+  color: #f2f2f2;
+  background: #03050899;
+  font: 600 11px/1.3 'Avenir Next', 'Trebuchet MS', Arial, sans-serif;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.fc-entry-skip:hover { border-color: #f5bd3d; color: #030508; background: #f5bd3d; }
 .fc-entry-mount {
   position: relative;
   width: min(100%, 1200px);
@@ -164,7 +179,7 @@ html:has(body.fc-entry-active) { scrollbar-gutter: stable; }
 @media (min-width: 701px) {
   .fc-entry-top { padding-top: 18px; }
   .fc-entry-top img { width: 142px; height: 49px; }
-  .fc-entry-top > span { font-size: 9px; }
+  .fc-entry-top-actions > span { font-size: 9px; }
   .fc-entry-copy h1 { font-size: 30px; }
   .fc-entry-copy > p { font-size: 12px; }
   .fc-entry-bottom { padding-bottom: 15px; }
@@ -172,6 +187,7 @@ html:has(body.fc-entry-active) { scrollbar-gutter: stable; }
 @media (max-height: 660px) {
   .fc-entry-top { padding-top: 7px; }
   .fc-entry-top img { width: 108px; height: 36px; }
+  .fc-entry-skip { min-height: 36px; padding: 7px 14px; }
   .fc-entry-copy h1 { font-size: 23px; }
   .fc-entry-copy > p { margin-top: 5px; font-size: 10px; }
   .fc-entry-progress { height: 17px; margin-block: 3px 5px; }
@@ -185,6 +201,10 @@ html:has(body.fc-entry-active) { scrollbar-gutter: stable; }
   .fc-entry-bottom { grid-column: 2; grid-row: 2; align-self: center; padding: 0 20px 8px 0; }
   .fc-entry-copy h1 { font-size: 24px; }
   .fc-entry-copy > p { max-width: 200px; font-size: 11px; }
+}
+/* Em telas estreitas o selo da edição sai para o botão caber ao lado do logo. */
+@media (max-width: 420px) {
+  .fc-entry-top-actions > span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fc-entry, .fc-entry *, .fc-entry *::before, .fc-entry *::after { animation: none !important; transition: none !important; }
