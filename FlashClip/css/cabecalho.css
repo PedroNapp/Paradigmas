@@ -85,21 +85,33 @@ html {
   color: #e8c66a;
 }
 
-/*
-   steps(1): a lâmpada acende e apaga de uma vez,
-   então o SVG só é redesenhado nas trocas, e não
-   a cada quadro.
-*/
+/* apagada: a base, sem brilho */
 
 .pisca-lampada .pisca-vidro {
   fill: currentColor;
 
-  filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 7px currentColor);
+  opacity: 0.25;
+}
 
+/* acesa: as duas camadas de cima, com o brilho */
+
+.pisca-acesas .pisca-vidro {
+  opacity: 1;
+
+  filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 7px currentColor);
+}
+
+/*
+   steps(1): cada fileira acende e apaga de uma vez.
+   Só a opacidade da camada muda, então o navegador
+   pisca na placa de vídeo, sem redesenhar o SVG.
+*/
+
+.pisca-acesas {
   animation: piscar 1.6s steps(1, end) infinite;
 }
 
-.pisca-lampada.alterna .pisca-vidro {
+.pisca-acesas.alterna {
   animation-delay: -0.8s;
 }
 
@@ -138,14 +150,12 @@ html {
   }
 
   50% {
-    opacity: 0.25;
-
-    filter: none;
+    opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pisca-lampada .pisca-vidro {
+  .pisca-acesas {
     animation: none;
   }
 }

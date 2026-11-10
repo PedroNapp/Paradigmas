@@ -90,18 +90,33 @@
   }
 
   // Rolagem suave da roda do mouse (Lenis, em vendor/lenis). Toque e teclado continuam nativos,
-  // e quem pede menos movimento no sistema fica com a rolagem normal.
-  if (window.Lenis && !calmo.matches) {
+  // e quem pede menos movimento no sistema fica com a rolagem normal. Sem mouse (celular, tablet)
+  // o Lenis não teria o que suavizar, então nem é criado.
+  if (window.Lenis && !calmo.matches && mouse.matches) {
     const raiz = document.documentElement;
     // Carregamento, abertura e diálogos travam a página: aí a roda não desliza o fundo.
     const travada = () => [raiz, document.body].some(el => getComputedStyle(el).overflowY === 'hidden');
-    window.FCRolagem = new Lenis({
-      autoRaf: true,
+    const lenis = window.FCRolagem = new Lenis({
+      autoRaf: false,
       // Âncoras deslizam também; o Lenis já para abaixo do cabeçalho fixo (scroll-padding-top).
       anchors: true,
       virtualScroll: () => !travada(),
       // O menu do celular rola por conta própria.
       prevent: node => node.classList?.contains('menu-mobile'),
     });
+    // O laço do Lenis só roda com a página à vista. Guardada pela moldura (o app.html esconde a
+    // tela anterior) ou com a aba em segundo plano, ele para, e volta quando a tela reaparece.
+    let moldura = null;
+    try { moldura = window.frameElement; } catch {}
+    let pedido = 0;
+    const passo = tempo => { lenis.raf(tempo); pedido = requestAnimationFrame(passo); };
+    const sincronizarLaco = () => {
+      const parado = document.hidden || moldura?.dataset.estado === 'guardada';
+      if (parado && pedido) { cancelAnimationFrame(pedido); pedido = 0; }
+      else if (!parado && !pedido) pedido = requestAnimationFrame(passo);
+    };
+    document.addEventListener('visibilitychange', sincronizarLaco);
+    if (moldura) new MutationObserver(sincronizarLaco).observe(moldura, { attributes: true, attributeFilter: ['data-estado'] });
+    sincronizarLaco();
   }
 })();

@@ -121,10 +121,39 @@ function criarElementoPisca(tag, atributos) {
   return elemento;
 }
 
-function desenharPiscaPisca(svg, largura) {
-  svg.replaceChildren();
+function criarVidroPisca() {
+  return criarElementoPisca("path", {
+    class: "pisca-vidro",
+    d: "M -2.7 3.4 C -4 6.6 -1.3 10.6 0 12.2 C 1.3 10.6 4 6.6 2.7 3.4 Z",
+  });
+}
 
-  svg.setAttribute("viewBox", "0 0 " + largura + " 26");
+function criarReflexoPisca() {
+  return criarElementoPisca("ellipse", {
+    class: "pisca-reflexo",
+    cx: -1,
+    cy: 6,
+    rx: 0.6,
+    ry: 1.5,
+  });
+}
+
+/*
+   Três camadas na mesma posição: a base (fio, soquetes
+   e lâmpadas apagadas) e uma camada de lâmpadas acesas
+   para cada fileira. Só a opacidade das camadas acesas
+   pisca, e isso a placa de vídeo faz sozinha, sem
+   redesenhar o SVG.
+*/
+
+function desenharPiscaPisca(camadas, largura) {
+  const [svg, ...acesas] = camadas;
+
+  for (const camada of camadas) {
+    camada.replaceChildren();
+
+    camada.setAttribute("viewBox", "0 0 " + largura + " 26");
+  }
 
   // =========================
   // FIO
@@ -170,14 +199,15 @@ function desenharPiscaPisca(svg, largura) {
       const inclinacao =
         (Math.atan((curva * 4 * (1 - 2 * t)) / larguraVao) * 180) / Math.PI;
 
-      // duas fileiras que se alternam, como num pisca-pisca de verdade
-      const fileira = indice % 2 ? " alterna" : "";
+      const classe = "pisca-lampada " + CORES_PISCA[indice % CORES_PISCA.length];
 
+      const posicao =
+        "translate(" + x + " " + y + ") rotate(" + inclinacao * 0.6 + ")";
+
+      // apagada, na base
       const lampada = criarElementoPisca("g", {
-        class:
-          "pisca-lampada " + CORES_PISCA[indice % CORES_PISCA.length] + fileira,
-        transform:
-          "translate(" + x + " " + y + ") rotate(" + inclinacao * 0.6 + ")",
+        class: classe,
+        transform: posicao,
       });
 
       lampada.appendChild(
@@ -191,24 +221,24 @@ function desenharPiscaPisca(svg, largura) {
         }),
       );
 
-      lampada.appendChild(
-        criarElementoPisca("path", {
-          class: "pisca-vidro",
-          d: "M -2.7 3.4 C -4 6.6 -1.3 10.6 0 12.2 C 1.3 10.6 4 6.6 2.7 3.4 Z",
-        }),
-      );
+      lampada.appendChild(criarVidroPisca());
 
-      lampada.appendChild(
-        criarElementoPisca("ellipse", {
-          class: "pisca-reflexo",
-          cx: -1,
-          cy: 6,
-          rx: 0.6,
-          ry: 1.5,
-        }),
-      );
+      lampada.appendChild(criarReflexoPisca());
 
       svg.appendChild(lampada);
+
+      // acesa, na camada da sua fileira: duas fileiras que se
+      // alternam, como num pisca-pisca de verdade
+      const acesa = criarElementoPisca("g", {
+        class: classe,
+        transform: posicao,
+      });
+
+      acesa.appendChild(criarVidroPisca());
+
+      acesa.appendChild(criarReflexoPisca());
+
+      acesas[indice % 2].appendChild(acesa);
 
       indice++;
     }
@@ -216,14 +246,18 @@ function desenharPiscaPisca(svg, largura) {
 }
 
 if (navbarPisca) {
-  const svgPisca = criarElementoPisca("svg", {
-    class: "pisca-pisca",
-    "aria-hidden": "true",
-    preserveAspectRatio: "none",
-  });
+  const camadasPisca = ["", " pisca-acesas", " pisca-acesas alterna"].map(
+    function (extra) {
+      return criarElementoPisca("svg", {
+        class: "pisca-pisca" + extra,
+        "aria-hidden": "true",
+        preserveAspectRatio: "none",
+      });
+    },
+  );
 
-  // primeiro filho: o menu mobile fica por cima
-  navbarPisca.prepend(svgPisca);
+  // primeiros filhos: o menu mobile fica por cima
+  navbarPisca.prepend(...camadasPisca);
 
   let larguraPisca = 0;
 
@@ -233,7 +267,7 @@ if (navbarPisca) {
     if (largura > 0 && largura !== larguraPisca) {
       larguraPisca = largura;
 
-      desenharPiscaPisca(svgPisca, largura);
+      desenharPiscaPisca(camadasPisca, largura);
     }
   });
 

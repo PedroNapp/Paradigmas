@@ -6,7 +6,7 @@ import {
   carregarDadosVagas
 } from "./dados.js";
 import { normalizarPeriodo, realizarMatricula } from "./matricular.js";
-import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=2";
 
 // =========================
 // ELEMENTOS
@@ -365,7 +365,8 @@ async function carregarCurso() {
 
           const imagem = prepararImagemMinistrante(
             instrutor.referenciaFoto,
-            "../imagens/"
+            "../imagens/",
+            "mini"
           );
 
           return `

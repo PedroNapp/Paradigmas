@@ -12,9 +12,16 @@ const FOTOS_QUE_JA_SAO_MENORES = new Set([
   "Ministrantes/JAVASCRIPT/Felipe_Martins_Sundre.jpg",
 ])
 
+// Cópias menores, feitas a partir da foto que já estava no ar: "mini" para os
+// avatares redondos (30 a 48 px) e "media" para os cartões de instrutores (146 px).
+const PASTAS_POR_TAMANHO = {
+  mini: "Ministrantes-mini",
+  media: "Ministrantes-media",
+};
+
 // Usa cópias WebP locais para os retratos do projeto, sem alterar referências
 // remotas do Supabase nem remover as fotos originais.
-export function prepararImagemMinistrante(caminho, caminhoImagens = "../imagens/") {
+export function prepararImagemMinistrante(caminho, caminhoImagens = "../imagens/", tamanho = null) {
   const imagemPadrao = `${caminhoImagens}usuario-padrao.png`;
 
   if (!caminho || !String(caminho).trim()) {
@@ -36,14 +43,30 @@ export function prepararImagemMinistrante(caminho, caminhoImagens = "../imagens/
   const original = `${caminhoImagens}${caminhoRelativo}`;
   const arquivoMinistrante = caminhoRelativo.match(/^Ministrantes\/(.+)\.(?:jpe?g|png)$/i);
 
-  if (!arquivoMinistrante || FOTOS_QUE_JA_SAO_MENORES.has(caminhoRelativo)) {
+  if (!arquivoMinistrante) {
     return { src: original, fallback: imagemPadrao };
   }
 
-  const otimizada = `${caminhoImagens}Ministrantes-webp/${arquivoMinistrante[1]}.webp`;
+  // Tamanho cheio: a cópia WebP, ou a própria original quando ela já é pequena.
+  const cheia = FOTOS_QUE_JA_SAO_MENORES.has(caminhoRelativo)
+    ? original
+    : `${caminhoImagens}Ministrantes-webp/${arquivoMinistrante[1]}.webp`;
+
+  // Se a cópia menor faltar, a imagem volta para o tamanho cheio.
+  const pasta = PASTAS_POR_TAMANHO[tamanho];
+  if (pasta) {
+    return {
+      src: `${caminhoImagens}${pasta}/${arquivoMinistrante[1]}.webp`,
+      fallback: cheia,
+    };
+  }
+
+  if (cheia === original) {
+    return { src: original, fallback: imagemPadrao };
+  }
 
   return {
-    src: otimizada,
+    src: cheia,
     fallback: original,
   };
 }

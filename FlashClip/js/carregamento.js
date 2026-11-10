@@ -15,12 +15,14 @@
       overlay.querySelector('[data-loading-note]').textContent='Você pode continuar mesmo se o 3D não estiver disponível.';
       return;
     }
-    const pageReady=['images','styles','fonts','courses'].every(name=>boot.states[name]==='ready');
+    // A página aparece assim que estilos, fontes e a imagem principal chegam. O globo, o trenó e
+    // os cursos continuam carregando por trás: a abertura e a seção de cursos já sabem esperar.
+    const pageReady=['images','styles','fonts'].every(name=>boot.states[name]==='ready');
     const stages={globe:boot.states.globe==='ready',sleigh:boot.states.sleigh==='ready',page:pageReady};
     for(const [name,ready] of Object.entries(stages))overlay.querySelector(`[data-loading-step="${name}"]`).dataset.ready=String(ready);
     const message=overlay.querySelector('[data-loading-message]');
-    message.textContent=!stages.globe?'Preparando o globo de neve…':!stages.sleigh?'Papai Noel está preparando o trenó…':!pageReady?'Preparando a imagem e os detalhes do evento…':'Ajustando as luzes para receber você…';
-    if(!Object.values(stages).every(Boolean)||boot.states.scene!=='ready')return;
+    message.textContent=!pageReady?'Preparando a imagem e os detalhes do evento…':'Ajustando as luzes para receber você…';
+    if(!pageReady)return;
     boot.revealed=true;clearTimeout(boot.timer);
     try{sessionStorage.setItem('flashclip-carregado-v1','1');}catch{}
     root.dataset.loadState='ready';overlay.setAttribute('aria-busy','false');
@@ -42,6 +44,6 @@
   Promise.all(styles.map(link=>link.sheet?Promise.resolve():new Promise((resolve,reject)=>{link.addEventListener('load',resolve,{once:true});link.addEventListener('error',reject,{once:true});}))).then(()=>boot.report('styles'),()=>boot.fail('styles'));
   Promise.resolve(document.fonts?.ready).then(()=>boot.report('fonts'),()=>boot.fail('fonts'));
   window.addEventListener('fc:load-state',sync);
-  window.addEventListener('fc:globe-unavailable',()=>boot.fail('scene'));
+  // Sem 3D a página segue normalmente: a abertura oferece "Entrar no evento".
   sync();
 })();

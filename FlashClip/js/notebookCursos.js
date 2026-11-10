@@ -9,7 +9,7 @@
 import { clienteSupabase } from "./supabase.js";
 import { carregarDadosCursos, carregarDadosVagas } from "./dados.js";
 import { escaparHTML } from "./seguranca.js";
-import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=2";
 import { courseIdentity } from "../notebooks/course-identities.js?v=ready-6";
 
 // O módulo de matrícula é importado dinamicamente, mas a situação da conta
@@ -41,7 +41,7 @@ function carregarModuloMatriculas() {
 
 // No modo simples, apenas o CSS dos cards é carregado. Os estilos do
 // notebook completo entram quando o usuário escolhe o modo avançado.
-const CAMINHO_CSS_AVANCADO = new URL("../notebooks/notebook-cursos.css?v=6", import.meta.url);
+const CAMINHO_CSS_AVANCADO = new URL("../notebooks/notebook-cursos.css?v=7", import.meta.url);
 let cssAvancadoPromise = null;
 
 function carregarCssAvancado() {
@@ -226,6 +226,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
   contador += 1;
 
   raiz.innerHTML = marcacao(`telaCursos${contador}`);
+  const prefixoIds = `fc-cursos-${contador}`;
 
   const botoesModo = [...raiz.querySelectorAll("[data-modo-visualizacao]")];
   const areaSimples = raiz.querySelector("[data-cursos-simples]");
@@ -337,9 +338,90 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     });
   });
 
+  // =========================
+  // CARDS NO CELULAR: ATALHOS E DESCRIÇÃO
+  // =========================
+
+  // Descrições que a pessoa abriu continuam abertas quando a lista é redesenhada.
+  const descricoesAbertas = new Set();
+
+  // Atalhos: leva até o card escolhido (abaixo do cabeçalho fixo) e passa o foco para ele.
+  function irParaCurso(id) {
+    const card = listaSimples.querySelector(`[data-curso-card="${Number(id)}"]`);
+
+    if (!card) {
+      return;
+    }
+
+    const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (window.FCRolagem) {
+      window.FCRolagem.scrollTo(card, { immediate: calmo });
+    } else {
+      card.scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
+    }
+
+    card.focus({ preventScroll: true });
+    card.classList.remove("fc-curso-card-destaque");
+    void card.offsetWidth;
+    card.classList.add("fc-curso-card-destaque");
+  }
+
+  // No celular a descrição mostra até 3 linhas; "Ver mais" só aparece quando o texto foi cortado.
+  function marcarDescricoesLongas() {
+    for (const botao of listaSimples.querySelectorAll('[data-acao="descricao"]')) {
+      const card = botao.closest("[data-curso-card]");
+      const texto = card?.querySelector(".fc-curso-card-titulo p");
+
+      if (!texto) {
+        continue;
+      }
+
+      const aberta = card.classList.contains("fc-descricao-aberta");
+      botao.hidden = !aberta && texto.scrollHeight <= texto.clientHeight + 1;
+    }
+  }
+
+  let quadroDescricoes = 0;
+
+  new ResizeObserver(function () {
+    cancelAnimationFrame(quadroDescricoes);
+    quadroDescricoes = requestAnimationFrame(marcarDescricoesLongas);
+  }).observe(listaSimples);
+
   let verificandoInscricaoSimples = false;
 
   listaSimples.addEventListener("click", async function (evento) {
+    const atalho = evento.target.closest("[data-ir-curso]");
+
+    if (atalho) {
+      irParaCurso(atalho.dataset.irCurso);
+      return;
+    }
+
+    const botaoDescricao = evento.target.closest('[data-acao="descricao"]');
+
+    if (botaoDescricao) {
+      const card = botaoDescricao.closest("[data-curso-card]");
+
+      if (!card) {
+        return;
+      }
+
+      const aberta = card.classList.toggle("fc-descricao-aberta");
+      const idCurso = Number(card.dataset.cursoCard);
+
+      if (aberta) {
+        descricoesAbertas.add(idCurso);
+      } else {
+        descricoesAbertas.delete(idCurso);
+      }
+
+      botaoDescricao.setAttribute("aria-expanded", String(aberta));
+      botaoDescricao.textContent = aberta ? "Ver menos" : "Ver mais";
+      return;
+    }
+
     const botaoInscrever = evento.target.closest('[data-acao="inscrever"]');
 
     if (botaoInscrever) {
@@ -513,7 +595,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     const avatares = ministrantes.slice(0, LIMITE_INSTRUTORES).map(function (ministrante) {
       const nome = ministrante.usuarios?.nome || "Instrutor do curso";
 
-      const imagem = prepararImagemMinistrante(ministrante.referenciaFoto, caminhoImagens);
+      const imagem = prepararImagemMinistrante(ministrante.referenciaFoto, caminhoImagens, "mini");
       return `<img src="${escaparHTML(imagem.src)}" ${atributosFallbackImagem(imagem, `${caminhoImagens}usuario-padrao.png`)} alt="" title="${escaparHTML(nome)}" width="30" height="30" loading="lazy" decoding="async">`;
     }).join("");
 
@@ -571,15 +653,19 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       const statusNormalizado = status.toLowerCase();
       const mostrarStatus = status && !["não iniciado", "nao iniciado"].includes(statusNormalizado);
 
+      const aberta = descricoesAbertas.has(idCurso);
+      const idDescricao = `${prefixoIds}-descricao-${idCurso}`;
+
       return `
         <li>
-          <article class="fc-curso-card" data-curso-card="${idCurso}" style="--fc-cor:${identidade.color}">
+          <article class="fc-curso-card${aberta ? " fc-descricao-aberta" : ""}" data-curso-card="${idCurso}" tabindex="-1" aria-label="${escaparHTML(identidade.name)}" style="--fc-cor:${identidade.color}">
             <header class="fc-curso-card-cabecalho">
               <div class="fc-curso-card-identidade">
                 <span class="fc-curso-card-logo">${logo}</span>
                 <div class="fc-curso-card-titulo">
                   <h3>${escaparHTML(identidade.name)}</h3>
-                  <p>${escaparHTML(curso.descricao || "Sem descrição disponível.")}</p>
+                  <p id="${idDescricao}">${escaparHTML(curso.descricao || "Sem descrição disponível.")}</p>
+                  <button type="button" class="fc-curso-card-mais" data-acao="descricao" aria-expanded="${aberta}" aria-controls="${idDescricao}" hidden>${aberta ? "Ver menos" : "Ver mais"}</button>
                 </div>
               </div>
               <time class="fc-curso-card-data" datetime="${INICIO_CURSOS.iso}">${INICIO_CURSOS.curto}</time>
@@ -606,7 +692,17 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       `;
     }).join("");
 
-    listaSimples.innerHTML = `<ul class="fc-cursos-simples-grade" aria-label="Cursos disponíveis">${cards}</ul>`;
+    // Atalhos com o nome de cada curso (só na lista de uma coluna, no celular).
+    const atalhos = estado.cursos.map(function (curso) {
+      return `<button type="button" class="fc-cursos-atalho" data-ir-curso="${Number(curso.idCurso)}">${escaparHTML(courseIdentity(curso.nome).name)}</button>`;
+    }).join("");
+
+    listaSimples.innerHTML = `
+      <nav class="fc-cursos-atalhos" aria-label="Ir direto para um curso">${atalhos}</nav>
+      <ul class="fc-cursos-simples-grade" aria-label="Cursos disponíveis">${cards}</ul>
+    `;
+
+    marcarDescricoesLongas();
   }
 
   function atualizarModoVisualizacao() {

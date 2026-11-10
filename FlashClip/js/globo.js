@@ -4,7 +4,7 @@ import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { SnowPhysics } from './snow-physics.js';
 import { ShakeGesture } from './shake-gesture.js';
-import { GlobeOpening } from './abertura-3d.js?v=loading-1';
+import { GlobeOpening } from './abertura-3d.js?v=leve-1';
 
 const view = document.querySelector('.fc-globe-view');
 if (view&&!window.FlashClipBoot?.bypassed) initGlobe().catch(fallback);
@@ -23,15 +23,17 @@ async function initGlobe() {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, .1, 60);
+  // Celular e telas pequenas: menos pixels e sombra mais simples, o mesmo globo.
+  const leve = matchMedia('(max-width: 700px), (pointer: coarse)').matches;
   const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true, powerPreference:'low-power'});
   function cancelled(){if(!window.FlashClipBoot?.bypassed)return false;renderer.dispose();renderer.domElement.remove();return true;}
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, leve ? 1.25 : 1.6));
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = .86;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = leve ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   // Falling flakes do not cast shadows; reuse the map until the model moves.
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
@@ -48,7 +50,7 @@ async function initGlobe() {
   scene.add(ambient);
   const key = new THREE.DirectionalLight(0xffe2ba, 2.2);
   key.position.set(-3,7,5); key.castShadow=true;
-  key.shadow.mapSize.set(1024,1024);
+  key.shadow.mapSize.set(leve?512:1024, leve?512:1024);
   Object.assign(key.shadow.camera, {left:-3,right:3,top:6,bottom:-2,near:.1,far:20});
   key.shadow.bias=-.001;
   scene.add(key);
@@ -116,7 +118,20 @@ async function initGlobe() {
   let shadowYaw=NaN, shadowPitch=NaN, shadowRoll=NaN, shadowX=NaN;
   const homeYaw=-.16;
   const opening=new GlobeOpening({scene,world,pivot,glass,view,onChange:schedule,onComplete:()=>window.dispatchEvent(new CustomEvent('fc:entry-complete'))});
-  function startEntry(){opening.start();targetYaw=0;targetPitch=0;yaw=0;pitch=0;kick=0;schedule();}
+  // O trenó chega depois do globo. Assim que ele chega, os materiais dele são preparados
+  // para a primeira passagem não engasgar.
+  let trenoPronto=null;
+  function prepararTreno(){
+    if(!trenoPronto)trenoPronto=opening.carregar().then(async()=>{
+      if(disposed)return;
+      opening.sleigh.visible=true;
+      const compilando=renderer.compileAsync(opening.sleigh,camera,scene);
+      opening.sleigh.visible=false;
+      await compilando;
+    }).catch(error=>console.warn('O trenó não carregou; a abertura segue sem ele.',error));
+    return trenoPronto;
+  }
+  function startEntry(){prepararTreno();opening.start();targetYaw=0;targetPitch=0;yaw=0;pitch=0;kick=0;schedule();}
   window.addEventListener('fc:entry-start',startEntry);
   window.addEventListener('fc:entry-hit',e=>{
     if(!opening.active||paused)return;
@@ -290,14 +305,11 @@ async function initGlobe() {
   window.addEventListener('fc:load-bypass',()=>{disposed=true;cancelAnimationFrame(frame);frame=0;renderer.dispose();renderer.domElement.remove();});
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(frame);frame=0;previous=0;});
   window.addEventListener('pageshow',()=>{previous=0;schedule();});
-  await opening.ready;
-  if(cancelled())return;
+  // O globo aparece sem esperar o trenó (prepararTreno cuida dele quando a abertura começa).
   syncRendererSize();
   if(!lastWidth||!lastHeight)throw new Error('O espaço da prévia ainda não está disponível.');
   camera.position.set(0,3.05,8.4);camera.lookAt(0,1.9,0);
-  // Aquecer também os materiais do trenó antes de sua primeira passagem.
-  opening.sleigh.visible=true;
-  try {await renderer.compileAsync(scene,camera);} finally {opening.sleigh.visible=false;}
+  await renderer.compileAsync(scene,camera);
   if(cancelled())return;
   if(renderer.getContext().isContextLost())throw new Error('WebGL não está disponível.');
   view.dataset.renderer='webgl';view.dataset.asset='Higgsfield 3D Jutsu';

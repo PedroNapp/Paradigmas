@@ -1,6 +1,6 @@
 import { carregarDadosInstrutores } from "./dados.js";
 import { escaparHTML } from "./seguranca.js";
-import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=1";
+import { prepararImagemMinistrante, atributosFallbackImagem } from "./imagens-ministrantes.js?v=2";
 
 const listaInstrutores = document.getElementById("listaInstrutores");
 
@@ -31,7 +31,8 @@ async function carregarInstrutores() {
 
       const foto = prepararImagemMinistrante(
         ministrante.referenciaFoto,
-        "../imagens/"
+        "../imagens/",
+        "media"
       );
 
       if (!cursos[curso]) {

@@ -53,7 +53,7 @@ setInterval(atualizarContador, 1000);
 
 // Na home os cursos começam no modo simples; o notebook 3D carrega ao abrir o avançado.
 
-import { montarNotebookCursos } from "./notebookCursos.js?v=6";
+import { montarNotebookCursos } from "./notebookCursos.js?v=leve-2";
 
 montarNotebookCursos(document.getElementById("notebookCursos"), {
   caminhoLogin: "./html/login.html",
