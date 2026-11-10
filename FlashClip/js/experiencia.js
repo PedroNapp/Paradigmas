@@ -90,14 +90,18 @@
   }
 
   // Rolagem suave da roda do mouse (Lenis, em vendor/lenis). Toque e teclado continuam nativos,
-  // e quem pede menos movimento no sistema fica com a rolagem normal. Sem mouse (celular, tablet)
-  // o Lenis não teria o que suavizar, então nem é criado.
-  if (window.Lenis && !calmo.matches && mouse.matches) {
+  // e quem pede menos movimento no sistema fica com a rolagem normal. Com mouse o Lenis liga
+  // logo; sem mouse ele só liga quando aparece uma roda (notebook com tela de toque, modo celular
+  // do navegador). Assim o celular de verdade, que não tem roda, nem cria esse laço.
+  function ligarRolagemSuave() {
+    if (window.FCRolagem || !window.Lenis || calmo.matches) return;
     const raiz = document.documentElement;
     // Carregamento, abertura e diálogos travam a página: aí a roda não desliza o fundo.
     const travada = () => [raiz, document.body].some(el => getComputedStyle(el).overflowY === 'hidden');
     const lenis = window.FCRolagem = new Lenis({
       autoRaf: false,
+      // Mais suave que o padrão (0.1): a página desliza um pouco mais até parar.
+      lerp: 0.07,
       // Âncoras deslizam também; o Lenis já para abaixo do cabeçalho fixo (scroll-padding-top).
       anchors: true,
       virtualScroll: () => !travada(),
@@ -119,4 +123,6 @@
     if (moldura) new MutationObserver(sincronizarLaco).observe(moldura, { attributes: true, attributeFilter: ['data-estado'] });
     sincronizarLaco();
   }
+  if (mouse.matches) ligarRolagemSuave();
+  else window.addEventListener('wheel', ligarRolagemSuave, { passive: true, once: true });
 })();

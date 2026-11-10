@@ -41,7 +41,7 @@ function carregarModuloMatriculas() {
 
 // No modo simples, apenas o CSS dos cards é carregado. Os estilos do
 // notebook completo entram quando o usuário escolhe o modo avançado.
-const CAMINHO_CSS_AVANCADO = new URL("../notebooks/notebook-cursos.css?v=7", import.meta.url);
+const CAMINHO_CSS_AVANCADO = new URL("../notebooks/notebook-cursos.css?v=8", import.meta.url);
 let cssAvancadoPromise = null;
 
 function carregarCssAvancado() {
@@ -367,27 +367,10 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
     card.classList.add("fc-curso-card-destaque");
   }
 
-  // No celular a descrição mostra até 3 linhas; "Ver mais" só aparece quando o texto foi cortado.
-  function marcarDescricoesLongas() {
-    for (const botao of listaSimples.querySelectorAll('[data-acao="descricao"]')) {
-      const card = botao.closest("[data-curso-card]");
-      const texto = card?.querySelector(".fc-curso-card-titulo p");
-
-      if (!texto) {
-        continue;
-      }
-
-      const aberta = card.classList.contains("fc-descricao-aberta");
-      botao.hidden = !aberta && texto.scrollHeight <= texto.clientHeight + 1;
-    }
+  // No celular a descrição fica fechada: "Ver descrição" abre o texto de cada curso.
+  function textoDoBotaoDescricao(aberta) {
+    return aberta ? "Ocultar descrição" : "Ver descrição";
   }
-
-  let quadroDescricoes = 0;
-
-  new ResizeObserver(function () {
-    cancelAnimationFrame(quadroDescricoes);
-    quadroDescricoes = requestAnimationFrame(marcarDescricoesLongas);
-  }).observe(listaSimples);
 
   let verificandoInscricaoSimples = false;
 
@@ -418,7 +401,7 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       }
 
       botaoDescricao.setAttribute("aria-expanded", String(aberta));
-      botaoDescricao.textContent = aberta ? "Ver menos" : "Ver mais";
+      botaoDescricao.textContent = textoDoBotaoDescricao(aberta);
       return;
     }
 
@@ -664,8 +647,8 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
                 <span class="fc-curso-card-logo">${logo}</span>
                 <div class="fc-curso-card-titulo">
                   <h3>${escaparHTML(identidade.name)}</h3>
+                  <button type="button" class="fc-curso-card-mais" data-acao="descricao" aria-expanded="${aberta}" aria-controls="${idDescricao}">${textoDoBotaoDescricao(aberta)}</button>
                   <p id="${idDescricao}">${escaparHTML(curso.descricao || "Sem descrição disponível.")}</p>
-                  <button type="button" class="fc-curso-card-mais" data-acao="descricao" aria-expanded="${aberta}" aria-controls="${idDescricao}" hidden>${aberta ? "Ver menos" : "Ver mais"}</button>
                 </div>
               </div>
               <time class="fc-curso-card-data" datetime="${INICIO_CURSOS.iso}">${INICIO_CURSOS.curto}</time>
@@ -701,8 +684,6 @@ export async function montarNotebookCursos(raiz, opcoes = {}) {
       <nav class="fc-cursos-atalhos" aria-label="Ir direto para um curso">${atalhos}</nav>
       <ul class="fc-cursos-simples-grade" aria-label="Cursos disponíveis">${cards}</ul>
     `;
-
-    marcarDescricoesLongas();
   }
 
   function atualizarModoVisualizacao() {

@@ -5,15 +5,12 @@
   const stage = document.querySelector('.fc-ornament-stage');
   const scene = stage?.querySelector('.fc-scene');
   const hero = scene?.closest('.fc-hero');
-  const navbar = document.querySelector('.navbar');
   let paused = false;
   let scrollFrame = 0;
   let pointerFrame = 0;
-  let scrollExtent = 0;
   let heroTop = 0;
   let heroHeight = 0;
   let heroVisible = !('IntersectionObserver' in window);
-  let lastProgress = '';
   let lastDrift = '';
 
 
@@ -40,18 +37,14 @@
     resetPose();
   });
 
+  // A barrinha de progresso do cabeçalho (--fc-progress) não é desenhada: o navbar::after
+  // não tem content. Por isso a rolagem só mexe no enfeite SVG do topo, e só com ele na tela.
   function updateScroll() {
     scrollFrame = 0;
-    const position = window.scrollY;
-    const progress = (scrollExtent > 0 ? Math.max(0, Math.min(1, position / scrollExtent)) : 0).toFixed(4);
-    if (navbar && progress !== lastProgress) {
-      navbar.style.setProperty('--fc-progress', progress);
-      lastProgress = progress;
-    }
     // The WebGL globe handles its own pose. Only the original SVG ornament
     // needs this drift, and its geometry is measured when the layout changes.
     if (scene && heroVisible && heroHeight && !paused && !reduced.matches) {
-      const drift = Math.max(0, Math.min(1, (position - heroTop) / heroHeight)).toFixed(4);
+      const drift = Math.max(0, Math.min(1, (window.scrollY - heroTop) / heroHeight)).toFixed(4);
       if (drift !== lastDrift) {
         scene.style.setProperty('--fc-drift', drift);
         lastDrift = drift;
@@ -59,10 +52,9 @@
     }
   }
   function scheduleScroll() {
-    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
+    if (scene && heroVisible && !scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
   }
   function measureScroll() {
-    scrollExtent = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     if (hero) {
       const rect = hero.getBoundingClientRect();
       heroTop = rect.top + window.scrollY;

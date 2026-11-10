@@ -167,7 +167,7 @@
 .fc-cursos-simples-vazio { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; color: #a5abb0; font-size: 13px; }
 .fc-cursos-simples-vazio p { margin: 0; }
 
-/* Atalhos e "Ver mais" só existem na lista de uma coluna (celular). */
+/* Atalhos e "Ver descrição" só existem na lista de uma coluna (celular). */
 .fc-cursos-atalhos,
 .fc-curso-card-mais { display: none; }
 .fc-curso-card:focus { outline: none; }
@@ -249,7 +249,7 @@
   .fc-curso-card-cabecalho {
     display: grid;
     grid-template-columns: 40px minmax(0, 1fr) auto;
-    grid-template-areas: "logo nome data" "texto texto texto" "mais mais mais";
+    grid-template-areas: "logo nome data" "logo mais mais" "texto texto texto";
     align-items: center;
     gap: 0 10px;
   }
@@ -260,22 +260,16 @@
   .fc-curso-simples-sigla { width: 40px; height: 40px; border-radius: 10px; font-size: 14px; }
   .fc-curso-card-titulo h3 { grid-area: nome; font-size: 19px; }
   .fc-curso-card-data { grid-area: data; padding: 5px 8px; font-size: 9px; }
-  .fc-curso-card-titulo p {
-    grid-area: texto;
-    display: -webkit-box;
-    margin-top: 10px;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-  }
-  .fc-descricao-aberta .fc-curso-card-titulo p { display: block; overflow: visible; -webkit-line-clamp: none; line-clamp: none; }
+  /* A descrição fica fechada: "Ver descrição", embaixo do nome, abre o texto do curso. */
+  .fc-curso-card-titulo p { grid-area: texto; display: none; margin-top: 10px; }
+  .fc-descricao-aberta .fc-curso-card-titulo p { display: block; }
   .fc-curso-card-mais {
     grid-area: mais;
     justify-self: start;
     display: inline-flex;
     align-items: center;
-    min-height: 32px;
+    gap: 7px;
+    min-height: 24px;
     padding: 0;
     border: 0;
     background: none;
@@ -283,7 +277,16 @@
     font: 600 12px 'Avenir Next', Arial, sans-serif;
     cursor: pointer;
   }
-  .fc-curso-card-mais[hidden] { display: none; }
+  .fc-curso-card-mais::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .2s;
+  }
+  .fc-curso-card-mais[aria-expanded="true"]::after { transform: translateY(1px) rotate(-135deg); }
   .fc-curso-card-status { margin-left: 0; }
   .fc-curso-card-info { gap: 6px; margin-top: 12px; }
   .fc-curso-card-info div { padding: 7px 8px; border-radius: 8px; }
