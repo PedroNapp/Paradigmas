@@ -34,14 +34,24 @@ const senhaDica = document.querySelector(".senha-dica");
 // FORMATAR NOME
 // =========================
 
+// Partículas que ficam em minúsculas no meio do nome (Bueno e Silva, Maria da Costa).
+const PARTICULAS_DO_NOME = new Set(["da", "das", "de", "di", "do", "dos", "du", "e", "y"]);
+
 function formatarNome(valor) {
   return valor
     .trim()
     .replace(/\s+/g, " ")
     .toLowerCase()
     .split(" ")
-    .map(function (palavra) {
-      return palavra.charAt(0).toUpperCase() + palavra.slice(1);
+    .map(function (palavra, indice) {
+      if (indice > 0 && PARTICULAS_DO_NOME.has(palavra)) {
+        return palavra;
+      }
+
+      // Ana-Maria, D'Ávila: cada parte do nome começa com maiúscula.
+      return palavra.replace(/(^|['’-])(\p{L})/gu, function (_, separador, letra) {
+        return separador + letra.toUpperCase();
+      });
     })
     .join(" ");
 }
@@ -142,6 +152,10 @@ function limparErro(campo) {
 // VALIDAR NOME
 // =========================
 
+// Uma palavra do nome: letras (com acentos de qualquer idioma), partes ligadas
+// por hífen ou apóstrofo e, no fim, um ponto opcional de abreviação.
+const PALAVRA_DO_NOME = /^\p{L}[\p{L}\p{M}]*(?:['’-]\p{L}[\p{L}\p{M}]*)*\.?$/u;
+
 function validarNome() {
   const valor = textoLimpo(nome.value, Infinity);
 
@@ -159,19 +173,25 @@ function validarNome() {
 
   const partesNome = valor.split(/\s+/);
 
-  // Nome e sobrenome
-  if (partesNome.length < 2) {
-    mostrarErro(nome, "Digite seu nome e sobrenome.");
-    return false;
-  }
-
-  // Somente letras
+  // Somente letras. Hífen e apóstrofo podem ligar partes (Ana-Maria, D'Ávila),
+  // e uma abreviação pode terminar em ponto (P.).
   const nomeValido = partesNome.every(function (palavra) {
-    return /^[A-Za-zÀ-ÿ]{2,}$/.test(palavra);
+    return PALAVRA_DO_NOME.test(palavra);
   });
 
   if (!nomeValido) {
     mostrarErro(nome, "Digite um nome válido.");
+    return false;
+  }
+
+  // Nome e sobrenome: pelo menos duas palavras com duas letras ou mais.
+  // Partículas de uma letra ("Bueno e Silva") são aceitas entre elas.
+  const palavrasCompletas = partesNome.filter(function (palavra) {
+    return (palavra.match(/\p{L}/gu) || []).length >= 2;
+  });
+
+  if (palavrasCompletas.length < 2) {
+    mostrarErro(nome, "Digite seu nome e sobrenome.");
     return false;
   }
 
